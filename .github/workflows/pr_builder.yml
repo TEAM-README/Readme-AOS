@@ -48,9 +48,9 @@ jobs:
                     SLACK_COLOR: '#53A551'
                     SLACK_ICON: https://avatars.githubusercontent.com/u/85377241?s=200&v=4?size=48
                     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-                    SLACK_TITLE: 'Mascota/PR Check S.U.C.C.E.S.S 🎉🎉🎉'
+                    SLACK_TITLE: 'Readme/PR Check S.U.C.C.E.S.S 🎉🎉🎉'
                     MSG_MINIMAL: true
-                    SLACK_USERNAME: MASCOTA_AOS
+                    SLACK_USERNAME: DELIVEREADME
                     SLACK_MESSAGE: 'PR이 완료되었습니다!!! 🎉🎉🎉'
 
             -   name: On Failed, Notify in Slack
@@ -60,7 +60,7 @@ jobs:
                     SLACK_COLOR: '#ff0000'
                     SLACK_ICON: https://avatars.githubusercontent.com/u/85377241?s=200&v=4?size=48
                     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-                    SLACK_TITLE: 'Mascota/Android Debug build Fail❌'
+                    SLACK_TITLE: 'Readme/Android Debug build Fail❌'
                     MSG_MINIMAL: true
-                    SLACK_USERNAME: MASCOTA_AOS
+                    SLACK_USERNAME: DELIVEREADME
                     SLACK_MESSAGE: '에러를 확인해주세요'
