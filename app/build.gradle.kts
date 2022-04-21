@@ -32,7 +32,6 @@ dependencies {
     implementation(AndroidXDependencies.legacy)
     implementation(AndroidXDependencies.coroutines)
     implementation(AndroidXDependencies.paging3)
-    coreLibraryDesugaring(AndroidXDependencies.desugarLibrary)
 
     // Material Design
     implementation(MaterialDesignDependencies.materialDesign)
@@ -59,8 +58,6 @@ dependencies {
     // ImageLoading Library
     // Glide for general
     // Coil for compose
-    implementation(ThirdPartyDependencies.glide)
-    kapt(KaptDependencies.glideCompiler)
     implementation(ThirdPartyDependencies.coil)
 
     // Http Client Library
@@ -76,22 +73,7 @@ dependencies {
     // Automatic Record OpenSource Library List
     implementation(ThirdPartyDependencies.ossLicense)
 
-    // Firebase
-    implementation(platform(FirebaseDependency.firebaseBom))
-    implementation(FirebaseDependency.analyticsKtx)
-    implementation(FirebaseDependency.crashlyticsKtx)
-
-    // Flipper
-    debugImplementation(ThirdPartyDependencies.flipper)
-    debugImplementation(ThirdPartyDependencies.flipperNetwork)
-    debugImplementation(ThirdPartyDependencies.soloader)
-    debugImplementation(ThirdPartyDependencies.flipperLeakCanary)
     debugImplementation(ThirdPartyDependencies.leakCanary)
-
-    // Test Dependency
-    testImplementation(TestDependencies.androidTest)
-    testImplementation(TestDependencies.jUnit)
-    testImplementation(TestDependencies.espresso)
 }
 
 ktlint {
