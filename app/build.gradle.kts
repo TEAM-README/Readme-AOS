@@ -15,6 +15,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":shared"))
     implementation(project(":core"))
     implementation(project(":feature:home"))
     implementation(project(":data"))

@@ -24,7 +24,6 @@ dependencies {
     implementation(AndroidXDependencies.constraintLayout)
     implementation(AndroidXDependencies.legacy)
     implementation(AndroidXDependencies.coroutines)
-    coreLibraryDesugaring(AndroidXDependencies.desugarLibrary)
 
     // Material Design
     implementation(MaterialDesignDependencies.materialDesign)
