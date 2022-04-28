@@ -21,7 +21,7 @@ object Versions {
 
     const val gradleVersion = "7.1.2"
     const val ktlintVersion = "10.2.0"
-    const val googleServiceVersion = "4.3.5"
+    const val googleServiceVersion = "4.3.10"
     const val playCoreVersion = "1.10.0"
 
     const val lottieVersion = "3.6.0"
