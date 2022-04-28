@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="feature/home/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="shared/src/main/res/font/pretendard.xml" value="0.3055555555555556" />
       </map>
     </option>
   </component>
