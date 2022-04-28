@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_home"
+        android:checked="true"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home" />
+
+<!--    <item-->
+<!--        android:id="@+id/blank"-->
+<!--        android:enabled="false"-->
+<!--        android:title=""-->
+<!--        app:showAsAction="never" />-->
+
+    <item
+        android:id="@+id/menu_my_page"
+        android:icon="@drawable/ic_my_page"
+        android:title="@string/my_page" />
+
+</menu>
