@@ -5,6 +5,8 @@ plugins {
     kotlin("kapt")
     kotlin("plugin.serialization") version Versions.kotlinVersion
     id("org.jlleitschuh.gradle.ktlint") version Versions.ktlintVersion
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
     id("dagger.hilt.android.plugin")
 }
 
@@ -70,6 +72,11 @@ dependencies {
 
     // Logger - Timber
     implementation(ThirdPartyDependencies.timber)
+
+    // Firebase
+    implementation(platform(FirebaseDependency.firebaseBom))
+    implementation(FirebaseDependency.analyticsKtx)
+    implementation(FirebaseDependency.crashlyticsKtx)
 
     // Automatic Record OpenSource Library List
     implementation(ThirdPartyDependencies.ossLicense)
