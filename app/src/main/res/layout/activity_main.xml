@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:itemIconTint="@color/selector_bottom_navi"
-            app:itemRippleColor="@color/white"
+            app:itemRippleColor="@android:color/transparent"
             app:itemTextColor="@color/selector_bottom_navi"
             app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
