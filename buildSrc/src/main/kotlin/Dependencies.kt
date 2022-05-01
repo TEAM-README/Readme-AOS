@@ -30,7 +30,7 @@ object AndroidXDependencies {
     const val roomKtx = "androidx.room:room-ktx:${Versions.roomVersion}"
     const val security = "androidx.security:security-crypto:${Versions.securityVersion}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
-    const val junit = "\"androidx.test.ext:junit-ktx:${Versions.junit}"
+    const val junit = "androidx.test.ext:junit-ktx:${Versions.junit}"
 }
 
 object TestDependencies {
