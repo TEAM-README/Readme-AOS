@@ -1,4 +1,4 @@
-package com.readme.android.core.util
+package com.readme.android.core.ext
 
 import android.app.Activity
 import androidx.annotation.ColorInt
