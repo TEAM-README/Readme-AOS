@@ -18,6 +18,7 @@ object Versions {
     const val coroutinesAndroidVersion = "1.6.0"
     const val roomVersion = "2.4.1"
     const val recyclerView = "1.2.1"
+    const val junit = "1.1.3"
 
     const val gradleVersion = "7.1.2"
     const val ktlintVersion = "10.2.0"

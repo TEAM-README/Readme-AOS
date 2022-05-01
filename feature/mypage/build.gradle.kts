@@ -33,6 +33,6 @@ dependencies {
     kapt(KaptDependencies.hiltCompiler)
 
     // test
-    implementation("androidx.test.ext:junit-ktx:1.1.3")
-    androidTestImplementation("junit:junit:4.12")
+    implementation(AndroidXDependencies.junit)
+    androidTestImplementation(TestDependencies.androidTest)
 }
