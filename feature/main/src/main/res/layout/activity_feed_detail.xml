@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.feed.FeedDetailActivity">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/gray_background">
+
+                <ImageButton
+                    android:id="@+id/ib_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="11dp"
+                    android:background="@drawable/ic__back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_book"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="26dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_writer"
+                    app:layout_constraintDimensionRatio="56:82"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_category"
+                    tools:src="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/tv_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="33dp"
+                    android:textAppearance="@style/regular_05"
+                    android:textColor="@color/main_blue"
+                    app:layout_constraintStart_toEndOf="@+id/iv_book"
+                    app:layout_constraintTop_toBottomOf="@+id/ib_back"
+                    tools:text="@string/essay" />
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="32dp"
+                    android:textAppearance="@style/medium_04"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_category"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_category"
+                    tools:text="@string/book_title_example" />
+
+                <TextView
+                    android:id="@+id/tv_writer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="@string/writer_example"
+                    android:textAppearance="@style/regular_05"
+                    android:textColor="@color/gray_3"
+                    app:layout_constraintStart_toStartOf="@+id/tv_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:background="@drawable/shape_rect_white_fill_top_right_30"
+                    app:layout_constraintTop_toBottomOf="@id/iv_book">
+
+                    <TextView
+                        android:id="@+id/tv_impressive_sentence"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="26dp"
+                        android:layout_marginTop="34dp"
+                        android:layout_marginEnd="26dp"
+                        android:lineSpacingExtra="6sp"
+                        android:textAppearance="@style/regular_03"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/impressive_sentence_example" />
+
+                    <View
+                        android:id="@+id/view_line"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="22dp"
+                        android:background="@color/main_blue_0.4"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tv_impressive_sentence"
+                        app:layout_constraintTop_toBottomOf="@id/tv_impressive_sentence" />
+
+                    <TextView
+                        android:id="@+id/tv_takeaway"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="22dp"
+                        android:lineSpacingExtra="6sp"
+                        android:textAppearance="@style/extra_light_01"
+                        android:textColor="@color/black"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_impressive_sentence"
+                        app:layout_constraintStart_toStartOf="@+id/tv_impressive_sentence"
+                        app:layout_constraintTop_toBottomOf="@id/view_line"
+                        tools:text="@string/takeaway_example" />
+
+                    <TextView
+                        android:id="@+id/tv_nickname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="26dp"
+                        android:layout_marginBottom="20dp"
+                        android:textAppearance="@style/regular_05"
+                        android:textColor="@color/gray_5"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tv_takeaway"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_takeaway"
+                        tools:text="@string/nickname_example" />
+
+                    <TextView
+                        android:id="@+id/tv_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:textAppearance="@style/regular_05"
+                        android:textColor="@color/gray_3"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_nickname"
+                        app:layout_constraintStart_toEndOf="@+id/tv_nickname"
+                        app:layout_constraintTop_toTopOf="@+id/tv_nickname"
+                        tools:text="@string/date_example" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

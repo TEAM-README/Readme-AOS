@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="feedData"
+            type="com.readme.android.domain.entity.Feed" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_rect_white_fill_top_right_30">
+
+        <TextView
+            android:id="@+id/tv_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="36dp"
+            android:text="@{feedData.category}"
+            android:textAppearance="@style/medium_03"
+            android:textColor="@color/main_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/essay" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@{feedData.title}"
+            android:textAppearance="@style/medium_03"
+            android:textColor="@color/gray_3"
+            app:layout_constraintStart_toEndOf="@+id/tv_category"
+            app:layout_constraintTop_toTopOf="@+id/tv_category"
+            tools:text="@string/book_title_example" />
+
+        <TextView
+            android:id="@+id/tv_impressive_sentence"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="32dp"
+            android:ellipsize="end"
+            android:lineSpacingExtra="6sp"
+            android:maxLines="4"
+            android:text="@{feedData.impressiveSentence}"
+            android:textAppearance="@style/regular_03"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_category"
+            app:layout_constraintTop_toBottomOf="@+id/tv_category"
+            tools:text="@string/impressive_sentence_example" />
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/main_blue_0.4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_impressive_sentence"
+            app:layout_constraintTop_toBottomOf="@+id/tv_impressive_sentence" />
+
+        <TextView
+            android:id="@+id/tv_takeaway"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ellipsize="end"
+            android:lineSpacingExtra="6sp"
+            android:maxLines="6"
+            android:text="@{feedData.takeaway}"
+            android:textAppearance="@style/extra_light_01"
+            app:layout_constraintEnd_toEndOf="@+id/tv_impressive_sentence"
+            app:layout_constraintStart_toStartOf="@+id/view_line"
+            app:layout_constraintTop_toBottomOf="@+id/view_line"
+            tools:text="@string/takeaway_example" />
+
+        <TextView
+            android:id="@+id/tv_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="24dp"
+            android:text="@{feedData.nickname}"
+            android:textAppearance="@style/regular_05"
+            android:textColor="@color/gray_3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_takeaway"
+            app:layout_constraintTop_toBottomOf="@+id/tv_takeaway"
+            tools:text="@string/nickname_example" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="@{feedData.date}"
+            android:textAppearance="@style/regular_05"
+            android:textColor="@color/gray_2"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_nickname"
+            app:layout_constraintStart_toEndOf="@+id/tv_nickname"
+            app:layout_constraintTop_toTopOf="@+id/tv_nickname"
+            tools:text="@string/date_example" />
+
+        <ImageButton
+            android:id="@+id/ib_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="26dp"
+            android:background="@drawable/ic_more"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_date" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
