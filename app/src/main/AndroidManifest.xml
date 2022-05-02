@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.readme.android">
 
     <application
@@ -10,6 +11,11 @@
         android:roundIcon="@mipmap/ic_readme_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Readme">
+        <activity-alias
+            android:name="leakcanary.internal.activity.LeakLauncherActivity"
+            android:exported="true"
+            android:targetActivity="leakcanary.internal.activity.LeakActivity"
+            tools:node="merge" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
