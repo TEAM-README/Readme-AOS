@@ -21,8 +21,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":data"))
     implementation(project(":domain"))
-    implementation(project(":feature:home"))
-    implementation(project(":feature:mypage"))
+    implementation(project(":feature:main"))
 
     // Kotlin
     implementation(KotlinDependencies.kotlin)
