@@ -1,5 +1,5 @@
 object Constants {
-    const val packageName = "com.valuecruncher.gachisaja"
+    const val packageName = "com.readme.android"
     const val compileSdk = 32
     const val minSdk = 23
     const val targetSdk = 32

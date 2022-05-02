@@ -4,7 +4,6 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     kotlin("plugin.serialization") version Versions.kotlinVersion
-    id("org.jlleitschuh.gradle.ktlint") version Versions.ktlintVersion
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
     id("dagger.hilt.android.plugin")
@@ -23,6 +22,8 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":feature:home"))
     implementation(project(":feature:mypage"))
+    implementation(project(":feature:set-nick-name"))
+
 
     // Kotlin
     implementation(KotlinDependencies.kotlin)
@@ -85,14 +86,4 @@ dependencies {
     debugImplementation(ThirdPartyDependencies.leakCanary)
 }
 
-ktlint {
-    android.set(true)
-    coloredOutput.set(true)
-    verbose.set(true)
-    outputToConsole.set(true)
-    disabledRules.set(setOf("max-line-length", "no-wildcard-imports", "import-ordering"))
-    reporters {
-        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.PLAIN)
-        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
-    }
-}
+
