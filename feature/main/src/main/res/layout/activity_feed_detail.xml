@@ -10,14 +10,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         tools:context=".ui.feed.FeedDetailActivity">
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -30,64 +27,29 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="11dp"
-                    android:background="@drawable/ic__back"
+                    android:background="@drawable/ic_back"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/iv_book"
+                <include
+                    android:id="@+id/layout_book_information"
+                    layout="@layout/layout_book_information"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="26dp"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_writer"
-                    app:layout_constraintDimensionRatio="56:82"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_category"
-                    tools:src="@tools:sample/avatars" />
-
-                <TextView
-                    android:id="@+id/tv_category"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="26dp"
                     android:layout_marginTop="33dp"
-                    android:textAppearance="@style/regular_05"
-                    android:textColor="@color/main_blue"
-                    app:layout_constraintStart_toEndOf="@+id/iv_book"
+                    android:layout_marginEnd="26dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ib_back"
                     tools:text="@string/essay" />
-
-                <TextView
-                    android:id="@+id/tv_title"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginEnd="32dp"
-                    android:textAppearance="@style/medium_04"
-                    android:textColor="@color/black"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/tv_category"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_category"
-                    tools:text="@string/book_title_example" />
-
-                <TextView
-                    android:id="@+id/tv_writer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:text="@string/writer_example"
-                    android:textAppearance="@style/regular_05"
-                    android:textColor="@color/gray_3"
-                    app:layout_constraintStart_toStartOf="@+id/tv_title"
-                    app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:background="@drawable/shape_rect_white_fill_top_right_30"
-                    app:layout_constraintTop_toBottomOf="@id/iv_book">
+                    app:layout_constraintTop_toBottomOf="@id/layout_book_information">
 
                     <TextView
                         android:id="@+id/tv_impressive_sentence"
