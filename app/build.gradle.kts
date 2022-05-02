@@ -18,10 +18,12 @@ android {
 dependencies {
     implementation(project(":shared"))
     implementation(project(":core"))
-    implementation(project(":feature:home"))
     implementation(project(":data"))
     implementation(project(":domain"))
+    implementation(project(":feature:home"))
+    implementation(project(":feature:mypage"))
     implementation(project(":feature:set-nick-name"))
+
 
     // Kotlin
     implementation(KotlinDependencies.kotlin)
