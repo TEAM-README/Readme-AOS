@@ -12,6 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:includeFontPadding">false</item>
+        <item name="bottomSheetDialogTheme">@style/ReadmeBottomSheetDialogStyle</item>
     </style>
 
     <style name="bold_01">
@@ -166,6 +168,14 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">12sp</item>
         <item name="android:lineSpacingExtra">0sp</item>
+    </style>
+
+    <style name="ReadmeBottomSheetDialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/ModalStyle</item>
+    </style>
+
+    <style name="ModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/shape_rect_white_fill_top_20</item>
     </style>
 
 </resources>

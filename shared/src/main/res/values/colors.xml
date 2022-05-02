@@ -15,7 +15,10 @@
     <color name="yellow">#ffca7a</color>
     <color name="main_blue">#79a5fb</color>
     <color name="main_blue_0.4">#6679a5fb</color>
+    <color name="main_blue_0.6">#9979a5fb</color>
     <color name="sub_blue">#f3f7ff</color>
     <color name="alert_red">#d23939</color>
     <color name="gray_background">#f8f8f8</color>
+
+    <color name="crimson">#FB7979</color>
 </resources>
