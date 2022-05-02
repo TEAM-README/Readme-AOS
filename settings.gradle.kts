@@ -1,8 +1,7 @@
 rootProject.name = "Readme"
 include(":app")
 include(":core")
-include(":feature:home")
 include(":domain")
 include(":data")
 include(":shared")
-include(":feature:mypage")
+include(":feature:main")
