@@ -14,14 +14,14 @@
         tools:context=".ui.mypage.MyPageSettingActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_top"
+            android:id="@+id/layout_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
-                android:id="@+id/ib_back"
+                android:id="@+id/btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -58,7 +58,7 @@
             android:text="@string/inquire"
             android:textAppearance="@style/medium_02"
             android:textColor="@color/gray_4"
-            app:layout_constraintTop_toBottomOf="@+id/cl_top" />
+            app:layout_constraintTop_toBottomOf="@+id/layout_top" />
 
         <TextView
             android:id="@+id/tv_see_terms"

@@ -110,7 +110,7 @@
             tools:text="@string/date_example" />
 
         <ImageButton
-            android:id="@+id/ib_more"
+            android:id="@+id/btn_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="26dp"
