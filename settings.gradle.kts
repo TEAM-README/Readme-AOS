@@ -4,8 +4,5 @@ include(":core")
 include(":domain")
 include(":data")
 include(":shared")
-include(":feature:home")
-include(":feature:mypage")
+include(":feature:main")
 include(":feature:set-nick-name")
-
-

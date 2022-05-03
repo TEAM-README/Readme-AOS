@@ -11,6 +11,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":shared"))
+
     implementation(ThirdPartyDependencies.timber)
 
     // Android Core

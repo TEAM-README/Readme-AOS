@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Readme</string>
+    <!--마이페이지-->
+    <string name="user_bookshelf">님의 책장</string>
+    <string name="total">총</string>
+    <string name="text_exist">의 글이 있어요</string>
+    <string name="essay">에세이</string>
+    <string name="feed_empty">작성한 글이 없어요\n아래 + 버튼을 눌러 글을 추가해 보세요</string>
+    <string name="report">신고하기</string>
+    <string name="delete">삭제하기</string>
+    <string name="setting">환경설정</string>
+    <string name="inquire">문의하기</string>
+    <string name="see_terms">약관 보기</string>
+    <string name="logout">로그아웃</string>
+
+    <!--tools-->
+    <string name="nickname_example">강젼희정예서88</string>
+    <string name="number_example">5개</string>
+    <string name="book_title_example">1cm 다이빙</string>
+    <string name="date_example">2021/10/31</string>
+    <string name="impressive_sentence_example">\'스마트폰보다 재미있는게 있을까\'\n이것만큼 어려운 주제가 없다는 것을 안다. 하지만 그래도 답하고 싶었던 이유는, 카톡 속ㅋㅋㅋ가 아닌, 실제로 웃을 수 있는 상황을 바랐기 때문이 아닐까</string>
+    <string name="takeaway_example">나만의 시간을 보내고 싶어서 휴학을 했어요. 하지만 밤새 유튜브 보고 새벽 5시에 잠들고 오후 3시에 일어나는게 반복돼요. 스마트폰이 제 시간을 뺏어간다는 느낌이 들어 회의감이 자주 들었어요. 그래서 저 문장이 유독 공감갔고, \'스마트폰보다 재미있는게 있을까\'란 질문에 생각을 해봤지만 생각이 잘 안나더라구용. 한번....</string>
+    <string name="writer_example">부동산읽어주는남자(정태익) 저 </string>
 </resources>

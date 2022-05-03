@@ -24,6 +24,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".main.ui.feed.FeedDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.ui.mypage.MyPageSettingActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

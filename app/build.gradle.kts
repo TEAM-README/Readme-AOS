@@ -20,10 +20,8 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":data"))
     implementation(project(":domain"))
-    implementation(project(":feature:home"))
-    implementation(project(":feature:mypage"))
+    implementation(project(":feature:main"))
     implementation(project(":feature:set-nick-name"))
-
 
     // Kotlin
     implementation(KotlinDependencies.kotlin)
