@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="setNickNameViewModel"
+            type="com.readme.android.set_nick_name.viewmodel.SetNickNameViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".SetNickNameActivity">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/set_nickname_title"
+            android:textAppearance="@style/bold_01"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_explain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/set_nickname_explain"
+            android:textAppearance="@style/regular_02"
+            android:textColor="@color/gray_4"
+            app:layout_constraintStart_toStartOf="@+id/tv_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <EditText
+            android:id="@+id/et_set_nickname"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="26dp"
+            android:layout_marginTop="37dp"
+            android:background="@drawable/shape_rect_gray_1_boder_10"
+            android:ems="8"
+            android:hint="@string/set_nickname_hint"
+            android:inputType="textPersonName"
+            android:paddingStart="15dp"
+            android:paddingTop="13dp"
+            android:paddingBottom="13dp"
+            android:text="@={setNickNameViewModel.nickName}"
+            android:textAppearance="@style/regular_02"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_explain" />
+
+
+        <TextView
+            android:id="@+id/tv_check_duplicate_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:padding="5dp"
+            android:text="@string/set_nickname_duplicate_button"
+            android:textAppearance="@style/medium_04"
+            android:textColor="@color/gray_1"
+            app:layout_constraintBottom_toBottomOf="@+id/et_set_nickname"
+            app:layout_constraintEnd_toEndOf="@+id/et_set_nickname"
+            app:layout_constraintTop_toTopOf="@+id/et_set_nickname" />
+
+        <TextView
+            android:id="@+id/tv_nickname_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{setNickNameViewModel.nickNameState}"
+            android:textAppearance="@style/regular_03"
+            app:layout_constraintStart_toStartOf="@+id/et_set_nickname"
+            app:layout_constraintTop_toBottomOf="@+id/et_set_nickname"
+            tools:text="중복된 닉네임 입니다" />
+
+        <TextView
+            android:id="@+id/tv_nickname_length"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(setNickNameViewModel.nickName.length())}"
+            android:textAppearance="@style/regular_03"
+            android:textColor="@color/gray_2"
+            app:layout_constraintEnd_toStartOf="@+id/tv_nickname_length_limit"
+            app:layout_constraintTop_toTopOf="@+id/tv_nickname_length_limit"
+            tools:text="3" />
+
+        <TextView
+            android:id="@+id/tv_nickname_length_limit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/set_nickname_length_limit"
+            android:textAppearance="@style/regular_03"
+            android:textColor="@color/gray_2"
+            app:layout_constraintEnd_toEndOf="@+id/et_set_nickname"
+            app:layout_constraintTop_toBottomOf="@+id/et_set_nickname" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_start"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:background="@drawable/shape_rect_gray_1_fill_10"
+            android:text="@string/set_nickname_start_button"
+            android:textColor="@color/white"
+            android:textAppearance="@style/medium_02"
+            android:layout_marginHorizontal="26dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

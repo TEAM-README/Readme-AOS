@@ -1,0 +1,5 @@
+<resources>
+
+    <string name="set_nickname_length_limit">/7</string>
+    <string name="set_nickname_start_button">시작하기</string>
+</resources>

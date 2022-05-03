@@ -31,6 +31,10 @@
         <activity
             android:name=".main.ui.mypage.MyPageSettingActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".set_nick_name.SetNickNameActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
