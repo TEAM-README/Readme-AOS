@@ -1,6 +1,7 @@
 package com.readme.android.di
 
 import android.app.Application
+import android.util.DisplayMetrics
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,4 +16,7 @@ object AppModule {
     @Singleton
     @ApplicationContext
     fun provideApplication(app: Application) = app
+
+    @Provides
+    fun provideDisplayMetrics(app: Application): DisplayMetrics = app.resources.displayMetrics
 }
