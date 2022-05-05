@@ -8,11 +8,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.readme.android.core.ext.closeKeyboard
+import com.readme.android.core.util.Injector
+import com.readme.android.core.util.ResolutionMetrics
+import dagger.hilt.android.EntryPointAccessors
 
 abstract class BindingActivity<T : ViewDataBinding>(
     @LayoutRes private val layoutRes: Int
 ) : AppCompatActivity() {
     protected lateinit var binding: T
+    private val resolutionMetrics: ResolutionMetrics by lazy {
+        EntryPointAccessors.fromActivity(
+            this,
+            Injector.ResolutionMetricsInjector::class.java
+        ).resolutionMetrics()
+    }
+
+    val Number.dp: Int
+        get() = resolutionMetrics.toPixel(this.toInt())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

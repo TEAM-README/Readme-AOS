@@ -8,6 +8,9 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.readme.android.core.util.Injector
+import com.readme.android.core.util.ResolutionMetrics
+import dagger.hilt.android.EntryPointAccessors
 
 abstract class BindingFragment<T : ViewDataBinding>(
     @LayoutRes private val layoutRes: Int
@@ -15,6 +18,13 @@ abstract class BindingFragment<T : ViewDataBinding>(
     private var _binding: T? = null
     protected val binding: T
         get() = requireNotNull(_binding)
+
+    private val resolutionMetrics: ResolutionMetrics by lazy {
+        EntryPointAccessors.fromActivity(
+            requireActivity(),
+            Injector.ResolutionMetricsInjector::class.java
+        ).resolutionMetrics()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
