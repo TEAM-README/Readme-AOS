@@ -19,7 +19,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
 
     private fun initAdapter() {
         binding.vpMain.adapter = MainViewPagerAdapter(this).also { mainViewPagerAdapter = it }
-        mainViewPagerAdapter.fragments.addAll(listOf(HomeFragment(), MyPageFragment()))
+        mainViewPagerAdapter.fragmentList = listOf(HomeFragment(), MyPageFragment())
     }
 
     private fun syncBottomNavWithVp() {
