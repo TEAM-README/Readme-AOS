@@ -21,10 +21,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
             android:layout_marginTop="51dp"
-            android:contentDescription="@string/iv_select_category"
             android:src="@drawable/ic_category"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
         <!-- 하단 text 부분은 분기처리는 추후 수정할 예정 -->
         <TextView
