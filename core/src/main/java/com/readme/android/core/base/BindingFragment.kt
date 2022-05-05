@@ -26,6 +26,9 @@ abstract class BindingFragment<T : ViewDataBinding>(
         ).resolutionMetrics()
     }
 
+    val Number.dp: Int
+        get() = resolutionMetrics.toPixel(this.toInt())
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
