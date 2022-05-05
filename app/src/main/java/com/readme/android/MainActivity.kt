@@ -1,7 +1,6 @@
 package com.readme.android
 
 import android.os.Bundle
-import androidx.viewpager2.widget.ViewPager2
 import com.readme.android.adapter.MainViewPagerAdapter
 import com.readme.android.core.base.BindingActivity
 import com.readme.android.databinding.ActivityMainBinding
@@ -24,11 +23,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     private fun syncVpWithBottomNav() {
-        binding.vpMain.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                binding.bottomNav.menu.getItem(if (position == 0) 0 else 2).isChecked = true
-            }
-        })
+        binding.vpMain.isUserInputEnabled = false
 
         binding.bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
