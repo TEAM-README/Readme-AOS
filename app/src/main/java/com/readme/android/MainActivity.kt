@@ -31,10 +31,9 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         })
 
         binding.bottomNav.setOnItemSelectedListener {
-            binding.vpMain.currentItem = when (it.itemId) {
-                R.id.menu_home -> 0
-                R.id.menu_my_page -> 1
-                else -> return@setOnItemSelectedListener false
+            when (it.itemId) {
+                R.id.menu_home -> binding.vpMain.setCurrentItem(0, false)
+                R.id.menu_my_page -> binding.vpMain.setCurrentItem(1, false)
             }
             return@setOnItemSelectedListener true
         }
