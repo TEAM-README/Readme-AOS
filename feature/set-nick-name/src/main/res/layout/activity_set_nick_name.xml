@@ -7,7 +7,7 @@
 
         <variable
             name="setNickNameViewModel"
-            type="com.readme.android.set_nick_name.viewmodel.SetNickNameViewModel" />
+            type="com.readme.android.set_nick_name.SetNickNameViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,9 +45,9 @@
             android:layout_marginHorizontal="26dp"
             android:layout_marginTop="37dp"
             android:background="@drawable/shape_rect_gray_1_boder_10"
-            android:ems="8"
             android:hint="@string/set_nickname_hint"
             android:inputType="textPersonName"
+            android:maxLength="8"
             android:paddingStart="15dp"
             android:paddingTop="13dp"
             android:paddingBottom="13dp"
@@ -56,7 +56,8 @@
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_explain" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_explain"
+            app:nickNameLimit="@{etSetNickname.text.length()}" />
 
 
         <TextView
@@ -77,10 +78,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="@{setNickNameViewModel.nickNameState}"
             android:textAppearance="@style/regular_03"
             app:layout_constraintStart_toStartOf="@+id/et_set_nickname"
             app:layout_constraintTop_toBottomOf="@+id/et_set_nickname"
+            app:nickNameStateNumber="@{setNickNameViewModel.nickNameState}"
             tools:text="중복된 닉네임 입니다" />
 
         <TextView
@@ -89,7 +90,7 @@
             android:layout_height="wrap_content"
             android:text="@{String.valueOf(setNickNameViewModel.nickName.length())}"
             android:textAppearance="@style/regular_03"
-            android:textColor="@color/gray_2"
+            android:textColor="@{etSetNickname.text.length() == 7 ? @color/alert_red : @color/gray_2}"
             app:layout_constraintEnd_toStartOf="@+id/tv_nickname_length_limit"
             app:layout_constraintTop_toTopOf="@+id/tv_nickname_length_limit"
             tools:text="3" />
@@ -101,7 +102,7 @@
             android:layout_marginTop="10dp"
             android:text="@string/set_nickname_length_limit"
             android:textAppearance="@style/regular_03"
-            android:textColor="@color/gray_2"
+            android:textColor="@{etSetNickname.text.length() == 7 ? @color/alert_red : @color/gray_2}"
             app:layout_constraintEnd_toEndOf="@+id/et_set_nickname"
             app:layout_constraintTop_toBottomOf="@+id/et_set_nickname" />
 
@@ -109,12 +110,12 @@
             android:id="@+id/btn_start"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:background="@drawable/shape_rect_gray_1_fill_10"
-            android:text="@string/set_nickname_start_button"
-            android:textColor="@color/white"
-            android:textAppearance="@style/medium_02"
             android:layout_marginHorizontal="26dp"
             android:layout_marginBottom="24dp"
+            android:background="@drawable/shape_rect_gray_1_fill_10"
+            android:text="@string/set_nickname_start_button"
+            android:textAppearance="@style/medium_02"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

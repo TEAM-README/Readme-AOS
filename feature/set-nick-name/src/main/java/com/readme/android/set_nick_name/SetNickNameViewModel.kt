@@ -1,4 +1,4 @@
-package com.readme.android.set_nick_name.viewmodel
+package com.readme.android.set_nick_name
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,8 +11,8 @@ class SetNickNameViewModel @Inject constructor(
 
     var nickName = MutableLiveData("")
 
-    private val _nickNameState = MutableLiveData("")
-    val nickNameState: LiveData<String> = _nickNameState
+    private val _nickNameState = MutableLiveData<Int>()
+    val nickNameState: LiveData<Int> = _nickNameState
 
 
 }
