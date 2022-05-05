@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="userData"
+            type="com.readme.android.domain.entity.User" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
             android:layout_marginTop="50dp"
+            android:text="@{userData.nickname}"
             android:textAppearance="@style/semi_bold_01"
             android:textColor="@color/main_blue"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/total"
             android:textAppearance="@style/medium_03"
             android:textColor="@color/main_blue_0.6"
@@ -63,6 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:text="@{@string/count(userData.feedCount)}"
             android:textAppearance="@style/medium_03"
             android:textColor="@color/main_blue"
             app:layout_constraintBottom_toBottomOf="@+id/tv_total"
