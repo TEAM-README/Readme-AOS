@@ -14,7 +14,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initAdapter()
-        syncVpWithBottomNav()
+        syncBottomNavWithVp()
     }
 
     private fun initAdapter() {
@@ -22,7 +22,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         mainViewPagerAdapter.fragments.addAll(listOf(HomeFragment(), MyPageFragment()))
     }
 
-    private fun syncVpWithBottomNav() {
+    private fun syncBottomNavWithVp() {
         binding.vpMain.isUserInputEnabled = false
 
         binding.bottomNav.setOnItemSelectedListener {
