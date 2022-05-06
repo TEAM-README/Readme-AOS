@@ -28,34 +28,27 @@ class SetNickNameActivity :
         binding.lifecycleOwner = this
 
         initEditTextFilter()
-//        initTextChangedListener()
+
 
     }
 
     private fun initEditTextFilter() {
-        binding.etSetNickname.filters = arrayOf(InputFilter { source, _, _, _, _, _ ->
-            val noSpecialCharacterRegex = "^[0-9a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]$"
-            val noSpecialCharacterPattern = Pattern.compile(noSpecialCharacterRegex)
-            if (source.equals("") || noSpecialCharacterPattern.matcher(source).matches()) {
-                    setNickNameViewModel.updateNickNameState(HAS_NO_STATE)
+        binding.etSetNickname.filters = arrayOf(
+            InputFilter { source, _, _, _, _, _ ->
+                val noSpecialCharacterRegex = "^[0-9a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]$"
+                val noSpecialCharacterPattern = Pattern.compile(noSpecialCharacterRegex)
+                if (source.isNullOrEmpty() || noSpecialCharacterPattern.matcher(source).matches()) {
+                    if (binding.etSetNickname.text.length < 8) {
+                        setNickNameViewModel.updateNickNameState(HAS_NO_STATE)
+                    }else {
+                        setNickNameViewModel.updateNickNameState(OVER_TEXT_LIMIT)
+                    }
                     return@InputFilter source
-            }
-            setNickNameViewModel.updateNickNameState(NO_SPECIAL_CHARACTER)
-            ""
-        }, InputFilter.LengthFilter(8)
+                }
+                setNickNameViewModel.updateNickNameState(NO_SPECIAL_CHARACTER)
+                return@InputFilter ""
+            }, InputFilter.LengthFilter(8)
         )
     }
-
-//    private fun initTextChangedListener(){
-//        binding.etSetNickname.addTextChangedListener(object : TextWatcher{
-//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-//            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-//            override fun afterTextChanged(p0: Editable?) {
-//                if(p0.toString().length >= 7){
-//                    setNickNameViewModel.updateNickNameState(OVER_TEXT_LIMIT)
-//                }
-//            }
-//        })
-//    }
 
 }

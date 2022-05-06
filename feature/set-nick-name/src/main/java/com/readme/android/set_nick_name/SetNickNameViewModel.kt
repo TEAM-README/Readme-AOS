@@ -15,6 +15,6 @@ class SetNickNameViewModel @Inject constructor(
     val nickNameState: LiveData<Int> = _nickNameState
 
     fun updateNickNameState(state: Int) {
-        _nickNameState.postValue(state)
+        _nickNameState.value = state
     }
 }
