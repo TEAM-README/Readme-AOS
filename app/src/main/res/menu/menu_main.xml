@@ -8,11 +8,11 @@
         android:icon="@drawable/ic_home"
         android:title="@string/home" />
 
-<!--    <item-->
-<!--        android:id="@+id/blank"-->
-<!--        android:enabled="false"-->
-<!--        android:title=""-->
-<!--        app:showAsAction="never" />-->
+    <item
+        android:id="@+id/blank"
+        android:enabled="false"
+        android:title=""
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/menu_my_page"
