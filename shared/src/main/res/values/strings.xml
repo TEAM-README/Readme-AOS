@@ -28,8 +28,12 @@
     <string name="set_nickname_explain">설정된 닉네임은 수정이 불가합니다.</string>
     <string name="set_nickname_hint">특수문자는 사용할수 없습니다.</string>
     <string name="set_nickname_duplicate_button">중복확인</string>
+    <string name="set_nickname_length_limit">/7</string>
+    <string name="set_nickname_start_button">시작하기</string>
     <string name="set_nickname_over_text_limit">닉네임은 7자를 초과 할 수 없습니다.</string>
-    <string name="set_nickname_no_special_character">특수문자를 사용할 수 없습니다.</string>
+    <string name="set_nickname_no_special_character">특수문자 및 공백은 사용할 수 없습니다.</string>
     <string name="set_nickname_duplicate_nickname">중복된 닉네임입니다.</string>
     <string name="set_nickname_allowed_nickname">사용 가능한 닉네임입니다.</string>
+
+
 </resources>

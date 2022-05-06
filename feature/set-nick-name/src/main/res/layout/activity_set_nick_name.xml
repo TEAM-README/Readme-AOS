@@ -56,8 +56,7 @@
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_explain"
-            app:nickNameLimit="@{etSetNickname.text.length()}" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_explain" />
 
 
         <TextView
@@ -90,7 +89,7 @@
             android:layout_height="wrap_content"
             android:text="@{String.valueOf(setNickNameViewModel.nickName.length())}"
             android:textAppearance="@style/regular_03"
-            android:textColor="@{etSetNickname.text.length() == 7 ? @color/alert_red : @color/gray_2}"
+            android:textColor="@{etSetNickname.text.length() >= 7 ? @color/alert_red : @color/gray_2}"
             app:layout_constraintEnd_toStartOf="@+id/tv_nickname_length_limit"
             app:layout_constraintTop_toTopOf="@+id/tv_nickname_length_limit"
             tools:text="3" />
@@ -102,7 +101,7 @@
             android:layout_marginTop="10dp"
             android:text="@string/set_nickname_length_limit"
             android:textAppearance="@style/regular_03"
-            android:textColor="@{etSetNickname.text.length() == 7 ? @color/alert_red : @color/gray_2}"
+            android:textColor="@{etSetNickname.text.length() >= 7 ? @color/alert_red : @color/gray_2}"
             app:layout_constraintEnd_toEndOf="@+id/et_set_nickname"
             app:layout_constraintTop_toBottomOf="@+id/et_set_nickname" />
 
