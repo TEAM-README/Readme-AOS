@@ -25,7 +25,6 @@ class SetNickNameActivity :
         super.onCreate(savedInstanceState)
 
         binding.setNickNameViewModel = setNickNameViewModel
-        binding.lifecycleOwner = this
 
         initEditTextFilter()
 
