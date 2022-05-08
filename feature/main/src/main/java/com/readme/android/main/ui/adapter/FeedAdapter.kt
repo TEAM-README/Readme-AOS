@@ -12,7 +12,7 @@ import com.readme.android.main.databinding.ItemFeedBinding
 class FeedAdapter : ListAdapter<Feed, FeedAdapter.FeedViewHolder>(
     ItemDiffCallback<Feed>(
         onContentsTheSame = { old, new -> old == new },
-        onItemsTheSame = { old, new -> old == new }
+        onItemsTheSame = { old, new -> old.id == new.id }
     )
 ) {
     private lateinit var inflater: LayoutInflater
@@ -22,14 +22,16 @@ class FeedAdapter : ListAdapter<Feed, FeedAdapter.FeedViewHolder>(
             inflater = LayoutInflater.from(parent.context)
 
         val binding = ItemFeedBinding.inflate(inflater, parent, false)
-        return FeedViewHolder(binding.apply {
-            root.layoutParams = LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            ).apply {
-                setMargins(0, 0, 18, 0)
+        return FeedViewHolder(
+            binding.apply {
+                root.layoutParams = LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    setMargins(0, 0, 18, 0)
+                }
             }
-        })
+        )
     }
 
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
