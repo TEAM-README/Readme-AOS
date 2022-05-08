@@ -5,15 +5,20 @@ import android.view.View
 import androidx.recyclerview.widget.ConcatAdapter
 import com.readme.android.core.base.BindingFragment
 import com.readme.android.core.util.ItemDecorationUtil
+import com.readme.android.core.util.ResolutionMetrics
 import com.readme.android.domain.entity.Feed
-import com.readme.android.domain.entity.User
+import com.readme.android.domain.entity.MyPageUser
 import com.readme.android.main.R
 import com.readme.android.main.databinding.FragmentMyPageBinding
 import com.readme.android.main.ui.adapter.FeedAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
+class MyPageFragment(private val resolutionMetrics: ResolutionMetrics) :
+    BindingFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
+    private val Number.dp: Int
+        get() = resolutionMetrics.toPixel(this.toInt())
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -22,7 +27,7 @@ class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_
 
     private fun initAdapter() {
         // TODO 데이터 연동 로직 + adapter 변수 스코프 수정
-        val myPageTopAdapter = MyPageTopAdapter(User(Int.MAX_VALUE, "문다빙빙테스트용", 5))
+        val myPageTopAdapter = MyPageTopAdapter(MyPageUser(Int.MAX_VALUE, "문다빙빙테스트용", 5))
         val feedAdapter = FeedAdapter()
         val concatAdapter = ConcatAdapter(
             myPageTopAdapter,
