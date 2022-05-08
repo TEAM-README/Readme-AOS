@@ -1,4 +1,4 @@
-package com.readme.android.core.util
+package com.readme.android.core.ext
 
 import android.view.View
 import androidx.annotation.ColorRes
