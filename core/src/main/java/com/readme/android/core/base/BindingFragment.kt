@@ -19,16 +19,6 @@ abstract class BindingFragment<T : ViewDataBinding>(
     protected val binding: T
         get() = requireNotNull(_binding)
 
-    private val resolutionMetrics: ResolutionMetrics by lazy {
-        EntryPointAccessors.fromActivity(
-            requireActivity(),
-            Injector.ResolutionMetricsInjector::class.java
-        ).resolutionMetrics()
-    }
-
-    val Number.dp: Int
-        get() = resolutionMetrics.toPixel(this.toInt())
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

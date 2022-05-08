@@ -16,15 +16,6 @@ abstract class BindingActivity<T : ViewDataBinding>(
     @LayoutRes private val layoutRes: Int
 ) : AppCompatActivity() {
     protected lateinit var binding: T
-    private val resolutionMetrics: ResolutionMetrics by lazy {
-        EntryPointAccessors.fromActivity(
-            this,
-            Injector.ResolutionMetricsInjector::class.java
-        ).resolutionMetrics()
-    }
-
-    val Number.dp: Int
-        get() = resolutionMetrics.toPixel(this.toInt())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
