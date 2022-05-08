@@ -7,7 +7,7 @@
 
         <variable
             name="userData"
-            type="com.readme.android.domain.entity.User" />
+            type="com.readme.android.domain.entity.MyPageUser" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
