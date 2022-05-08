@@ -4,10 +4,10 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.readme.android.domain.entity.User
+import com.readme.android.domain.entity.MyPageUser
 import com.readme.android.main.databinding.LayoutMyPageTopBinding
 
-class MyPageTopAdapter(private val user: User) :
+class MyPageTopAdapter(private val myPageUser: MyPageUser) :
     RecyclerView.Adapter<MyPageTopAdapter.MyPageTopViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyPageTopViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -16,7 +16,7 @@ class MyPageTopAdapter(private val user: User) :
     }
 
     override fun onBindViewHolder(holder: MyPageTopViewHolder, position: Int) {
-        holder.onBind(user)
+        holder.onBind(myPageUser)
     }
 
     override fun getItemCount() = 1
@@ -24,8 +24,8 @@ class MyPageTopAdapter(private val user: User) :
     class MyPageTopViewHolder(
         private val binding: LayoutMyPageTopBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(user: User) {
-            binding.userData = user
+        fun onBind(myPageUser: MyPageUser) {
+            binding.userData = myPageUser
 
             binding.btnSetting.setOnClickListener {
                 with(itemView.context) {
