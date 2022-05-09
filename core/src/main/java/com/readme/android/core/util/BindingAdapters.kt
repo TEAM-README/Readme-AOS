@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.readme.android.shared.R
 import com.readme.android.core.constant.*
+import com.readme.android.core.util.BindingAdapters.setNickNameState
 
 object BindingAdapters {
 
@@ -57,4 +58,42 @@ object BindingAdapters {
         }
     }
 
+    @JvmStatic
+    @BindingAdapter("setDuplicateButtonState", "editTextLength")
+    fun TextView.setDuplicateButtonState(nickNameStateNumber: Int?, editTextLength: Int?) {
+        val context = this.context
+
+        if (nickNameStateNumber != null) {
+            if (editTextLength ?: 0 > 0) {
+                when (nickNameStateNumber) {
+                    OVER_TEXT_LIMIT -> {
+                        setTextColor(context.getColor(R.color.gray_1))
+                        isClickable = false
+                    }
+                    NO_SPECIAL_CHARACTER -> {
+                        setTextColor(context.getColor(R.color.gray_1))
+                        isClickable = false
+                    }
+                    DUPLICATE_NICKNAME -> {
+                        setTextColor(context.getColor(R.color.gray_1))
+                        isClickable = false
+                    }
+                    ALLOWED_NICKNAME -> {
+                        setTextColor(context.getColor(R.color.gray_1))
+                        isClickable = false
+                    }
+                    HAS_NO_STATE -> {
+                        setTextColor(context.getColor(R.color.main_blue))
+                        isClickable = true
+                    }
+                    else -> {
+                        setTextColor(context.getColor(R.color.gray_1))
+                        isClickable = false
+                    }
+                }
+            }
+        }
+    }
+
 }
+
