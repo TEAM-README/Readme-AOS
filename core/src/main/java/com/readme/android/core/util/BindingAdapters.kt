@@ -1,6 +1,7 @@
 package com.readme.android.core.util
 
 
+import android.widget.EditText
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
@@ -38,4 +39,22 @@ object BindingAdapters {
             }
         }
     }
+
+    @JvmStatic
+    @BindingAdapter("setNickNameEditTextBackGround")
+    fun EditText.setNickNameEditTextBackGround(nickNameStateNumber: Int?) {
+        if (nickNameStateNumber != null) {
+            this.setBackgroundResource(
+                when (nickNameStateNumber) {
+                    OVER_TEXT_LIMIT -> R.drawable.shape_rect_alert_red_1_border_10
+                    NO_SPECIAL_CHARACTER -> R.drawable.shape_rect_alert_red_1_border_10
+                    DUPLICATE_NICKNAME -> R.drawable.shape_rect_alert_red_1_border_10
+                    ALLOWED_NICKNAME -> R.drawable.shape_rect_gray_1_boder_10
+                    HAS_NO_STATE -> R.drawable.shape_rect_gray_1_boder_10
+                    else -> R.drawable.shape_rect_gray_1_boder_10
+                }
+            )
+        }
+    }
+
 }
