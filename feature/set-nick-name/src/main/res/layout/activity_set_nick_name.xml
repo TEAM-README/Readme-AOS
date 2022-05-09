@@ -48,14 +48,15 @@
             android:hint="@string/set_nickname_hint"
             android:inputType="textPersonName"
             android:maxLength="8"
-            android:paddingStart="15dp"
             android:paddingVertical="13dp"
+            android:paddingStart="15dp"
             android:text="@={setNickNameViewModel.nickName}"
             android:textAppearance="@style/regular_02"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_explain" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_explain"
+            app:setNickNameEditTextBackGround="@{setNickNameViewModel.nickNameState}" />
 
 
         <TextView
@@ -65,6 +66,8 @@
             android:layout_marginEnd="5dp"
             android:padding="10dp"
             android:text="@string/set_nickname_duplicate_button"
+            app:setDuplicateButtonState="@{setNickNameViewModel.nickNameState}"
+            app:editTextLength="@{etSetNickname.text.length()}"
             android:textAppearance="@style/medium_04"
             android:textColor="@color/gray_1"
             app:layout_constraintBottom_toBottomOf="@+id/et_set_nickname"

@@ -35,7 +35,7 @@
         <activity
             android:name=".set_nick_name.SetNickNameActivity"
             android:windowSoftInputMode="adjustResize"
-            android:exported="false" />
+            android:exported="true" />
     </application>
 
 </manifest>
