@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.readme.android.adapter.MainViewPagerAdapter
 import com.readme.android.core.base.BindingActivity
 import com.readme.android.databinding.ActivityMainBinding
+import com.readme.android.factory.ReadmeFragmentFactory
 import com.readme.android.main.ui.home.HomeFragment
 import com.readme.android.main.ui.mypage.MyPageFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -12,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
     private lateinit var mainViewPagerAdapter: MainViewPagerAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
+        supportFragmentManager.fragmentFactory = ReadmeFragmentFactory(this)
         super.onCreate(savedInstanceState)
         initAdapter()
         syncBottomNavWithVp()
@@ -19,7 +21,13 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
 
     private fun initAdapter() {
         binding.vpMain.adapter = MainViewPagerAdapter(this).also { mainViewPagerAdapter = it }
-        mainViewPagerAdapter.fragmentList = listOf(HomeFragment(), MyPageFragment())
+        mainViewPagerAdapter.fragmentList = listOf(
+            HomeFragment(),
+            supportFragmentManager.fragmentFactory.instantiate(
+                classLoader,
+                MyPageFragment::class.java.name
+            )
+        )
     }
 
     private fun syncBottomNavWithVp() {

@@ -13,6 +13,7 @@
             android:id="@+id/rv_mypage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="1"
             tools:listitem="@layout/layout_my_page_top" />

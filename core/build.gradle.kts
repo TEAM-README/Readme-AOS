@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -22,6 +23,10 @@ dependencies {
     implementation(AndroidXDependencies.legacy)
     implementation(AndroidXDependencies.coroutines)
     coreLibraryDesugaring(AndroidXDependencies.desugarLibrary)
+
+    // Dagger-Hilt
+    implementation(AndroidXDependencies.hilt)
+    kapt(KaptDependencies.hiltCompiler)
 
     // Material Design
     implementation(MaterialDesignDependencies.materialDesign)
