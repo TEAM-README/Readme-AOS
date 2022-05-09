@@ -6,13 +6,15 @@
     <string name="total">총</string>
     <string name="text_exist">의 글이 있어요</string>
     <string name="essay">에세이</string>
-    <string name="feed_empty">작성한 글이 없어요\n아래 + 버튼을 눌러 글을 추가해 보세요</string>
+    <string name="feed_empty">작성한 글이 없어요</string>
+    <string name="plz_plus_add">아래 + 버튼을 눌러 글을 추가해 보세요</string>
     <string name="report">신고하기</string>
     <string name="delete">삭제하기</string>
     <string name="setting">환경설정</string>
     <string name="inquire">문의하기</string>
     <string name="see_terms">약관 보기</string>
     <string name="logout">로그아웃</string>
+    <string name="count">%d개</string>
 
     <!--tools-->
     <string name="nickname_example">강젼희정예서88</string>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="isCategorySelected"
+            type="Boolean" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="51dp"
+            android:src="@drawable/ic_category"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <!-- 하단 text 부분은 분기처리는 추후 수정할 예정 -->
+        <TextView
+            android:id="@+id/tv_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@{isCategorySelected? `관심 있는 카테고리` : `에세이` }"
+            android:textAppearance="@style/semi_bold_03"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/tv_verb"
+            app:layout_constraintStart_toEndOf="@id/iv_category"
+            app:layout_constraintTop_toTopOf="@id/iv_category"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="관심 있는 카테고리" />
+
+        <!-- 조사 -->
+        <TextView
+            android:id="@+id/tv_postposition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{isCategorySelected? `를` : `에`}"
+            android:textAppearance="@style/light_02"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/tv_category"
+            app:layout_constraintTop_toTopOf="@id/tv_category"
+            tools:text="를" />
+
+        <TextView
+            android:id="@+id/tv_verb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{isCategorySelected? `선택해보세요` : `관심이 있어요`}"
+            android:textAppearance="@style/light_02"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/iv_category"
+            app:layout_constraintStart_toStartOf="@id/tv_category"
+            app:layout_constraintTop_toBottomOf="@id/tv_category"
+            tools:text="선택해보세요" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

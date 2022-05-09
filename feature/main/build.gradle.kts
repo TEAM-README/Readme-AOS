@@ -22,6 +22,7 @@ dependencies {
     implementation(AndroidXDependencies.appCompat)
     implementation(AndroidXDependencies.constraintLayout)
     implementation(AndroidXDependencies.coroutines)
+    implementation(AndroidXDependencies.recyclerView)
 
     // Material Design
     implementation(MaterialDesignDependencies.materialDesign)

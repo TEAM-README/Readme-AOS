@@ -8,13 +8,27 @@
         android:id="@+id/tv_feed_empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="top|center"
-        android:lineSpacingExtra="4sp"
+        android:gravity="center"
         android:text="@string/feed_empty"
         android:textAppearance="@style/regular_02"
         android:textColor="@color/gray_2"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_plz_plus_add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/tv_plz_plus_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/plz_plus_add"
+        android:textAppearance="@style/regular_03"
+        android:textColor="@color/gray_2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tv_feed_empty"
+        app:layout_constraintStart_toStartOf="@+id/tv_feed_empty"
+        app:layout_constraintTop_toBottomOf="@+id/tv_feed_empty" />
 </androidx.constraintlayout.widget.ConstraintLayout>
