@@ -1,5 +1,7 @@
 package com.readme.android.core.ext
 
+import android.content.Context
+import androidx.core.content.ContextCompat
 import android.view.View
 import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
@@ -11,3 +13,4 @@ fun Fragment.getColor(@ColorRes res: Int) = requireContext().getColor(res)
 fun View.getString(@StringRes res: Int) = context.getString(res)
 fun Fragment.getString(@StringRes res: Int) = requireContext().getString(res)
 fun View.getDimen(@DimenRes res: Int) = context.resources.getDimension(res).toInt()
+fun Context.getColor(@ColorRes res: Int) = ContextCompat.getColor(this, res)

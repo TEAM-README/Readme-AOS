@@ -21,6 +21,7 @@ dependencies {
     // Android Core
     implementation(AndroidXDependencies.coreKtx)
     implementation(AndroidXDependencies.appCompat)
+    implementation(AndroidXDependencies.constraintLayout)
     implementation(AndroidXDependencies.coroutines)
 
     // Material Design
@@ -29,4 +30,7 @@ dependencies {
     // Dagger-Hilt
     implementation(AndroidXDependencies.hilt)
     kapt(KaptDependencies.hiltCompiler)
+
+    // Jetpack Fragment
+    implementation(AndroidXDependencies.fragment)
 }
