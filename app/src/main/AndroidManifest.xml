@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.readme.android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:name=".READMEApplication"
@@ -16,6 +15,7 @@
             android:exported="false"
             android:targetActivity="leakcanary.internal.activity.LeakActivity" />
         <activity
+            android:theme="@style/Theme.App.Starting"
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
