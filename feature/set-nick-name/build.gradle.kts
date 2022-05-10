@@ -10,6 +10,7 @@ android {
     buildFeatures {
         dataBinding = true
     }
+    namespace = "com.readme.android.set_nick_name"
 }
 
 dependencies {

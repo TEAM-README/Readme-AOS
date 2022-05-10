@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
-
 plugins {
     id("com.android.library")
     id("kotlin-parcelize")
@@ -12,6 +10,7 @@ android {
     buildFeatures {
         dataBinding = true
     }
+    namespace = "com.readme.android.write_feed"
 }
 
 
