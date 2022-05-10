@@ -31,6 +31,7 @@ object AndroidXDependencies {
     const val security = "androidx.security:security-crypto:${Versions.securityVersion}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
     const val junit = "androidx.test.ext:junit-ktx:${Versions.junit}"
+    const val splashScreen = "androidx.core:core-splashscreen:1.0.0-beta02"
 }
 
 object TestDependencies {
