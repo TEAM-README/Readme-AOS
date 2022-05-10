@@ -22,6 +22,7 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":feature:main"))
     implementation(project(":feature:set-nick-name"))
+    implementation(project(":feature:write-feed"))
 
     // Kotlin
     implementation(KotlinDependencies.kotlin)
