@@ -13,6 +13,7 @@ android {
     buildFeatures {
         dataBinding = true
     }
+    namespace = "com.readme.android"
 }
 
 dependencies {
@@ -36,6 +37,7 @@ dependencies {
     implementation(AndroidXDependencies.legacy)
     implementation(AndroidXDependencies.coroutines)
     implementation(AndroidXDependencies.paging3)
+    implementation(AndroidXDependencies.splashScreen)
 
     // Material Design
     implementation(MaterialDesignDependencies.materialDesign)

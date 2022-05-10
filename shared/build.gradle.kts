@@ -8,6 +8,7 @@ android {
     buildFeatures {
         dataBinding = true
     }
+    namespace = "com.readme.android.shared"
 }
 
 dependencies {
@@ -17,6 +18,7 @@ dependencies {
     implementation(AndroidXDependencies.constraintLayout)
     implementation(AndroidXDependencies.legacy)
     implementation(AndroidXDependencies.coroutines)
+    implementation(AndroidXDependencies.splashScreen)
 
     // Kotlin
     implementation(KotlinDependencies.kotlin)

@@ -1,6 +1,7 @@
 package com.readme.android
 
 import android.os.Bundle
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.readme.android.adapter.MainViewPagerAdapter
 import com.readme.android.core.base.BindingActivity
 import com.readme.android.databinding.ActivityMainBinding
@@ -14,6 +15,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     private lateinit var mainViewPagerAdapter: MainViewPagerAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         supportFragmentManager.fragmentFactory = ReadmeFragmentFactory(this)
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         initAdapter()
         syncBottomNavWithVp()
