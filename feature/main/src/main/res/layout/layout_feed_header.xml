@@ -9,6 +9,10 @@
             name="isCategorySelected"
             type="Boolean" />
 
+        <variable
+            name="selectedCategory"
+            type="String" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="@{isCategorySelected?  `에세이`: `관심 있는 카테고리`}"
+            android:text="@{isCategorySelected? selectedCategory: `관심 있는 카테고리`}"
             android:textAppearance="@style/semi_bold_03"
             android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@id/tv_verb"

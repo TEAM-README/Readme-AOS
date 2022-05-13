@@ -2,6 +2,7 @@ package com.readme.android.main.ui.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.ConcatAdapter
 import com.readme.android.core.base.BindingFragment
 import com.readme.android.core.util.ItemDecorationUtil
@@ -10,11 +11,13 @@ import com.readme.android.domain.entity.Feed
 import com.readme.android.main.R
 import com.readme.android.main.databinding.FragmentHomeBinding
 import com.readme.android.main.ui.adapter.FeedAdapter
+import com.readme.android.main.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
     BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
+    private val viewModel: MainViewModel by activityViewModels()
 
     private val Number.dp get() = resolutionMetrics.toPixel(this.toInt())
 
@@ -25,10 +28,11 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
 
     private fun initAdapter() {
         // TODO 데이터 연동 로직 + adapter 변수 스코프 수정
-        val myPageTopAdapter = HomeHeaderAdapter(false)
+        val homeHeaderAdapter =
+            viewModel.isCategorySelected.value?.let { HomeHeaderAdapter(it, viewModel.selectedCategory.value) }
         val feedAdapter = FeedAdapter()
         val concatAdapter = ConcatAdapter(
-            myPageTopAdapter,
+            homeHeaderAdapter,
             feedAdapter.apply { submitList(feed_home_list) }
         )
 
