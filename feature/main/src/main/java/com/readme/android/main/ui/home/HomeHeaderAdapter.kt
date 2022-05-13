@@ -7,7 +7,8 @@ import com.readme.android.main.databinding.LayoutFeedHeaderBinding
 
 class HomeHeaderAdapter(
     private val isCategorySelected: Boolean,
-    private val selectedCategory: String? = null
+    private val selectedCategory: String? = null,
+    private val onCategoryIconClick: () -> Unit
 ) :
     RecyclerView.Adapter<HomeHeaderAdapter.HomeHeaderViewHolder>() {
 
@@ -18,17 +19,19 @@ class HomeHeaderAdapter(
     }
 
     override fun onBindViewHolder(holder: HomeHeaderViewHolder, position: Int) {
-        holder.onBind(isCategorySelected, selectedCategory)
+        holder.onBind(isCategorySelected, selectedCategory, onCategoryIconClick)
     }
 
     class HomeHeaderViewHolder(private val binding: LayoutFeedHeaderBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(isCategorySelected: Boolean, selectedCategory: String?) {
+        fun onBind(
+            isCategorySelected: Boolean,
+            selectedCategory: String?,
+            onCategoryIconClick: () -> Unit
+        ) {
             binding.isCategorySelected = isCategorySelected
             if (isCategorySelected) binding.selectedCategory = selectedCategory
-            binding.ivCategory.setOnClickListener {
-                // TODO BottomSheet 나타나게
-            }
+            binding.ivCategory.setOnClickListener { onCategoryIconClick() }
         }
     }
 

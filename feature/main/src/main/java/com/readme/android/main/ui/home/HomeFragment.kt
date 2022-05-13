@@ -29,7 +29,9 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
     private fun initAdapter() {
         // TODO 데이터 연동 로직 + adapter 변수 스코프 수정
         val homeHeaderAdapter =
-            viewModel.isCategorySelected.value?.let { HomeHeaderAdapter(it, viewModel.selectedCategory.value) }
+            viewModel.isCategorySelected.value?.let {
+                HomeHeaderAdapter(it, viewModel.selectedCategory.value, ::onCategoryIconClick)
+            }
         val feedAdapter = FeedAdapter()
         val concatAdapter = ConcatAdapter(
             homeHeaderAdapter,
@@ -40,6 +42,10 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
             addItemDecoration(ItemDecorationUtil.VerticalPlaceItemDecoration(16.dp))
             adapter = concatAdapter
         }
+    }
+
+    private fun onCategoryIconClick() {
+        FilterBottomSheetFragment().show(childFragmentManager, this.tag)
     }
 
     companion object {
