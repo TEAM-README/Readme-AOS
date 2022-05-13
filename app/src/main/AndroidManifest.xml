@@ -14,10 +14,11 @@
             android:name="leakcanary.internal.activity.LeakLauncherActivity"
             android:exported="false"
             android:targetActivity="leakcanary.internal.activity.LeakActivity" />
+
         <activity
-            android:theme="@style/Theme.App.Starting"
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,11 +32,10 @@
         <activity
             android:name=".main.ui.mypage.MyPageSettingActivity"
             android:exported="false" />
-
         <activity
             android:name=".set_nick_name.SetNickNameActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="true" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

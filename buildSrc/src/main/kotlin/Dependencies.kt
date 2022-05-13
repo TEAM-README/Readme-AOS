@@ -77,6 +77,8 @@ object ThirdPartyDependencies {
         "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanaryVersion}"
     const val ossLicense =
         "com.google.android.gms:play-services-oss-licenses:${Versions.ossVersion}"
+    const val gson = "com.google.code.gson:gson:${Versions.gsonVersion}"
+    const val gsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.gsonConverterVersion}"
 }
 
 object FirebaseDependency {

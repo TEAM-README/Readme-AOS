@@ -73,6 +73,10 @@ dependencies {
     implementation(ThirdPartyDependencies.okHttpLoggingInterceptor)
     implementation(ThirdPartyDependencies.kotlinxSerializationConverter)
 
+    //JsonConverterLibrary
+    implementation(ThirdPartyDependencies.gson)
+    implementation(ThirdPartyDependencies.gsonConverter)
+
     // Logger - Timber
     implementation(ThirdPartyDependencies.timber)
 
