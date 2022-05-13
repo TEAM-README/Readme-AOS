@@ -13,14 +13,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="25dp">
 
         <ImageView
             android:id="@+id/iv_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="51dp"
+            android:layout_marginTop="50dp"
             android:src="@drawable/ic_category"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -32,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="@{isCategorySelected? `관심 있는 카테고리` : `에세이` }"
+            android:text="@{isCategorySelected?  `에세이`: `관심 있는 카테고리`}"
             android:textAppearance="@style/semi_bold_03"
             android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@id/tv_verb"
@@ -46,7 +47,7 @@
             android:id="@+id/tv_postposition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{isCategorySelected? `를` : `에`}"
+            android:text="@{isCategorySelected?  `에`: `를`}"
             android:textAppearance="@style/light_02"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@id/tv_category"
@@ -58,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@{isCategorySelected? `선택해보세요` : `관심이 있어요`}"
+            android:text="@{isCategorySelected? `관심이 있어요`: `선택해보세요` }"
             android:textAppearance="@style/light_02"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/iv_category"
