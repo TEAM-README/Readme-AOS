@@ -9,8 +9,7 @@ class HomeHeaderAdapter(
     private val isCategorySelected: Boolean,
     private val selectedCategory: String? = null,
     private val onCategoryIconClick: () -> Unit
-) :
-    RecyclerView.Adapter<HomeHeaderAdapter.HomeHeaderViewHolder>() {
+) : RecyclerView.Adapter<HomeHeaderAdapter.HomeHeaderViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeHeaderViewHolder {
         val inflater = LayoutInflater.from(parent.context)
