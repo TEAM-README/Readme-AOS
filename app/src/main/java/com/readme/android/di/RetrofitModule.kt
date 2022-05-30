@@ -1,5 +1,6 @@
 package com.readme.android.di
 
+import com.readme.android.data.remote.calladapter.CustomCallAdapterFactory
 import com.readme.android.di.annotations.NaverBookSearchServer
 import dagger.Module
 import dagger.Provides
@@ -51,8 +52,9 @@ object RetrofitModule {
     @NaverBookSearchServer
     fun providesRetrofit(@NaverBookSearchServer okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl("https://openapi.naver.com/v1/search/book.json/")
+            .baseUrl("https://openapi.naver.com/v1/search/")
             .client(okHttpClient)
+            .addCallAdapterFactory(CustomCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 }
