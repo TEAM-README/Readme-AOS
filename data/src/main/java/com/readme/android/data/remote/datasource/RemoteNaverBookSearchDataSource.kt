@@ -6,5 +6,5 @@ import com.readme.android.domain.entity.BookInfo
 
 interface RemoteNaverBookSearchDataSource {
 
-    suspend fun getNaverBookSearchList(query: String, display: Int, start: Int): NetworkState<List<BookInfo>>
+    suspend fun getNaverBookSearchList(query: String, display: Int, start: Int): NetworkState<NaverBookSearchResponse>
 }
