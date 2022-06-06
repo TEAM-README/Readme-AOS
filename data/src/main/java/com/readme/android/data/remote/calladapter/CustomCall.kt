@@ -25,7 +25,7 @@ class CustomCall<T : Any>(private val call: Call<T>) : Call<NetworkState<T>> {
                     } else {
                         callback.onResponse(
                             this@CustomCall,
-                            Response.success(NetworkState.UnknownError(null, "body값이 null로 넘어옴"))
+                            Response.success(NetworkState.UnknownError(IllegalStateException("body값이 null로 넘어옴"), "body값이 null로 넘어옴"))
                         )
                     }
                 } else {
