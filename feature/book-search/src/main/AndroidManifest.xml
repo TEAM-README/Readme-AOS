@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.readme.android.book_search">
+
+    <application>
+        <activity
+            android:name=".BookSearchActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

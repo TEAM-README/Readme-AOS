@@ -37,5 +37,8 @@
     <string name="set_nickname_duplicate_nickname">중복된 닉네임입니다.</string>
     <string name="set_nickname_allowed_nickname">사용 가능한 닉네임입니다.</string>
 
+    <!--BookSearch-->
+    <string name="select_book_title">책 선택하기</string>
+    <string name="book_search_hint">책 제목을 검색하세요</string>
 
 </resources>
