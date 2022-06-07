@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="146dp">
+
+        <ImageView
+            android:id="@+id/iv_book_cover"
+            android:layout_width="76dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="26dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_book_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="31dp"
+            android:textAppearance="@style/semi_bold_04"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/iv_book_cover"
+            app:layout_constraintTop_toTopOf="@+id/iv_book_cover"
+            tools:text="어떻게 살아야하는가" />
+
+        <TextView
+            android:id="@+id/tv_book_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:textAppearance="@style/regular_05"
+            android:textColor="@color/gray_3"
+            app:layout_constraintStart_toStartOf="@+id/tv_book_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_book_title"
+            tools:text="이나모리 가즈오 저 | 김윤경 역" />
+
+        <View
+            android:id="@+id/view_book_search_divide_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_1"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
