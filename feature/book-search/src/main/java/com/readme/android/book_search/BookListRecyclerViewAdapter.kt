@@ -1,7 +1,10 @@
 package com.readme.android.book_search
 
+import android.os.Build
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -19,14 +22,17 @@ class BookListRecyclerViewAdapter :
         return BookListRecyclerViewHolder(binding)
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: BookListRecyclerViewHolder, position: Int) {
         holder.onBind(getItem(position))
     }
 
     class BookListRecyclerViewHolder(val binding: ItemBookSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @RequiresApi(Build.VERSION_CODES.N)
         fun onBind(data: BookInfo){
             binding.bookInfo = data
+            binding.bookTitleProcessed = Html.fromHtml(data.title,Html.TO_HTML_PARAGRAPH_LINES_INDIVIDUAL)
         }
     }
 
@@ -39,6 +45,4 @@ class BookListRecyclerViewAdapter :
                 oldItem == newItem
         }
     }
-
-
 }
