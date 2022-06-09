@@ -1,6 +1,7 @@
 package com.readme.android.di
 
 import com.readme.android.data.remote.service.NaverBookSearchService
+import com.readme.android.di.annotations.NaverBookSearchServer
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,7 +15,7 @@ object RetrofitServiceModule {
 
     @Provides
     @Singleton
-    fun providesNaverBookSearchService(retrofit: Retrofit): NaverBookSearchService =
+    fun providesNaverBookSearchService(@NaverBookSearchServer retrofit: Retrofit): NaverBookSearchService =
         retrofit.create(NaverBookSearchService::class.java)
 
 }

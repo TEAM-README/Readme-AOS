@@ -35,4 +35,7 @@ dependencies {
 
     // Jetpack Fragment
     implementation(AndroidXDependencies.fragment)
+
+    // Logger - Timber
+    implementation(ThirdPartyDependencies.timber)
 }

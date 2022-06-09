@@ -19,6 +19,7 @@ object RetrofitModule {
 
     const val X_NAVER_CLIENT_ID = "acNJpGxulL56tNkuwd6X"
     const val X_NAVER_CLIENT_SECRET = "D6O_BbQncI"
+    const val NAVER_BOOK_SEARCH_BASE_URL = "https://openapi.naver.com/v1/search/"
 
     @Provides
     @Singleton
@@ -52,7 +53,7 @@ object RetrofitModule {
     @NaverBookSearchServer
     fun providesRetrofit(@NaverBookSearchServer okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl("https://openapi.naver.com/v1/search/")
+            .baseUrl(NAVER_BOOK_SEARCH_BASE_URL)
             .client(okHttpClient)
             .addCallAdapterFactory(CustomCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())

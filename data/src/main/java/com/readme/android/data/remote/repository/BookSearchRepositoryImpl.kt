@@ -1,7 +1,7 @@
 package com.readme.android.data.remote.repository
 
+import com.readme.android.core.exception.RetrofitFailureStateException
 import com.readme.android.data.remote.calladapter.NetworkState
-import com.readme.android.data.remote.calladapter.RetrofitFailureStateException
 import com.readme.android.data.remote.datasource.RemoteBookSearchDataSource
 import com.readme.android.data.remote.mapper.NaverBookSearchMapper
 import com.readme.android.domain.entity.BookInfo
