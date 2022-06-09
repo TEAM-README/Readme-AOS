@@ -23,6 +23,14 @@
         <item name="postSplashScreenTheme">@style/Theme.Readme</item>
     </style>
 
+    <style name="BlueEditTextStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorControlActivated">@color/main_blue</item>
+        <item name="colorControlNormal">@color/main_blue</item>
+        <item name="colorControlHighlight">@color/main_blue</item>
+        <item name="colorAccent">@color/main_blue</item>
+        <item name="android:textCursorDrawable">@drawable/shape_rect_main_blue_cursor</item>
+    </style>
+
     <style name="bold_01">
         <item name="android:fontFamily">@font/pretendard</item>
         <item name="android:textStyle">bold</item>

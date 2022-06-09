@@ -63,6 +63,7 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/shape_ract_gray0_fill_2000"
             android:hint="@string/book_search_hint"
+            android:theme="@style/BlueEditTextStyle"
             android:text="@={bookSearchViewModel.searchWord}"
             android:inputType="text"
             android:paddingHorizontal="16dp"
