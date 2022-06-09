@@ -36,6 +36,10 @@
             android:name=".set_nick_name.SetNickNameActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".book_search.BookSearchActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize"/>
     </application>
 
 </manifest>

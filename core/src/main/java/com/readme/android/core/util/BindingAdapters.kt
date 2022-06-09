@@ -1,13 +1,27 @@
 package com.readme.android.core.util
 
 
+import android.net.Uri
+import android.util.Log
+import android.view.View
+import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginTop
+import androidx.core.view.setMargins
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.readme.android.shared.R
 import com.readme.android.core.constant.*
 import com.readme.android.core.util.BindingAdapters.setNickNameState
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.EntryPointAccessors
+import javax.inject.Inject
 
 object BindingAdapters {
 
@@ -95,5 +109,29 @@ object BindingAdapters {
         }
     }
 
+
+    @JvmStatic
+    @BindingAdapter("setRecyclerViewMarginStandardView","recentReadVisibleMargin","recentReadGoneMargin")
+    fun RecyclerView.setBookSearchRecentReadStateMargin(textView: TextView, recentReadVisibleMargin: Int, recentReadGoneMargin: Int) {
+        if (textView.visibility == View.VISIBLE) {
+            val layoutParams = this.layoutParams as ViewGroup.MarginLayoutParams
+            layoutParams.topMargin = recentReadVisibleMargin
+            this.layoutParams = layoutParams
+        } else {
+            val layoutParams = this.layoutParams as ViewGroup.MarginLayoutParams
+            layoutParams.topMargin = recentReadGoneMargin
+            this.layoutParams = layoutParams
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setBookImage")
+    fun setBookImage(imageview: ImageView, url: String?) {
+        imageview.load(url) {
+            error(R.color.gray_2)
+            placeholder(R.color.gray_2)
+        }
+
+    }
 }
 

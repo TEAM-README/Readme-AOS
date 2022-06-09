@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="bookInfo"
+            type="com.readme.android.domain.entity.BookInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,6 +16,7 @@
 
         <ImageView
             android:id="@+id/iv_book_cover"
+            setBookImage="@{bookInfo.image}"
             android:layout_width="76dp"
             android:layout_height="110dp"
             android:layout_marginStart="26dp"
@@ -27,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="31dp"
+            android:text="@{bookInfo.title}"
             android:textAppearance="@style/semi_bold_04"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/iv_book_cover"
@@ -38,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
+            android:text="@{bookInfo.author}"
             android:textAppearance="@style/regular_05"
             android:textColor="@color/gray_3"
             app:layout_constraintStart_toStartOf="@+id/tv_book_title"

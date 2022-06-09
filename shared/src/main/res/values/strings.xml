@@ -40,5 +40,6 @@
     <!--BookSearch-->
     <string name="select_book_title">책 선택하기</string>
     <string name="book_search_hint">책 제목을 검색하세요</string>
+    <string name="recent_read">최근에 읽었어요</string>
 
 </resources>

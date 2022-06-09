@@ -24,6 +24,7 @@ dependencies {
     implementation(project(":feature:main"))
     implementation(project(":feature:set-nick-name"))
     implementation(project(":feature:write-feed"))
+    implementation(project(":feature:book-search"))
 
     // Kotlin
     implementation(KotlinDependencies.kotlin)

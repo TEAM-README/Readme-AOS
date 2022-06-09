@@ -31,4 +31,7 @@ dependencies {
 
     // Material Design
     implementation(MaterialDesignDependencies.materialDesign)
+
+    // ImageLoading Library
+    implementation(ThirdPartyDependencies.coil)
 }
