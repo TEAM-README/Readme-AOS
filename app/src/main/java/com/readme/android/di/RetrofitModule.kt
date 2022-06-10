@@ -8,6 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -20,6 +21,14 @@ object RetrofitModule {
     const val X_NAVER_CLIENT_ID = "acNJpGxulL56tNkuwd6X"
     const val X_NAVER_CLIENT_SECRET = "D6O_BbQncI"
     const val NAVER_BOOK_SEARCH_BASE_URL = "https://openapi.naver.com/v1/search/"
+
+    @Provides
+    @Singleton
+    fun providesHttpLoggingInterceptor(): HttpLoggingInterceptor =
+        HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
+
 
     @Provides
     @Singleton
@@ -40,12 +49,16 @@ object RetrofitModule {
     @Provides
     @Singleton
     @NaverBookSearchServer
-    fun providesOkHttpClient(@NaverBookSearchServer interceptor: Interceptor): OkHttpClient =
+    fun providesOkHttpClient(
+        @NaverBookSearchServer interceptor: Interceptor,
+        httpLoggingInterceptor: HttpLoggingInterceptor
+    ): OkHttpClient =
         OkHttpClient.Builder()
-            .connectTimeout(10, TimeUnit.SECONDS)
-            .writeTimeout(10, TimeUnit.SECONDS)
-            .readTimeout(10, TimeUnit.SECONDS)
+            .connectTimeout(15, TimeUnit.SECONDS)
+            .writeTimeout(20, TimeUnit.SECONDS)
+            .readTimeout(15, TimeUnit.SECONDS)
             .addInterceptor(interceptor)
+            .addInterceptor(httpLoggingInterceptor)
             .build()
 
     @Provides
