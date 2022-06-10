@@ -41,5 +41,7 @@
     <string name="select_book_title">책 선택하기</string>
     <string name="book_search_hint">책 제목을 검색하세요</string>
     <string name="recent_read">최근에 읽었어요</string>
+    <string name="try_book_search">책을 검색하고 읽은 책을 추가해보세요</string>
+    <string name="book_search_no_list">책 검색 결과가 없습니다</string>
 
 </resources>

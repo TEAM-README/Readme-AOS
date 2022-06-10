@@ -63,11 +63,11 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/shape_ract_gray0_fill_2000"
             android:hint="@string/book_search_hint"
-            android:theme="@style/BlueEditTextStyle"
-            android:text="@={bookSearchViewModel.searchWord}"
             android:inputType="text"
             android:paddingHorizontal="16dp"
+            android:text="@={bookSearchViewModel.searchWord}"
             android:textAppearance="@style/regular_02"
+            android:theme="@style/BlueEditTextStyle"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
         <ImageButton
@@ -90,6 +90,7 @@
             android:text="@string/recent_read"
             android:textAppearance="@style/semi_bold_04"
             android:textColor="@color/black"
+            android:visibility="@{bookSearchViewModel.bookSearchCurrentReadState ? View.VISIBLE : View.GONE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_book_search" />
 
@@ -97,8 +98,10 @@
             android:id="@+id/tv_search_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{bookSearchViewModel.bookSearchTextState ? @string/book_search_no_list : @string/try_book_search }"
             android:textAppearance="@style/medium_02"
             android:textColor="@color/gray_2"
+            android:visibility="@{bookSearchViewModel.bookSearchVisibilityState ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +112,7 @@
             android:id="@+id/rv_book_list"
             recentReadGoneMargin="@{recentReadGoneMargin}"
             recentReadVisibleMargin="@{recentReadVisibleMargin}"
-            setRecyclerViewMarginStandardView="@{tvRecentRead}"
+            currentReadState="@{bookSearchViewModel.bookSearchCurrentReadState}"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:overScrollMode="never"

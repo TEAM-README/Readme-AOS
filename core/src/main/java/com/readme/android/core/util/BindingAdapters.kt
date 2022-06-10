@@ -111,9 +111,9 @@ object BindingAdapters {
 
 
     @JvmStatic
-    @BindingAdapter("setRecyclerViewMarginStandardView","recentReadVisibleMargin","recentReadGoneMargin")
-    fun RecyclerView.setBookSearchRecentReadStateMargin(textView: TextView, recentReadVisibleMargin: Int, recentReadGoneMargin: Int) {
-        if (textView.visibility == View.VISIBLE) {
+    @BindingAdapter("currentReadState","recentReadVisibleMargin","recentReadGoneMargin")
+    fun RecyclerView.setBookSearchRecentReadStateMargin(currentReadState: Boolean, recentReadVisibleMargin: Int, recentReadGoneMargin: Int) {
+        if (currentReadState) {
             val layoutParams = this.layoutParams as ViewGroup.MarginLayoutParams
             layoutParams.topMargin = recentReadVisibleMargin
             this.layoutParams = layoutParams
