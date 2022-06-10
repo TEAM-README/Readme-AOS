@@ -38,7 +38,7 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".book_search.BookSearchActivity"
-            android:exported="true"
+            android:exported="false"
             android:windowSoftInputMode="adjustResize"/>
     </application>
 
