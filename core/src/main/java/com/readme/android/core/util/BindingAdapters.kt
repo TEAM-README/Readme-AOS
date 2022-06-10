@@ -119,8 +119,8 @@ fun RecyclerView.setBookSearchRecentReadStateMargin(
 
 
 @BindingAdapter("setBookImage")
-fun setBookImage(imageview: ImageView, url: String?) {
-    imageview.load(url) {
+fun setBookImage(imageview: ImageView, bookImageUrl: String?) {
+    imageview.load(bookImageUrl) {
         error(R.color.gray_2)
         placeholder(R.color.gray_2)
     }
