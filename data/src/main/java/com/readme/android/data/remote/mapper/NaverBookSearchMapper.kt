@@ -7,9 +7,9 @@ import javax.inject.Inject
 
 class NaverBookSearchMapper @Inject constructor() {
 
-    fun toBookInfo(item: Item):BookInfo = BookInfo(
-        title = item.title,
-        author = item.author,
-        image = item.image
+    fun toBookInfo(bookItem: Item):BookInfo = BookInfo(
+        title = bookItem.title,
+        author = bookItem.author,
+        image = bookItem.image
     )
 }
