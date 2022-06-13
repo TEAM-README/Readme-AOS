@@ -9,11 +9,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.readme.android.book_search.databinding.ItemBookSearchBinding
+import com.readme.android.core.util.ItemDiffCallback
 import com.readme.android.domain.entity.BookInfo
+import com.readme.android.domain.entity.Feed
 
 
 class BookListRecyclerViewAdapter :
-    ListAdapter<BookInfo, BookListRecyclerViewAdapter.BookListRecyclerViewHolder>(bookInfoDiffUtil) {
+    ListAdapter<BookInfo, BookListRecyclerViewAdapter.BookListRecyclerViewHolder>(
+        ItemDiffCallback<BookInfo>(
+            onContentsTheSame = { old, new -> old == new },
+            onItemsTheSame = { old, new -> old.title == new.title }
+        )
+    ) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookListRecyclerViewHolder {
@@ -33,16 +40,6 @@ class BookListRecyclerViewAdapter :
         fun onBind(data: BookInfo){
             binding.bookInfo = data
             binding.bookTitleProcessed = Html.fromHtml(data.title,Html.TO_HTML_PARAGRAPH_LINES_INDIVIDUAL)
-        }
-    }
-
-    companion object {
-        private val bookInfoDiffUtil = object : DiffUtil.ItemCallback<BookInfo>() {
-            override fun areItemsTheSame(oldItem: BookInfo, newItem: BookInfo): Boolean =
-                oldItem.title == newItem.title
-
-            override fun areContentsTheSame(oldItem: BookInfo, newItem: BookInfo): Boolean =
-                oldItem == newItem
         }
     }
 }
