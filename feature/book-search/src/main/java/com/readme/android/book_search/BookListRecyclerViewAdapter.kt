@@ -22,10 +22,14 @@ class BookListRecyclerViewAdapter :
         )
     ) {
 
+    private lateinit var inflater: LayoutInflater
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookListRecyclerViewHolder {
-        val binding =
-            ItemBookSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        if(!::inflater.isInitialized)
+            inflater = LayoutInflater.from(parent.context)
+
+        val binding = ItemBookSearchBinding.inflate(inflater,parent,false)
+
         return BookListRecyclerViewHolder(binding)
     }
 
