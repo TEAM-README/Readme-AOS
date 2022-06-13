@@ -1,18 +1,18 @@
 package com.readme.android.core.util
 
 
-
+import android.os.Build
+import android.text.Html
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.readme.android.shared.R
 import com.readme.android.core.constant.*
-
-
 
 
 @BindingAdapter("nickNameStateNumber")
@@ -99,7 +99,6 @@ fun TextView.setDuplicateButtonState(nickNameStateNumber: Int?, editTextLength: 
 }
 
 
-
 @BindingAdapter("currentReadState", "recentReadVisibleMargin", "recentReadGoneMargin")
 fun RecyclerView.setBookSearchRecentReadStateMargin(
     currentReadState: Boolean,
@@ -119,12 +118,19 @@ fun RecyclerView.setBookSearchRecentReadStateMargin(
 
 
 @BindingAdapter("setBookImage")
-fun setBookImage(imageview: ImageView, bookImageUrl: String?) {
-    imageview.load(bookImageUrl) {
+fun ImageView.setBookImage(bookImageUrl: String?) {
+    this.load(bookImageUrl) {
         error(R.color.gray_0)
         placeholder(R.color.gray_0)
     }
-
 }
+
+@RequiresApi(Build.VERSION_CODES.N)
+@BindingAdapter("setBookTitle")
+fun TextView.setBookTitle(bookTitle: String?) {
+    this.text = Html.fromHtml(bookTitle, Html.TO_HTML_PARAGRAPH_LINES_INDIVIDUAL)
+}
+
+
 
 

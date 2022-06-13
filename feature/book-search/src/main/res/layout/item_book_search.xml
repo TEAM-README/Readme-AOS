@@ -6,10 +6,6 @@
     <data>
 
         <variable
-            name="bookTitleProcessed"
-            type="android.text.Spanned" />
-
-        <variable
             name="bookInfo"
             type="com.readme.android.domain.entity.BookInfo" />
     </data>
@@ -38,7 +34,7 @@
             android:layout_marginEnd="26dp"
             android:maxLines="2"
             android:ellipsize="end"
-            android:text="@{bookTitleProcessed}"
+            app:setBookTitle="@{bookInfo.title}"
             android:textAppearance="@style/medium_03"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"

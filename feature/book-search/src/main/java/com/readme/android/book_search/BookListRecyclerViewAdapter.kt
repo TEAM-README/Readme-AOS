@@ -39,7 +39,6 @@ class BookListRecyclerViewAdapter :
         @RequiresApi(Build.VERSION_CODES.N)
         fun onBind(data: BookInfo){
             binding.bookInfo = data
-            binding.bookTitleProcessed = Html.fromHtml(data.title,Html.TO_HTML_PARAGRAPH_LINES_INDIVIDUAL)
         }
     }
 }
