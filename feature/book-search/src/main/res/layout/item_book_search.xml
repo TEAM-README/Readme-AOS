@@ -12,7 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="146dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/iv_book_cover"
@@ -30,17 +30,17 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="31dp"
+            android:layout_marginTop="49dp"
             android:layout_marginEnd="26dp"
-            android:maxLines="2"
             android:ellipsize="end"
-            app:setBookTitle="@{bookInfo.title}"
+            android:maxLines="2"
             android:textAppearance="@style/medium_03"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@+id/iv_book_cover"
-            app:layout_constraintTop_toTopOf="@+id/iv_book_cover"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setBookTitle="@{bookInfo.title}"
             tools:text="어떻게 살아야하는가" />
 
         <TextView
@@ -49,13 +49,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:layout_marginEnd="26dp"
+            android:layout_marginBottom="49dp"
             android:text="@{bookInfo.author}"
             android:textAppearance="@style/regular_05"
             android:textColor="@color/gray_3"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="@+id/tv_book_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_book_title"
+            app:layout_constraintVertical_bias="0"
             tools:text="이나모리 가즈오 저 | 김윤경 역" />
 
         <View
