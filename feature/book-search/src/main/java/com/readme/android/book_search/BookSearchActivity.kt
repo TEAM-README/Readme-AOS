@@ -72,16 +72,14 @@ class BookSearchActivity :
     }
 
     private fun initEditTextBookSearchFocusListener() {
-        binding.etBookSearch.setOnFocusChangeListener(object : View.OnFocusChangeListener {
-            override fun onFocusChange(view: View?, hasFocus: Boolean) {
-                if (hasFocus) {
-                    bookSearchViewModel.setBookSearchTextState(false)
-                    bookSearchViewModel.setBookSearchVisibilityState(true)
-                    bookListRecyclerViewAdapter.submitList(listOf())
-                    bookSearchViewModel.setBookSearchCurrentReadState(false)
-                    bookSearchViewModel.searchWord.postValue("")
-                }
+        binding.etBookSearch.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                bookSearchViewModel.setBookSearchTextState(false)
+                bookSearchViewModel.setBookSearchVisibilityState(true)
+                bookListRecyclerViewAdapter.submitList(listOf())
+                bookSearchViewModel.setBookSearchCurrentReadState(false)
+                bookSearchViewModel.searchWord.postValue("")
             }
-        })
+        }
     }
 }
