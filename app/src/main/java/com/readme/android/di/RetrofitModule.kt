@@ -1,5 +1,8 @@
 package com.readme.android.di
 
+import com.readme.android.BuildConfig
+import com.readme.android.BuildConfig.X_NAVER_CLIENT_ID
+import com.readme.android.BuildConfig.X_NAVER_CLIENT_SECRET
 import com.readme.android.data.remote.calladapter.CustomCallAdapterFactory
 import com.readme.android.di.annotations.NaverBookSearchServer
 import dagger.Module
@@ -18,8 +21,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object RetrofitModule {
 
-    const val X_NAVER_CLIENT_ID = "acNJpGxulL56tNkuwd6X"
-    const val X_NAVER_CLIENT_SECRET = "D6O_BbQncI"
     const val NAVER_BOOK_SEARCH_BASE_URL = "https://openapi.naver.com/v1/search/"
 
     @Provides
