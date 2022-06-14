@@ -1,3 +1,9 @@
+import org.jetbrains.kotlin.konan.properties.Properties
+
+val properties = Properties()
+properties.load(project.rootProject.file("local.properties").inputStream())
+
+
 plugins {
     id("com.android.application")
     id("kotlin-parcelize")
@@ -13,6 +19,10 @@ android {
     buildFeatures {
         dataBinding = true
     }
+    defaultConfig {
+        buildConfigField("String","X_NAVER_CLIENT_ID",properties.getProperty("X_NAVER_CLIENT_ID"))
+        buildConfigField("String","X_NAVER_CLIENT_SECRET",properties.getProperty("X_NAVER_CLIENT_SECRET"))
+    }
     namespace = "com.readme.android"
 }
 
@@ -24,6 +34,7 @@ dependencies {
     implementation(project(":feature:main"))
     implementation(project(":feature:set-nick-name"))
     implementation(project(":feature:write-feed"))
+    implementation(project(":feature:book-search"))
 
     // Kotlin
     implementation(KotlinDependencies.kotlin)
@@ -72,6 +83,10 @@ dependencies {
     implementation(ThirdPartyDependencies.okHttp)
     implementation(ThirdPartyDependencies.okHttpLoggingInterceptor)
     implementation(ThirdPartyDependencies.kotlinxSerializationConverter)
+
+    //JsonConverterLibrary
+    implementation(ThirdPartyDependencies.gson)
+    implementation(ThirdPartyDependencies.gsonConverter)
 
     // Logger - Timber
     implementation(ThirdPartyDependencies.timber)
