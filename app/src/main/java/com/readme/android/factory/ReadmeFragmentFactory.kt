@@ -3,8 +3,8 @@ package com.readme.android.factory
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
-import com.readme.android.core.util.Injector
-import com.readme.android.core.util.ResolutionMetrics
+import com.readme.android.core_ui.util.Injector
+import com.readme.android.core_ui.util.ResolutionMetrics
 import com.readme.android.main.ui.mypage.MyPageFragment
 import dagger.hilt.android.EntryPointAccessors
 

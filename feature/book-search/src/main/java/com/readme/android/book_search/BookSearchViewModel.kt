@@ -1,18 +1,15 @@
 package com.readme.android.book_search
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.readme.android.core.exception.RetrofitFailureStateException
+import com.readme.android.core_data.exception.RetrofitFailureStateException
 import com.readme.android.domain.entity.BookInfo
 import com.readme.android.domain.repository.BookSearchRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import java.lang.Exception
-import java.net.HttpRetryException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -66,7 +63,7 @@ class BookSearchViewModel @Inject constructor(
         _bookSearchTextState.postValue(state)
     }
 
-    fun setBookSearchCurrentReadState(state: Boolean){
+    fun setBookSearchCurrentReadState(state: Boolean) {
         _bookSearchCurrentReadState.postValue(state)
     }
 

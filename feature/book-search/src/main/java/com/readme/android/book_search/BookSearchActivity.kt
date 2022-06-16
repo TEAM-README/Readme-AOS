@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewTreeObserver
 import androidx.activity.viewModels
 import com.readme.android.book_search.databinding.ActivityBookSearchBinding
-import com.readme.android.core.base.BindingActivity
-import com.readme.android.core.util.KeyBoardUtil
-import com.readme.android.core.util.ResolutionMetrics
+import com.readme.android.core_ui.base.BindingActivity
+import com.readme.android.core_ui.util.KeyBoardUtil
+import com.readme.android.core_ui.util.ResolutionMetrics
 import com.readme.android.domain.entity.BookInfo
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber

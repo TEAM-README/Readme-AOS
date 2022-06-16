@@ -28,7 +28,7 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-    implementation(project(":core"))
+    implementation(project(":core-ui"))
     implementation(project(":data"))
     implementation(project(":domain"))
     implementation(project(":feature:main"))

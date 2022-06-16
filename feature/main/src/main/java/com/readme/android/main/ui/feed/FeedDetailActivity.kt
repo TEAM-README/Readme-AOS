@@ -1,7 +1,7 @@
 package com.readme.android.main.ui.feed
 
 import android.os.Bundle
-import com.readme.android.core.base.BindingActivity
+import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.main.R
 import com.readme.android.main.databinding.ActivityFeedDetailBinding
 
