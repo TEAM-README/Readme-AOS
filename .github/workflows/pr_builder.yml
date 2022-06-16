@@ -38,6 +38,9 @@ jobs:
             -   name: Change gradlew permissions
                 run: chmod +x ./gradlew
                 
+            -   name: Touch local properties
+                run: touch local.properties
+                
             -   name: Access X_NAVER_CLIENT_ID
                 env:
                     X_NAVER_CLIENT_ID: ${{ secrets.X_NAVER_CLIENT_ID }}
