@@ -35,6 +35,9 @@ jobs:
                 with:
                     java-version: 11
 
+            -   name: Change gradlew permissions
+                run: chmod +x ./gradlew
+                
             -   name: Access X_NAVER_CLIENT_ID
                 env:
                     X_NAVER_CLIENT_ID: ${{ secrets.X_NAVER_CLIENT_ID }}
@@ -45,9 +48,6 @@ jobs:
                     X_NAVER_CLIENT_SECRET: ${{ secrets.X_NAVER_CLIENT_SECRET }}
                 run: echo X_NAVER_CLIENT_SECRET="$X_NAVER_CLIENT_SECRET" > ./local.properties
                 
-            -   name: Change gradlew permissions
-                run: chmod +x ./gradlew
-
             -   name: Build debug APK
                 run: ./gradlew assembleDebug --stacktrace
 
