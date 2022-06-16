@@ -38,12 +38,12 @@ jobs:
             -   name: Access X_NAVER_CLIENT_ID
                 env:
                     X_NAVER_CLIENT_ID: ${{ secrets.X_NAVER_CLIENT_ID }}
-                run: echo X_NAVER_CLIENT_ID=\"$X_NAVER_CLIENT_ID\" > ./local.properties
+                run: echo X_NAVER_CLIENT_ID="$X_NAVER_CLIENT_ID" > ./local.properties
                  
             -   name: Access X_NAVER_CLIENT_SECRET
                 env:
                     X_NAVER_CLIENT_SECRET: ${{ secrets.X_NAVER_CLIENT_SECRET }}
-                run: echo X_NAVER_CLIENT_SECRET=\"$X_NAVER_CLIENT_SECRET\" > ./local.properties
+                run: echo X_NAVER_CLIENT_SECRET="$X_NAVER_CLIENT_SECRET" > ./local.properties
                 
             -   name: Change gradlew permissions
                 run: chmod +x ./gradlew
