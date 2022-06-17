@@ -21,4 +21,6 @@
     <color name="alert_red">#d23939</color>
     <color name="gray_background">#f8f8f8</color>
     <color name="crimson">#FB7979</color>
+    <color name="kakao_yellow">#FEE500</color>
+    <color name="naver_green">#03C75A</color>
 </resources>
