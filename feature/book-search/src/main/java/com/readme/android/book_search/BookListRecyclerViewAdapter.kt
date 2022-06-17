@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.readme.android.book_search.databinding.ItemBookSearchBinding
-import com.readme.android.core.util.ItemDiffCallback
+import com.readme.android.core_ui.util.ItemDiffCallback
 import com.readme.android.domain.entity.BookInfo
 import com.readme.android.domain.entity.Feed
 

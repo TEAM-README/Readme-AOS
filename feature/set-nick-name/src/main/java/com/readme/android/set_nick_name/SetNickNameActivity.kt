@@ -8,10 +8,10 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
-import com.readme.android.core.base.BindingActivity
-import com.readme.android.core.constant.HAS_NO_STATE
-import com.readme.android.core.constant.NO_SPECIAL_CHARACTER
-import com.readme.android.core.constant.OVER_TEXT_LIMIT
+import com.readme.android.core_ui.base.BindingActivity
+import com.readme.android.core_ui.constant.HAS_NO_STATE
+import com.readme.android.core_ui.constant.NO_SPECIAL_CHARACTER
+import com.readme.android.core_ui.constant.OVER_TEXT_LIMIT
 import com.readme.android.set_nick_name.databinding.ActivitySetNickNameBinding
 import java.util.regex.Pattern
 

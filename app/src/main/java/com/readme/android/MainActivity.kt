@@ -3,7 +3,7 @@ package com.readme.android
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.readme.android.adapter.MainViewPagerAdapter
-import com.readme.android.core.base.BindingActivity
+import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.databinding.ActivityMainBinding
 import com.readme.android.factory.ReadmeFragmentFactory
 import com.readme.android.main.ui.home.HomeFragment

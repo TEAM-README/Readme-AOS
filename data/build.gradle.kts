@@ -6,7 +6,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":core"))
+    implementation(project(":core-data"))
     implementation(project(":domain"))
 
     // Logger - Timber
