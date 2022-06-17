@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_readme_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Readme">
-        <!--leakcanary 안드로이드 12 부터 버전충돌 문제 해결-->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <!-- leakcanary 안드로이드 12 부터 버전충돌 문제 해결 -->
         <activity-alias
             android:name="leakcanary.internal.activity.LeakLauncherActivity"
             android:exported="false"
@@ -25,7 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".main.ui.feed.FeedDetailActivity"
             android:exported="false" />
@@ -39,7 +41,7 @@
         <activity
             android:name=".book_search.BookSearchActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
