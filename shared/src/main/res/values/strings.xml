@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Readme</string>
 
+    <!--로그인-->
+    <string name="login_explain"><b>간단한 회원가입</b>으로 리드미를 시작해볼까요?</string>
+    <string name="kakao_login">카카오 로그인</string>
+    <string name="naver_login">네이버 아이디로 로그인</string>
+
     <!--마이페이지-->
     <string name="user_bookshelf">님의 책장</string>
     <string name="total">총</string>
