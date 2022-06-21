@@ -35,6 +35,8 @@ dependencies {
     implementation(project(":feature:set-nick-name"))
     implementation(project(":feature:write-feed"))
     implementation(project(":feature:book-search"))
+    implementation(project(":feature:auth"))
+    implementation(project(":navigator"))
 
     // Kotlin
     implementation(KotlinDependencies.kotlin)
