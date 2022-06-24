@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Readme">
         <activity
-            android:name=".LoginActivity"
+            android:name=".auth.ui.LoginActivity"
             android:exported="false" />
         <!-- leakcanary 안드로이드 12 부터 버전충돌 문제 해결 -->
         <activity-alias
