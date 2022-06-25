@@ -1,4 +1,4 @@
-package com.readme.android.data.remote.repository
+package com.readme.android.data.repository
 
 import com.readme.android.core_data.exception.RetrofitFailureStateException
 import com.readme.android.data.remote.calladapter.NetworkState

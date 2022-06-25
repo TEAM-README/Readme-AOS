@@ -1,6 +1,6 @@
 package com.readme.android.di
 
-import com.readme.android.data.remote.repository.BookSearchRepositoryImpl
+import com.readme.android.data.repository.BookSearchRepositoryImpl
 import com.readme.android.domain.repository.BookSearchRepository
 import dagger.Binds
 import dagger.Module
