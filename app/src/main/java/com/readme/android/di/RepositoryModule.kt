@@ -1,7 +1,9 @@
 package com.readme.android.di
 
 import com.readme.android.data.repository.BookSearchRepositoryImpl
+import com.readme.android.data.repository.LoginRepositoryImpl
 import com.readme.android.domain.repository.BookSearchRepository
+import com.readme.android.domain.repository.LoginRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,4 +17,8 @@ interface RepositoryModule {
     @Binds
     @Singleton
     fun bindsBookSearchRepository(repository: BookSearchRepositoryImpl): BookSearchRepository
+
+    @Binds
+    @Singleton
+    fun bindsLoginRepository(repository: LoginRepositoryImpl): LoginRepository
 }

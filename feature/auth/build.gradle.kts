@@ -27,6 +27,7 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":shared"))
     implementation(project(":navigator"))
+    implementation(project(":core-data"))
 
     // Android Core
     implementation(AndroidXDependencies.coreKtx)
