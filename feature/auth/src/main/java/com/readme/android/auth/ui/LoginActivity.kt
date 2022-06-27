@@ -40,7 +40,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
 
             layoutNaver.setOnClickListener {
                 it.isClickable = false
-                moveSetNickNameActivity("NAVER","asd")
                 loginViewModel.naverSetOAuthLoginCallback()
                 NaverIdLoginSDK.initialize(
                     this@LoginActivity,

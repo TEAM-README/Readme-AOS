@@ -45,7 +45,6 @@ class LoginViewModel @Inject constructor(
         oAuthLoginCallback = object : OAuthLoginCallback {
             override fun onSuccess() {
                 _socialToken.postValue(NaverIdLoginSDK.getAccessToken())
-//                Log.d("토큰내놔",NaverIdLoginSDK.getAccessToken() ?: "") 은지용
                 NidOAuthLogin().callProfileApi(object : NidProfileCallback<NidProfileResponse> {
                     override fun onSuccess(result: NidProfileResponse) {
 //                        이제 이름 등등 받아서 어따 넘기는 로직

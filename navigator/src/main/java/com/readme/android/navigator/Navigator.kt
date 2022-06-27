@@ -12,4 +12,7 @@ interface MainNavigator {
         socialToken: Pair<String, String>,
         platform: Pair<String, String>
     )
+
+    /** LoginActivity로 이동 */
+    fun openLogin(context: Context)
 }
