@@ -10,7 +10,7 @@ import retrofit2.http.POST
 interface LoginService {
 
     @POST("user/login")
-    suspend fun postNaverLogin (
+    suspend fun postLogin (
         @Body body: LoginRequest
     ): NetworkState<BaseResponse<LoginResponse>>
 }

@@ -10,6 +10,6 @@ import javax.inject.Inject
 class RemoteLoginDataSourceImpl @Inject constructor(
     private val loginService: LoginService
 ) : RemoteLoginDataSource {
-    override suspend fun postNaverLogin(loginRequest: LoginRequest): NetworkState<BaseResponse<LoginResponse>> =
-        loginService.postNaverLogin(loginRequest)
+    override suspend fun postLogin(loginRequest: LoginRequest): NetworkState<BaseResponse<LoginResponse>> =
+        loginService.postLogin(loginRequest)
 }

@@ -10,7 +10,6 @@ import com.readme.android.domain.entity.response.DomainLoginResponse
 import com.readme.android.domain.repository.LoginRepository
 import timber.log.Timber
 import javax.inject.Inject
-import kotlin.math.log
 
 class LoginRepositoryImpl @Inject constructor(
     private val localPreferenceUserDataSource: LocalPreferenceUserDataSource,
@@ -38,8 +37,8 @@ class LoginRepositoryImpl @Inject constructor(
         localPreferenceUserDataSource.removeUserNickname()
     }
 
-    override suspend fun postNaverLogin(loginRequest: DomainLoginRequest): Result<DomainLoginResponse> {
-        val response = remoteLoginDataSource.postNaverLogin(
+    override suspend fun postLogin(loginRequest: DomainLoginRequest): Result<DomainLoginResponse> {
+        val response = remoteLoginDataSource.postLogin(
             LoginRequest(
                 platform = loginRequest.platform,
                 socialToken = loginRequest.socialToken

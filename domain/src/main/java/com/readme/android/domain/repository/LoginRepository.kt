@@ -17,5 +17,5 @@ interface LoginRepository {
 
     fun removeUserNickname()
 
-    suspend fun postNaverLogin(loginRequest: DomainLoginRequest):Result<DomainLoginResponse>
+    suspend fun postLogin(loginRequest: DomainLoginRequest):Result<DomainLoginResponse>
 }

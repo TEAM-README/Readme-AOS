@@ -1,6 +1,5 @@
 package com.readme.android.auth.ui
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,14 +9,10 @@ import com.navercorp.nid.oauth.NidOAuthLogin
 import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.navercorp.nid.profile.NidProfileCallback
 import com.navercorp.nid.profile.data.NidProfileResponse
-import com.readme.android.core_data.exception.RetrofitFailureStateException
 import com.readme.android.core_ui.util.Event
 import com.readme.android.domain.entity.request.DomainLoginRequest
-import com.readme.android.domain.entity.response.DomainLoginResponse
 import com.readme.android.domain.repository.LoginRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -72,7 +67,7 @@ class LoginViewModel @Inject constructor(
 
     fun postNaverLogin() {
         viewModelScope.launch {
-            loginRepository.postNaverLogin(
+            loginRepository.postLogin(
                 DomainLoginRequest(
                     platform = NAVER,
                     socialToken = socialToken.value ?: ""
