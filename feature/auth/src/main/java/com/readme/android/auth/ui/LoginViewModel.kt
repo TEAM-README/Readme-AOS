@@ -27,14 +27,17 @@ class LoginViewModel @Inject constructor(
     private val _socialToken = MutableLiveData<String>()
     val socialToken: LiveData<String> = _socialToken
 
+    private lateinit var platform :String
+
+
     private val _moveToSetNickname = MutableLiveData<Event<String>>()
     val moveToSetNickname: LiveData<Event<String>> = _moveToSetNickname
 
     private val _moveToHome = MutableLiveData<Event<Boolean>>()
     val moveToHome: LiveData<Event<Boolean>> = _moveToHome
 
-    private val _naverLoginFailureMessage = MutableLiveData<String>()
-    val naverLoginFailureMessage: LiveData<String> = _naverLoginFailureMessage
+    private val _loginFailureMessage = MutableLiveData<String>()
+    val loginFailureMessage: LiveData<String> = _loginFailureMessage
 
     fun naverSetOAuthLoginCallback() {
         oAuthLoginCallback = object : OAuthLoginCallback {
@@ -65,22 +68,22 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun postNaverLogin() {
+    fun postLogin() {
         viewModelScope.launch {
             loginRepository.postLogin(
                 DomainLoginRequest(
-                    platform = NAVER,
+                    platform = platform,
                     socialToken = socialToken.value ?: ""
                 )
             ).onSuccess {
                 if (it.isNewUser) {
-                    _moveToSetNickname.postValue(Event(NAVER))
+                    _moveToSetNickname.postValue(Event(platform))
                 } else {
                     saveAccessToken(it.accessToken ?: "")
                     _moveToHome.postValue(Event(true))
                 }
             }.onFailure {
-                _naverLoginFailureMessage.postValue(it.message)
+                _loginFailureMessage.postValue(it.message)
             }
         }
     }
@@ -89,8 +92,7 @@ class LoginViewModel @Inject constructor(
         loginRepository.saveAccessToken(accessToken)
     }
 
-    companion object {
-        private const val NAVER = "NAVER"
-        private const val KAKAO = "KAKAO"
+    fun updatePlatform(platform: String) {
+       this.platform = platform
     }
 }

@@ -24,8 +24,8 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initClickEvent()
-        initNaverLoginObserver()
-        initNaverLoginFaulureMessageObserver()
+        initLoginObserver()
+        initLoginFailureMessageObserver()
         initMoveToHomeObserver()
         initMoveToSetNickNameObserver()
         activeNaverbtnClickable()
@@ -35,11 +35,12 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         with(binding) {
             layoutKakao.setOnClickListener {
                 // TODO : 소셜로그인 카카오
-                moveMainActivity()
+                loginViewModel.updatePlatform(KAKAO)
             }
 
             layoutNaver.setOnClickListener {
                 it.isClickable = false
+                loginViewModel.updatePlatform(NAVER)
                 loginViewModel.naverSetOAuthLoginCallback()
                 NaverIdLoginSDK.initialize(
                     this@LoginActivity,
@@ -52,14 +53,14 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         }
     }
 
-    private fun initNaverLoginObserver() {
+    private fun initLoginObserver() {
         loginViewModel.socialToken.observe(this) {
-            loginViewModel.postNaverLogin()
+            loginViewModel.postLogin()
         }
     }
 
-    private fun initNaverLoginFaulureMessageObserver() {
-        loginViewModel.naverLoginFailureMessage.observe(this) {
+    private fun initLoginFailureMessageObserver() {
+        loginViewModel.loginFailureMessage.observe(this) {
             Toast.makeText(this, "로그인에 실패 하였습니다", Toast.LENGTH_SHORT).show()
         }
     }
@@ -92,5 +93,10 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
 
     private fun activeNaverbtnClickable(){
         binding.layoutNaver.isClickable = true
+    }
+
+    companion object {
+        private const val NAVER = "NAVER"
+        private const val KAKAO = "KAKAO"
     }
 }
