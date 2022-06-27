@@ -3,8 +3,10 @@ package com.readme.android.di
 import com.readme.android.BuildConfig
 import com.readme.android.BuildConfig.X_NAVER_CLIENT_ID
 import com.readme.android.BuildConfig.X_NAVER_CLIENT_SECRET
+import com.readme.android.data.local.datasource.LocalPreferenceUserDataSource
 import com.readme.android.data.remote.calladapter.CustomCallAdapterFactory
 import com.readme.android.di.annotations.NaverBookSearchServer
+import com.readme.android.di.annotations.ReadMeServer
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,6 +24,7 @@ import javax.inject.Singleton
 object RetrofitModule {
 
     const val NAVER_BOOK_SEARCH_BASE_URL = "https://openapi.naver.com/v1/search/"
+    const val READ_ME_SERVER_BASE_URL = "http://13.125.248.16:3000/"
 
     @Provides
     @Singleton
@@ -34,7 +37,7 @@ object RetrofitModule {
     @Provides
     @Singleton
     @NaverBookSearchServer
-    fun providesInterceptor(): Interceptor =
+    fun providesNaverInterceptor(): Interceptor =
         Interceptor { chain ->
             with(chain) {
                 proceed(
@@ -50,7 +53,7 @@ object RetrofitModule {
     @Provides
     @Singleton
     @NaverBookSearchServer
-    fun providesOkHttpClient(
+    fun providesNaverOkHttpClient(
         @NaverBookSearchServer interceptor: Interceptor,
         httpLoggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient =
@@ -65,9 +68,51 @@ object RetrofitModule {
     @Provides
     @Singleton
     @NaverBookSearchServer
-    fun providesRetrofit(@NaverBookSearchServer okHttpClient: OkHttpClient): Retrofit =
+    fun providesNaverRetrofit(@NaverBookSearchServer okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .baseUrl(NAVER_BOOK_SEARCH_BASE_URL)
+            .client(okHttpClient)
+            .addCallAdapterFactory(CustomCallAdapterFactory())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+
+    @Provides
+    @Singleton
+    @ReadMeServer
+    fun providesReadMeInterceptor(localPreferenceUserDataSourceImpl: LocalPreferenceUserDataSource): Interceptor =
+        Interceptor { chain ->
+            with(chain) {
+                proceed(
+                    request()
+                        .newBuilder()
+                        .addHeader("Authorization",localPreferenceUserDataSourceImpl.getAccessToken())
+                        .build()
+                )
+            }
+        }
+
+    @Provides
+    @Singleton
+    @ReadMeServer
+    fun providesReadMeOkHttpClient(
+        @ReadMeServer interceptor: Interceptor,
+        httpLoggingInterceptor: HttpLoggingInterceptor
+    ): OkHttpClient =
+        OkHttpClient.Builder()
+            .connectTimeout(15, TimeUnit.SECONDS)
+            .writeTimeout(20, TimeUnit.SECONDS)
+            .readTimeout(15, TimeUnit.SECONDS)
+            .addInterceptor(interceptor)
+            .addInterceptor(httpLoggingInterceptor)
+            .build()
+
+    @Provides
+    @Singleton
+    @ReadMeServer
+    fun providesReadMeRetrofit(@ReadMeServer okHttpClient: OkHttpClient): Retrofit =
+        Retrofit.Builder()
+            .baseUrl(READ_ME_SERVER_BASE_URL)
             .client(okHttpClient)
             .addCallAdapterFactory(CustomCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())

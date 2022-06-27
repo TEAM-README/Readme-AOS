@@ -13,9 +13,10 @@ import com.readme.android.core_ui.constant.HAS_NO_STATE
 import com.readme.android.core_ui.constant.NO_SPECIAL_CHARACTER
 import com.readme.android.core_ui.constant.OVER_TEXT_LIMIT
 import com.readme.android.set_nick_name.databinding.ActivitySetNickNameBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.regex.Pattern
 
-
+@AndroidEntryPoint
 class SetNickNameActivity :
     BindingActivity<ActivitySetNickNameBinding>(R.layout.activity_set_nick_name) {
 

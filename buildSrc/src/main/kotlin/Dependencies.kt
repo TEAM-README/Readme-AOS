@@ -79,6 +79,7 @@ object ThirdPartyDependencies {
         "com.google.android.gms:play-services-oss-licenses:${Versions.ossVersion}"
     const val gson = "com.google.code.gson:gson:${Versions.gsonVersion}"
     const val gsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.gsonConverterVersion}"
+    const val naverAuth = "com.navercorp.nid:oauth:${Versions.naverAuth}"
 }
 
 object FirebaseDependency {
