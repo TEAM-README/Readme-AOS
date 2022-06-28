@@ -7,11 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.readme.android.core_ui.constant.SetNickNameConstant.ALLOWED_NICKNAME
 import com.readme.android.core_ui.constant.SetNickNameConstant
 import com.readme.android.core_ui.constant.SetNickNameConstant.DUPLICATE_NICKNAME
+import com.readme.android.core_ui.util.Event
+import com.readme.android.domain.entity.request.DomainSignUpRequest
 import com.readme.android.domain.repository.SignUpRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
+import kotlin.math.sign
 
 @HiltViewModel
 class SetNickNameViewModel @Inject constructor(
@@ -22,6 +25,9 @@ class SetNickNameViewModel @Inject constructor(
 
     private val _nickNameState = MutableLiveData<SetNickNameConstant>()
     val nickNameState: LiveData<SetNickNameConstant> = _nickNameState
+
+    private val _moveToHome = MutableLiveData<Event<Boolean>>()
+    val moveToHome: LiveData<Event<Boolean>> = _moveToHome
 
     fun updateNickNameState(state: SetNickNameConstant) {
         _nickNameState.value = state
@@ -40,6 +46,24 @@ class SetNickNameViewModel @Inject constructor(
                 .onFailure {
                     Timber.d(it)
                 }
+        }
+    }
+
+    fun postSignUp(platform: String, socialToken: String) {
+        viewModelScope.launch {
+            signUpRepository.postSignUp(
+                DomainSignUpRequest(
+                    platform = platform,
+                    socialToken = socialToken,
+                    nickname = nickName.value ?: ""
+                )
+            ).onSuccess {
+                signUpRepository.saveAccessToken(it)
+                signUpRepository.saveUserNickname(nickName.value ?: "")
+                _moveToHome.postValue(Event(true))
+            }.onFailure {
+                Timber.d(it)
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.readme.android.set_nick_name
 
+import android.media.metrics.Event
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputFilter
@@ -12,14 +13,19 @@ import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.core_ui.constant.SetNickNameConstant.HAS_NO_STATE
 import com.readme.android.core_ui.constant.SetNickNameConstant.NO_SPECIAL_CHARACTER
 import com.readme.android.core_ui.constant.SetNickNameConstant.OVER_TEXT_LIMIT
+import com.readme.android.core_ui.util.EventObserver
+import com.readme.android.navigator.MainNavigator
 import com.readme.android.set_nick_name.databinding.ActivitySetNickNameBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.regex.Pattern
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SetNickNameActivity :
     BindingActivity<ActivitySetNickNameBinding>(R.layout.activity_set_nick_name) {
 
+    @Inject
+    lateinit var mainNavigator : MainNavigator
     private val setNickNameViewModel by viewModels<SetNickNameViewModel>()
     private lateinit var socialToken: String
     private lateinit var platform: String
@@ -31,8 +37,8 @@ class SetNickNameActivity :
         initExtraData()
         initEditTextFilter()
         initDuplicateNickNameButton()
-
-
+        initStartButtonClickListener()
+        initMoveToHomeObserver()
     }
 
     private fun initEditTextFilter() {
@@ -65,4 +71,20 @@ class SetNickNameActivity :
         socialToken = intent.getStringExtra("socialToken") ?: ""
     }
 
+    private fun initStartButtonClickListener(){
+        binding.btnStart.setOnClickListener {
+            setNickNameViewModel.postSignUp(platform,socialToken)
+        }
+    }
+
+    private fun moveMainActicity(){
+        mainNavigator.openMain(this)
+        finish()
+    }
+
+    private fun initMoveToHomeObserver(){
+        setNickNameViewModel.moveToHome.observe(this,EventObserver{
+            moveMainActicity()
+        })
+    }
 }
