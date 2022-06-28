@@ -7,9 +7,16 @@ import javax.inject.Inject
 
 class NaverBookSearchMapper @Inject constructor() {
 
-    fun toBookInfo(bookItem: Item):BookInfo = BookInfo(
-        title = bookItem.title,
-        author = bookItem.author,
-        image = bookItem.image
-    )
+    fun toBookInfo(bookItem: Item):BookInfo {
+
+        val strArr = bookItem.isbn.split(" ")
+
+        return BookInfo(
+            title = bookItem.title,
+            author = bookItem.author,
+            image = bookItem.image,
+            isbn = strArr[0],
+            subIsbn = strArr[1]
+        )
+    }
 }
