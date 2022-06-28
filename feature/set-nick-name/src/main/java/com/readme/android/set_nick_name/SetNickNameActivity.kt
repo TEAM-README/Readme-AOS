@@ -21,14 +21,17 @@ class SetNickNameActivity :
     BindingActivity<ActivitySetNickNameBinding>(R.layout.activity_set_nick_name) {
 
     private val setNickNameViewModel by viewModels<SetNickNameViewModel>()
+    private lateinit var socialToken: String
+    private lateinit var platform: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding.setNickNameViewModel = setNickNameViewModel
-
+        initExtraData()
         initEditTextFilter()
         initDuplicateNickNameButton()
+
 
     }
 
@@ -40,7 +43,7 @@ class SetNickNameActivity :
                 if (source.isNullOrEmpty() || noSpecialCharacterPattern.matcher(source).matches()) {
                     if (binding.etSetNickname.text.length < 7) {
                         setNickNameViewModel.updateNickNameState(HAS_NO_STATE)
-                    }else {
+                    } else {
                         setNickNameViewModel.updateNickNameState(OVER_TEXT_LIMIT)
                     }
                     return@InputFilter source
@@ -51,11 +54,15 @@ class SetNickNameActivity :
         )
     }
 
-    private fun initDuplicateNickNameButton(){
-        binding.tvCheckDuplicateButton.setOnClickListener{
+    private fun initDuplicateNickNameButton() {
+        binding.tvCheckDuplicateButton.setOnClickListener {
             setNickNameViewModel.checkDuplicateNickName()
         }
     }
 
+    private fun initExtraData() {
+        platform = intent.getStringExtra("platform") ?: ""
+        socialToken = intent.getStringExtra("socialToken") ?: ""
+    }
 
 }
