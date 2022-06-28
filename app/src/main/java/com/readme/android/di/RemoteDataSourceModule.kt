@@ -1,9 +1,6 @@
 package com.readme.android.di
 
-import com.readme.android.data.remote.datasource.RemoteBookSearchDataSource
-import com.readme.android.data.remote.datasource.RemoteBookSearchDataSourceImpl
-import com.readme.android.data.remote.datasource.RemoteLoginDataSource
-import com.readme.android.data.remote.datasource.RemoteLoginDataSourceImpl
+import com.readme.android.data.remote.datasource.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -21,4 +18,8 @@ interface RemoteDataSourceModule {
     @Binds
     @Singleton
     fun bindsRemoteLoginDataSource(source: RemoteLoginDataSourceImpl): RemoteLoginDataSource
+
+    @Binds
+    @Singleton
+    fun bindsRemoteCheckDuplicateNickNameDataSource(source: RemoteSignUpDataSourceImpl): RemoteSignUpDataSource
 }

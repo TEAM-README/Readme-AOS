@@ -12,30 +12,36 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.readme.android.core_ui.constant.*
 import com.readme.android.shared.R
+import com.readme.android.core_ui.constant.SetNickNameConstant.HAS_NO_STATE
+import com.readme.android.core_ui.constant.SetNickNameConstant.NO_SPECIAL_CHARACTER
+import com.readme.android.core_ui.constant.SetNickNameConstant.OVER_TEXT_LIMIT
+import com.readme.android.core_ui.constant.SetNickNameConstant.ALLOWED_NICKNAME
+import com.readme.android.core_ui.constant.SetNickNameConstant.DUPLICATE_NICKNAME
+
 
 @BindingAdapter("nickNameStateNumber")
-fun TextView.setNickNameState(nickNameStateNumber: Int?) {
+fun TextView.setNickNameState(nickNameStateNumber: SetNickNameConstant?) {
     val context = this.context
 
     if (nickNameStateNumber != null) {
         when (nickNameStateNumber) {
             OVER_TEXT_LIMIT -> {
                 setTextColor(context.getColor(R.color.alert_red))
-                setText(com.readme.android.shared.R.string.set_nickname_over_text_limit)
+                setText(R.string.set_nickname_over_text_limit)
             }
             NO_SPECIAL_CHARACTER -> {
                 setTextColor(context.getColor(R.color.alert_red))
-                setText(com.readme.android.shared.R.string.set_nickname_no_special_character)
+                setText(R.string.set_nickname_no_special_character)
             }
             DUPLICATE_NICKNAME -> {
                 setTextColor(context.getColor(R.color.alert_red))
-                setText(com.readme.android.shared.R.string.set_nickname_duplicate_nickname)
+                setText(R.string.set_nickname_duplicate_nickname)
             }
             ALLOWED_NICKNAME -> {
                 setTextColor(context.getColor(R.color.main_blue))
-                setText(com.readme.android.shared.R.string.set_nickname_allowed_nickname)
+                setText(R.string.set_nickname_allowed_nickname)
             }
-            else -> {
+            HAS_NO_STATE -> {
                 text = ""
             }
         }
@@ -44,16 +50,15 @@ fun TextView.setNickNameState(nickNameStateNumber: Int?) {
 
 
 @BindingAdapter("setNickNameEditTextBackGround")
-fun EditText.setNickNameEditTextBackGround(nickNameStateNumber: Int?) {
+fun EditText.setNickNameEditTextBackGround(nickNameStateNumber: SetNickNameConstant?) {
     if (nickNameStateNumber != null) {
         this.setBackgroundResource(
             when (nickNameStateNumber) {
                 OVER_TEXT_LIMIT -> R.drawable.shape_rect_alert_red_1_border_10
                 NO_SPECIAL_CHARACTER -> R.drawable.shape_rect_alert_red_1_border_10
                 DUPLICATE_NICKNAME -> R.drawable.shape_rect_alert_red_1_border_10
-                ALLOWED_NICKNAME -> R.drawable.shape_rect_gray_1_boder_10
+                ALLOWED_NICKNAME -> R.drawable.shape_rect_main_bule_border_10
                 HAS_NO_STATE -> R.drawable.shape_rect_gray_1_boder_10
-                else -> R.drawable.shape_rect_gray_1_boder_10
             }
         )
     }
@@ -61,19 +66,19 @@ fun EditText.setNickNameEditTextBackGround(nickNameStateNumber: Int?) {
 
 
 @BindingAdapter("setDuplicateButtonState", "editTextLength")
-fun TextView.setDuplicateButtonState(nickNameStateNumber: Int?, editTextLength: Int?) {
+fun TextView.setDuplicateButtonState(nickNameStateNumber: SetNickNameConstant?, editTextLength: Int?) {
     val context = this.context
 
     if (nickNameStateNumber != null) {
         if (editTextLength ?: 0 > 0) {
             when (nickNameStateNumber) {
                 OVER_TEXT_LIMIT -> {
-                    setTextColor(context.getColor(R.color.gray_1))
-                    isClickable = false
+                    setTextColor(context.getColor(R.color.main_blue))
+                    isClickable = true
                 }
                 NO_SPECIAL_CHARACTER -> {
-                    setTextColor(context.getColor(R.color.gray_1))
-                    isClickable = false
+                    setTextColor(context.getColor(R.color.main_blue))
+                    isClickable = true
                 }
                 DUPLICATE_NICKNAME -> {
                     setTextColor(context.getColor(R.color.gray_1))
@@ -86,10 +91,6 @@ fun TextView.setDuplicateButtonState(nickNameStateNumber: Int?, editTextLength: 
                 HAS_NO_STATE -> {
                     setTextColor(context.getColor(R.color.main_blue))
                     isClickable = true
-                }
-                else -> {
-                    setTextColor(context.getColor(R.color.gray_1))
-                    isClickable = false
                 }
             }
         }

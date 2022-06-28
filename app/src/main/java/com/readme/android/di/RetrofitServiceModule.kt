@@ -1,5 +1,6 @@
 package com.readme.android.di
 
+import com.readme.android.data.remote.service.CheckDuplicateNickNameService
 import com.readme.android.data.remote.service.LoginService
 import com.readme.android.data.remote.service.NaverBookSearchService
 import com.readme.android.di.annotations.NaverBookSearchServer
@@ -24,4 +25,9 @@ object RetrofitServiceModule {
     @Singleton
     fun providesLoginService(@ReadMeServer retrofit: Retrofit): LoginService =
         retrofit.create(LoginService::class.java)
+
+    @Provides
+    @Singleton
+    fun providesCheckDuplicateNickNameService(@ReadMeServer retrofit: Retrofit): CheckDuplicateNickNameService =
+        retrofit.create(CheckDuplicateNickNameService::class.java)
 }
