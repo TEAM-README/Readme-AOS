@@ -41,6 +41,9 @@ fun TextView.setNickNameState(nickNameStateNumber: SetNickNameConstant?) {
                 setTextColor(context.getColor(R.color.main_blue))
                 setText(com.readme.android.shared.R.string.set_nickname_allowed_nickname)
             }
+            HAS_NO_STATE -> {
+                text = ""
+            }
         }
     }
 }
@@ -54,7 +57,7 @@ fun EditText.setNickNameEditTextBackGround(nickNameStateNumber: SetNickNameConst
                 OVER_TEXT_LIMIT -> R.drawable.shape_rect_alert_red_1_border_10
                 NO_SPECIAL_CHARACTER -> R.drawable.shape_rect_alert_red_1_border_10
                 DUPLICATE_NICKNAME -> R.drawable.shape_rect_alert_red_1_border_10
-                ALLOWED_NICKNAME -> R.drawable.shape_rect_gray_1_boder_10
+                ALLOWED_NICKNAME -> R.drawable.shape_rect_main_bule_border_10
                 HAS_NO_STATE -> R.drawable.shape_rect_gray_1_boder_10
             }
         )
