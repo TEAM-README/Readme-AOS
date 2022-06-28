@@ -28,7 +28,7 @@ class SetNickNameActivity :
         binding.setNickNameViewModel = setNickNameViewModel
 
         initEditTextFilter()
-
+        initDuplicateNickNameButton()
 
     }
 
@@ -50,5 +50,12 @@ class SetNickNameActivity :
             }, InputFilter.LengthFilter(7)
         )
     }
+
+    private fun initDuplicateNickNameButton(){
+        binding.tvCheckDuplicateButton.setOnClickListener{
+            setNickNameViewModel.checkDuplicateNickName()
+        }
+    }
+
 
 }
