@@ -3,6 +3,7 @@ package com.readme.android.set_nick_name
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.readme.android.core_ui.constant.SetNickNameConstant
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -13,10 +14,10 @@ class SetNickNameViewModel @Inject constructor(
 
     var nickName = MutableLiveData("")
 
-    private val _nickNameState = MutableLiveData<Int>()
-    val nickNameState: LiveData<Int> = _nickNameState
+    private val _nickNameState = MutableLiveData<SetNickNameConstant>()
+    val nickNameState: LiveData<SetNickNameConstant> = _nickNameState
 
-    fun updateNickNameState(state: Int) {
+    fun updateNickNameState(state: SetNickNameConstant) {
         _nickNameState.value = state
     }
 }

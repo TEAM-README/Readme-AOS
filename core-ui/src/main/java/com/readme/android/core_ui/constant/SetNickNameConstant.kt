@@ -1,7 +1,6 @@
 package com.readme.android.core_ui.constant
 
-const val OVER_TEXT_LIMIT = 1
-const val NO_SPECIAL_CHARACTER = 2
-const val DUPLICATE_NICKNAME = 3
-const val ALLOWED_NICKNAME = 4
-const val HAS_NO_STATE = 5
+enum class SetNickNameConstant {
+    OVER_TEXT_LIMIT,NO_SPECIAL_CHARACTER,DUPLICATE_NICKNAME,ALLOWED_NICKNAME,HAS_NO_STATE
+}
+
