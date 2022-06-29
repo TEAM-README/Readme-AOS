@@ -15,6 +15,10 @@ class LoginRepositoryImpl @Inject constructor(
     private val localPreferenceUserDataSource: LocalPreferenceUserDataSource,
     private val remoteLoginDataSource: RemoteLoginDataSource
 ) : LoginRepository {
+    override fun getAccessToken(): String =
+        localPreferenceUserDataSource.getAccessToken()
+
+
     override fun saveAccessToken(accessToken: String) {
         localPreferenceUserDataSource.saveAccessToken(accessToken)
     }
