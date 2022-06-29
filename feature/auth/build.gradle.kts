@@ -34,6 +34,7 @@ dependencies {
     implementation(AndroidXDependencies.appCompat)
     implementation(AndroidXDependencies.constraintLayout)
     implementation(AndroidXDependencies.coroutines)
+    implementation(AndroidXDependencies.splashScreen)
 
     // Material Design
     implementation(MaterialDesignDependencies.materialDesign)
