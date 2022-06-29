@@ -1,10 +1,12 @@
 package com.readme.android.auth.ui
 
 import android.os.Bundle
+import android.view.View
+import android.view.ViewTreeObserver
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.navercorp.nid.NaverIdLoginSDK
-import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.readme.android.auth.BuildConfig.X_NAVER_CLIENT_ID
 import com.readme.android.auth.BuildConfig.X_NAVER_CLIENT_SECRET
 import com.readme.android.auth.R
@@ -12,23 +14,30 @@ import com.readme.android.auth.databinding.ActivityLoginBinding
 import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.core_ui.util.EventObserver
 import com.readme.android.navigator.MainNavigator
+import com.readme.android.auth.ui.AutoLoginConstant.AUTO_LOGIN_FAILURE
+import com.readme.android.auth.ui.AutoLoginConstant.AUTO_LOGIN_SUCCESS
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
     @Inject
     lateinit var mainNavigator: MainNavigator
     private val loginViewModel by viewModels<LoginViewModel>()
+    lateinit var autoLoginState: AutoLoginConstant
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
+        checkAutoLoginState()
         initClickEvent()
         initLoginObserver()
         initLoginFailureMessageObserver()
         initMoveToHomeObserver()
         initMoveToSetNickNameObserver()
         activeNaverbtnClickable()
+        autoLogin()
     }
 
     private fun initClickEvent() {
@@ -91,8 +100,35 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         finish()
     }
 
-    private fun activeNaverbtnClickable(){
+    private fun activeNaverbtnClickable() {
         binding.layoutNaver.isClickable = true
+    }
+
+    private fun autoLogin() {
+        val content: View = findViewById(android.R.id.content)
+        content.viewTreeObserver.addOnPreDrawListener(
+            object : ViewTreeObserver.OnPreDrawListener {
+                override fun onPreDraw(): Boolean {
+                    return if (::autoLoginState.isInitialized) {
+                        if(autoLoginState == AUTO_LOGIN_SUCCESS){
+                            moveMainActivity()
+                        }
+                        content.viewTreeObserver.removeOnPreDrawListener(this)
+                        true
+                    } else {
+                        false
+                    }
+                }
+            }
+        )
+    }
+
+    private fun checkAutoLoginState() {
+        if (loginViewModel.getAccessToken() != "") {
+            autoLoginState = AUTO_LOGIN_SUCCESS
+        } else {
+            autoLoginState = AUTO_LOGIN_FAILURE
+        }
     }
 
     companion object {

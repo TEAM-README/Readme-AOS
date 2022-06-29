@@ -16,6 +16,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
+import kotlin.properties.Delegates
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
@@ -27,8 +28,7 @@ class LoginViewModel @Inject constructor(
     private val _socialToken = MutableLiveData<String>()
     val socialToken: LiveData<String> = _socialToken
 
-    private lateinit var platform :String
-
+    private lateinit var platform: String
 
     private val _moveToSetNickname = MutableLiveData<Event<String>>()
     val moveToSetNickname: LiveData<Event<String>> = _moveToSetNickname
@@ -38,6 +38,7 @@ class LoginViewModel @Inject constructor(
 
     private val _loginFailureMessage = MutableLiveData<String>()
     val loginFailureMessage: LiveData<String> = _loginFailureMessage
+
 
     fun naverSetOAuthLoginCallback() {
         oAuthLoginCallback = object : OAuthLoginCallback {
@@ -92,7 +93,16 @@ class LoginViewModel @Inject constructor(
         loginRepository.saveAccessToken(accessToken)
     }
 
-    fun updatePlatform(platform: String) {
-       this.platform = platform
+    fun saveUserNickName(userNickName: String) {
+        loginRepository.saveUserNickname(userNickName)
     }
+
+    fun getAccessToken(): String =
+        loginRepository.getAccessToken()
+
+
+    fun updatePlatform(platform: String) {
+        this.platform = platform
+    }
+
 }

@@ -13,7 +13,8 @@
         android:theme="@style/Theme.Readme">
         <activity
             android:name=".auth.ui.LoginActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,8 +29,7 @@
 
         <activity
             android:name=".MainActivity"
-            android:exported="false"
-            android:theme="@style/Theme.App.Starting"/>
+            android:exported="false" />
         <activity
             android:name=".main.ui.feed.FeedDetailActivity"
             android:exported="false" />
