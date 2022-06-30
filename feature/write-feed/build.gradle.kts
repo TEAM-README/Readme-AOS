@@ -19,6 +19,7 @@ dependencies {
     implementation(project(":core-ui"))
     implementation(project(":domain"))
     implementation(project(":shared"))
+    implementation(project(":navigator"))
 
     // Android Core
     implementation(AndroidXDependencies.coreKtx)
@@ -35,4 +36,7 @@ dependencies {
 
     // Jetpack Fragment
     implementation(AndroidXDependencies.fragment)
+
+    // Logger - Timber
+    implementation(ThirdPartyDependencies.timber)
 }
