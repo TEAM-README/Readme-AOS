@@ -1,14 +1,13 @@
-package com.readme.android.write_feed
+package com.readme.android.write_feed.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.readme.android.core_ui.base.BindingFragment
+import com.readme.android.write_feed.R
 import com.readme.android.write_feed.databinding.FragmentImpressiveSentenceBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ImpressiveSentenceFragment :
     BindingFragment<FragmentImpressiveSentenceBinding>(R.layout.fragment_impressive_sentence) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
