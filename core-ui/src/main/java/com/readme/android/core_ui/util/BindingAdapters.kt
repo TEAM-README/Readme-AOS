@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.databinding.BindingAdapter
+import androidx.fragment.app.FragmentContainerView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.readme.android.core_ui.constant.*
@@ -17,6 +18,10 @@ import com.readme.android.core_ui.constant.SetNickNameConstant.NO_SPECIAL_CHARAC
 import com.readme.android.core_ui.constant.SetNickNameConstant.OVER_TEXT_LIMIT
 import com.readme.android.core_ui.constant.SetNickNameConstant.ALLOWED_NICKNAME
 import com.readme.android.core_ui.constant.SetNickNameConstant.DUPLICATE_NICKNAME
+import com.readme.android.core_ui.constant.FeedWriteFragmentList.CHOOSE_CATEGORY
+import com.readme.android.core_ui.constant.FeedWriteFragmentList.FEELING
+import com.readme.android.core_ui.constant.FeedWriteFragmentList.IMPRESSIVE_SENTENCE
+import javax.inject.Inject
 
 
 @BindingAdapter("nickNameStateNumber")
@@ -66,7 +71,10 @@ fun EditText.setNickNameEditTextBackGround(nickNameStateNumber: SetNickNameConst
 
 
 @BindingAdapter("setDuplicateButtonState", "editTextLength")
-fun TextView.setDuplicateButtonState(nickNameStateNumber: SetNickNameConstant?, editTextLength: Int?) {
+fun TextView.setDuplicateButtonState(
+    nickNameStateNumber: SetNickNameConstant?,
+    editTextLength: Int?
+) {
     val context = this.context
 
     if (nickNameStateNumber != null) {
@@ -130,6 +138,30 @@ fun TextView.setBookTitle(bookTitle: String?) {
     this.text = Html.fromHtml(bookTitle, Html.TO_HTML_PARAGRAPH_LINES_INDIVIDUAL)
 }
 
+@BindingAdapter("writeFeedContent")
+fun TextView.writeFeedContent(FragmentState: FeedWriteFragmentList) {
+    when (FragmentState) {
+        CHOOSE_CATEGORY -> this.setText(R.string.choose_category_content)
+        IMPRESSIVE_SENTENCE -> this.setText(R.string.impressive_sentence_content)
+        FEELING -> this.setText(R.string.feeling_content)
+    }
+}
+
+@BindingAdapter("keyBoardState","contentMargin")
+fun FragmentContainerView.setFragmentMargin(
+    keyBoardState: Boolean,
+    contentMargin: Int
+) {
+    if (keyBoardState) {
+        val layoutParams = this.layoutParams as ViewGroup.MarginLayoutParams
+        layoutParams.topMargin = contentMargin
+            this.layoutParams = layoutParams
+    } else {
+        val layoutParams = this.layoutParams as ViewGroup.MarginLayoutParams
+        layoutParams.topMargin = 0
+        this.layoutParams = layoutParams
+    }
+}
 
 
 

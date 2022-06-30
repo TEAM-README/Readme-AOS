@@ -39,7 +39,8 @@ class LoginRepositoryImpl @Inject constructor(
             is NetworkState.Success -> return Result.success(
                 DomainLoginResponse(
                     accessToken = response.body.data.accessToken,
-                    isNewUser = response.body.data.isNewUser
+                    isNewUser = response.body.data.isNewUser,
+                    nickName = response.body.data.nickname
                 )
             )
             is NetworkState.Failure -> return Result.failure(
