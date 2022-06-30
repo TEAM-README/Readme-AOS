@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View"/>
+
         <variable
             name="keyboardState"
             type="Boolean" />
@@ -47,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="112dp"
             android:background="@color/gray_0"
+            android:visibility="@{keyboardState ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_tool_bar">
