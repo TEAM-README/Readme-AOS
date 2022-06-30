@@ -13,6 +13,7 @@ import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.core_ui.constant.SetNickNameConstant.HAS_NO_STATE
 import com.readme.android.core_ui.constant.SetNickNameConstant.NO_SPECIAL_CHARACTER
 import com.readme.android.core_ui.constant.SetNickNameConstant.OVER_TEXT_LIMIT
+import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.core_ui.util.EventObserver
 import com.readme.android.navigator.MainNavigator
 import com.readme.android.set_nick_name.databinding.ActivitySetNickNameBinding
@@ -61,7 +62,7 @@ class SetNickNameActivity :
     }
 
     private fun initDuplicateNickNameButton() {
-        binding.tvCheckDuplicateButton.setOnClickListener {
+        binding.tvCheckDuplicateButton.setOnSingleClickListener {
             setNickNameViewModel.checkDuplicateNickName()
         }
     }
@@ -72,7 +73,7 @@ class SetNickNameActivity :
     }
 
     private fun initStartButtonClickListener(){
-        binding.btnStart.setOnClickListener {
+        binding.btnStart.setOnSingleClickListener {
             setNickNameViewModel.postSignUp(platform,socialToken)
         }
     }

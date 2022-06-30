@@ -8,6 +8,7 @@ import android.view.ViewTreeObserver
 import androidx.activity.viewModels
 import com.readme.android.book_search.databinding.ActivityBookSearchBinding
 import com.readme.android.core_ui.base.BindingActivity
+import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.core_ui.util.KeyBoardUtil
 import com.readme.android.core_ui.util.ResolutionMetrics
 import com.readme.android.domain.entity.BookInfo
@@ -56,7 +57,7 @@ class BookSearchActivity :
     }
 
     private fun initBookSearchButtonListener() {
-        binding.btnBookSearch.setOnClickListener {
+        binding.btnBookSearch.setOnSingleClickListener {
             if (bookSearchViewModel.searchWord.value != "") {
                 bookSearchViewModel.getBookSearchList()
             }
