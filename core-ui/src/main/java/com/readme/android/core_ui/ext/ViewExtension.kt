@@ -12,7 +12,6 @@ inline fun View.setOnSingleClickListener(
         val clickedTime = System.currentTimeMillis()
         if (clickedTime - previousClickedTime >= delay) {
             block(view)
-            Timber.d((clickedTime - previousClickedTime).toString())
             previousClickedTime = clickedTime
         }
     }

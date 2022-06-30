@@ -16,6 +16,7 @@ import com.readme.android.core_ui.util.EventObserver
 import com.readme.android.navigator.MainNavigator
 import com.readme.android.auth.ui.AutoLoginConstant.AUTO_LOGIN_FAILURE
 import com.readme.android.auth.ui.AutoLoginConstant.AUTO_LOGIN_SUCCESS
+import com.readme.android.core_ui.ext.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -36,19 +37,17 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         initLoginFailureMessageObserver()
         initMoveToHomeObserver()
         initMoveToSetNickNameObserver()
-        activeNaverbtnClickable()
         autoLogin()
     }
 
     private fun initClickEvent() {
         with(binding) {
-            layoutKakao.setOnClickListener {
+            layoutKakao.setOnSingleClickListener {
                 // TODO : 소셜로그인 카카오
                 loginViewModel.updatePlatform(KAKAO)
             }
 
-            layoutNaver.setOnClickListener {
-                it.isClickable = false
+            layoutNaver.setOnSingleClickListener {
                 loginViewModel.updatePlatform(NAVER)
                 loginViewModel.naverSetOAuthLoginCallback()
                 NaverIdLoginSDK.initialize(
@@ -100,9 +99,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         finish()
     }
 
-    private fun activeNaverbtnClickable() {
-        binding.layoutNaver.isClickable = true
-    }
 
     private fun autoLogin() {
         val content: View = findViewById(android.R.id.content)
