@@ -12,6 +12,7 @@ import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.core_ui.util.KeyBoardUtil
 import com.readme.android.core_ui.util.ResolutionMetrics
 import com.readme.android.domain.entity.BookInfo
+import com.readme.android.navigator.MainNavigator
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject
@@ -25,6 +26,9 @@ class BookSearchActivity :
 
     @Inject
     lateinit var resolutionMetrics: ResolutionMetrics
+
+    @Inject
+    lateinit var mainNavigator : MainNavigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +44,7 @@ class BookSearchActivity :
 
 
     private fun initBookListRecyclerViewAdapter() {
-        bookListRecyclerViewAdapter = BookListRecyclerViewAdapter()
+        bookListRecyclerViewAdapter = BookListRecyclerViewAdapter(mainNavigator) { finish() }
         binding.rvBookList.adapter = bookListRecyclerViewAdapter
     }
 
