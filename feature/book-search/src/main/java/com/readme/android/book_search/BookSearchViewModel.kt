@@ -57,7 +57,7 @@ class BookSearchViewModel @Inject constructor(
     }
 
     fun getRecentReadList(){
-        viewModelScope.launch {
+        viewModelScope.launch(exceptionHandler) {
             bookSearchRepository.getRecentReadList()
                 .onSuccess {
                     _bookSearchList.postValue(it)

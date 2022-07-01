@@ -28,6 +28,7 @@ class BookSearchActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        terminationTokenHandling(bookSearchViewModel)
         binding.bookSearchViewModel = bookSearchViewModel
         initBookListRecyclerViewAdapter()
         setRecyclerViewRecentReadMargin()

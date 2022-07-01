@@ -49,12 +49,16 @@ class BookSearchRepositoryImpl @Inject constructor(
                 )
             })
             is NetworkState.Failure -> {
-                return Result.failure(
-                    RetrofitFailureStateException(
-                        recentReadList.error,
-                        recentReadList.code
+                if (recentReadList.code == 401) {
+                    throw CertificateException("토큰 만료 오류")
+                } else {
+                    return Result.failure(
+                        RetrofitFailureStateException(
+                            recentReadList.error,
+                            recentReadList.code
+                        )
                     )
-                )
+                }
             }
             is NetworkState.NetworkError -> Timber.tag("${this.javaClass.name}_getRecentReadList")
                 .d(recentReadList.error)
