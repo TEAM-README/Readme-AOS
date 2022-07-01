@@ -1,9 +1,6 @@
 package com.readme.android.di
 
-import com.readme.android.data.remote.service.CheckDuplicateNickNameService
-import com.readme.android.data.remote.service.LoginService
-import com.readme.android.data.remote.service.NaverBookSearchService
-import com.readme.android.data.remote.service.SignUpService
+import com.readme.android.data.remote.service.*
 import com.readme.android.di.annotations.NaverBookSearchServer
 import com.readme.android.di.annotations.ReadMeServer
 import dagger.Module
@@ -36,4 +33,9 @@ object RetrofitServiceModule {
     @Singleton
     fun providesSignUpService(@ReadMeServer retrofit: Retrofit): SignUpService =
         retrofit.create(SignUpService::class.java)
+
+    @Provides
+    @Singleton
+    fun providesRecentReadService(@ReadMeServer retrofit: Retrofit): RecentReadService =
+        retrofit.create(RecentReadService::class.java)
 }
