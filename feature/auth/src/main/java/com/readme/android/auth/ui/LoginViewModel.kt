@@ -81,6 +81,7 @@ class LoginViewModel @Inject constructor(
                     _moveToSetNickname.postValue(Event(platform))
                 } else {
                     saveAccessToken(it.accessToken ?: "")
+                    saveUserNickName(it.nickName ?: "")
                     _moveToHome.postValue(Event(true))
                 }
             }.onFailure {

@@ -44,6 +44,9 @@
             android:name=".book_search.BookSearchActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".write_feed.FeedWriteActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="keyboardState"
+            type="Boolean" />
+
+        <variable
+            name="fragmentContainerMargin"
+            type="Integer" />
+
+        <variable
+            name="feedWriteViewModel"
+            type="com.readme.android.write_feed.FeedWriteViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".FeedWriteActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/gray_0"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:background="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_back" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_content"
+            android:layout_width="match_parent"
+            android:layout_height="112dp"
+            android:background="@color/gray_0"
+            android:visibility="@{keyboardState ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_tool_bar">
+
+
+            <TextView
+                android:id="@+id/tv_nick_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="8dp"
+                android:text="@{feedWriteViewModel.nickName}"
+                android:textAppearance="@style/bold_04"
+                android:textColor="@color/main_blue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="독서왕지현" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:text="@string/feed_write_title"
+                android:textAppearance="@style/regular_03"
+                android:textColor="@color/gray_4"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_nick_name"
+                app:layout_constraintStart_toEndOf="@+id/tv_nick_name"
+                app:layout_constraintTop_toTopOf="@+id/tv_nick_name" />
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textAppearance="@style/regular_03"
+                android:textColor="@color/gray_4"
+                app:layout_constraintStart_toStartOf="@+id/tv_nick_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_nick_name"
+                app:writeFeedContent="@{feedWriteViewModel.currentFragment}"
+                tools:text="@string/choose_category_content" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/container_feed_write"
+            contentMargin="@{fragmentContainerMargin}"
+            keyBoardState="@{keyboardState}"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_tool_bar"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="26dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/shape_rect_main_blue_fill_10"
+            android:paddingVertical="15dp"
+            android:text="@string/next_btn_text"
+            android:textAppearance="@style/medium_02"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
