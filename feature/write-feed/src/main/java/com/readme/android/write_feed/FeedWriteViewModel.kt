@@ -20,11 +20,34 @@ class FeedWriteViewModel @Inject constructor(
     private val _nickName = MutableLiveData<String>()
     val nickName: LiveData<String> = _nickName
 
+    private val _title = MutableLiveData<String>()
+    val title: LiveData<String> = _title
+
+    private val _author = MutableLiveData<String>()
+    val author: LiveData<String> = _author
+
+    private val _image = MutableLiveData<String>()
+    val image: LiveData<String> = _image
+
+    lateinit var isbn: String
+        private set
+
+    lateinit var subIsbn: String
+        private set
+
     fun getUserNickName() {
         _nickName.postValue(feedWriteRepository.getUserNickName())
     }
 
-    fun updateCurrentFragment(currentFragment: FeedWriteFragmentList){
+    fun updateCurrentFragment(currentFragment: FeedWriteFragmentList) {
         _currentFragment.postValue(currentFragment)
+    }
+
+    fun initBookInfo(title: String, author: String, image: String, isbn: String, subIsbn: String) {
+        _title.postValue(title)
+        _author.postValue(author)
+        _image.postValue(image)
+        this.isbn = isbn
+        this.subIsbn = subIsbn
     }
 }
