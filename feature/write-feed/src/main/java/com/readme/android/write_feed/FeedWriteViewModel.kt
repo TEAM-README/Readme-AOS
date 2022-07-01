@@ -23,4 +23,8 @@ class FeedWriteViewModel @Inject constructor(
     fun getUserNickName() {
         _nickName.postValue(feedWriteRepository.getUserNickName())
     }
+
+    fun updateCurrentFragment(currentFragment: FeedWriteFragmentList){
+        _currentFragment.postValue(currentFragment)
+    }
 }
