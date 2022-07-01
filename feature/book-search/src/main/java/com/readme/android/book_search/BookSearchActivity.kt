@@ -28,13 +28,14 @@ class BookSearchActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        terminationTokenHandling(bookSearchViewModel)
         binding.bookSearchViewModel = bookSearchViewModel
         initBookListRecyclerViewAdapter()
         setRecyclerViewRecentReadMargin()
         updateRecyclerViewList()
         initBookSearchButtonListener()
         initEditTextBookSearchFocusListener()
-
+        getRecentReadList()
     }
 
 
@@ -82,5 +83,9 @@ class BookSearchActivity :
                 bookSearchViewModel.searchWord.postValue("")
             }
         }
+    }
+
+    private fun getRecentReadList(){
+        bookSearchViewModel.getRecentReadList()
     }
 }
