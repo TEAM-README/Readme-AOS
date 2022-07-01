@@ -34,7 +34,7 @@ class BookSearchActivity :
         updateRecyclerViewList()
         initBookSearchButtonListener()
         initEditTextBookSearchFocusListener()
-
+        getRecentReadList()
     }
 
 
@@ -82,5 +82,9 @@ class BookSearchActivity :
                 bookSearchViewModel.searchWord.postValue("")
             }
         }
+    }
+
+    private fun getRecentReadList(){
+        bookSearchViewModel.getRecentReadList()
     }
 }

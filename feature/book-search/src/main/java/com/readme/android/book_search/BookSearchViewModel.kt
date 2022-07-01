@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.readme.android.core_data.exception.RetrofitFailureStateException
+import com.readme.android.core_ui.base.BaseViewModel
 import com.readme.android.domain.entity.BookInfo
 import com.readme.android.domain.repository.BookSearchRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class BookSearchViewModel @Inject constructor(
     private val bookSearchRepository: BookSearchRepository
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val _bookSearchList = MutableLiveData<List<BookInfo>>()
     val bookSearchList: LiveData<List<BookInfo>> = _bookSearchList
@@ -51,6 +52,23 @@ class BookSearchViewModel @Inject constructor(
                     it as RetrofitFailureStateException
                     Timber.tag("${this.javaClass.name}_getBookSearchList")
                         .d("message :${it.message} , code :${it.code}")
+                }
+        }
+    }
+
+    fun getRecentReadList(){
+        viewModelScope.launch {
+            bookSearchRepository.getRecentReadList()
+                .onSuccess {
+                    _bookSearchList.postValue(it)
+                    if(it.isEmpty()){
+                        _bookSearchCurrentReadState.postValue(false)
+                        _bookSearchVisibilityState.postValue(true)
+                        _bookSearchTextState.postValue(false)
+                    }
+                }
+                .onFailure {
+                    Timber.d(it)
                 }
         }
     }

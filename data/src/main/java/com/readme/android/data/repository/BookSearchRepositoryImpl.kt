@@ -7,6 +7,7 @@ import com.readme.android.data.remote.mapper.NaverBookSearchMapper
 import com.readme.android.domain.entity.BookInfo
 import com.readme.android.domain.repository.BookSearchRepository
 import timber.log.Timber
+import java.security.cert.CertificateException
 import javax.inject.Inject
 
 class BookSearchRepositoryImpl @Inject constructor(
@@ -47,12 +48,14 @@ class BookSearchRepositoryImpl @Inject constructor(
                     it
                 )
             })
-            is NetworkState.Failure -> return Result.failure(
-                RetrofitFailureStateException(
-                    recentReadList.error,
-                    recentReadList.code
+            is NetworkState.Failure -> {
+                return Result.failure(
+                    RetrofitFailureStateException(
+                        recentReadList.error,
+                        recentReadList.code
+                    )
                 )
-            )
+            }
             is NetworkState.NetworkError -> Timber.tag("${this.javaClass.name}_getRecentReadList")
                 .d(recentReadList.error)
             is NetworkState.UnknownError -> Timber.tag("${this.javaClass.name}_getRecentReadList")
