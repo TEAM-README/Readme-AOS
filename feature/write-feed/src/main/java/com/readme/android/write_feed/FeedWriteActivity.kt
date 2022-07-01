@@ -36,6 +36,7 @@ class FeedWriteActivity : BindingActivity<ActivityFeedWriteBinding>(R.layout.act
         initStartFragment()
         initButtonNextClickListener()
         initButtonBackClickListener()
+        initExtraData()
     }
 
     override fun onBackPressed() {
@@ -58,6 +59,16 @@ class FeedWriteActivity : BindingActivity<ActivityFeedWriteBinding>(R.layout.act
             onHideKeyboard = {
                 binding.keyboardState = true
             })
+    }
+
+    private fun initExtraData() {
+        feedWriteViewModel.initBookInfo(
+            title = intent.getStringExtra("title") ?: "",
+            author = intent.getStringExtra("author") ?: "",
+            image = intent.getStringExtra("image") ?: "",
+            isbn = intent.getStringExtra("isbn") ?: "",
+            subIsbn = intent.getStringExtra("subIsbn") ?: ""
+        )
     }
 
     private fun initStartFragment() {
@@ -92,7 +103,7 @@ class FeedWriteActivity : BindingActivity<ActivityFeedWriteBinding>(R.layout.act
         }
     }
 
-    private fun backButtonProcess(){
+    private fun backButtonProcess() {
         when (feedWriteViewModel.currentFragment.value) {
             CHOOSE_CATEGORY -> {
                 finish()
@@ -110,4 +121,6 @@ class FeedWriteActivity : BindingActivity<ActivityFeedWriteBinding>(R.layout.act
             else -> {}
         }
     }
+
+
 }

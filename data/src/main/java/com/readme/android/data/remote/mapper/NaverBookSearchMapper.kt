@@ -10,7 +10,11 @@ class NaverBookSearchMapper @Inject constructor() {
 
     fun toBookInfo(bookItem: Item):BookInfo {
 
-        val strArr = bookItem.isbn.split(" ")
+        val strArr = bookItem.isbn.split(" ").toMutableList()
+
+        if (strArr[0] == ""){
+            strArr.add("")
+        }
 
         return BookInfo(
             title = bookItem.title,

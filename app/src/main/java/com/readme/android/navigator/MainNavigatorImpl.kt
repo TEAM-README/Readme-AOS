@@ -6,6 +6,7 @@ import com.readme.android.auth.ui.LoginActivity
 import javax.inject.Inject
 import com.readme.android.core_ui.ext.startActivity
 import com.readme.android.set_nick_name.SetNickNameActivity
+import com.readme.android.write_feed.FeedWriteActivity
 
 internal class MainNavigatorImpl @Inject constructor() : MainNavigator {
     override fun openMain(context: Context) {
@@ -22,5 +23,16 @@ internal class MainNavigatorImpl @Inject constructor() : MainNavigator {
 
     override fun openLogin(context: Context) {
         context.startActivity<LoginActivity>()
+    }
+
+    override fun feedWriteLogin(
+        context: Context,
+        title: Pair<String, String>,
+        author: Pair<String, String>,
+        image: Pair<String, String>,
+        isbn: Pair<String, String>,
+        subisbn: Pair<String, String>
+    ) {
+        context.startActivity<FeedWriteActivity>(title,author,image,isbn,subisbn)
     }
 }

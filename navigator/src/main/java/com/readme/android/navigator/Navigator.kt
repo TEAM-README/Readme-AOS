@@ -15,4 +15,14 @@ interface MainNavigator {
 
     /** LoginActivity로 이동 */
     fun openLogin(context: Context)
+
+    /** FeedWriteActivity로 이동 */
+    fun feedWriteLogin(
+        context: Context,
+        title: Pair<String, String>,
+        author: Pair<String, String>,
+        image: Pair<String, String>,
+        isbn: Pair<String, String>,
+        subIsbn: Pair<String, String>
+    )
 }
