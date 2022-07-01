@@ -39,4 +39,25 @@ class BookSearchRepositoryImpl @Inject constructor(
         }
         return Result.failure(IllegalStateException("NetworkError or UnKnownError please check timber"))
     }
+
+    override suspend fun getRecentReadList(): Result<List<BookInfo>> {
+        when (val recentReadList = remoteBookSearchDataSource.getRecentReadList()) {
+            is NetworkState.Success -> return Result.success(recentReadList.body.data.books.map {
+                naverBookSearchMapper.toBookInfo(
+                    it
+                )
+            })
+            is NetworkState.Failure -> return Result.failure(
+                RetrofitFailureStateException(
+                    recentReadList.error,
+                    recentReadList.code
+                )
+            )
+            is NetworkState.NetworkError -> Timber.tag("${this.javaClass.name}_getRecentReadList")
+                .d(recentReadList.error)
+            is NetworkState.UnknownError -> Timber.tag("${this.javaClass.name}_getRecentReadList")
+                .d(recentReadList.t)
+        }
+        return Result.failure(IllegalStateException("NetworkError or UnKnownError please check timber"))
+    }
 }
