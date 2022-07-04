@@ -1,8 +1,7 @@
 package com.readme.android.di
 
 import com.readme.android.BuildConfig
-import com.readme.android.BuildConfig.X_NAVER_CLIENT_ID
-import com.readme.android.BuildConfig.X_NAVER_CLIENT_SECRET
+import com.readme.android.BuildConfig.*
 import com.readme.android.data.local.datasource.LocalPreferenceUserDataSource
 import com.readme.android.data.remote.calladapter.CustomCallAdapterFactory
 import com.readme.android.di.annotations.NaverBookSearchServer
@@ -24,7 +23,6 @@ import javax.inject.Singleton
 object RetrofitModule {
 
     const val NAVER_BOOK_SEARCH_BASE_URL = "https://openapi.naver.com/v1/search/"
-    const val READ_ME_SERVER_BASE_URL = "http://13.125.248.16:3000/"
 
     @Provides
     @Singleton

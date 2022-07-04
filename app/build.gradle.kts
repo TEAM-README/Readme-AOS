@@ -22,6 +22,7 @@ android {
     defaultConfig {
         buildConfigField("String","X_NAVER_CLIENT_ID",properties.getProperty("X_NAVER_CLIENT_ID"))
         buildConfigField("String","X_NAVER_CLIENT_SECRET",properties.getProperty("X_NAVER_CLIENT_SECRET"))
+        buildConfigField("String","READ_ME_SERVER_BASE_URL",properties.getProperty("READ_ME_SERVER_BASE_URL"))
     }
     namespace = "com.readme.android"
 }
