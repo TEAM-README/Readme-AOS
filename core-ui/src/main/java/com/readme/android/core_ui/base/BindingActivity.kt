@@ -65,7 +65,7 @@ abstract class BindingActivity<T : ViewDataBinding>(
             mainNavigator.openLogin(this)
             sharedPreferences.edit { remove("READ_ME_ACCESS_TOKEN") }
             sharedPreferences.edit { remove("USER_NICKNAME") }
-            finish()
+            finishAffinity()
         })
     }
 }
