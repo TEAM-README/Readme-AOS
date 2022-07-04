@@ -1,17 +1,22 @@
 package com.readme.android.main.viewmodel
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.readme.android.core_ui.base.BaseViewModel
 import com.readme.android.core_ui.util.MutableEventFlow
 import com.readme.android.core_ui.util.asEventFlow
+import com.readme.android.domain.repository.FeedRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor() : ViewModel() {
+class MainViewModel @Inject constructor(
+    private val feedRepository: FeedRepository
+) : BaseViewModel() {
     private val _isMyFeed = MutableEventFlow<Boolean>()
     val isMyFeed
         get() = _isMyFeed.asEventFlow()
@@ -28,6 +33,17 @@ class MainViewModel @Inject constructor() : ViewModel() {
 
     fun getIsCategorySelected(): Boolean = isCategorySelected.value == true
     fun getSelectedCategory() = selectedCategory.value
+
+    fun getHomeFeed() {
+        viewModelScope.launch(exceptionHandler) {
+            feedRepository.getHomeFeed("소설")
+                .onSuccess {
+                    Log.d(TAG, "getHomeFeed: $it")
+                }.onFailure {
+                    Log.d(TAG, "getHomeFeed: $it")
+                }
+        }
+    }
 
     // 피드가 내 피드인지 남피드인지 설정해주는 메소드
     private fun setIsMyFeed(isMyFeed: Boolean) {
