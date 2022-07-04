@@ -1,6 +1,7 @@
 package com.readme.android.data.local.datasource
 
 import android.content.SharedPreferences
+import androidx.core.content.edit
 import javax.inject.Inject
 
 class LocalPreferenceUserDataSourceImpl @Inject constructor(
@@ -10,22 +11,22 @@ class LocalPreferenceUserDataSourceImpl @Inject constructor(
         localPreferences.getString(READ_ME_ACCESS_TOKEN, "") ?: ""
 
     override fun saveAccessToken(accessToken: String) {
-        localPreferences.edit().putString(READ_ME_ACCESS_TOKEN, accessToken).apply()
+        localPreferences.edit{ putString(READ_ME_ACCESS_TOKEN, accessToken) }
     }
 
     override fun getUserNickname(): String =
         localPreferences.getString(USER_NICKNAME,"") ?: ""
 
     override fun saveUserNickname(userNickname: String) {
-        localPreferences.edit().putString(USER_NICKNAME, userNickname).apply()
+        localPreferences.edit { putString(USER_NICKNAME, userNickname) }
     }
 
     override fun removeAccessToken() {
-        localPreferences.edit().remove(READ_ME_ACCESS_TOKEN).apply()
+        localPreferences.edit { remove(READ_ME_ACCESS_TOKEN) }
     }
 
     override fun removeUserNickname() {
-        localPreferences.edit().remove(USER_NICKNAME).apply()
+        localPreferences.edit(){ remove(USER_NICKNAME) }
     }
 
 
