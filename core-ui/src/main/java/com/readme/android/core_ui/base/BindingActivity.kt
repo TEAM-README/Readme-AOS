@@ -6,6 +6,7 @@ import android.view.MotionEvent
 import android.widget.EditText
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
@@ -59,11 +60,11 @@ abstract class BindingActivity<T : ViewDataBinding>(
         ).sharedPreferences()
     }
 
-    fun terminationTokenHandling (viewModel: BaseViewModel){
-        viewModel.moveToLogin.observe(this,EventObserver{
+    fun terminationTokenHandling(viewModel: BaseViewModel) {
+        viewModel.moveToLogin.observe(this, EventObserver {
             mainNavigator.openLogin(this)
-            sharedPreferences.edit().remove("READ_ME_ACCESS_TOKEN").apply()
-            sharedPreferences.edit().remove("USER_NICKNAME").apply()
+            sharedPreferences.edit { remove("READ_ME_ACCESS_TOKEN") }
+            sharedPreferences.edit { remove("USER_NICKNAME") }
             finish()
         })
     }
