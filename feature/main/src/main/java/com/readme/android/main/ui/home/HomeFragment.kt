@@ -29,9 +29,7 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
     private fun initAdapter() {
         // TODO 데이터 연동 로직 + adapter 변수 스코프 수정
         val homeHeaderAdapter =
-            viewModel.isCategorySelected.value?.let {
-                HomeHeaderAdapter(it, viewModel.selectedCategory.value, ::onCategoryIconClick)
-            }
+            HomeHeaderAdapter(viewModel.getIsCategorySelected(), viewModel.getSelectedCategory(), ::onCategoryIconClick)
         val feedAdapter = FeedAdapter()
         val concatAdapter = ConcatAdapter(
             homeHeaderAdapter,
