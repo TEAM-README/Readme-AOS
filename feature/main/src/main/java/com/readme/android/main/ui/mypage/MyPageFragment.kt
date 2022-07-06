@@ -3,9 +3,9 @@ package com.readme.android.main.ui.mypage
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.ConcatAdapter
-import com.readme.android.core.base.BindingFragment
-import com.readme.android.core.util.ItemDecorationUtil
-import com.readme.android.core.util.ResolutionMetrics
+import com.readme.android.core_ui.base.BindingFragment
+import com.readme.android.core_ui.util.ItemDecorationUtil
+import com.readme.android.core_ui.util.ResolutionMetrics
 import com.readme.android.domain.entity.Feed
 import com.readme.android.domain.entity.MyPageUser
 import com.readme.android.main.R

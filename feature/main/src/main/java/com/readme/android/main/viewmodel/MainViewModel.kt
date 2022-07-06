@@ -3,8 +3,8 @@ package com.readme.android.main.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.readme.android.core.util.MutableEventFlow
-import com.readme.android.core.util.asEventFlow
+import com.readme.android.core_ui.util.MutableEventFlow
+import com.readme.android.core_ui.util.asEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

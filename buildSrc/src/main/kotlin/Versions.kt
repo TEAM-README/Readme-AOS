@@ -20,7 +20,7 @@ object Versions {
     const val recyclerView = "1.2.1"
     const val junit = "1.1.3"
 
-    const val gradleVersion = "7.2.0"
+    const val gradleVersion = "7.2.1"
     const val ktlintVersion = "10.2.0"
     const val googleServiceVersion = "4.3.10"
     const val playCoreVersion = "1.10.0"
@@ -44,6 +44,9 @@ object Versions {
     const val soloaderVersion = "0.10.1"
     const val leakCanaryVersion = "2.6"
     const val kotlinxSerializationJsonVersion = "1.2.2"
+    const val gsonVersion = "2.8.9"
+    const val gsonConverterVersion = "2.9.0"
+    const val naverAuth = "5.1.0"
 
     val javaVersion = JavaVersion.VERSION_11
     const val jvmVersion = "11"

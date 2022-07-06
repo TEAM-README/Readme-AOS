@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.ConcatAdapter
-import com.readme.android.core.base.BindingFragment
-import com.readme.android.core.util.ItemDecorationUtil
-import com.readme.android.core.util.ResolutionMetrics
+import com.readme.android.core_ui.base.BindingFragment
+import com.readme.android.core_ui.util.ItemDecorationUtil
+import com.readme.android.core_ui.util.ResolutionMetrics
 import com.readme.android.domain.entity.Feed
 import com.readme.android.main.R
 import com.readme.android.main.databinding.FragmentHomeBinding
@@ -29,7 +29,11 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
     private fun initAdapter() {
         // TODO 데이터 연동 로직 + adapter 변수 스코프 수정
         val homeHeaderAdapter =
-            HomeHeaderAdapter(viewModel.getIsCategorySelected(), viewModel.getSelectedCategory(), ::onCategoryIconClick)
+            HomeHeaderAdapter(
+                viewModel.getIsCategorySelected(),
+                viewModel.getSelectedCategory(),
+                ::onCategoryIconClick
+            )
         val feedAdapter = FeedAdapter()
         val concatAdapter = ConcatAdapter(
             homeHeaderAdapter,

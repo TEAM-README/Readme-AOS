@@ -1,9 +1,11 @@
 package com.readme.android
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.readme.android.adapter.MainViewPagerAdapter
-import com.readme.android.core.base.BindingActivity
+import com.readme.android.book_search.BookSearchActivity
+import com.readme.android.core_ui.base.BindingActivity
+import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.databinding.ActivityMainBinding
 import com.readme.android.factory.ReadmeFragmentFactory
 import com.readme.android.main.ui.home.HomeFragment
@@ -15,10 +17,10 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     private lateinit var mainViewPagerAdapter: MainViewPagerAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         supportFragmentManager.fragmentFactory = ReadmeFragmentFactory(this)
-        installSplashScreen()
         super.onCreate(savedInstanceState)
         initAdapter()
         syncBottomNavWithVp()
+        initFabPostClickListener()
     }
 
     private fun initAdapter() {
@@ -44,6 +46,13 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                 R.id.menu_my_page -> binding.vpMain.setCurrentItem(1, false)
             }
             return@setOnItemSelectedListener true
+        }
+    }
+
+    private fun initFabPostClickListener() {
+        binding.fabPost.setOnSingleClickListener {
+            val intent = Intent(this, BookSearchActivity::class.java)
+            startActivity(intent)
         }
     }
 }

@@ -14,8 +14,8 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
-import com.readme.android.core.constant.Category
-import com.readme.android.core.ext.getColor
+import com.readme.android.core_ui.constant.Category
+import com.readme.android.core_ui.ext.getColor
 import com.readme.android.main.databinding.FragmentFilterBottomSheetBinding
 import com.readme.android.shared.R.color
 import com.readme.android.shared.R.style.regular_01

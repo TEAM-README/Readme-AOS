@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.readme.android.core.ext.getDimen
-import com.readme.android.core.util.ItemDiffCallback
+import com.readme.android.core_ui.ext.getDimen
+import com.readme.android.core_ui.util.ItemDiffCallback
 import com.readme.android.domain.entity.Feed
 import com.readme.android.main.databinding.ItemFeedBinding
 import com.readme.android.shared.R

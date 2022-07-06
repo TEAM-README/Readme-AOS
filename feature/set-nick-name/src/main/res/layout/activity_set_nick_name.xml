@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="setNickNameConstant"
+            type="com.readme.android.core_ui.constant.SetNickNameConstant" />
+
+        <variable
             name="setNickNameViewModel"
             type="com.readme.android.set_nick_name.SetNickNameViewModel" />
     </data>
@@ -66,13 +70,13 @@
             android:layout_marginEnd="5dp"
             android:padding="10dp"
             android:text="@string/set_nickname_duplicate_button"
-            app:setDuplicateButtonState="@{setNickNameViewModel.nickNameState}"
-            app:editTextLength="@{etSetNickname.text.length()}"
             android:textAppearance="@style/medium_04"
             android:textColor="@color/gray_1"
+            app:editTextLength="@{etSetNickname.text.length()}"
             app:layout_constraintBottom_toBottomOf="@+id/et_set_nickname"
             app:layout_constraintEnd_toEndOf="@+id/et_set_nickname"
-            app:layout_constraintTop_toTopOf="@+id/et_set_nickname" />
+            app:layout_constraintTop_toTopOf="@+id/et_set_nickname"
+            app:setDuplicateButtonState="@{setNickNameViewModel.nickNameState}" />
 
         <TextView
             android:id="@+id/tv_nickname_state"
@@ -113,7 +117,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="26dp"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/shape_rect_gray_1_fill_10"
+            android:background="@{setNickNameViewModel.nickNameState == setNickNameConstant.ALLOWED_NICKNAME ? @drawable/shape_rect_main_blue_fill_10 : @drawable/shape_rect_gray_1_fill_10}"
+            android:clickable="@{setNickNameViewModel.nickNameState == setNickNameConstant.ALLOWED_NICKNAME ? true : false}"
             android:paddingVertical="15dp"
             android:text="@string/set_nickname_start_button"
             android:textAppearance="@style/medium_02"

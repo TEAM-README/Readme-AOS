@@ -7,7 +7,7 @@
 
         <variable
             name="category"
-            type="com.readme.android.core.constant.Category" />
+            type="com.readme.android.core_ui.constant.Category" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
