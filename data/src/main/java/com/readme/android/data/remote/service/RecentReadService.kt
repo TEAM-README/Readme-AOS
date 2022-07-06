@@ -8,5 +8,5 @@ import retrofit2.http.GET
 interface RecentReadService {
 
     @GET("feed/recent")
-    suspend fun getRecentReadList():NetworkState<BaseResponse<RecentReadResponse>>
+    suspend fun getRecentReadList(): NetworkState<BaseResponse<RecentReadResponse>>
 }

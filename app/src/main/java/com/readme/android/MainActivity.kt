@@ -26,7 +26,10 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     private fun initAdapter() {
         binding.vpMain.adapter = MainViewPagerAdapter(this).also { mainViewPagerAdapter = it }
         mainViewPagerAdapter.fragmentList = listOf(
-            HomeFragment(),
+            supportFragmentManager.fragmentFactory.instantiate(
+                classLoader,
+                HomeFragment::class.java.name
+            ),
             supportFragmentManager.fragmentFactory.instantiate(
                 classLoader,
                 MyPageFragment::class.java.name

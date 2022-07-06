@@ -30,12 +30,14 @@
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
+            android:layout_marginEnd="32dp"
             android:text="@{feedData.title}"
             android:textAppearance="@style/medium_03"
             android:textColor="@color/gray_3"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_category"
             app:layout_constraintTop_toTopOf="@+id/tv_category"
             tools:text="@string/book_title_example" />
@@ -54,7 +56,7 @@
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_category"
-            app:layout_constraintTop_toBottomOf="@+id/tv_category"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
             tools:text="@string/impressive_sentence_example" />
 
         <View

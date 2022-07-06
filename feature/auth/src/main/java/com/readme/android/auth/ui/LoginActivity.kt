@@ -106,7 +106,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
             object : ViewTreeObserver.OnPreDrawListener {
                 override fun onPreDraw(): Boolean {
                     return if (::autoLoginState.isInitialized) {
-                        if(autoLoginState == AUTO_LOGIN_SUCCESS){
+                        if (autoLoginState == AUTO_LOGIN_SUCCESS) {
                             moveMainActivity()
                         }
                         content.viewTreeObserver.removeOnPreDrawListener(this)

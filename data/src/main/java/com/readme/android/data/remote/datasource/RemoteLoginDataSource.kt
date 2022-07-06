@@ -7,5 +7,5 @@ import com.readme.android.data.remote.model.response.LoginResponse
 
 interface RemoteLoginDataSource {
 
-    suspend fun postLogin(loginRequest: LoginRequest):NetworkState<BaseResponse<LoginResponse>>
+    suspend fun postLogin(loginRequest: LoginRequest): NetworkState<BaseResponse<LoginResponse>>
 }

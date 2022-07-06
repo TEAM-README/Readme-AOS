@@ -10,6 +10,6 @@ interface CheckDuplicateNickNameService {
 
     @GET("user/nickname")
     suspend fun checkDuplicateNickName(
-        @Query("query") nickName :String
-    ):NetworkState<BaseResponse<CheckDuplicateNickNameResponse>>
+        @Query("query") nickName: String
+    ): NetworkState<BaseResponse<CheckDuplicateNickNameResponse>>
 }

@@ -6,7 +6,7 @@ interface SignUpRepository {
 
     suspend fun checkDuplicateNickName(nickName: String): Result<Boolean>
 
-    suspend fun postSignUp(signUpRequest: DomainSignUpRequest):Result<String>
+    suspend fun postSignUp(signUpRequest: DomainSignUpRequest): Result<String>
 
     fun saveAccessToken(accessToken: String)
 

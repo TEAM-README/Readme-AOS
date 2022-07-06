@@ -1,6 +1,5 @@
 package com.readme.android.di
 
-import com.readme.android.BuildConfig
 import com.readme.android.BuildConfig.X_NAVER_CLIENT_ID
 import com.readme.android.BuildConfig.X_NAVER_CLIENT_SECRET
 import com.readme.android.data.local.datasource.LocalPreferenceUserDataSource
@@ -86,7 +85,10 @@ object RetrofitModule {
                 proceed(
                     request()
                         .newBuilder()
-                        .addHeader("Authorization",localPreferenceUserDataSourceImpl.getAccessToken())
+                        .addHeader(
+                            "Authorization",
+                            localPreferenceUserDataSourceImpl.getAccessToken()
+                        )
                         .build()
                 )
             }

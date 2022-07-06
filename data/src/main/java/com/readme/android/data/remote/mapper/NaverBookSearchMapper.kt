@@ -2,17 +2,16 @@ package com.readme.android.data.remote.mapper
 
 import com.readme.android.data.remote.model.response.Book
 import com.readme.android.data.remote.model.response.Item
-import com.readme.android.data.remote.model.response.NaverBookSearchResponse
 import com.readme.android.domain.entity.BookInfo
 import javax.inject.Inject
 
 class NaverBookSearchMapper @Inject constructor() {
 
-    fun toBookInfo(bookItem: Item):BookInfo {
+    fun toBookInfo(bookItem: Item): BookInfo {
 
         val strArr = bookItem.isbn.split(" ").toMutableList()
 
-        if (strArr[0] == ""){
+        if (strArr[0] == "") {
             strArr.add("")
         }
 
@@ -25,7 +24,7 @@ class NaverBookSearchMapper @Inject constructor() {
         )
     }
 
-    fun toBookInfo(bookItem: Book):BookInfo =
+    fun toBookInfo(bookItem: Book): BookInfo =
         BookInfo(
             title = bookItem.title,
             author = bookItem.author,

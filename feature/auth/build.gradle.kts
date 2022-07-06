@@ -15,8 +15,12 @@ android {
         dataBinding = true
     }
     defaultConfig {
-        buildConfigField("String","X_NAVER_CLIENT_ID",properties.getProperty("X_NAVER_CLIENT_ID"))
-        buildConfigField("String","X_NAVER_CLIENT_SECRET",properties.getProperty("X_NAVER_CLIENT_SECRET"))
+        buildConfigField("String", "X_NAVER_CLIENT_ID", properties.getProperty("X_NAVER_CLIENT_ID"))
+        buildConfigField(
+            "String",
+            "X_NAVER_CLIENT_SECRET",
+            properties.getProperty("X_NAVER_CLIENT_SECRET")
+        )
     }
     namespace = "com.readme.android.auth"
 }

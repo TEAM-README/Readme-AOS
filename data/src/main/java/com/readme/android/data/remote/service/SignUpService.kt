@@ -11,6 +11,6 @@ interface SignUpService {
 
     @POST("user/signup")
     suspend fun postSignUp(
-        @Body body : SignUpRequest
-    ):NetworkState<BaseResponse<SignUpResponse>>
+        @Body body: SignUpRequest
+    ): NetworkState<BaseResponse<SignUpResponse>>
 }

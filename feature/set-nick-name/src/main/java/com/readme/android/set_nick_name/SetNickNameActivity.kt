@@ -1,13 +1,7 @@
 package com.readme.android.set_nick_name
 
-import android.media.metrics.Event
 import android.os.Bundle
-import android.text.Editable
 import android.text.InputFilter
-import android.text.Spanned
-import android.text.TextWatcher
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.viewModels
 import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.core_ui.constant.SetNickNameConstant.HAS_NO_STATE
@@ -26,7 +20,7 @@ class SetNickNameActivity :
     BindingActivity<ActivitySetNickNameBinding>(R.layout.activity_set_nick_name) {
 
     @Inject
-    lateinit var mainNavigator : MainNavigator
+    lateinit var mainNavigator: MainNavigator
     private val setNickNameViewModel by viewModels<SetNickNameViewModel>()
     private lateinit var socialToken: String
     private lateinit var platform: String
@@ -72,19 +66,19 @@ class SetNickNameActivity :
         socialToken = intent.getStringExtra("socialToken") ?: ""
     }
 
-    private fun initStartButtonClickListener(){
+    private fun initStartButtonClickListener() {
         binding.btnStart.setOnSingleClickListener {
-            setNickNameViewModel.postSignUp(platform,socialToken)
+            setNickNameViewModel.postSignUp(platform, socialToken)
         }
     }
 
-    private fun moveMainActicity(){
+    private fun moveMainActicity() {
         mainNavigator.openMain(this)
         finish()
     }
 
-    private fun initMoveToHomeObserver(){
-        setNickNameViewModel.moveToHome.observe(this,EventObserver{
+    private fun initMoveToHomeObserver() {
+        setNickNameViewModel.moveToHome.observe(this, EventObserver {
             moveMainActicity()
         })
     }

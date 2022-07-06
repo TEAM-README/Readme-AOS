@@ -147,7 +147,7 @@ fun TextView.writeFeedContent(FragmentState: FeedWriteFragmentList) {
     }
 }
 
-@BindingAdapter("keyBoardState","contentMargin")
+@BindingAdapter("keyBoardState", "contentMargin")
 fun FragmentContainerView.setFragmentMargin(
     keyBoardState: Boolean,
     contentMargin: Int
@@ -155,7 +155,7 @@ fun FragmentContainerView.setFragmentMargin(
     if (keyBoardState) {
         val layoutParams = this.layoutParams as ViewGroup.MarginLayoutParams
         layoutParams.topMargin = contentMargin
-            this.layoutParams = layoutParams
+        this.layoutParams = layoutParams
     } else {
         val layoutParams = this.layoutParams as ViewGroup.MarginLayoutParams
         layoutParams.topMargin = 0

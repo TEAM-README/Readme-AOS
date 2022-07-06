@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class FeedWriteRepositoryImpl @Inject constructor(
     private val localPreferenceUserDataSource: LocalPreferenceUserDataSource
-):FeedWriteRepository {
+) : FeedWriteRepository {
     override fun getUserNickName(): String =
         localPreferenceUserDataSource.getUserNickname()
 }

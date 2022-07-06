@@ -5,11 +5,11 @@ import com.readme.android.domain.entity.response.DomainLoginResponse
 
 interface LoginRepository {
 
-    fun getAccessToken():String
+    fun getAccessToken(): String
 
     fun saveAccessToken(accessToken: String)
 
     fun saveUserNickname(userNickname: String)
 
-    suspend fun postLogin(loginRequest: DomainLoginRequest):Result<DomainLoginResponse>
+    suspend fun postLogin(loginRequest: DomainLoginRequest): Result<DomainLoginResponse>
 }

@@ -45,8 +45,8 @@ abstract class BindingFragment<T : ViewDataBinding>(
         ).sharedPreferences()
     }
 
-    fun terminationTokenHandling (viewModel: BaseViewModel){
-        viewModel.moveToLogin.observe(viewLifecycleOwner, EventObserver{
+    fun terminationTokenHandling(viewModel: BaseViewModel) {
+        viewModel.moveToLogin.observe(viewLifecycleOwner, EventObserver {
             mainNavigator.openLogin(requireActivity())
             sharedPreferences.edit().remove("READ_ME_ACCESS_TOKEN").apply()
             sharedPreferences.edit().remove("USER_NICKNAME").apply()

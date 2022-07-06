@@ -13,7 +13,7 @@ class CustomCallAdapterFactory : CallAdapter.Factory() {
         annotations: Array<out Annotation>,
         retrofit: Retrofit
     ): CallAdapter<*, *>? {
-        if(Call::class.java != getRawType(returnType)){
+        if (Call::class.java != getRawType(returnType)) {
             return null
         }
 
@@ -31,7 +31,7 @@ class CustomCallAdapterFactory : CallAdapter.Factory() {
             "Response must be parameterized as NetworkState<Foo> or NetworkState<out Foo>"
         }
 
-        val bodyType = getParameterUpperBound(0,responseType)
+        val bodyType = getParameterUpperBound(0, responseType)
 
         return CustomCallAdapter<Any>(bodyType)
 
