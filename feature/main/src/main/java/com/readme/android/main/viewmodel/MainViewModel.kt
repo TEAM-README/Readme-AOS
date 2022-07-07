@@ -1,5 +1,6 @@
 package com.readme.android.main.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,6 +18,13 @@ class MainViewModel @Inject constructor() : ViewModel() {
 
     private val isCategorySelected = MutableLiveData(true)
     private val selectedCategory = MutableLiveData("에세이, 경제/경영 외 2개") // 수정예정
+    private var _selectedCategoryChip = MutableLiveData<List<String>>()
+    val selectedCategoryChip: LiveData<List<String>>
+        get() = _selectedCategoryChip
+
+    fun setSelectedCategoryChip(list: List<String>) {
+        _selectedCategoryChip.value = list
+    }
 
     fun getIsCategorySelected(): Boolean = isCategorySelected.value == true
     fun getSelectedCategory() = selectedCategory.value

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.get
 import androidx.core.view.size
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -17,10 +18,12 @@ import com.google.android.material.chip.Chip
 import com.readme.android.core_ui.constant.Category
 import com.readme.android.core_ui.ext.getColor
 import com.readme.android.main.databinding.FragmentFilterBottomSheetBinding
+import com.readme.android.main.viewmodel.MainViewModel
 import com.readme.android.shared.R.color
 import com.readme.android.shared.R.style.regular_01
 
 class FilterBottomSheetFragment : BottomSheetDialogFragment() {
+    private val viewModel: MainViewModel by activityViewModels()
     private var _binding: FragmentFilterBottomSheetBinding? = null
     private val binding get() = _binding!!
 
@@ -87,10 +90,19 @@ class FilterBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun onClickApplyBtn() {
         binding.btnApply.setOnClickListener {
-            Log.d(TAG, "onClickApplyBtn: ${binding.chipCategory.checkedChipIds}")
+            val selectedChipList = getSelectedChipList()
+            viewModel.setSelectedCategoryChip(selectedChipList)
+
             Toast.makeText(requireContext(), "서비스 준비중입니다", Toast.LENGTH_SHORT).show()
             dismiss()
         }
+    }
+
+    private fun getSelectedChipList(): List<String> {
+        val selectedChipList: MutableList<String> = ArrayList()
+        for (i in 0 until Category.values().size)
+            if (binding.chipCategory[i].isSelected) selectedChipList.add(Category.values()[i].categoryName)
+        return selectedChipList
     }
 
     private fun setBottomSheetHeight() {
