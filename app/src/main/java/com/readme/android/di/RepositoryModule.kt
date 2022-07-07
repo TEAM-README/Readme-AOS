@@ -1,13 +1,7 @@
 package com.readme.android.di
 
-import com.readme.android.data.repository.BookSearchRepositoryImpl
-import com.readme.android.data.repository.FeedWriteRepositoryImpl
-import com.readme.android.data.repository.LoginRepositoryImpl
-import com.readme.android.data.repository.SignUpRepositoryImpl
-import com.readme.android.domain.repository.BookSearchRepository
-import com.readme.android.domain.repository.FeedWriteRepository
-import com.readme.android.domain.repository.LoginRepository
-import com.readme.android.domain.repository.SignUpRepository
+import com.readme.android.data.repository.*
+import com.readme.android.domain.repository.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -33,4 +27,8 @@ interface RepositoryModule {
     @Binds
     @Singleton
     fun bindsFeedWriteRepository(repository: FeedWriteRepositoryImpl): FeedWriteRepository
+
+    @Binds
+    @Singleton
+    fun bindsFeedRepository(repository: FeedRepositoryImpl): FeedRepository
 }
