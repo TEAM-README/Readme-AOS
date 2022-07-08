@@ -7,6 +7,6 @@ import com.readme.android.data.remote.model.response.HomeFeedResponse
 interface RemoteHomeFeedDataSource {
 
     suspend fun getHomeFeedList(
-        filter: String
+        filters: String
     ): NetworkState<BaseResponse<HomeFeedResponse>>
 }

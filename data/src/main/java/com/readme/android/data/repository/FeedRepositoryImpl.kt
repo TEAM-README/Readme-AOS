@@ -13,8 +13,8 @@ class FeedRepositoryImpl @Inject constructor(
     private val remoteHomeFeedDataSource: RemoteHomeFeedDataSource,
     private val homeFeedMapper: HomeFeedMapper
 ) : FeedRepository {
-    override suspend fun getHomeFeed(filter: String): Result<DomainHomeFeedResponse> {
-        when (val response = remoteHomeFeedDataSource.getHomeFeedList(filter)) {
+    override suspend fun getHomeFeed(filters: String): Result<DomainHomeFeedResponse> {
+        when (val response = remoteHomeFeedDataSource.getHomeFeedList(filters)) {
             is NetworkState.Success -> return Result.success(
                 DomainHomeFeedResponse(
                     filters = response.body.data.filters,
@@ -29,9 +29,9 @@ class FeedRepositoryImpl @Inject constructor(
                     response.code
                 )
             )
-            is NetworkState.NetworkError -> Timber.tag("${this.javaClass.name}_postNaverLogin")
+            is NetworkState.NetworkError -> Timber.tag("${this.javaClass.name}_getHomeFeed")
                 .d(response.error)
-            is NetworkState.UnknownError -> Timber.tag("${this.javaClass.name}_postNaverLogin")
+            is NetworkState.UnknownError -> Timber.tag("${this.javaClass.name}_getHomeFeed")
                 .d(response.t)
         }
         return Result.failure(IllegalStateException("NetworkError or UnKnownError please check timber"))

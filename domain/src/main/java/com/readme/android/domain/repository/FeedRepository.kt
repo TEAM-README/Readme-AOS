@@ -4,5 +4,5 @@ import com.readme.android.domain.entity.response.DomainHomeFeedResponse
 
 interface FeedRepository {
 
-    suspend fun getHomeFeed(filter: String): Result<DomainHomeFeedResponse>
+    suspend fun getHomeFeed(filters: String): Result<DomainHomeFeedResponse>
 }

@@ -9,6 +9,6 @@ import javax.inject.Inject
 class RemoteHomeFeedDataSourceImpl @Inject constructor(
     private val feedService: FeedService
 ) : RemoteHomeFeedDataSource {
-    override suspend fun getHomeFeedList(filter: String): NetworkState<BaseResponse<HomeFeedResponse>> =
-        feedService.getHomeFeedList(filter)
+    override suspend fun getHomeFeedList(filters: String): NetworkState<BaseResponse<HomeFeedResponse>> =
+        feedService.getHomeFeedList(filters)
 }
