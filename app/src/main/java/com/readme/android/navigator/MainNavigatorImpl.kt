@@ -31,8 +31,8 @@ internal class MainNavigatorImpl @Inject constructor() : MainNavigator {
         author: Pair<String, String>,
         image: Pair<String, String>,
         isbn: Pair<String, String>,
-        subisbn: Pair<String, String>
+        subIsbn: Pair<String, String>
     ) {
-        context.startActivity<FeedWriteActivity>(title, author, image, isbn, subisbn)
+        context.startActivity<FeedWriteActivity>(title, author, image, isbn, subIsbn)
     }
 }
