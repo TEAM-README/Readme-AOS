@@ -1,24 +1,19 @@
 package com.readme.android.data.remote.mapper
 
 import com.readme.android.data.remote.model.response.HomeFeed
-import com.readme.android.domain.entity.response.HomeFeedInfo
-import javax.inject.Inject
+import com.readme.android.domain.entity.Feed
 
-class HomeFeedMapper @Inject constructor(
-    private val naverBookSearchMapper: NaverBookSearchMapper,
-    private val userMapper: UserMapper
-) {
-    fun toHomeFeed(homeFeed: HomeFeed): HomeFeedInfo {
-
-        return HomeFeedInfo(
+class HomeFeedMapper {
+    fun toHomeFeed(homeFeed: HomeFeed): Feed {
+        return Feed(
             id = homeFeed.id,
-            categoryName = homeFeed.categoryName,
-            sentence = homeFeed.sentence,
-            feeling = homeFeed.feeling,
-            reportedCount = homeFeed.reportedCount,
-            createdAt = homeFeed.createdAt,
-            book = naverBookSearchMapper.toBookInfo(homeFeed.book),
-            user = userMapper.toUserInfo(homeFeed.user)
+            category = homeFeed.categoryName,
+            title = homeFeed.book.title,
+            impressiveSentence = homeFeed.sentence,
+            takeaway = homeFeed.feeling,
+            nickname = homeFeed.user.nickname,
+            date = homeFeed.createdAt,
+            isMyFeed = false
         )
     }
 }

@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.readme.android.core_ui.base.BaseViewModel
 import com.readme.android.core_ui.util.MutableEventFlow
 import com.readme.android.core_ui.util.asEventFlow
-import com.readme.android.domain.entity.response.HomeFeedInfo
+import com.readme.android.domain.entity.Feed
 import com.readme.android.domain.repository.FeedRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -25,8 +25,8 @@ class MainViewModel @Inject constructor(
     private val isCategorySelected = MutableLiveData(true)
     private val selectedCategory = MutableLiveData("에세이, 경제/경영 외 2개") // 수정예정
     private val selectedCategoryChip = MutableLiveData<List<String>>()
-    private var _homeFeedList = MutableLiveData<List<HomeFeedInfo>>()
-    val homeFeedList: LiveData<List<HomeFeedInfo>> = _homeFeedList
+    private var _homeFeedList = MutableLiveData<List<Feed>>()
+    val homeFeedList: LiveData<List<Feed>> = _homeFeedList
 
     fun setSelectedCategoryChip(list: List<String>) {
         selectedCategoryChip.value = list
