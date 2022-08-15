@@ -26,7 +26,7 @@ data class HomeFeed(
     @SerialName("isDeleted")
     val isDeleted: Boolean,
     @SerialName("book")
-    val book: Book,
+    val book: Book?,
     @SerialName("user")
-    val user: User
+    val user: User?
 )

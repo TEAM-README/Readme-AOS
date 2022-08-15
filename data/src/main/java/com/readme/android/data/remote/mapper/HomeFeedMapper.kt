@@ -9,10 +9,10 @@ class HomeFeedMapper @Inject constructor() {
         return Feed(
             id = homeFeed.id,
             category = homeFeed.categoryName,
-            title = homeFeed.book.title,
+            title = homeFeed.book?.title ?: "null",
             impressiveSentence = homeFeed.sentence,
             takeaway = homeFeed.feeling,
-            nickname = homeFeed.user.nickname,
+            nickname = homeFeed.user?.nickname ?: "null",
             date = homeFeed.createdAt,
             isMyFeed = false
         )
