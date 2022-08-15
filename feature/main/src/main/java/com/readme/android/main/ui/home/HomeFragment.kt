@@ -17,12 +17,14 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
     BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private val viewModel: MainViewModel by activityViewModels()
+    private lateinit var feedAdapter: FeedAdapter
 
     private val Number.dp get() = resolutionMetrics.toPixel(this.toInt())
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
+        observeFeedList()
     }
 
     override fun onResume() {
@@ -38,7 +40,7 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
                 viewModel.getSelectedCategory(),
                 ::onCategoryIconClick
             )
-        val feedAdapter = FeedAdapter()
+        feedAdapter = FeedAdapter()
         val concatAdapter = ConcatAdapter(
             homeHeaderAdapter,
             feedAdapter.apply { submitList(viewModel.homeFeedList.value) }
@@ -47,6 +49,12 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
         binding.rvHome.apply {
             addItemDecoration(ItemDecorationUtil.VerticalPlaceItemDecoration(16.dp))
             adapter = concatAdapter
+        }
+    }
+
+    private fun observeFeedList(){
+        viewModel.homeFeedList.observe(requireActivity()){
+            feedAdapter.submitList(it)
         }
     }
 
