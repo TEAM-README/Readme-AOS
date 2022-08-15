@@ -23,6 +23,8 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.viewModel = viewModel
+
         initAdapter()
         observeFeedList()
     }
