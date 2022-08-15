@@ -93,7 +93,6 @@ class FilterBottomSheetFragment : BottomSheetDialogFragment() {
             val selectedChipList = getSelectedChipList()
             viewModel.setSelectedCategoryChip(selectedChipList)
             viewModel.getHomeFeed()
-            Toast.makeText(requireContext(), "서비스 준비중입니다", Toast.LENGTH_SHORT).show()
             dismiss()
         }
     }
