@@ -29,7 +29,7 @@ inline fun <reified T : Activity> Context.buildIntent(
     putExtras(bundleOf(*argument))
 }
 
-inline fun <reified T : Activity> Context.startActivity(
+inline fun <reified T : Activity> Context.navigateActivity(
     vararg argument: Pair<String, Any?>
 ) {
     startActivity(buildIntent<T>(*argument))

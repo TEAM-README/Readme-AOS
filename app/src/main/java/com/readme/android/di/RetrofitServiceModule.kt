@@ -38,4 +38,9 @@ object RetrofitServiceModule {
     @Singleton
     fun providesRecentReadService(@ReadMeServer retrofit: Retrofit): RecentReadService =
         retrofit.create(RecentReadService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideFeedService(@ReadMeServer retrofit: Retrofit): FeedService =
+        retrofit.create(FeedService::class.java)
 }

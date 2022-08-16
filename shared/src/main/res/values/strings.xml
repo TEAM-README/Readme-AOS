@@ -5,6 +5,10 @@
     <string name="login_explain"><b>간단한 회원가입</b>으로 리드미를 시작해볼까요?</string>
     <string name="kakao_login">카카오 로그인</string>
     <string name="naver_login">네이버 아이디로 로그인</string>
+    
+    <!-- home -->
+    <string name="home_feed_empty">관련 카테고리 글이 아직 없어요</string>
+    <string name="lookaround_another_category">다른 카테고리를 둘러보는 것은 어떨까요?</string>
 
     <!--마이페이지-->
     <string name="user_bookshelf">님의 책장</string>

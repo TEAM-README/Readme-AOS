@@ -22,4 +22,8 @@ interface RemoteDataSourceModule {
     @Binds
     @Singleton
     fun bindsRemoteCheckDuplicateNickNameDataSource(source: RemoteSignUpDataSourceImpl): RemoteSignUpDataSource
+
+    @Binds
+    @Singleton
+    fun bindsRemoteHomeFeedDataSource(source: RemoteHomeFeedDataSourceImpl): RemoteHomeFeedDataSource
 }
