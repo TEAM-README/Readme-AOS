@@ -1,34 +1,34 @@
 package com.readme.android.data.remote.model.response
 
 
+import com.google.gson.annotations.SerializedName
 import com.readme.android.domain.entity.Feed
-import kotlinx.serialization.SerialName
 
 data class HomeFeedResponse(
-    @SerialName("filters")
+    @SerializedName("filters")
     val filters: List<String>,
-    @SerialName("feeds")
+    @SerializedName("feeds")
     val feeds: List<HomeFeed>
 )
 
 data class HomeFeed(
-    @SerialName("id")
+    @SerializedName("id")
     val id: Int,
-    @SerialName("categoryName")
+    @SerializedName("categoryName")
     val categoryName: String,
-    @SerialName("sentence")
+    @SerializedName("sentence")
     val sentence: String,
-    @SerialName("feeling")
+    @SerializedName("feeling")
     val feeling: String,
-    @SerialName("reportedCount")
+    @SerializedName("reportedCount")
     val reportedCount: Int,
-    @SerialName("createdAt")
+    @SerializedName("createdAt")
     val createdAt: String,
-    @SerialName("isDeleted")
+    @SerializedName("isDeleted")
     val isDeleted: Boolean,
-    @SerialName("book")
+    @SerializedName("book")
     val book: Book?,
-    @SerialName("user")
+    @SerializedName("user")
     val user: User?
 ){
     fun toHomeFeed(): Feed {

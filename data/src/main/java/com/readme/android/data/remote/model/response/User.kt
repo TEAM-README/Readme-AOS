@@ -1,10 +1,10 @@
 package com.readme.android.data.remote.model.response
 
-import kotlinx.serialization.SerialName
+import com.google.gson.annotations.SerializedName
 
 data class User(
-    @SerialName("id")
+    @SerializedName("id")
     val id: Int,
-    @SerialName("nickname")
+    @SerializedName("nickname")
     val nickname: String
 )
