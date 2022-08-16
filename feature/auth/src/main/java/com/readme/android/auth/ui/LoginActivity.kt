@@ -6,25 +6,25 @@ import android.view.ViewTreeObserver
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.navercorp.nid.NaverIdLoginSDK
-import com.readme.android.auth.BuildConfig.X_NAVER_CLIENT_ID
-import com.readme.android.auth.BuildConfig.X_NAVER_CLIENT_SECRET
 import com.readme.android.auth.R
 import com.readme.android.auth.databinding.ActivityLoginBinding
-import com.readme.android.core_ui.base.BindingActivity
-import com.readme.android.core_ui.util.EventObserver
-import com.readme.android.navigator.MainNavigator
 import com.readme.android.auth.ui.AutoLoginConstant.AUTO_LOGIN_FAILURE
 import com.readme.android.auth.ui.AutoLoginConstant.AUTO_LOGIN_SUCCESS
+import com.readme.android.auth.ui.socialloginmanager.NaverLoginManager
+import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.core_ui.ext.setOnSingleClickListener
+import com.readme.android.core_ui.util.EventObserver
+import com.readme.android.navigator.MainNavigator
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-
 
 @AndroidEntryPoint
 class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
     @Inject
     lateinit var mainNavigator: MainNavigator
+
+    @Inject
+    lateinit var naverLoginManager: NaverLoginManager
     private val loginViewModel by viewModels<LoginViewModel>()
     lateinit var autoLoginState: AutoLoginConstant
 
@@ -49,14 +49,9 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
 
             layoutNaver.setOnSingleClickListener {
                 loginViewModel.updatePlatform(NAVER)
-                loginViewModel.naverSetOAuthLoginCallback()
-                NaverIdLoginSDK.initialize(
-                    this@LoginActivity,
-                    X_NAVER_CLIENT_ID,
-                    X_NAVER_CLIENT_SECRET,
-                    "ReadMe"
-                )
-                NaverIdLoginSDK.authenticate(this@LoginActivity, loginViewModel.oAuthLoginCallback)
+                naverLoginManager.startNaverLogin {
+                    loginViewModel.updateSocialToken(it)
+                }
             }
         }
     }
@@ -74,15 +69,21 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     }
 
     private fun initMoveToSetNickNameObserver() {
-        loginViewModel.moveToSetNickname.observe(this, EventObserver {
-            moveSetNickNameActivity(it, loginViewModel.socialToken.value ?: "")
-        })
+        loginViewModel.moveToSetNickname.observe(
+            this,
+            EventObserver {
+                moveSetNickNameActivity(it, loginViewModel.socialToken.value ?: "")
+            }
+        )
     }
 
     private fun initMoveToHomeObserver() {
-        loginViewModel.moveToHome.observe(this, EventObserver {
-            moveMainActivity()
-        })
+        loginViewModel.moveToHome.observe(
+            this,
+            EventObserver {
+                moveMainActivity()
+            }
+        )
     }
 
     private fun moveMainActivity() {
@@ -98,7 +99,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         )
         finish()
     }
-
 
     private fun autoLogin() {
         val content: View = findViewById(android.R.id.content)
