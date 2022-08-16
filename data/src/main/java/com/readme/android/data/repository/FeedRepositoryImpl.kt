@@ -3,7 +3,6 @@ package com.readme.android.data.repository
 import com.readme.android.core_data.exception.RetrofitFailureStateException
 import com.readme.android.data.remote.calladapter.NetworkState
 import com.readme.android.data.remote.datasource.RemoteHomeFeedDataSource
-import com.readme.android.data.remote.mapper.HomeFeedMapper
 import com.readme.android.domain.entity.response.DomainHomeFeedResponse
 import com.readme.android.domain.repository.FeedRepository
 import timber.log.Timber
@@ -12,7 +11,6 @@ import javax.inject.Inject
 
 class FeedRepositoryImpl @Inject constructor(
     private val remoteHomeFeedDataSource: RemoteHomeFeedDataSource,
-    private val homeFeedMapper: HomeFeedMapper
 ) : FeedRepository {
     override suspend fun getHomeFeed(filters: String): Result<DomainHomeFeedResponse> {
         when (val response = remoteHomeFeedDataSource.getHomeFeedList(filters)) {
@@ -20,7 +18,7 @@ class FeedRepositoryImpl @Inject constructor(
                 DomainHomeFeedResponse(
                     filters = response.body.data.filters,
                     feeds = response.body.data.feeds.map {
-                        homeFeedMapper.toHomeFeed(it)
+                        it.toHomeFeed()
                     }
                 )
             )

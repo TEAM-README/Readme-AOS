@@ -1,6 +1,7 @@
 package com.readme.android.data.remote.model.response
 
 
+import com.readme.android.domain.entity.Feed
 import kotlinx.serialization.SerialName
 
 data class HomeFeedResponse(
@@ -29,4 +30,17 @@ data class HomeFeed(
     val book: Book?,
     @SerialName("user")
     val user: User?
-)
+){
+    fun toHomeFeed(): Feed {
+        return Feed(
+            id = this.id,
+            category = this.categoryName,
+            title = this.book?.title ?: "null",
+            impressiveSentence = this.sentence,
+            takeaway = this.feeling,
+            nickname = this.user?.nickname ?: "null",
+            date = this.createdAt,
+            isMyFeed = false
+        )
+    }
+}
