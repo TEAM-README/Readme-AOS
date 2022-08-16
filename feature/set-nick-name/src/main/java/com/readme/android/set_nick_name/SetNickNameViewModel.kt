@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.readme.android.core_ui.constant.SetNickNameConstant.ALLOWED_NICKNAME
 import com.readme.android.core_ui.constant.SetNickNameConstant
+import com.readme.android.core_ui.constant.SetNickNameConstant.ALLOWED_NICKNAME
 import com.readme.android.core_ui.constant.SetNickNameConstant.DUPLICATE_NICKNAME
 import com.readme.android.core_ui.util.Event
 import com.readme.android.domain.entity.request.DomainSignUpRequest
@@ -14,7 +14,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
-import kotlin.math.sign
 
 @HiltViewModel
 class SetNickNameViewModel @Inject constructor(

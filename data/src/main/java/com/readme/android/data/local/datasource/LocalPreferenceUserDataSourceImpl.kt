@@ -15,7 +15,7 @@ class LocalPreferenceUserDataSourceImpl @Inject constructor(
     }
 
     override fun getUserNickname(): String =
-        localPreferences.getString(USER_NICKNAME,"") ?: ""
+        localPreferences.getString(USER_NICKNAME, "") ?: ""
 
     override fun saveUserNickname(userNickname: String) {
         localPreferences.edit { putString(USER_NICKNAME, userNickname) }

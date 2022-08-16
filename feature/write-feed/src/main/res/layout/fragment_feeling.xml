@@ -10,7 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.FeelingFragment" >
+        tools:context=".fragments.FeelingFragment">
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"

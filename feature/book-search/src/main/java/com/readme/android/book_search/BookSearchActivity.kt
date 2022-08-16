@@ -28,7 +28,7 @@ class BookSearchActivity :
     lateinit var resolutionMetrics: ResolutionMetrics
 
     @Inject
-    lateinit var mainNavigator : MainNavigator
+    lateinit var mainNavigator: MainNavigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,7 +89,7 @@ class BookSearchActivity :
         }
     }
 
-    private fun getRecentReadList(){
+    private fun getRecentReadList() {
         bookSearchViewModel.getRecentReadList()
     }
 }

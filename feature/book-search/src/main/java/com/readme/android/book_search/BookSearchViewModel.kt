@@ -56,12 +56,12 @@ class BookSearchViewModel @Inject constructor(
         }
     }
 
-    fun getRecentReadList(){
+    fun getRecentReadList() {
         viewModelScope.launch(exceptionHandler) {
             bookSearchRepository.getRecentReadList()
                 .onSuccess {
                     _bookSearchList.postValue(it)
-                    if(it.isEmpty()){
+                    if (it.isEmpty()) {
                         _bookSearchCurrentReadState.postValue(false)
                         _bookSearchVisibilityState.postValue(true)
                         _bookSearchTextState.postValue(false)

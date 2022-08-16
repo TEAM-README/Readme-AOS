@@ -6,7 +6,6 @@ import com.readme.android.data.remote.calladapter.NetworkState
 import com.readme.android.data.remote.datasource.RemoteSignUpDataSource
 import com.readme.android.data.remote.model.request.SignUpRequest
 import com.readme.android.domain.entity.request.DomainSignUpRequest
-import com.readme.android.domain.entity.response.DomainLoginResponse
 import com.readme.android.domain.repository.SignUpRepository
 import timber.log.Timber
 import javax.inject.Inject

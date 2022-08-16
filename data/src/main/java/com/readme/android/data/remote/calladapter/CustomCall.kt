@@ -6,7 +6,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
-import java.lang.UnsupportedOperationException
 
 class CustomCall<T : Any>(private val call: Call<T>) : Call<NetworkState<T>> {
 
@@ -25,7 +24,12 @@ class CustomCall<T : Any>(private val call: Call<T>) : Call<NetworkState<T>> {
                     } else {
                         callback.onResponse(
                             this@CustomCall,
-                            Response.success(NetworkState.UnknownError(IllegalStateException("body값이 null로 넘어옴"), "body값이 null로 넘어옴"))
+                            Response.success(
+                                NetworkState.UnknownError(
+                                    IllegalStateException("body값이 null로 넘어옴"),
+                                    "body값이 null로 넘어옴"
+                                )
+                            )
                         )
                     }
                 } else {
@@ -39,7 +43,7 @@ class CustomCall<T : Any>(private val call: Call<T>) : Call<NetworkState<T>> {
             override fun onFailure(call: Call<T>, t: Throwable) {
                 val errorResponse = when (t) {
                     is IOException -> NetworkState.NetworkError(t)
-                    else -> NetworkState.UnknownError(t,"onFailure에 진입,IoException 이외의 에러")
+                    else -> NetworkState.UnknownError(t, "onFailure에 진입,IoException 이외의 에러")
                 }
                 callback.onResponse(this@CustomCall, Response.success(errorResponse))
             }

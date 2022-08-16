@@ -16,7 +16,8 @@ class RemoteBookSearchDataSourceImpl @Inject constructor(
         query: String,
         display: Int,
         start: Int
-    ): NetworkState<NaverBookSearchResponse> = naverBookSearchService.getNaverBookSearchList(query, display, start)
+    ): NetworkState<NaverBookSearchResponse> =
+        naverBookSearchService.getNaverBookSearchList(query, display, start)
 
     override suspend fun getRecentReadList(): NetworkState<BaseResponse<RecentReadResponse>> =
         recentReadService.getRecentReadList()

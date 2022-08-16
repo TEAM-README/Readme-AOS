@@ -60,6 +60,7 @@ abstract class BindingActivity<T : ViewDataBinding>(
         ).sharedPreferences()
     }
 
+
     protected fun terminationTokenHandling(viewModel: BaseViewModel) {
         viewModel.moveToLogin.observe(this, EventObserver {
             mainNavigator.openLogin(this)

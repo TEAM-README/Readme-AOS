@@ -1,6 +1,5 @@
 package com.readme.android.write_feed
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.fragment.app.replace

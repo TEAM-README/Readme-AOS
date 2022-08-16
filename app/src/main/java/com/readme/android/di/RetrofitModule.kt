@@ -84,7 +84,10 @@ object RetrofitModule {
                 proceed(
                     request()
                         .newBuilder()
-                        .addHeader("Authorization",localPreferenceUserDataSourceImpl.getAccessToken())
+                        .addHeader(
+                            "Authorization",
+                            localPreferenceUserDataSourceImpl.getAccessToken()
+                        )
                         .build()
                 )
             }

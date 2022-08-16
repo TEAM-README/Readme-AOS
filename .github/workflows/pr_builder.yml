@@ -30,37 +30,37 @@ jobs:
                     key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
                     restore-keys: |
                         ${{ runner.os }}-gradle-
-            -   name: set up JDK 11
-                uses: actions/setup-java@v1
-                with:
-                    java-version: 11
+            - name: set up JDK 11
+              uses: actions/setup-java@v1
+              with:
+                  java-version: 11
 
-            -   name: Change gradlew permissions
-                run: chmod +x ./gradlew
-                
-            -   name: Touch local properties
-                run: touch local.properties
-                
-            -   name: Access X_NAVER_CLIENT_ID
-                env:
-                    X_NAVER_CLIENT_ID: ${{ secrets.X_NAVER_CLIENT_ID }}
-                run: echo "X_NAVER_CLIENT_ID=\"$X_NAVER_CLIENT_ID\"" >> local.properties
-                 
-            -   name: Access X_NAVER_CLIENT_SECRET
-                env:
-                    X_NAVER_CLIENT_SECRET: ${{ secrets.X_NAVER_CLIENT_SECRET }}
-                run: echo "X_NAVER_CLIENT_SECRET=\"$X_NAVER_CLIENT_SECRET\"" >> local.properties
-                
-            -   name: Build debug APK
-                run: ./gradlew assembleDebug --stacktrace
+            - name: Change gradlew permissions
+              run: chmod +x ./gradlew
 
-            -   name: On Success!! Congratulations
-                if: ${{ success() }}
-                uses: rtCamp/action-slack-notify@v2
-                env:
-                    SLACK_COLOR: '#53A551'
-                    SLACK_ICON: https://avatars.githubusercontent.com/u/85377241?s=200&v=4?size=48
-                    SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+            - name: Touch local properties
+              run: touch local.properties
+
+            - name: Access X_NAVER_CLIENT_ID
+              env:
+                  X_NAVER_CLIENT_ID: ${{ secrets.X_NAVER_CLIENT_ID }}
+              run: echo "X_NAVER_CLIENT_ID=\"$X_NAVER_CLIENT_ID\"" >> local.properties
+
+            - name: Access X_NAVER_CLIENT_SECRET
+              env:
+                  X_NAVER_CLIENT_SECRET: ${{ secrets.X_NAVER_CLIENT_SECRET }}
+              run: echo "X_NAVER_CLIENT_SECRET=\"$X_NAVER_CLIENT_SECRET\"" >> local.properties
+
+            - name: Build debug APK
+              run: ./gradlew assembleDebug --stacktrace
+
+            - name: On Success!! Congratulations
+              if: ${{ success() }}
+              uses: rtCamp/action-slack-notify@v2
+              env:
+                  SLACK_COLOR: '#53A551'
+                  SLACK_ICON: https://avatars.githubusercontent.com/u/85377241?s=200&v=4?size=48
+                  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
                     SLACK_TITLE: 'Readme/PR Check S.U.C.C.E.S.S 🎉🎉🎉'
                     MSG_MINIMAL: true
                     SLACK_USERNAME: DELIVEREADME

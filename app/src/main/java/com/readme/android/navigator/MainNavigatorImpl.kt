@@ -3,10 +3,9 @@ package com.readme.android.navigator
 import android.content.Context
 import com.readme.android.MainActivity
 import com.readme.android.auth.ui.LoginActivity
-import javax.inject.Inject
-import com.readme.android.core_ui.ext.startActivity
 import com.readme.android.set_nick_name.SetNickNameActivity
 import com.readme.android.write_feed.FeedWriteActivity
+import javax.inject.Inject
 
 internal class MainNavigatorImpl @Inject constructor() : MainNavigator {
     override fun openMain(context: Context) {
@@ -18,7 +17,7 @@ internal class MainNavigatorImpl @Inject constructor() : MainNavigator {
         socialToken: Pair<String, String>,
         platform: Pair<String, String>
     ) {
-        context.startActivity<SetNickNameActivity>(socialToken,platform)
+        context.startActivity<SetNickNameActivity>(socialToken, platform)
     }
 
     override fun openLogin(context: Context) {
@@ -33,6 +32,6 @@ internal class MainNavigatorImpl @Inject constructor() : MainNavigator {
         isbn: Pair<String, String>,
         subisbn: Pair<String, String>
     ) {
-        context.startActivity<FeedWriteActivity>(title,author,image,isbn,subisbn)
+        context.startActivity<FeedWriteActivity>(title, author, image, isbn, subisbn)
     }
 }
