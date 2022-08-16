@@ -49,10 +49,8 @@ class LoginRepositoryImpl @Inject constructor(
                     response.code
                 )
             )
-            is NetworkState.NetworkError -> Timber.tag("${this.javaClass.name}_postNaverLogin")
-                .d(response.error)
-            is NetworkState.UnknownError -> Timber.tag("${this.javaClass.name}_postNaverLogin")
-                .d(response.t)
+            is NetworkState.NetworkError -> Timber.d(response.error,"${this.javaClass.name}_postNaverLogin")
+            is NetworkState.UnknownError -> Timber.d(response.t, "${this.javaClass.name}_postNaverLogin")
         }
         return Result.failure(IllegalStateException("NetworkError or UnKnownError please check timber"))
     }

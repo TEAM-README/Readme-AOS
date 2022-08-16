@@ -11,6 +11,3 @@ data class LoginResponse(
     @SerializedName("nickname")
     val nickname: String?
 )
-
-
-
