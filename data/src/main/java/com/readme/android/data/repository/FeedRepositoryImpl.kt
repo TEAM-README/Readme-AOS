@@ -7,6 +7,7 @@ import com.readme.android.data.remote.mapper.HomeFeedMapper
 import com.readme.android.domain.entity.response.DomainHomeFeedResponse
 import com.readme.android.domain.repository.FeedRepository
 import timber.log.Timber
+import java.security.cert.CertificateException
 import javax.inject.Inject
 
 class FeedRepositoryImpl @Inject constructor(
@@ -23,12 +24,12 @@ class FeedRepositoryImpl @Inject constructor(
                     }
                 )
             )
-            is NetworkState.Failure -> return Result.failure(
-                RetrofitFailureStateException(
-                    response.error,
-                    response.code
+            is NetworkState.Failure ->
+                if (response.code == 401) throw CertificateException("토큰 만료 오류")
+                else return Result.failure(
+                    RetrofitFailureStateException(response.error, response.code)
                 )
-            )
+
             is NetworkState.NetworkError -> Timber.tag("${this.javaClass.name}_getHomeFeed")
                 .d(response.error)
             is NetworkState.UnknownError -> Timber.tag("${this.javaClass.name}_getHomeFeed")
