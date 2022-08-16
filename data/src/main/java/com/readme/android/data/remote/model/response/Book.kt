@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Book(
     @SerializedName("author")
-    val author: String,
+    val author: String?,
     @SerializedName("image")
     val image: String,
     @SerializedName("isbn")

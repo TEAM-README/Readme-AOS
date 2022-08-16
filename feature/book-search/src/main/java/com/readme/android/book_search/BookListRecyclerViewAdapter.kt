@@ -58,7 +58,7 @@ class BookListRecyclerViewAdapter(
                 mainNavigator.feedWriteLogin(
                     context = parent.context,
                     title = Pair("title", data.title),
-                    author = Pair("author", data.author),
+                    author = Pair("author", data.author ?: ""),
                     image = Pair("image", data.image),
                     isbn = Pair("isbn", data.isbn),
                     subIsbn = Pair("subIsbn", data.subIsbn)
