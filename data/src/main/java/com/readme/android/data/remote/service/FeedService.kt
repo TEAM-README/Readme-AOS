@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface FeedService {
 
-    @GET("feed?")
+    @GET("feed")
     suspend fun getHomeFeedList(
         @Query("filters") filters: String
     ): NetworkState<BaseResponse<HomeFeedResponse>>
