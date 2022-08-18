@@ -18,7 +18,7 @@ data class NaverBookSearchResponse(
 
 data class Item(
     @SerializedName("author")
-    val author: String,
+    val author: String?,
     @SerializedName("description")
     val description: String,
     @SerializedName("discount")
