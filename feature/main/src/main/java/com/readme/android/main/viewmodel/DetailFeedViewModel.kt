@@ -12,7 +12,6 @@ import com.readme.android.domain.repository.FeedRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.IllegalStateException
 
 @HiltViewModel
 class DetailFeedViewModel @Inject constructor(
@@ -36,12 +35,10 @@ class DetailFeedViewModel @Inject constructor(
         viewModelScope.launch(exceptionHandler) {
             feedRepository.getDetailFeed(feedId.value ?: throw IllegalStateException())
                 .onSuccess {
-                    Log.d(TAG, "getDetailFeedInfo: ${it.feed} ${it.bookInfo}")
                     _feed.value = it.feed
                     _bookInfo.value = it.bookInfo
                 }
-                .onFailure { Log.d(TAG, "getDetailFeedInfo: ${it}") }
-                .run { Log.d(TAG, "getDetailFeedInfo:  서버통신완료") }
+                .onFailure { Log.d(TAG, "getDetailFeedInfo: $it") }
         }
     }
 }
