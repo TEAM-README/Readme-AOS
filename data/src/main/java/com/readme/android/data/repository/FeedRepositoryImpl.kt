@@ -41,7 +41,8 @@ class FeedRepositoryImpl @Inject constructor(
         when (val response = remoteFeedDataSource.getDetailFeed(feedId)) {
             is NetworkState.Success -> return Result.success(
                 DomainDetailFeedResponse(
-                    response.body.data.feed.toFeedInfo()
+                    response.body.data.feed.toFeedInfo(),
+                    response.body.data.feed.book?.toBookInfo() ?: throw IllegalStateException("book data cannot be null")
                 )
             )
             is NetworkState.Failure ->

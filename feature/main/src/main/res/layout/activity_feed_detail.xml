@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="feed"
+            type="com.readme.android.domain.entity.FeedInfo" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,6 +63,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="26dp"
                         android:layout_marginTop="34dp"
+                        android:text="@{feed.takeaway}"
                         android:layout_marginEnd="26dp"
                         android:lineSpacingExtra="6sp"
                         android:textAppearance="@style/regular_03"

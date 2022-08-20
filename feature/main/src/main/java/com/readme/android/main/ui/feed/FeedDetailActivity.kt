@@ -1,6 +1,8 @@
 package com.readme.android.main.ui.feed
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.main.R
@@ -16,6 +18,7 @@ class FeedDetailActivity : BindingActivity<ActivityFeedDetailBinding>(R.layout.a
         super.onCreate(savedInstanceState)
         setFeedIdOnViewModelFromExtra()
         getDetailFeedInfo()
+        observeBookInfo()
     }
 
     private fun setFeedIdOnViewModelFromExtra(){
@@ -26,6 +29,13 @@ class FeedDetailActivity : BindingActivity<ActivityFeedDetailBinding>(R.layout.a
     private fun getDetailFeedInfo(){
         viewModel.getDetailFeedInfo()
     }
+
+    private fun observeBookInfo(){
+        viewModel.bookInfo.observe(this){
+            binding.layoutBookInformation.book = it
+        }
+    }
+
 
     private fun getFeedIdFromExtra() : Int = intent.getIntExtra(FEED_ID, -1)
 

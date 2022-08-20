@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.readme.android.core_ui.base.BaseViewModel
+import com.readme.android.domain.entity.BookInfo
 import com.readme.android.domain.entity.FeedInfo
 import com.readme.android.domain.repository.FeedRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,6 +25,9 @@ class DetailFeedViewModel @Inject constructor(
     private val _feed = MutableLiveData<FeedInfo>()
     val feed: LiveData<FeedInfo> = _feed
 
+    private val _bookInfo = MutableLiveData<BookInfo>()
+    val bookInfo: LiveData<BookInfo> = _bookInfo
+
     fun setFeedId(feedId: Int) {
         _feedId.value = feedId
     }
@@ -31,7 +35,11 @@ class DetailFeedViewModel @Inject constructor(
     fun getDetailFeedInfo() {
         viewModelScope.launch(exceptionHandler) {
             feedRepository.getDetailFeed(feedId.value ?: throw IllegalStateException())
-                .onSuccess { Log.d(TAG, "getDetailFeedInfo: ${it.feed}") }
+                .onSuccess {
+                    Log.d(TAG, "getDetailFeedInfo: ${it.feed} ${it.bookInfo}")
+                    _feed.value = it.feed
+                    _bookInfo.value = it.bookInfo
+                }
                 .onFailure { Log.d(TAG, "getDetailFeedInfo: ${it}") }
                 .run { Log.d(TAG, "getDetailFeedInfo:  서버통신완료") }
         }
