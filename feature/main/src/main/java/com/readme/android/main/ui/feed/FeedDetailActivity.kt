@@ -1,9 +1,8 @@
 package com.readme.android.main.ui.feed
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
+import coil.load
 import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.main.R
 import com.readme.android.main.databinding.ActivityFeedDetailBinding
@@ -34,6 +33,7 @@ class FeedDetailActivity : BindingActivity<ActivityFeedDetailBinding>(R.layout.a
     private fun observeBookInfo(){
         viewModel.bookInfo.observe(this){
             binding.layoutBookInformation.book = it
+            binding.layoutBookInformation.ivBook.load(it.image)
         }
     }
 

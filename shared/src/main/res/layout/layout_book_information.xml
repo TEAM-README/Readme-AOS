@@ -20,7 +20,6 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
-            android:src="@{book.image}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_writer"
             app:layout_constraintDimensionRatio="56:82"
             app:layout_constraintStart_toStartOf="parent"
