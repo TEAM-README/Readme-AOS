@@ -17,6 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.readme.android.main.R
 import com.readme.android.main.databinding.LayoutMoreBottomSheetBinding
 import com.readme.android.main.viewmodel.MainViewModel
+import com.readme.android.shared.R.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -68,10 +69,10 @@ class MoreBottomSheetDialog : BottomSheetDialogFragment() {
         val intent = Intent().apply {
             action = Intent.ACTION_SENDTO
             data = Uri.parse("mailto:")
-            putExtra(Intent.EXTRA_EMAIL, arrayOf("readmeteam@naver.com"))
+            putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(string.readme_mail_address)))
         }
         if (intent.resolveActivity(requireContext().packageManager) != null) startActivity(intent)
-        else Toast.makeText(requireContext(), "문제가 발생했습니다.", Toast.LENGTH_SHORT).show()
+        else Toast.makeText(requireContext(), getString(string.problem_occured), Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {
