@@ -70,6 +70,8 @@ class MoreBottomSheetDialog : BottomSheetDialogFragment() {
             action = Intent.ACTION_SENDTO
             data = Uri.parse("mailto:")
             putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(string.readme_mail_address)))
+            putExtra(Intent.EXTRA_SUBJECT, getString(string.mail_title))
+            putExtra(Intent.EXTRA_TEXT, getString(string.mail_text))
         }
         if (intent.resolveActivity(requireContext().packageManager) != null) startActivity(intent)
         else Toast.makeText(requireContext(), getString(string.problem_occured), Toast.LENGTH_SHORT).show()
