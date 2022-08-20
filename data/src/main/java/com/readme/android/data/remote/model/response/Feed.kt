@@ -23,7 +23,7 @@ data class Feed(
     @SerializedName("user")
     val user: User?
 ) {
-    fun toHomeFeed(): FeedInfo {
+    fun toFeedInfo(): FeedInfo {
         return FeedInfo(
             id = this.id,
             category = this.categoryName,
@@ -32,7 +32,7 @@ data class Feed(
             takeaway = this.feeling,
             nickname = this.user?.nickname ?: "null",
             date = this.createdAt,
-            isMyFeed = false
+            isMyFeed = false    // Todo : mapper 공용으로 쓰려면 이거 수정해야함
         )
     }
 }
