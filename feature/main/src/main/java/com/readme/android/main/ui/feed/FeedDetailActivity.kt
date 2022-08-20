@@ -10,4 +10,8 @@ class FeedDetailActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+
+    companion object{
+        const val FEED_ID = "FEED_ID"
+    }
 }

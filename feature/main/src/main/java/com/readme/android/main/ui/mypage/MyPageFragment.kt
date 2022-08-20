@@ -1,5 +1,6 @@
 package com.readme.android.main.ui.mypage
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.ConcatAdapter
@@ -11,6 +12,8 @@ import com.readme.android.domain.entity.MyPageUser
 import com.readme.android.main.R
 import com.readme.android.main.databinding.FragmentMyPageBinding
 import com.readme.android.main.ui.adapter.FeedAdapter
+import com.readme.android.main.ui.feed.FeedDetailActivity
+import com.readme.android.main.ui.feed.FeedDetailActivity.Companion.FEED_ID
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,7 +31,7 @@ class MyPageFragment(private val resolutionMetrics: ResolutionMetrics) :
     private fun initAdapter() {
         // TODO 데이터 연동 로직 + adapter 변수 스코프 수정
         val myPageTopAdapter = MyPageTopAdapter(MyPageUser(Int.MAX_VALUE, "문다빙빙테스트용", 5))
-        val feedAdapter = FeedAdapter()
+        val feedAdapter = FeedAdapter(::onClickFeed)
         val concatAdapter = ConcatAdapter(
             myPageTopAdapter,
             feedAdapter.apply {
@@ -73,5 +76,13 @@ class MyPageFragment(private val resolutionMetrics: ResolutionMetrics) :
             addItemDecoration(ItemDecorationUtil.VerticalPlaceItemDecoration(16.dp))
             adapter = concatAdapter
         }
+    }
+
+
+    private fun onClickFeed(id: Int) {
+        val intent = Intent(activity, FeedDetailActivity::class.java).apply {
+            putExtra(FEED_ID, id)
+        }
+        startActivity(intent)
     }
 }

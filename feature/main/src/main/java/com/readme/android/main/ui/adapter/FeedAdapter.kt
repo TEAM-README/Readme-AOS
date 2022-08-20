@@ -11,7 +11,9 @@ import com.readme.android.domain.entity.Feed
 import com.readme.android.main.databinding.ItemFeedBinding
 import com.readme.android.shared.R
 
-class FeedAdapter : ListAdapter<Feed, FeedAdapter.FeedViewHolder>(
+class FeedAdapter(
+    private val onFeedClick: (Int) -> Unit
+) : ListAdapter<Feed, FeedAdapter.FeedViewHolder>(
     ItemDiffCallback<Feed>(
         onContentsTheSame = { old, new -> old == new },
         onItemsTheSame = { old, new -> old.id == new.id }
@@ -41,13 +43,14 @@ class FeedAdapter : ListAdapter<Feed, FeedAdapter.FeedViewHolder>(
     }
 
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
-        holder.onBind(getItem(position))
+        holder.onBind(getItem(position), onFeedClick)
     }
 
     class FeedViewHolder(private val binding: ItemFeedBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(feed: Feed) {
+        fun onBind(feed: Feed, onFeedClick: (Int) -> Unit) {
             binding.feedData = feed
+            binding.root.setOnClickListener { onFeedClick(feed.id) }
         }
     }
 }
