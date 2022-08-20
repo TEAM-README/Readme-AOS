@@ -2,12 +2,13 @@ package com.readme.android.main.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.readme.android.main.databinding.LayoutFeedHeaderBinding
 
 class HomeHeaderAdapter(
-    private val isCategorySelected: Boolean,
-    private val selectedCategory: String? = null,
+    private val isCategorySelected: LiveData<Boolean>? = null,
+    private val selectedCategory: LiveData<String>? = null,
     private val onCategoryIconClick: () -> Unit
 ) : RecyclerView.Adapter<HomeHeaderAdapter.HomeHeaderViewHolder>() {
 
@@ -18,18 +19,22 @@ class HomeHeaderAdapter(
     }
 
     override fun onBindViewHolder(holder: HomeHeaderViewHolder, position: Int) {
-        holder.onBind(isCategorySelected, selectedCategory, onCategoryIconClick)
+        holder.onBind(
+            isCategorySelected = isCategorySelected?.value ?: false,
+            selectedCategory = selectedCategory?.value ?: "",
+            onCategoryIconClick = onCategoryIconClick
+        )
     }
 
     class HomeHeaderViewHolder(private val binding: LayoutFeedHeaderBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(
             isCategorySelected: Boolean,
-            selectedCategory: String?,
+            selectedCategory: String,
             onCategoryIconClick: () -> Unit
         ) {
             binding.isCategorySelected = isCategorySelected
-            if (isCategorySelected) binding.selectedCategory = selectedCategory
+            binding.selectedCategory = selectedCategory
             binding.ivCategory.setOnClickListener { onCategoryIconClick() }
         }
     }
