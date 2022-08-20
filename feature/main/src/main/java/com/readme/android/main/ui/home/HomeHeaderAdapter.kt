@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.readme.android.main.databinding.LayoutFeedHeaderBinding
 
 class HomeHeaderAdapter(
-    private val isCategorySelected: LiveData<Boolean>? = null,
-    private val selectedCategory: LiveData<String>? = null,
+    private val isCategorySelected: LiveData<Boolean>,
+    private val selectedCategory: LiveData<String>,
     private val onCategoryIconClick: () -> Unit
 ) : RecyclerView.Adapter<HomeHeaderAdapter.HomeHeaderViewHolder>() {
 
@@ -20,8 +20,8 @@ class HomeHeaderAdapter(
 
     override fun onBindViewHolder(holder: HomeHeaderViewHolder, position: Int) {
         holder.onBind(
-            isCategorySelected = isCategorySelected?.value ?: false,
-            selectedCategory = selectedCategory?.value ?: "",
+            isCategorySelected = isCategorySelected.value ?: false,
+            selectedCategory = selectedCategory.value ?: "",
             onCategoryIconClick = onCategoryIconClick
         )
     }
