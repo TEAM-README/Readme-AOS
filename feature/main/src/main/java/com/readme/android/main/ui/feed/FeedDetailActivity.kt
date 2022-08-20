@@ -34,7 +34,7 @@ class FeedDetailActivity : BindingActivity<ActivityFeedDetailBinding>(R.layout.a
     private fun observeBookInfo(){
         viewModel.bookInfo.observe(this){
             binding.layoutBookInformation.book = it
-            binding.layoutBookInformation.ivBook.load(it.image)
+            binding.layoutBookInformation.ivBook.load(it.image) // todo placeholder 추가
         }
     }
 

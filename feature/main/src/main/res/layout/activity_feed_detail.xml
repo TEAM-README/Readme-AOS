@@ -122,6 +122,9 @@
                         app:layout_constraintStart_toEndOf="@+id/tv_nickname"
                         app:layout_constraintTop_toTopOf="@+id/tv_nickname"
                         tools:text="@string/date_example" />
+
+                    <!-- todo 더보기 버튼 추가 -->
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

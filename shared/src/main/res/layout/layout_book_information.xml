@@ -26,6 +26,7 @@
             app:layout_constraintTop_toTopOf="@+id/tv_category"
             tools:src="@tools:sample/avatars" />
 
+        <!-- todo category 정보 api 바뀌면 수정해야함 -->
         <TextView
             android:id="@+id/tv_category"
             android:layout_width="wrap_content"
