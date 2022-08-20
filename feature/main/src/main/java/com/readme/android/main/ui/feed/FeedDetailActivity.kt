@@ -19,6 +19,7 @@ class FeedDetailActivity : BindingActivity<ActivityFeedDetailBinding>(R.layout.a
         getDetailFeedInfo()
         observeBookInfo()
         observeFeedInfo()
+        onBackBtnClick()
     }
 
     private fun setFeedIdOnViewModelFromExtra(){
@@ -40,6 +41,12 @@ class FeedDetailActivity : BindingActivity<ActivityFeedDetailBinding>(R.layout.a
     private fun observeFeedInfo(){
         viewModel.feed.observe(this){
             binding.feed = it
+        }
+    }
+
+    private fun onBackBtnClick(){
+        binding.ibBack.setOnClickListener {
+            onBackPressed()
         }
     }
 
