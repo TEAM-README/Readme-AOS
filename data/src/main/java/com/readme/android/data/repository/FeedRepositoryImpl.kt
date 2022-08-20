@@ -17,7 +17,7 @@ class FeedRepositoryImpl @Inject constructor(
             is NetworkState.Success -> return Result.success(
                 DomainHomeFeedResponse(
                     filters = response.body.data.filters,
-                    feeds = response.body.data.feeds.map {
+                    feedInfos = response.body.data.feeds.map {
                         it.toHomeFeed()
                     }
                 )

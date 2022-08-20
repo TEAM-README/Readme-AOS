@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ConcatAdapter
 import com.readme.android.core_ui.base.BindingFragment
 import com.readme.android.core_ui.util.ItemDecorationUtil
 import com.readme.android.core_ui.util.ResolutionMetrics
-import com.readme.android.domain.entity.Feed
+import com.readme.android.domain.entity.FeedInfo
 import com.readme.android.domain.entity.MyPageUser
 import com.readme.android.main.R
 import com.readme.android.main.databinding.FragmentMyPageBinding
@@ -37,7 +37,7 @@ class MyPageFragment(private val resolutionMetrics: ResolutionMetrics) :
             feedAdapter.apply {
                 submitList(
                     listOf(
-                        Feed(
+                        FeedInfo(
                             0,
                             "에세이",
                             "1cm 다빙빙",
@@ -47,7 +47,7 @@ class MyPageFragment(private val resolutionMetrics: ResolutionMetrics) :
                             "2021/10/31",
                             true
                         ),
-                        Feed(
+                        FeedInfo(
                             0,
                             "에세이",
                             "1cm 다빙빙",
@@ -57,7 +57,7 @@ class MyPageFragment(private val resolutionMetrics: ResolutionMetrics) :
                             "2021/10/31",
                             true
                         ),
-                        Feed(
+                        FeedInfo(
                             0,
                             "에세이",
                             "1cm 다빙빙",

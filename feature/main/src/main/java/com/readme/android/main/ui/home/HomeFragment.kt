@@ -46,7 +46,7 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
         feedAdapter = FeedAdapter(::onClickFeed)
         val concatAdapter = ConcatAdapter(
             homeHeaderAdapter,
-            feedAdapter.apply { submitList(viewModel.homeFeedList.value) }
+            feedAdapter.apply { submitList(viewModel.homeFeedInfoList.value) }
         )
 
         binding.rvHome.apply {
@@ -63,7 +63,7 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
     }
 
     private fun observeFeedList() {
-        viewModel.homeFeedList.observe(requireActivity()) {
+        viewModel.homeFeedInfoList.observe(requireActivity()) {
             feedAdapter.submitList(it)
         }
     }

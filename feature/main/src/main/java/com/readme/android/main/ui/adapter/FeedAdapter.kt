@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.readme.android.core_ui.ext.getDimen
 import com.readme.android.core_ui.util.ItemDiffCallback
-import com.readme.android.domain.entity.Feed
+import com.readme.android.domain.entity.FeedInfo
 import com.readme.android.main.databinding.ItemFeedBinding
 import com.readme.android.shared.R
 
 class FeedAdapter(
     private val onFeedClick: (Int) -> Unit
-) : ListAdapter<Feed, FeedAdapter.FeedViewHolder>(
-    ItemDiffCallback<Feed>(
+) : ListAdapter<FeedInfo, FeedAdapter.FeedViewHolder>(
+    ItemDiffCallback<FeedInfo>(
         onContentsTheSame = { old, new -> old == new },
         onItemsTheSame = { old, new -> old.id == new.id }
     )
@@ -48,9 +48,9 @@ class FeedAdapter(
 
     class FeedViewHolder(private val binding: ItemFeedBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(feed: Feed, onFeedClick: (Int) -> Unit) {
-            binding.feedData = feed
-            binding.root.setOnClickListener { onFeedClick(feed.id) }
+        fun onBind(feedInfo: FeedInfo, onFeedClick: (Int) -> Unit) {
+            binding.feedData = feedInfo
+            binding.root.setOnClickListener { onFeedClick(feedInfo.id) }
         }
     }
 }
