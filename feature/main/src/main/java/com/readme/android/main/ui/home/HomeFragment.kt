@@ -1,6 +1,9 @@
 package com.readme.android.main.ui.home
 
+import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.ConcatAdapter
@@ -10,6 +13,8 @@ import com.readme.android.core_ui.util.ResolutionMetrics
 import com.readme.android.main.R
 import com.readme.android.main.databinding.FragmentHomeBinding
 import com.readme.android.main.ui.adapter.FeedAdapter
+import com.readme.android.main.ui.feed.FeedDetailActivity
+import com.readme.android.main.view.MoreBottomSheetDialog
 import com.readme.android.main.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,7 +47,7 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
                 viewModel.getSelectedCategory(),
                 ::onCategoryIconClick
             )
-        feedAdapter = FeedAdapter()
+        feedAdapter = FeedAdapter(::onMoreClick)
         val concatAdapter = ConcatAdapter(
             homeHeaderAdapter,
             feedAdapter.apply { submitList(viewModel.homeFeedList.value) }
@@ -52,6 +57,10 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
             addItemDecoration(ItemDecorationUtil.VerticalPlaceItemDecoration(16.dp))
             adapter = concatAdapter
         }
+    }
+
+    private fun onMoreClick(){
+        MoreBottomSheetDialog().show(childFragmentManager, this.tag)
     }
 
     private fun observeFeedList(){

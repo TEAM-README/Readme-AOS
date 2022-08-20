@@ -29,12 +29,7 @@ class MoreBottomSheetDialog : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding =
-            DataBindingUtil.inflate(
-                inflater,
-                R.layout.layout_more_bottom_sheet,
-                container,
-                false
-            )
+            DataBindingUtil.inflate(inflater, R.layout.layout_more_bottom_sheet, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
