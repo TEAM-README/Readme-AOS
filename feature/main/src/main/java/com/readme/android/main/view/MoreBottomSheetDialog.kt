@@ -1,9 +1,14 @@
 package com.readme.android.main.view
 
+import android.content.ContentValues.TAG
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -45,21 +50,28 @@ class MoreBottomSheetDialog : BottomSheetDialogFragment() {
                 with(binding) {
                     isMyFeed = it
                     when (it) {
-                        true -> {
-                            tvAction.setOnClickListener {
-                                // TODO 삭제하기 로직 넣기
-                                dismiss()
-                            }
+                        true -> tvAction.setOnClickListener {
+                            // TODO 삭제하기 로직 넣기
+                            dismiss()
                         }
-                        else -> {
-                            tvAction.setOnClickListener {
-                                // TODO 신고하기 로직 넣기
-                                dismiss()
-                            }
+                        else -> tvAction.setOnClickListener {
+                            Log.d(TAG, "observeData: click")
+                            dismiss()
+                            sendMail()
                         }
                     }
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun sendMail() {
+        val intent = Intent().apply {
+            action = Intent.ACTION_SENDTO
+            data = Uri.parse("mailto:")
+            putExtra(Intent.EXTRA_EMAIL, arrayOf("readmeteam@naver.com"))
+        }
+        if (intent.resolveActivity(requireContext().packageManager) != null) startActivity(intent)
+        else Toast.makeText(requireContext(), "문제가 발생했습니다.", Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {
