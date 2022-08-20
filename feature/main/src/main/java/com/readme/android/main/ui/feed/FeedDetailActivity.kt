@@ -19,6 +19,7 @@ class FeedDetailActivity : BindingActivity<ActivityFeedDetailBinding>(R.layout.a
         setFeedIdOnViewModelFromExtra()
         getDetailFeedInfo()
         observeBookInfo()
+        observeFeedInfo()
     }
 
     private fun setFeedIdOnViewModelFromExtra(){
@@ -36,6 +37,11 @@ class FeedDetailActivity : BindingActivity<ActivityFeedDetailBinding>(R.layout.a
         }
     }
 
+    private fun observeFeedInfo(){
+        viewModel.feed.observe(this){
+            binding.feed = it
+        }
+    }
 
     private fun getFeedIdFromExtra() : Int = intent.getIntExtra(FEED_ID, -1)
 
