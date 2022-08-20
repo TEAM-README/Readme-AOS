@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="book"
+            type="com.readme.android.domain.entity.BookInfo" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,6 +20,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
+            android:src="@{book.image}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_writer"
             app:layout_constraintDimensionRatio="56:82"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            android:text="서버한테 데이터 달라고 해둠"
             android:textAppearance="@style/regular_05"
             android:textColor="@color/main_blue"
             app:layout_constraintStart_toEndOf="@+id/iv_book"
@@ -40,6 +46,7 @@
             android:layout_marginTop="6dp"
             android:ellipsize="end"
             android:maxLines="2"
+            android:text="@{book.title}"
             android:textAppearance="@style/medium_04"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
@@ -54,6 +61,7 @@
             android:layout_marginTop="14dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:text="@{book.author}"
             android:textAppearance="@style/regular_05"
             android:textColor="@color/gray_3"
             app:layout_constraintEnd_toEndOf="@+id/tv_title"
