@@ -60,7 +60,7 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
     }
 
     private fun observeFeedList() {
-        viewModel.homeFeedList.observe(requireActivity()) {
+        viewModel.homeFeedList.observe(viewLifecycleOwner) {
             feedAdapter.submitList(it)
         }
     }
