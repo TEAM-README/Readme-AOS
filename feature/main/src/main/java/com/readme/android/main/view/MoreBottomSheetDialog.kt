@@ -55,10 +55,11 @@ class MoreBottomSheetDialog(private val isMyFeed: Boolean) : BottomSheetDialogFr
     private fun sendMail() {
         val intent = Intent().apply {
             action = Intent.ACTION_SENDTO
-            data = Uri.parse("mailto:")
-            putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(string.readme_mail_address)))
-            putExtra(Intent.EXTRA_SUBJECT, getString(string.mail_title))
-            putExtra(Intent.EXTRA_TEXT, getString(string.mail_text))
+            data = Uri.parse(
+                "mailto:${getString(string.readme_mail_address)}?" +
+                        "subject=${getString(string.mail_title)}&" +
+                        "body=${getString(string.mail_text)}"
+            )
         }
         if (intent.resolveActivity(requireContext().packageManager) != null) startActivity(intent)
         else requireContext().shortToast(getString(string.problem_occured))
