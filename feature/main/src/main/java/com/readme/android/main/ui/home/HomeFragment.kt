@@ -1,5 +1,6 @@
 package com.readme.android.main.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
@@ -10,6 +11,8 @@ import com.readme.android.core_ui.util.ResolutionMetrics
 import com.readme.android.main.R
 import com.readme.android.main.databinding.FragmentHomeBinding
 import com.readme.android.main.ui.adapter.FeedAdapter
+import com.readme.android.main.ui.feed.FeedDetailActivity
+import com.readme.android.main.ui.feed.FeedDetailActivity.Companion.FEED_ID
 import com.readme.android.main.view.MoreBottomSheetDialog
 import com.readme.android.main.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,10 +46,10 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
             viewModel.selectedCategoryString.value ?: "",
             ::onCategoryIconClick
         )
-        feedAdapter = FeedAdapter(::onMoreClick)
+        feedAdapter = FeedAdapter(::onMoreClick, ::onClickFeed)
         val concatAdapter = ConcatAdapter(
             homeHeaderAdapter,
-            feedAdapter.apply { submitList(viewModel.homeFeedList.value) }
+            feedAdapter.apply { submitList(viewModel.homeFeedInfoList.value) }
         )
 
         binding.rvHome.apply {
@@ -59,14 +62,21 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
         MoreBottomSheetDialog(isMyFeed).show(childFragmentManager, this.tag)
     }
 
+    private fun onClickFeed(id: Int) {
+        val intent = Intent(activity, FeedDetailActivity::class.java).apply {
+            putExtra(FEED_ID, id)
+        }
+        startActivity(intent)
+    }
+
     private fun observeFeedList() {
-        viewModel.homeFeedList.observe(viewLifecycleOwner) {
+        viewModel.homeFeedInfoList.observe(viewLifecycleOwner) {
             feedAdapter.submitList(it)
         }
     }
 
     private fun observeSelectedCategory() {
-        viewModel.selectedCategoryChip.observe(requireActivity()) {
+        viewModel.selectedCategoryChip.observe(viewLifecycleOwner) {
             viewModel.updateSelectedCategoryString()
             viewModel.setIsCategorySelected()
             homeHeaderAdapter.refreshCategoryData(

@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="book"
+            type="com.readme.android.domain.entity.BookInfo" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,8 +24,10 @@
             app:layout_constraintDimensionRatio="56:82"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_category"
+            tools:ignore="ContentDescription"
             tools:src="@tools:sample/avatars" />
 
+        <!-- todo category 정보 api 바뀌면 수정해야함 -->
         <TextView
             android:id="@+id/tv_category"
             android:layout_width="wrap_content"
@@ -38,10 +44,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{book.title}"
             android:textAppearance="@style/medium_04"
             android:textColor="@color/black"
-            android:maxLines="2"
-            android:ellipsize="end"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_category"
             app:layout_constraintTop_toBottomOf="@+id/tv_category"
@@ -52,13 +59,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
-            android:text="@string/writer_example"
-            android:maxLines="1"
             android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{book.author}"
             android:textAppearance="@style/regular_05"
             android:textColor="@color/gray_3"
             app:layout_constraintEnd_toEndOf="@+id/tv_title"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
-            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:text="@string/writer_example" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

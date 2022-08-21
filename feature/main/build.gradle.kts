@@ -44,4 +44,7 @@ dependencies {
     // test
     implementation(AndroidXDependencies.junit)
     androidTestImplementation(TestDependencies.androidTest)
+
+    // ImageLoading Library
+    implementation(ThirdPartyDependencies.coil)
 }

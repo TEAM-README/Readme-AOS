@@ -1,6 +1,6 @@
 package com.readme.android.domain.entity
 
-data class Feed(
+data class FeedInfo(
     val id: Int,
     val category: String,
     val title: String,

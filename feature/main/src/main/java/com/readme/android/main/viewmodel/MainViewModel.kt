@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.readme.android.core_ui.base.BaseViewModel
 import com.readme.android.core_ui.util.MutableEventFlow
 import com.readme.android.core_ui.util.asEventFlow
-import com.readme.android.domain.entity.Feed
+import com.readme.android.domain.entity.FeedInfo
 import com.readme.android.domain.repository.FeedRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -24,8 +24,8 @@ class MainViewModel @Inject constructor(
 
     val isCategorySelected = MutableLiveData<Boolean>()
 
-    private var _homeFeedList = MutableLiveData<List<Feed>>()
-    val homeFeedList: LiveData<List<Feed>> = _homeFeedList
+    private var _homeFeedInfoList = MutableLiveData<List<FeedInfo>>()
+    val homeFeedInfoList: LiveData<List<FeedInfo>> = _homeFeedInfoList
 
     private val _selectedCategoryChip = MutableLiveData<List<String>>()
     val selectedCategoryChip: LiveData<List<String>> = _selectedCategoryChip
@@ -61,7 +61,7 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch(exceptionHandler) {
             feedRepository.getHomeFeed(categoryListToString())
                 .onSuccess {
-                    _homeFeedList.value = it.feeds
+                    _homeFeedInfoList.value = it.feedListInfo
                     Log.d(TAG, "getHomeFeed success: $it")
                 }.onFailure {
                     Log.d(TAG, "getHomeFeed failure: $it")

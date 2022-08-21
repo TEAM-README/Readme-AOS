@@ -1,16 +1,19 @@
 package com.readme.android.main.ui.mypage
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.ConcatAdapter
 import com.readme.android.core_ui.base.BindingFragment
 import com.readme.android.core_ui.util.ItemDecorationUtil
 import com.readme.android.core_ui.util.ResolutionMetrics
-import com.readme.android.domain.entity.Feed
+import com.readme.android.domain.entity.FeedInfo
 import com.readme.android.domain.entity.MyPageUser
 import com.readme.android.main.R
 import com.readme.android.main.databinding.FragmentMyPageBinding
 import com.readme.android.main.ui.adapter.FeedAdapter
+import com.readme.android.main.ui.feed.FeedDetailActivity
+import com.readme.android.main.ui.feed.FeedDetailActivity.Companion.FEED_ID
 import com.readme.android.main.view.MoreBottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,13 +32,13 @@ class MyPageFragment(private val resolutionMetrics: ResolutionMetrics) :
     private fun initAdapter() {
         // TODO 데이터 연동 로직 + adapter 변수 스코프 수정
         val myPageTopAdapter = MyPageTopAdapter(MyPageUser(Int.MAX_VALUE, "문다빙빙테스트용", 5))
-        val feedAdapter = FeedAdapter(::onMoreClick)
+        val feedAdapter = FeedAdapter(::onMoreClick, ::onClickFeed)
         val concatAdapter = ConcatAdapter(
             myPageTopAdapter,
             feedAdapter.apply {
                 submitList(
                     listOf(
-                        Feed(
+                        FeedInfo(
                             0,
                             "에세이",
                             "1cm 다빙빙",
@@ -45,7 +48,7 @@ class MyPageFragment(private val resolutionMetrics: ResolutionMetrics) :
                             "2021/10/31",
                             true
                         ),
-                        Feed(
+                        FeedInfo(
                             0,
                             "에세이",
                             "1cm 다빙빙",
@@ -55,7 +58,7 @@ class MyPageFragment(private val resolutionMetrics: ResolutionMetrics) :
                             "2021/10/31",
                             true
                         ),
-                        Feed(
+                        FeedInfo(
                             0,
                             "에세이",
                             "1cm 다빙빙",
@@ -78,5 +81,12 @@ class MyPageFragment(private val resolutionMetrics: ResolutionMetrics) :
 
     private fun onMoreClick(isMyFeed: Boolean) {
         MoreBottomSheetDialog(isMyFeed).show(childFragmentManager, this.tag)
+    }
+
+    private fun onClickFeed(id: Int) {
+        val intent = Intent(activity, FeedDetailActivity::class.java).apply {
+            putExtra(FEED_ID, id)
+        }
+        startActivity(intent)
     }
 }

@@ -1,6 +1,7 @@
 package com.readme.android.data.remote.model.response
 
 import com.google.gson.annotations.SerializedName
+import com.readme.android.domain.entity.BookInfo
 
 data class Book(
     @SerializedName("author")
@@ -13,4 +14,13 @@ data class Book(
     val subIsbn: String,
     @SerializedName("title")
     val title: String
-)
+) {
+    fun toBookInfo(): BookInfo =
+        BookInfo(
+            title = this.title,
+            author = this.author,
+            image = this.image,
+            isbn = this.isbn,
+            subIsbn = this.subIsbn
+        )
+}

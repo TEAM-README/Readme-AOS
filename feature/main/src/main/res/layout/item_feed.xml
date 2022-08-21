@@ -7,7 +7,7 @@
 
         <variable
             name="feedData"
-            type="com.readme.android.domain.entity.Feed" />
+            type="com.readme.android.domain.entity.FeedInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -100,10 +100,10 @@
 
         <TextView
             android:id="@+id/tv_date"
+            setFormattedDate="@{feedData.date}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:text="@{feedData.date}"
             android:textAppearance="@style/regular_05"
             android:textColor="@color/gray_2"
             app:layout_constraintBottom_toBottomOf="@+id/tv_nickname"
@@ -119,6 +119,7 @@
             android:background="@drawable/ic_more"
             app:layout_constraintBottom_toBottomOf="@+id/tv_date"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_date" />
+            app:layout_constraintTop_toTopOf="@+id/tv_date"
+            tools:ignore="ContentDescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
