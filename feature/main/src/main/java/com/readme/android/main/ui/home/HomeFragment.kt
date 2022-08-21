@@ -65,13 +65,13 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
     }
 
     private fun observeFeedList() {
-        viewModel.homeFeedInfoList.observe(requireActivity()) {
+        viewModel.homeFeedInfoList.observe(viewLifecycleOwner) {
             feedAdapter.submitList(it)
         }
     }
 
     private fun observeSelectedCategory() {
-        viewModel.selectedCategoryChip.observe(requireActivity()) {
+        viewModel.selectedCategoryChip.observe(viewLifecycleOwner) {
             viewModel.updateSelectedCategoryString()
             viewModel.setIsCategorySelected()
             homeHeaderAdapter.refreshCategoryData(
