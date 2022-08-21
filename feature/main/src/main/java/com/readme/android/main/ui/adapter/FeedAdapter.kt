@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.readme.android.core_ui.ext.getDimen
+import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.core_ui.util.ItemDiffCallback
 import com.readme.android.domain.entity.FeedInfo
 import com.readme.android.main.databinding.ItemFeedBinding
@@ -51,8 +52,8 @@ class FeedAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(feedInfo: FeedInfo, onMoreClick: (Boolean) -> Unit, onFeedClick: (Int) -> Unit) {
             binding.feedData = feedInfo
-            binding.btnMore.setOnClickListener { onMoreClick(feedInfo.isMyFeed) }
-            binding.root.setOnClickListener { onFeedClick(feedInfo.id) }
+            binding.btnMore.setOnSingleClickListener { onMoreClick(feedInfo.isMyFeed) }
+            binding.root.setOnSingleClickListener { onFeedClick(feedInfo.id) }
         }
     }
 }
