@@ -50,8 +50,8 @@ class MainViewModel @Inject constructor(
         val message = when (selectedCategoryChip.value?.size) {
             0 -> "관심있는 카테고리"
             1 -> categoryList[0]
-            2 -> "${categoryList[0]}, + ${categoryList[1]}"
-            else -> "${categoryList[0]}, + ${categoryList[1]} 외 ${categoryList.size - 2}개"
+            2 -> "${categoryList[0]}, ${categoryList[1]}"
+            else -> "${categoryList[0]}, ${categoryList[1]} 외 ${categoryList.size - 2}개"
         }
         setSelectedCategory(message)
     }
