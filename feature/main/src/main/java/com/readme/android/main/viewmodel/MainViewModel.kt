@@ -22,19 +22,39 @@ class MainViewModel @Inject constructor(
     val isMyFeed
         get() = _isMyFeed.asEventFlow()
 
-    private val isCategorySelected = MutableLiveData(true)
-    private val selectedCategory = MutableLiveData("에세이, 경제/경영 외 2개") // 수정예정
-    private val selectedCategoryChip = MutableLiveData<List<String>>()
+    val isCategorySelected = MutableLiveData<Boolean>()
+
     private var _homeFeedList = MutableLiveData<List<Feed>>()
     val homeFeedList: LiveData<List<Feed>> = _homeFeedList
 
+    private val _selectedCategoryChip = MutableLiveData<List<String>>()
+    val selectedCategoryChip : LiveData<List<String>> = _selectedCategoryChip
+
+    private val _selectedCategoryString = MutableLiveData<String>()
+    val selectedCategoryString :LiveData<String> = _selectedCategoryString
+
     fun setSelectedCategoryChip(list: List<String>) {
-        selectedCategoryChip.value = list
+        _selectedCategoryChip.value = list
     }
 
-    fun getIsCategorySelected(): Boolean = isCategorySelected.value == true
+    fun setIsCategorySelected(){
+        isCategorySelected.value = _selectedCategoryChip.value?.size != 0
+    }
 
-    fun getSelectedCategory() = selectedCategory.value
+    private fun setSelectedCategory(string: String){
+        _selectedCategoryString.value = string
+    }
+
+    fun updateSelectedCategoryString(){
+        val categoryList : List<String> = selectedCategoryChip.value?.toList() ?: return
+        val message = when (selectedCategoryChip.value?.size) {
+            0 -> "관심있는 카테고리"
+            1 -> categoryList[0]
+            2 -> "${categoryList[0]}, ${categoryList[1]}"
+            else -> "${categoryList[0]}, ${categoryList[1]} 외 ${categoryList.size - 2}개"
+        }
+        setSelectedCategory(message)
+    }
 
     fun getHomeFeed() {
         Log.d(TAG, "getHomeFeed: ${categoryListToString()}")
