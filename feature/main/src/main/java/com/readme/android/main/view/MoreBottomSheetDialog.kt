@@ -32,6 +32,7 @@ class MoreBottomSheetDialog(private val isMyFeed: Boolean) : BottomSheetDialogFr
         _binding =
             DataBindingUtil.inflate(inflater, R.layout.layout_more_bottom_sheet, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.isMyFeed = this.isMyFeed
         return binding.root
     }
 
