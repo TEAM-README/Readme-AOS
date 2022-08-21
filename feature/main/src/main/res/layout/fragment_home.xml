@@ -29,7 +29,7 @@
         <include
             android:id="@+id/layout_home_feed_empty"
             layout="@layout/layout_home_feed_empty"
-            android:visibility="@{viewModel.homeFeedList.size() == 0 ? View.VISIBLE : View.GONE}" />
+            android:visibility="@{viewModel.homeFeedInfoList.size() == 0 ? View.VISIBLE : View.GONE}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
