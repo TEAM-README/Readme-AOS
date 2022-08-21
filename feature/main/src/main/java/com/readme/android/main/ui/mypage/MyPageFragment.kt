@@ -1,8 +1,6 @@
 package com.readme.android.main.ui.mypage
 
-import android.content.ContentValues
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.ConcatAdapter
 import com.readme.android.core_ui.base.BindingFragment
@@ -78,7 +76,7 @@ class MyPageFragment(private val resolutionMetrics: ResolutionMetrics) :
         }
     }
 
-    private fun onMoreClick(){
-        MoreBottomSheetDialog().show(childFragmentManager, this.tag)
+    private fun onMoreClick(isMyFeed: Boolean) {
+        MoreBottomSheetDialog(isMyFeed).show(childFragmentManager, this.tag)
     }
 }

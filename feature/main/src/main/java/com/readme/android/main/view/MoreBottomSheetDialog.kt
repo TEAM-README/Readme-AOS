@@ -1,29 +1,24 @@
 package com.readme.android.main.view
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.readme.android.core_ui.ext.shortToast
 import com.readme.android.main.R
 import com.readme.android.main.databinding.LayoutMoreBottomSheetBinding
 import com.readme.android.main.viewmodel.MainViewModel
-import com.readme.android.shared.R.*
+import com.readme.android.shared.R.string
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class MoreBottomSheetDialog : BottomSheetDialogFragment() {
+class MoreBottomSheetDialog(private val isMyFeed: Boolean) : BottomSheetDialogFragment() {
+
     private val viewModel: MainViewModel by activityViewModels()
     private var _binding: LayoutMoreBottomSheetBinding? = null
     protected val binding: LayoutMoreBottomSheetBinding
@@ -46,24 +41,18 @@ class MoreBottomSheetDialog : BottomSheetDialogFragment() {
     }
 
     private fun observeData() {
-        viewModel.isMyFeed.flowWithLifecycle(viewLifecycleOwner.lifecycle)
-            .onEach {
-                with(binding) {
-                    isMyFeed = it
-                    when (it) {
-                        true -> tvAction.setOnClickListener {
-                            // TODO 삭제하기 로직 넣기
-                            dismiss()
-                        }
-                        else -> tvAction.setOnClickListener {
-                            Log.d(TAG, "observeData: click")
-                            dismiss()
-                            sendMail()
-                        }
-                    }
-                }
-            }.launchIn(viewLifecycleOwner.lifecycleScope)
+        when (isMyFeed) {
+            true -> binding.tvAction.setOnClickListener {
+                // TODO 삭제하기 로직 넣기
+                dismiss()
+            }
+            false -> binding.tvAction.setOnClickListener {
+                dismiss()
+                sendMail()
+            }
+        }
     }
+
 
     private fun sendMail() {
         val intent = Intent().apply {
@@ -74,7 +63,7 @@ class MoreBottomSheetDialog : BottomSheetDialogFragment() {
             putExtra(Intent.EXTRA_TEXT, getString(string.mail_text))
         }
         if (intent.resolveActivity(requireContext().packageManager) != null) startActivity(intent)
-        else Toast.makeText(requireContext(), getString(string.problem_occured), Toast.LENGTH_SHORT).show()
+        else requireContext().shortToast(getString(string.problem_occured))
     }
 
     override fun onDestroyView() {

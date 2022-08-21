@@ -12,7 +12,7 @@ import com.readme.android.main.databinding.ItemFeedBinding
 import com.readme.android.shared.R
 
 class FeedAdapter(
-    private val onMoreClick: () -> Unit
+    private val onMoreClick: (Boolean) -> Unit
 ) : ListAdapter<Feed, FeedAdapter.FeedViewHolder>(
     ItemDiffCallback<Feed>(
         onContentsTheSame = { old, new -> old == new },
@@ -48,10 +48,11 @@ class FeedAdapter(
 
     class FeedViewHolder(private val binding: ItemFeedBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(feed: Feed, onMoreClick: () -> Unit
+        fun onBind(
+            feed: Feed, onMoreClick: (Boolean) -> Unit
         ) {
             binding.feedData = feed
-            binding.btnMore.setOnClickListener { onMoreClick() }
+            binding.btnMore.setOnClickListener { onMoreClick(feed.isMyFeed) }
         }
     }
 }
