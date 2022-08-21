@@ -2,15 +2,20 @@ package com.readme.android.main.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.readme.android.main.databinding.LayoutFeedHeaderBinding
 
 class HomeHeaderAdapter(
-    private val isCategorySelected: LiveData<Boolean>,
-    private val selectedCategory: LiveData<String>,
+    private var isCategorySelected: Boolean,
+    private var selectedCategory: String,
     private val onCategoryIconClick: () -> Unit
 ) : RecyclerView.Adapter<HomeHeaderAdapter.HomeHeaderViewHolder>() {
+
+    fun refreshCategoryData(isCategorySelected: Boolean, selectedCategory: String) {
+        this.isCategorySelected = isCategorySelected
+        this.selectedCategory = selectedCategory
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeHeaderViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -20,8 +25,8 @@ class HomeHeaderAdapter(
 
     override fun onBindViewHolder(holder: HomeHeaderViewHolder, position: Int) {
         holder.onBind(
-            isCategorySelected = isCategorySelected.value ?: false,
-            selectedCategory = selectedCategory.value ?: "",
+            isCategorySelected = isCategorySelected,
+            selectedCategory = selectedCategory,
             onCategoryIconClick = onCategoryIconClick
         )
     }

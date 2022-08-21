@@ -38,8 +38,8 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
 
     private fun initAdapter() {
         homeHeaderAdapter = HomeHeaderAdapter(
-            viewModel.isCategorySelected,
-            viewModel.selectedCategoryString,
+            viewModel.isCategorySelected.value ?: false,
+            viewModel.selectedCategoryString.value ?: "",
             ::onCategoryIconClick
         )
         feedAdapter = FeedAdapter()
@@ -60,11 +60,14 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
         }
     }
 
-    private fun observeSelectedCategory(){
+    private fun observeSelectedCategory() {
         viewModel.selectedCategoryChip.observe(requireActivity()) {
             viewModel.updateSelectedCategoryString()
             viewModel.setIsCategorySelected()
-            homeHeaderAdapter.notifyDataSetChanged()
+            homeHeaderAdapter.refreshCategoryData(
+                viewModel.isCategorySelected.value ?: false,
+                viewModel.selectedCategoryString.value ?: ""
+            )
         }
     }
 
