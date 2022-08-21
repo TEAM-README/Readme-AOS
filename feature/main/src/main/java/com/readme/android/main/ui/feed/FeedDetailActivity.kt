@@ -6,6 +6,7 @@ import coil.load
 import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.main.R
 import com.readme.android.main.databinding.ActivityFeedDetailBinding
+import com.readme.android.main.view.MoreBottomSheetDialog
 import com.readme.android.main.viewmodel.DetailFeedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,6 +22,7 @@ class FeedDetailActivity :
         observeBookInfo()
         observeFeedInfo()
         onBackBtnClick()
+        onMoreClick()
     }
 
     private fun setFeedIdOnViewModelFromExtra() {
@@ -48,6 +50,13 @@ class FeedDetailActivity :
     private fun onBackBtnClick() {
         binding.ibBack.setOnClickListener {
             onBackPressed()
+        }
+    }
+
+    private fun onMoreClick() {
+        binding.btnMore.setOnClickListener {
+            val isMyFeed = viewModel.getIsMyFeed()
+            MoreBottomSheetDialog(isMyFeed).show(supportFragmentManager, this.javaClass.name)
         }
     }
 

@@ -124,8 +124,16 @@
                         app:layout_constraintTop_toTopOf="@+id/tv_nickname"
                         tools:text="@string/date_example" />
 
-                    <!-- todo 더보기 버튼 추가 -->
-
+                    <ImageButton
+                        android:id="@+id/btn_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="26dp"
+                        android:background="@drawable/ic_more"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_date"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_date"
+                        tools:ignore="ContentDescription" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

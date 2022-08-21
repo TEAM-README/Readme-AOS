@@ -31,6 +31,8 @@ class DetailFeedViewModel @Inject constructor(
         _feedId.value = feedId
     }
 
+    fun getIsMyFeed(): Boolean = feed.value?.isMyFeed ?: throw IllegalStateException()
+
     fun getDetailFeedInfo() {
         viewModelScope.launch(exceptionHandler) {
             feedRepository.getDetailFeed(feedId.value ?: throw IllegalStateException())
