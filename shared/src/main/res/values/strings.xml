@@ -11,7 +11,7 @@
     <string name="lookaround_another_category">다른 카테고리를 둘러보는 것은 어떨까요?</string>
 
     <!-- 더보기 -->
-    <string name="readme_mail_address">readmeteam@naver.com</string>
+    <string name="readme_mail_address">Readme.team.sopterm@gmail.com</string>
     <string name="problem_occured">문제가 발생했습니다.</string>
     <string name="mail_title">리드미 유저 신고</string>
     <string name="mail_text">1. 신고 유형 사유 (상업적 광고 및 판매, 음란물/불건전한 대화, 욕설 및 비하, 도배, 부적절한 프로필 이미지, 기타 사유):\n2.신고할 유저의 닉네임 :\n\n신고하신 사항은 리드미팀이 신속하게 처리하겠습니다. 감사합니다 :)</string>

@@ -7,19 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.readme.android.core_ui.ext.shortToast
 import com.readme.android.main.R
 import com.readme.android.main.databinding.LayoutMoreBottomSheetBinding
-import com.readme.android.main.viewmodel.MainViewModel
 import com.readme.android.shared.R.string
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MoreBottomSheetDialog(private val isMyFeed: Boolean) : BottomSheetDialogFragment() {
 
-    private val viewModel: MainViewModel by activityViewModels()
     private var _binding: LayoutMoreBottomSheetBinding? = null
     protected val binding: LayoutMoreBottomSheetBinding
         get() = requireNotNull(_binding)
