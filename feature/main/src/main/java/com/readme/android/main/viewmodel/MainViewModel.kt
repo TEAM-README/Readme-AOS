@@ -61,7 +61,7 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch(exceptionHandler) {
             feedRepository.getHomeFeed(categoryListToString())
                 .onSuccess {
-                    _homeFeedInfoList.value = it.feedInfos
+                    _homeFeedInfoList.value = it.feedListInfo
                     Log.d(TAG, "getHomeFeed success: $it")
                 }.onFailure {
                     Log.d(TAG, "getHomeFeed failure: $it")
