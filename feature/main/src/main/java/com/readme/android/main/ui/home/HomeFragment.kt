@@ -18,6 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
     BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private val viewModel: MainViewModel by activityViewModels()
+    private lateinit var homeHeaderAdapter: HomeHeaderAdapter
     private lateinit var feedAdapter: FeedAdapter
 
     private val Number.dp get() = resolutionMetrics.toPixel(this.toInt())
@@ -28,6 +29,7 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
 
         initAdapter()
         observeFeedList()
+        observeSelectedCategory()
     }
 
     override fun onResume() {
@@ -36,13 +38,11 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
     }
 
     private fun initAdapter() {
-        // TODO 데이터 연동 로직 + adapter 변수 스코프 수정
-        val homeHeaderAdapter =
-            HomeHeaderAdapter(
-                viewModel.getIsCategorySelected(),
-                viewModel.getSelectedCategory(),
-                ::onCategoryIconClick
-            )
+        homeHeaderAdapter = HomeHeaderAdapter(
+            viewModel.isCategorySelected.value ?: false,
+            viewModel.selectedCategoryString.value ?: "",
+            ::onCategoryIconClick
+        )
         feedAdapter = FeedAdapter(::onMoreClick)
         val concatAdapter = ConcatAdapter(
             homeHeaderAdapter,
@@ -62,6 +62,17 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
     private fun observeFeedList() {
         viewModel.homeFeedList.observe(viewLifecycleOwner) {
             feedAdapter.submitList(it)
+        }
+    }
+
+    private fun observeSelectedCategory() {
+        viewModel.selectedCategoryChip.observe(requireActivity()) {
+            viewModel.updateSelectedCategoryString()
+            viewModel.setIsCategorySelected()
+            homeHeaderAdapter.refreshCategoryData(
+                viewModel.isCategorySelected.value ?: false,
+                viewModel.selectedCategoryString.value ?: ""
+            )
         }
     }
 

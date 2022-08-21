@@ -8,6 +8,7 @@
         android:id="@+id/tv_feed_empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="78dp"
         android:gravity="center"
         android:text="@string/home_feed_empty"
         android:textAppearance="@style/medium_01"
