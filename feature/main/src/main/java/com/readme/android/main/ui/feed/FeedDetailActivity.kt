@@ -18,6 +18,8 @@ class FeedDetailActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        terminationTokenHandling(viewModel)
         setFeedIdOnViewModelFromExtra()
         getDetailFeedInfo()
         observeBookInfo()
