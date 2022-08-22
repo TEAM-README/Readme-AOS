@@ -9,7 +9,6 @@ import com.readme.android.core_ui.util.KeyboardVisibilityUtils
 import com.readme.android.core_ui.util.ResolutionMetrics
 import com.readme.android.write_feed.databinding.ActivityFeedWriteBinding
 import com.readme.android.write_feed.fragments.ChooseCategoryFragment
-import com.readme.android.write_feed.fragments.FeelingFragment
 import com.readme.android.write_feed.fragments.ImpressiveSentenceFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -31,7 +30,6 @@ class FeedWriteActivity : BindingActivity<ActivityFeedWriteBinding>(R.layout.act
         initKeyBoardState()
         updateKeyBoardState()
         initStartFragment()
-        initButtonNextClickListener()
         initButtonBackClickListener()
         initExtraData()
     }
@@ -75,25 +73,26 @@ class FeedWriteActivity : BindingActivity<ActivityFeedWriteBinding>(R.layout.act
             .replace<ChooseCategoryFragment>(R.id.container_feed_write).commit()
     }
 
-    private fun initButtonNextClickListener() {
-        binding.btnNext.setOnClickListener {
-            when (requireNotNull(feedWriteViewModel.currentFragment.value)) {
-                CHOOSE_CATEGORY -> {
-                    feedWriteViewModel.updateCurrentFragment(IMPRESSIVE_SENTENCE)
-                    supportFragmentManager.beginTransaction()
-                        .replace<ImpressiveSentenceFragment>(R.id.container_feed_write).commit()
-                }
-                IMPRESSIVE_SENTENCE -> {
-                    feedWriteViewModel.updateCurrentFragment(FEELING)
-                    supportFragmentManager.beginTransaction()
-                        .replace<FeelingFragment>(R.id.container_feed_write).commit()
-                }
-                FEELING -> {
-                    // 다음 액티비티로 넘어가야하는 로직
-                }
-            }
-        }
-    }
+    // 요 로직 프래그먼트에서 해줘야함
+//    private fun initButtonNextClickListener() {
+//        binding.btnNext.setOnClickListener {
+//            when (requireNotNull(feedWriteViewModel.currentFragment.value)) {
+//                CHOOSE_CATEGORY -> {
+//                    feedWriteViewModel.updateCurrentFragment(IMPRESSIVE_SENTENCE)
+//                    supportFragmentManager.beginTransaction()
+//                        .replace<ImpressiveSentenceFragment>(R.id.container_feed_write).commit()
+//                }
+//                IMPRESSIVE_SENTENCE -> {
+//                    feedWriteViewModel.updateCurrentFragment(FEELING)
+//                    supportFragmentManager.beginTransaction()
+//                        .replace<FeelingFragment>(R.id.container_feed_write).commit()
+//                }
+//                FEELING -> {
+//                    // 다음 액티비티로 넘어가야하는 로직
+//                }
+//            }
+//        }
+//    }
 
     private fun initButtonBackClickListener() {
         binding.btnBack.setOnClickListener {

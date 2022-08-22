@@ -104,20 +104,5 @@
             app:layout_constraintTop_toBottomOf="@+id/layout_tool_bar"
             app:layout_constraintVertical_bias="0.0"
             tools:layout_editor_absoluteX="0dp" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_next"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="26dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/shape_rect_main_blue_fill_10"
-            android:paddingVertical="15dp"
-            android:text="@string/next_btn_text"
-            android:textAppearance="@style/medium_02"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
