@@ -39,22 +39,18 @@ class MoreBottomSheetDialog(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observeData()
+        onTvActionClickListener()
     }
 
-    private fun observeData() {
-        when (isMyFeed) {
-            true -> binding.tvAction.setOnClickListener {
-                // TODO 삭제하기 로직 넣기
-                dismiss()
+    private fun onTvActionClickListener() {
+        binding.tvAction.setOnClickListener {
+            when (isMyFeed) {
+                true -> {}// TODO 삭제하기 로직 넣기
+                false -> sendMail()
             }
-            false -> binding.tvAction.setOnClickListener {
-                dismiss()
-                sendMail()
-            }
+            dismiss()
         }
     }
-
 
     private fun sendMail() {
         val intent = Intent().apply {
