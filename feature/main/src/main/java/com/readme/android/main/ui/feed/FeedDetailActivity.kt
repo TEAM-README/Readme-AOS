@@ -8,6 +8,7 @@ import com.readme.android.main.R
 import com.readme.android.main.databinding.ActivityFeedDetailBinding
 import com.readme.android.main.view.MoreBottomSheetDialog
 import com.readme.android.main.viewmodel.DetailFeedViewModel
+import com.readme.android.shared.R.drawable
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,7 +38,10 @@ class FeedDetailActivity :
     private fun observeBookInfo() {
         viewModel.bookInfo.observe(this) {
             binding.layoutBookInformation.book = it
-            binding.layoutBookInformation.ivBook.load(it.image) // todo placeholder 추가
+            binding.layoutBookInformation.ivBook.load(it.image) {
+                placeholder(drawable.img_book_none)
+                error(drawable.img_book_none)
+            }
         }
     }
 
