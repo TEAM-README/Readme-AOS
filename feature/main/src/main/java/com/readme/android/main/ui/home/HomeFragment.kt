@@ -58,8 +58,11 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
         }
     }
 
-    private fun onMoreClick(isMyFeed: Boolean) {
-        MoreBottomSheetDialog(isMyFeed).show(childFragmentManager, this.tag)
+    private fun onMoreClick(isMyFeed: Boolean, feedWriterNickname: String?, feedId: Int?) {
+        MoreBottomSheetDialog(isMyFeed, feedWriterNickname, feedId).show(
+            childFragmentManager,
+            this.tag
+        )
     }
 
     private fun onClickFeed(id: Int) {

@@ -13,7 +13,7 @@ import com.readme.android.main.databinding.ItemFeedBinding
 import com.readme.android.shared.R
 
 class FeedAdapter(
-    private val onMoreClick: (Boolean) -> Unit,
+    private val onMoreClick: (Boolean, String?, Int?) -> Unit,
     private val onFeedClick: (Int) -> Unit
 ) : ListAdapter<FeedInfo, FeedAdapter.FeedViewHolder>(
     ItemDiffCallback<FeedInfo>(
@@ -50,9 +50,15 @@ class FeedAdapter(
 
     class FeedViewHolder(private val binding: ItemFeedBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(feedInfo: FeedInfo, onMoreClick: (Boolean) -> Unit, onFeedClick: (Int) -> Unit) {
+        fun onBind(
+            feedInfo: FeedInfo,
+            onMoreClick: (Boolean, String, Int) -> Unit,
+            onFeedClick: (Int) -> Unit
+        ) {
             binding.feedData = feedInfo
-            binding.btnMore.setOnSingleClickListener { onMoreClick(feedInfo.isMyFeed) }
+            binding.btnMore.setOnSingleClickListener {
+                onMoreClick(feedInfo.isMyFeed, feedInfo.nickname, feedInfo.id)
+            }
             binding.root.setOnSingleClickListener { onFeedClick(feedInfo.id) }
         }
     }
