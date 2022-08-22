@@ -62,7 +62,12 @@ class FeedDetailActivity :
     private fun onMoreClick() {
         binding.btnMore.setOnClickListener {
             val isMyFeed = viewModel.getIsMyFeed()
-            MoreBottomSheetDialog(isMyFeed).show(supportFragmentManager, this.javaClass.name)
+            val feedWriterNickname = viewModel.getWriterNickname()
+            val feedId = viewModel.getFeedId()
+            MoreBottomSheetDialog(isMyFeed, feedWriterNickname, feedId).show(
+                supportFragmentManager,
+                this.javaClass.name
+            )
         }
     }
 

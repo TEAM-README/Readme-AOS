@@ -33,6 +33,12 @@ class DetailFeedViewModel @Inject constructor(
 
     fun getIsMyFeed(): Boolean = feed.value?.isMyFeed ?: throw IllegalStateException()
 
+    fun getWriterNickname(): String =
+        feed.value?.nickname ?: throw IllegalStateException("writer nickname cannot be null")
+
+    fun getFeedId(): Int =
+        feed.value?.id ?: throw IllegalStateException("feed id cannot be null")
+
     fun getDetailFeedInfo() {
         viewModelScope.launch(exceptionHandler) {
             feedRepository.getDetailFeed(feedId.value ?: throw IllegalStateException())
