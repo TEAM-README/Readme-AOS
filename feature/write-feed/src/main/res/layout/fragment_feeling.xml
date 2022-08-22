@@ -12,15 +12,17 @@
         android:layout_height="match_parent"
         tools:context=".fragments.FeelingFragment">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3번입니다"
-            app:layout_constraintBottom_toBottomOf="parent"
+        tools:context=".fragments.FeelingFragment" >
+
+        <View
+            android:id="@+id/view_blue_bar"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/main_blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"

@@ -12,15 +12,26 @@
         android:layout_height="match_parent"
         tools:context=".fragments.ChooseCategoryFragment">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1번입니다"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+        <View
+            android:id="@+id/view_blue_bar"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            app:layout_constraintHorizontal_weight="1"
+            android:background="@color/main_blue"
+            app:layout_constraintEnd_toStartOf="@id/view_grey_bar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view_grey_bar"
+            android:layout_width="0dp"
+            app:layout_constraintHorizontal_weight="2"
+            android:layout_height="2dp"
+            android:background="@color/gray_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/view_blue_bar"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
