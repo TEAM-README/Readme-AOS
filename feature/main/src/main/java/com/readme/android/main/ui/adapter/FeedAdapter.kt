@@ -6,12 +6,14 @@ import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.readme.android.core_ui.ext.getDimen
+import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.core_ui.util.ItemDiffCallback
 import com.readme.android.domain.entity.FeedInfo
 import com.readme.android.main.databinding.ItemFeedBinding
 import com.readme.android.shared.R
 
 class FeedAdapter(
+    private val onMoreClick: (Boolean, String?, Int?) -> Unit,
     private val onFeedClick: (Int) -> Unit
 ) : ListAdapter<FeedInfo, FeedAdapter.FeedViewHolder>(
     ItemDiffCallback<FeedInfo>(
@@ -43,14 +45,21 @@ class FeedAdapter(
     }
 
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
-        holder.onBind(getItem(position), onFeedClick)
+        holder.onBind(getItem(position), onMoreClick, onFeedClick)
     }
 
     class FeedViewHolder(private val binding: ItemFeedBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(feedInfo: FeedInfo, onFeedClick: (Int) -> Unit) {
+        fun onBind(
+            feedInfo: FeedInfo,
+            onMoreClick: (Boolean, String, Int) -> Unit,
+            onFeedClick: (Int) -> Unit
+        ) {
             binding.feedData = feedInfo
-            binding.root.setOnClickListener { onFeedClick(feedInfo.id) }
+            binding.btnMore.setOnSingleClickListener {
+                onMoreClick(feedInfo.isMyFeed, feedInfo.nickname, feedInfo.id)
+            }
+            binding.root.setOnSingleClickListener { onFeedClick(feedInfo.id) }
         }
     }
 }

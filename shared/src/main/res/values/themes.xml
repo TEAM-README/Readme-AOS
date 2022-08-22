@@ -31,6 +31,10 @@
         <item name="android:textCursorDrawable">@drawable/shape_rect_main_blue_cursor</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.App.CornerSize2Percent" parent="">
+        <item name="cornerSize">2%</item>
+    </style>
+
     <style name="bold_01">
         <item name="android:fontFamily">@font/pretendard</item>
         <item name="android:textStyle">bold</item>

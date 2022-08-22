@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.get
 import androidx.core.view.size
 import androidx.fragment.app.activityViewModels
@@ -17,6 +16,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import com.readme.android.core_ui.constant.Category
 import com.readme.android.core_ui.ext.getColor
+import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.main.databinding.FragmentFilterBottomSheetBinding
 import com.readme.android.main.viewmodel.MainViewModel
 import com.readme.android.shared.R.color
@@ -89,7 +89,7 @@ class FilterBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun onClickApplyBtn() {
-        binding.btnApply.setOnClickListener {
+        binding.btnApply.setOnSingleClickListener {
             val selectedChipList = getSelectedChipList()
             viewModel.setSelectedCategoryChip(selectedChipList)
             viewModel.getHomeFeed()

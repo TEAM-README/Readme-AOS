@@ -42,7 +42,8 @@ class FeedRepositoryImpl @Inject constructor(
             is NetworkState.Success -> return Result.success(
                 DomainDetailFeedResponse(
                     response.body.data.feed.toFeedInfo(),
-                    response.body.data.feed.book?.toBookInfo() ?: throw IllegalStateException("book data cannot be null")
+                    response.body.data.feed.book?.toBookInfo()
+                        ?: throw IllegalStateException("book data cannot be null")
                 )
             )
             is NetworkState.Failure ->
@@ -50,8 +51,10 @@ class FeedRepositoryImpl @Inject constructor(
                 else return Result.failure(
                     RetrofitFailureStateException(response.error, response.code)
                 )
-            is NetworkState.NetworkError -> Timber.tag("${this.javaClass.name}_getHomeFeed").d(response.error)
-            is NetworkState.UnknownError -> Timber.tag("${this.javaClass.name}_getHomeFeed").d(response.t)
+            is NetworkState.NetworkError -> Timber.tag("${this.javaClass.name}_getHomeFeed")
+                .d(response.error)
+            is NetworkState.UnknownError -> Timber.tag("${this.javaClass.name}_getHomeFeed")
+                .d(response.t)
         }
         return Result.failure(IllegalStateException("NetworkError or UnKnownError please check timber"))
     }

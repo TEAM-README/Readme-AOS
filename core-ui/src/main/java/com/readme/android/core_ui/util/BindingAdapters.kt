@@ -11,17 +11,11 @@ import androidx.databinding.BindingAdapter
 import androidx.fragment.app.FragmentContainerView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.readme.android.core_ui.constant.*
+import com.readme.android.core_ui.constant.FeedWriteFragmentList
+import com.readme.android.core_ui.constant.FeedWriteFragmentList.*
+import com.readme.android.core_ui.constant.SetNickNameConstant
+import com.readme.android.core_ui.constant.SetNickNameConstant.*
 import com.readme.android.shared.R
-import com.readme.android.core_ui.constant.SetNickNameConstant.HAS_NO_STATE
-import com.readme.android.core_ui.constant.SetNickNameConstant.NO_SPECIAL_CHARACTER
-import com.readme.android.core_ui.constant.SetNickNameConstant.OVER_TEXT_LIMIT
-import com.readme.android.core_ui.constant.SetNickNameConstant.ALLOWED_NICKNAME
-import com.readme.android.core_ui.constant.SetNickNameConstant.DUPLICATE_NICKNAME
-import com.readme.android.core_ui.constant.FeedWriteFragmentList.CHOOSE_CATEGORY
-import com.readme.android.core_ui.constant.FeedWriteFragmentList.FEELING
-import com.readme.android.core_ui.constant.FeedWriteFragmentList.IMPRESSIVE_SENTENCE
-import javax.inject.Inject
 
 
 @BindingAdapter("nickNameStateNumber")

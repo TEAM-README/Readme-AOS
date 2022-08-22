@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_book"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -24,6 +24,8 @@
             app:layout_constraintDimensionRatio="56:82"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_category"
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize2Percent"
+            tools:ignore="ContentDescription"
             tools:src="@tools:sample/avatars" />
 
         <!-- todo category 정보 api 바뀌면 수정해야함 -->
@@ -32,7 +34,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="서버한테 데이터 달라고 해둠"
             android:textAppearance="@style/regular_05"
             android:textColor="@color/main_blue"
             app:layout_constraintStart_toEndOf="@+id/iv_book"

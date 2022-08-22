@@ -13,6 +13,7 @@ android {
 
 dependencies {
     implementation(project(":domain"))
+    implementation(project(":data"))
 
     // Android Core
     implementation(AndroidXDependencies.coreKtx)

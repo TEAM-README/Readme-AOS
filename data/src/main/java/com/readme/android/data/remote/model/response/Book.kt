@@ -14,7 +14,7 @@ data class Book(
     val subIsbn: String,
     @SerializedName("title")
     val title: String
-){
+) {
     fun toBookInfo(): BookInfo =
         BookInfo(
             title = this.title,
