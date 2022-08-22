@@ -7,7 +7,7 @@ data class NaverBookSearchResponse(
     @SerializedName("display")
     val display: Int,
     @SerializedName("items")
-    val items: List<Item>,
+    val items: List<NaverBookItem>,
     @SerializedName("lastBuildDate")
     val lastBuildDate: String,
     @SerializedName("start")
@@ -16,7 +16,7 @@ data class NaverBookSearchResponse(
     val total: Int
 )
 
-data class Item(
+data class NaverBookItem(
     @SerializedName("author")
     val author: String?,
     @SerializedName("description")
