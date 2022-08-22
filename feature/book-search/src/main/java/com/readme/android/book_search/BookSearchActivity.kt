@@ -1,9 +1,8 @@
 package com.readme.android.book_search
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
+import android.view.KeyEvent
+import android.view.KeyEvent.KEYCODE_ENTER
 import android.view.ViewTreeObserver
 import androidx.activity.viewModels
 import com.readme.android.book_search.databinding.ActivityBookSearchBinding
@@ -11,10 +10,8 @@ import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.core_ui.util.KeyBoardUtil
 import com.readme.android.core_ui.util.ResolutionMetrics
-import com.readme.android.domain.entity.BookInfo
 import com.readme.android.navigator.MainNavigator
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -40,25 +37,24 @@ class BookSearchActivity :
         initBookSearchButtonListener()
         initEditTextBookSearchFocusListener()
         getRecentReadList()
+        initEnterKeyListener()
     }
-
 
     private fun initBookListRecyclerViewAdapter() {
         bookListRecyclerViewAdapter = BookListRecyclerViewAdapter(mainNavigator) { finish() }
         binding.rvBookList.adapter = bookListRecyclerViewAdapter
     }
 
-
     private fun setRecyclerViewRecentReadMargin() {
         binding.tvRecentRead.viewTreeObserver.addOnGlobalLayoutListener(object :
-            ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                binding.recentReadVisibleMargin =
-                    resolutionMetrics.toPixel(36 + 6) + binding.tvRecentRead.height
-                binding.recentReadGoneMargin = resolutionMetrics.toPixel(36)
-                binding.tvRecentRead.viewTreeObserver.removeOnGlobalLayoutListener(this)
-            }
-        })
+                ViewTreeObserver.OnGlobalLayoutListener {
+                override fun onGlobalLayout() {
+                    binding.recentReadVisibleMargin =
+                        resolutionMetrics.toPixel(36 + 6) + binding.tvRecentRead.height
+                    binding.recentReadGoneMargin = resolutionMetrics.toPixel(36)
+                    binding.tvRecentRead.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                }
+            })
     }
 
     private fun initBookSearchButtonListener() {
@@ -70,6 +66,17 @@ class BookSearchActivity :
         }
     }
 
+    private fun initEnterKeyListener() {
+        binding.etBookSearch.setOnKeyListener { _, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KEYCODE_ENTER) {
+                if (bookSearchViewModel.searchWord.value != "") {
+                    bookSearchViewModel.getBookSearchList()
+                }
+                KeyBoardUtil.hide(this)
+            }
+            false
+        }
+    }
 
     private fun updateRecyclerViewList() {
         bookSearchViewModel.bookSearchList.observe(this) {
