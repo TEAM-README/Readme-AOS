@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_book_cover"
             setBookImage="@{bookInfo.image}"
             android:layout_width="76dp"
@@ -50,7 +50,7 @@
             android:layout_marginTop="14dp"
             android:layout_marginEnd="26dp"
             android:layout_marginBottom="49dp"
-            android:text="@{bookInfo.author}"
+            android:text="@{bookInfo.author.length() == 0 ? `작자미상` : bookInfo.author}"
             android:textAppearance="@style/regular_05"
             android:textColor="@color/gray_3"
             app:layout_constraintBottom_toBottomOf="parent"
