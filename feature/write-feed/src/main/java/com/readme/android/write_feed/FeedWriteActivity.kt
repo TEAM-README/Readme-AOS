@@ -4,9 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.fragment.app.replace
 import com.readme.android.core_ui.base.BindingActivity
-import com.readme.android.core_ui.constant.FeedWriteFragmentList.CHOOSE_CATEGORY
-import com.readme.android.core_ui.constant.FeedWriteFragmentList.FEELING
-import com.readme.android.core_ui.constant.FeedWriteFragmentList.IMPRESSIVE_SENTENCE
+import com.readme.android.core_ui.constant.FeedWriteFragmentList.*
 import com.readme.android.core_ui.util.KeyboardVisibilityUtils
 import com.readme.android.core_ui.util.ResolutionMetrics
 import com.readme.android.write_feed.databinding.ActivityFeedWriteBinding
@@ -51,13 +49,15 @@ class FeedWriteActivity : BindingActivity<ActivityFeedWriteBinding>(R.layout.act
     }
 
     private fun updateKeyBoardState() {
-        KeyboardVisibilityUtils(this.window,
+        KeyboardVisibilityUtils(
+            this.window,
             onShowKeyboard = {
                 binding.keyboardState = false
             },
             onHideKeyboard = {
                 binding.keyboardState = true
-            })
+            }
+        )
     }
 
     private fun initExtraData() {
@@ -77,7 +77,7 @@ class FeedWriteActivity : BindingActivity<ActivityFeedWriteBinding>(R.layout.act
 
     private fun initButtonNextClickListener() {
         binding.btnNext.setOnClickListener {
-            when (feedWriteViewModel.currentFragment.value) {
+            when (requireNotNull(feedWriteViewModel.currentFragment.value)) {
                 CHOOSE_CATEGORY -> {
                     feedWriteViewModel.updateCurrentFragment(IMPRESSIVE_SENTENCE)
                     supportFragmentManager.beginTransaction()
@@ -89,9 +89,8 @@ class FeedWriteActivity : BindingActivity<ActivityFeedWriteBinding>(R.layout.act
                         .replace<FeelingFragment>(R.id.container_feed_write).commit()
                 }
                 FEELING -> {
-
+                    // 다음 액티비티로 넘어가야하는 로직
                 }
-                else -> {}
             }
         }
     }
@@ -103,7 +102,7 @@ class FeedWriteActivity : BindingActivity<ActivityFeedWriteBinding>(R.layout.act
     }
 
     private fun backButtonProcess() {
-        when (feedWriteViewModel.currentFragment.value) {
+        when (requireNotNull(feedWriteViewModel.currentFragment.value)) {
             CHOOSE_CATEGORY -> {
                 finish()
             }
@@ -117,9 +116,6 @@ class FeedWriteActivity : BindingActivity<ActivityFeedWriteBinding>(R.layout.act
                 supportFragmentManager.beginTransaction()
                     .replace<ImpressiveSentenceFragment>(R.id.container_feed_write).commit()
             }
-            else -> {}
         }
     }
-
-
 }
