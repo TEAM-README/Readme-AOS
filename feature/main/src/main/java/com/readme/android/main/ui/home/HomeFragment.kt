@@ -13,6 +13,7 @@ import com.readme.android.main.databinding.FragmentHomeBinding
 import com.readme.android.main.ui.adapter.FeedAdapter
 import com.readme.android.main.ui.feed.FeedDetailActivity
 import com.readme.android.main.ui.feed.FeedDetailActivity.Companion.FEED_ID
+import com.readme.android.main.view.MoreBottomSheetDialog
 import com.readme.android.main.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -45,7 +46,7 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
             viewModel.selectedCategoryString.value ?: "",
             ::onCategoryIconClick
         )
-        feedAdapter = FeedAdapter(::onClickFeed)
+        feedAdapter = FeedAdapter(::onMoreClick, ::onClickFeed)
         val concatAdapter = ConcatAdapter(
             homeHeaderAdapter,
             feedAdapter.apply { submitList(viewModel.homeFeedInfoList.value) }
@@ -55,6 +56,13 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
             addItemDecoration(ItemDecorationUtil.VerticalPlaceItemDecoration(16.dp))
             adapter = concatAdapter
         }
+    }
+
+    private fun onMoreClick(isMyFeed: Boolean, feedWriterNickname: String?, feedId: Int?) {
+        MoreBottomSheetDialog(isMyFeed, feedWriterNickname, feedId).show(
+            childFragmentManager,
+            this.tag
+        )
     }
 
     private fun onClickFeed(id: Int) {

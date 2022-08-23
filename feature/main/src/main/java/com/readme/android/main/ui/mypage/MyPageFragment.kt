@@ -14,6 +14,7 @@ import com.readme.android.main.databinding.FragmentMyPageBinding
 import com.readme.android.main.ui.adapter.FeedAdapter
 import com.readme.android.main.ui.feed.FeedDetailActivity
 import com.readme.android.main.ui.feed.FeedDetailActivity.Companion.FEED_ID
+import com.readme.android.main.view.MoreBottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,7 +32,7 @@ class MyPageFragment(private val resolutionMetrics: ResolutionMetrics) :
     private fun initAdapter() {
         // TODO 데이터 연동 로직 + adapter 변수 스코프 수정
         val myPageTopAdapter = MyPageTopAdapter(MyPageUser(Int.MAX_VALUE, "문다빙빙테스트용", 5))
-        val feedAdapter = FeedAdapter(::onClickFeed)
+        val feedAdapter = FeedAdapter(::onMoreClick, ::onClickFeed)
         val concatAdapter = ConcatAdapter(
             myPageTopAdapter,
             feedAdapter.apply {
@@ -78,6 +79,13 @@ class MyPageFragment(private val resolutionMetrics: ResolutionMetrics) :
         }
     }
 
+    private fun onMoreClick(
+        isMyFeed: Boolean,
+        feedWriterName: String? = null,
+        feedId: Int? = null
+    ) {
+        MoreBottomSheetDialog(isMyFeed, feedWriterName, feedId).show(childFragmentManager, this.tag)
+    }
 
     private fun onClickFeed(id: Int) {
         val intent = Intent(activity, FeedDetailActivity::class.java).apply {

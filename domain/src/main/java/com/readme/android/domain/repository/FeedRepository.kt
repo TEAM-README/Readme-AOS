@@ -7,5 +7,5 @@ interface FeedRepository {
 
     suspend fun getHomeFeed(filters: String): Result<DomainHomeFeedResponse>
 
-    suspend fun getDetailFeed(int: Int): Result<DomainDetailFeedResponse>
+    suspend fun getDetailFeed(feedId: Int): Result<DomainDetailFeedResponse>
 }
