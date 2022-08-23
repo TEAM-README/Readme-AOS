@@ -20,13 +20,17 @@ class BookSearchRepositoryImpl @Inject constructor(
         display: Int,
         start: Int
     ): Result<List<BookInfo>> {
-        when (val bookSearchList =
-            remoteBookSearchDataSource.getBookSearchList(query, display, start)) {
-            is NetworkState.Success -> return Result.success(bookSearchList.body.items.map {
-                naverBookSearchMapper.toBookInfo(
-                    it
-                )
-            })
+        when (
+            val bookSearchList =
+                remoteBookSearchDataSource.getBookSearchList(query, display, start)
+        ) {
+            is NetworkState.Success -> return Result.success(
+                bookSearchList.body.items.map {
+                    naverBookSearchMapper.toBookInfo(
+                        it
+                    )
+                }
+            )
             is NetworkState.Failure -> return Result.failure(
                 RetrofitFailureStateException(
                     bookSearchList.error,
@@ -43,11 +47,13 @@ class BookSearchRepositoryImpl @Inject constructor(
 
     override suspend fun getRecentReadList(): Result<List<BookInfo>> {
         when (val recentReadList = remoteBookSearchDataSource.getRecentReadList()) {
-            is NetworkState.Success -> return Result.success(recentReadList.body.data.books.map {
-                naverBookSearchMapper.toBookInfo(
-                    it
-                )
-            })
+            is NetworkState.Success -> return Result.success(
+                recentReadList.body.data.books.map {
+                    naverBookSearchMapper.toBookInfo(
+                        it
+                    )
+                }
+            )
             is NetworkState.Failure -> {
                 if (recentReadList.code == 401) {
                     throw CertificateException("토큰 만료 오류")
