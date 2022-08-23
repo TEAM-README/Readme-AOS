@@ -1,9 +1,7 @@
 package com.readme.android.write_feed.fragments
 
-import android.content.ContentValues
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.view.get
 import androidx.core.view.size
@@ -35,6 +33,7 @@ class ChooseCategoryFragment :
 
     private fun initNextButtonClickListener() {
         binding.btnNext.setOnClickListener {
+            feedWriteViewModel.setCategoryString(categoryListToString())
             feedWriteViewModel.updateCurrentFragment(IMPRESSIVE_SENTENCE)
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace<ImpressiveSentenceFragment>(R.id.container_feed_write).commit()
@@ -72,5 +71,19 @@ class ChooseCategoryFragment :
                 it.isSelected = !it.isSelected
             }
         }
+    }
+
+    private fun getSelectedChipList(): List<String> {
+        val selectedChipList: MutableList<String> = mutableListOf()
+        for (i in 0 until Category.values().size)
+            if (binding.chipGroup[i].isSelected) selectedChipList.add(Category.values()[i].categoryName)
+        return selectedChipList
+    }
+
+    private fun categoryListToString(): String =
+        getSelectedChipList().joinToString(SEPARATOR)
+
+    companion object {
+        const val SEPARATOR = ","
     }
 }

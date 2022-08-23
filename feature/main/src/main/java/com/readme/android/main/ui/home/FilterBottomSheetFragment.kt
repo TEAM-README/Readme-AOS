@@ -45,10 +45,9 @@ class FilterBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun setChips() {
-
         val states = arrayOf(
             intArrayOf(android.R.attr.state_selected),
-            intArrayOf(-android.R.attr.state_selected),
+            intArrayOf(-android.R.attr.state_selected)
         )
         val backgroundColors = intArrayOf(getColor(color.chip_blue), getColor(color.chip_gray))
         val textColors = intArrayOf(getColor(color.main_blue), getColor(color.gray_2))
@@ -98,7 +97,7 @@ class FilterBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun getSelectedChipList(): List<String> {
-        val selectedChipList: MutableList<String> = ArrayList()
+        val selectedChipList: MutableList<String> = mutableListOf()
         for (i in 0 until Category.values().size)
             if (binding.chipCategory[i].isSelected) selectedChipList.add(Category.values()[i].categoryName)
         return selectedChipList
