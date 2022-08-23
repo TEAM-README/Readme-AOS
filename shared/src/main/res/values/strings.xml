@@ -65,4 +65,7 @@
     <string name="impressive_sentence_content">기록은 독서의 시작입니다. 책을 끝까지 읽지 못했더라도\n읽는 도중 인상 깊었던 문장을 적어보세요.</string>
     <string name="feeling_content">진정한 독서를 하기 원한다면, 인상 깊었던 문장에 대한\n느낀점도 남겨볼까요?</string>
     <string name="next_btn_text">다음</string>
+
+    <!--write-feed-->
+    <string name="choose_category_title">책의 카테고리를 선택해주세요</string>
 </resources>

@@ -35,6 +35,9 @@ class FeedWriteViewModel @Inject constructor(
     lateinit var subIsbn: String
         private set
 
+    private val _categoryString = MutableLiveData<String>()
+    val categoryString: LiveData<String> = _categoryString
+
     fun getUserNickName() {
         _nickName.postValue(feedWriteRepository.getUserNickName())
     }
@@ -49,5 +52,9 @@ class FeedWriteViewModel @Inject constructor(
         _image.postValue(image)
         this.isbn = isbn
         this.subIsbn = subIsbn
+    }
+
+    fun setCategoryString(categoryString: String) {
+        _categoryString.value = categoryString
     }
 }
