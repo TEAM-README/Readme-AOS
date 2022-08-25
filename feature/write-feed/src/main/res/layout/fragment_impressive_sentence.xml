@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="feedWriteViewModel"
+            type="com.readme.android.write_feed.FeedWriteViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,6 +54,7 @@
             android:layout_marginTop="22dp"
             android:background="@drawable/shape_rect_write_feed_gray_1_border_16"
             android:gravity="start"
+            android:text="@={feedWriteViewModel.impressiveSentence}"
             android:hint="@string/impressive_sentence_hint"
             android:padding="22dp"
             android:textAppearance="@style/regular_02"

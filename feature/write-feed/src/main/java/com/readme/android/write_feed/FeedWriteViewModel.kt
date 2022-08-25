@@ -44,6 +44,8 @@ class FeedWriteViewModel @Inject constructor(
     private val _representCategoryString = MutableLiveData<String>()
     val representCategoryString: LiveData<String> = _representCategoryString
 
+    val impressiveSentence = MutableLiveData("")
+
     fun getUserNickName() {
         _nickName.postValue(feedWriteRepository.getUserNickName())
     }
