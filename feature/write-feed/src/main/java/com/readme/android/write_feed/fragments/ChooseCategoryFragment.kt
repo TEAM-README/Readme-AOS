@@ -74,12 +74,9 @@ class ChooseCategoryFragment :
             binding.chipGroup[i].setOnClickListener {
                 it.isSelected = !it.isSelected
                 val tempList = feedWriteViewModel.categoryList.value ?: mutableListOf()
-                it as Chip
-                if (it.isSelected) {
-                    tempList.add(it.text as String)
-                } else {
-                    tempList.remove(it.text as String)
-                }
+                val category = (it as Chip).text.toString()
+                if (it.isSelected) tempList.add(category)
+                else tempList.remove(category)
                 feedWriteViewModel.setCategoryList(tempList)
             }
         }
