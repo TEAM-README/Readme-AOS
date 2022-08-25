@@ -71,4 +71,7 @@
     <string name="impressive_sentence_title">인상 깊었던 문장을 적어주세요</string>
     <string name="impressive_sentence_hint">어떤 문장이 인상 깊었나요?</string>
     <string name="book_info_title">내가 선택한 책</string>
+    <string name="feeling_title">느낀점을 적어주세요</string>
+    <string name="feeling_hint">책을 읽었을 때 무엇을 느끼고 배우셨나요?</string>
+    <string name="impressive_sentence_at_feeling">에서 인상 깊었던 문장</string>
 </resources>
