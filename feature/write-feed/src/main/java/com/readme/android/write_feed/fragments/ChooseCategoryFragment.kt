@@ -33,7 +33,9 @@ class ChooseCategoryFragment :
 
     private fun initNextButtonClickListener() {
         binding.btnNext.setOnClickListener {
-            feedWriteViewModel.setCategoryString(categoryListToString())
+            feedWriteViewModel.setCategoryList(getSelectedChipList())
+            feedWriteViewModel.setWholeCategoryString(categoryListToString())
+            feedWriteViewModel.setRepresentCategoryString()
             feedWriteViewModel.updateCurrentFragment(IMPRESSIVE_SENTENCE)
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace<ImpressiveSentenceFragment>(R.id.container_feed_write).commit()
@@ -73,7 +75,7 @@ class ChooseCategoryFragment :
         }
     }
 
-    private fun getSelectedChipList(): List<String> {
+    private fun getSelectedChipList(): MutableList<String> {
         val selectedChipList: MutableList<String> = mutableListOf()
         for (i in 0 until Category.values().size)
             if (binding.chipGroup[i].isSelected) selectedChipList.add(Category.values()[i].categoryName)
@@ -81,7 +83,7 @@ class ChooseCategoryFragment :
     }
 
     private fun categoryListToString(): String =
-        getSelectedChipList().joinToString(SEPARATOR)
+        requireNotNull(feedWriteViewModel.categoryList.value).joinToString(SEPARATOR)
 
     companion object {
         const val SEPARATOR = ","

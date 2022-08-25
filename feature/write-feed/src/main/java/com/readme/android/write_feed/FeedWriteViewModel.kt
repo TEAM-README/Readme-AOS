@@ -35,8 +35,14 @@ class FeedWriteViewModel @Inject constructor(
     lateinit var subIsbn: String
         private set
 
-    private val _categoryString = MutableLiveData<String>()
-    val categoryString: LiveData<String> = _categoryString
+    private val _categoryList = MutableLiveData<MutableList<String>>()
+    val categoryList: LiveData<MutableList<String>> = _categoryList
+
+    private val _wholeCategoryString = MutableLiveData<String>()
+    val wholeCategoryString: LiveData<String> = _wholeCategoryString
+
+    private val _representCategoryString = MutableLiveData<String>()
+    val representCategoryString: LiveData<String> = _representCategoryString
 
     fun getUserNickName() {
         _nickName.postValue(feedWriteRepository.getUserNickName())
@@ -54,7 +60,21 @@ class FeedWriteViewModel @Inject constructor(
         this.subIsbn = subIsbn
     }
 
-    fun setCategoryString(categoryString: String) {
-        _categoryString.value = categoryString
+    fun setWholeCategoryString(wholeCategoryString: String) {
+        _wholeCategoryString.value = wholeCategoryString
+    }
+
+    fun setRepresentCategoryString() {
+        val tempCategoryList: List<String> = _categoryList.value?.toList() ?: return
+        val message = when (_categoryList.value?.size) {
+            1 -> tempCategoryList[0]
+            2 -> "${tempCategoryList[0]}, ${tempCategoryList[1]}"
+            else -> "${tempCategoryList[0]}, ${tempCategoryList[1]} 외 ${tempCategoryList.size - 2}개"
+        }
+        _representCategoryString.value = message
+    }
+
+    fun setCategoryList(categoryList: MutableList<String>){
+        _categoryList.value = categoryList
     }
 }

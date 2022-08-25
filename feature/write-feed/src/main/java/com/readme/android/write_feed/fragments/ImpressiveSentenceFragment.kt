@@ -47,5 +47,6 @@ class ImpressiveSentenceFragment :
             placeholder(img_book_none)
             error(img_book_none)
         }
+        binding.layoutBookInformation.tvCategory.text = feedWriteViewModel.representCategoryString.value
     }
 }
