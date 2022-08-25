@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.replace
+import coil.load
 import com.readme.android.core_ui.base.BindingFragment
 import com.readme.android.core_ui.constant.FeedWriteFragmentList.FEELING
 import com.readme.android.domain.entity.BookInfo
+import com.readme.android.shared.R.drawable
+import com.readme.android.shared.R.drawable.img_book_none
 import com.readme.android.write_feed.FeedWriteViewModel
 import com.readme.android.write_feed.R
 import com.readme.android.write_feed.databinding.FragmentImpressiveSentenceBinding
@@ -40,5 +43,9 @@ class ImpressiveSentenceFragment :
             feedWriteViewModel.isbn,
             feedWriteViewModel.subIsbn
         )
+        binding.layoutBookInformation.ivBook.load(feedWriteViewModel.image.value ?: "") {
+            placeholder(img_book_none)
+            error(img_book_none)
+        }
     }
 }
