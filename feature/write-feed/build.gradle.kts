@@ -39,4 +39,7 @@ dependencies {
 
     // Logger - Timber
     implementation(ThirdPartyDependencies.timber)
+
+    // ImageLoading Library
+    implementation(ThirdPartyDependencies.coil)
 }

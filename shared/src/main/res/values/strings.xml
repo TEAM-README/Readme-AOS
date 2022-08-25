@@ -68,4 +68,7 @@
 
     <!--write-feed-->
     <string name="choose_category_title">책의 카테고리를 선택해주세요</string>
+    <string name="impressive_sentence_title">인상 깊었던 문장을 적어주세요</string>
+    <string name="impressive_sentence_hint">어떤 문장이 인상 깊었나요?</string>
+    <string name="book_info_title">내가 선택한 책</string>
 </resources>

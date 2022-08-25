@@ -62,7 +62,7 @@
             android:layout_marginTop="14dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@{book.author}"
+            android:text="@{book.author.length() == 0 ? `작자미상` : book.author}"
             android:textAppearance="@style/regular_05"
             android:textColor="@color/gray_3"
             app:layout_constraintEnd_toEndOf="@+id/tv_title"

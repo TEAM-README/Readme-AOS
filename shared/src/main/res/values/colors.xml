@@ -25,4 +25,5 @@
     <color name="crimson">#FB7979</color>
     <color name="kakao_yellow">#FEE500</color>
     <color name="naver_green">#03C75A</color>
+    <color name="write_feed_gray">#eeeeee</color>
 </resources>

@@ -26,14 +26,18 @@ class ChooseCategoryFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.feedWriteViewModel = feedWriteViewModel
         initNextButtonClickListener()
         setChips()
         onClickChip()
+        restoreSelectedChipGroup()
     }
 
     private fun initNextButtonClickListener() {
         binding.btnNext.setOnClickListener {
-            feedWriteViewModel.setCategoryString(categoryListToString())
+            feedWriteViewModel.setCategoryList(getSelectedChipList())
+            feedWriteViewModel.setWholeCategoryString(categoryListToString())
+            feedWriteViewModel.setRepresentCategoryString()
             feedWriteViewModel.updateCurrentFragment(IMPRESSIVE_SENTENCE)
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace<ImpressiveSentenceFragment>(R.id.container_feed_write).commit()
@@ -69,19 +73,36 @@ class ChooseCategoryFragment :
         for (i in 0 until binding.chipGroup.size) {
             binding.chipGroup[i].setOnClickListener {
                 it.isSelected = !it.isSelected
+                val tempList = feedWriteViewModel.categoryList.value ?: mutableListOf()
+                it as Chip
+                if (it.isSelected) {
+                    tempList.add(it.text as String)
+                } else {
+                    tempList.remove(it.text as String)
+                }
+                feedWriteViewModel.setCategoryList(tempList)
             }
         }
     }
 
-    private fun getSelectedChipList(): List<String> {
+    private fun getSelectedChipList(): MutableList<String> {
         val selectedChipList: MutableList<String> = mutableListOf()
         for (i in 0 until Category.values().size)
             if (binding.chipGroup[i].isSelected) selectedChipList.add(Category.values()[i].categoryName)
         return selectedChipList
     }
 
+    private fun restoreSelectedChipGroup() {
+        for (i in 0 until Category.values().size) {
+            val chip = binding.chipGroup[i] as Chip
+            if (requireNotNull(feedWriteViewModel.categoryList.value).contains(chip.text)){
+                binding.chipGroup[i].isSelected = true
+            }
+        }
+    }
+
     private fun categoryListToString(): String =
-        getSelectedChipList().joinToString(SEPARATOR)
+        requireNotNull(feedWriteViewModel.categoryList.value).joinToString(SEPARATOR)
 
     companion object {
         const val SEPARATOR = ","
