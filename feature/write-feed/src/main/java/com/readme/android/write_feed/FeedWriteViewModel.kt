@@ -35,7 +35,7 @@ class FeedWriteViewModel @Inject constructor(
     lateinit var subIsbn: String
         private set
 
-    private val _categoryList = MutableLiveData<MutableList<String>>()
+    private val _categoryList = MutableLiveData(mutableListOf<String>())
     val categoryList: LiveData<MutableList<String>> = _categoryList
 
     private val _wholeCategoryString = MutableLiveData<String>()
