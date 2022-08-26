@@ -27,7 +27,6 @@ class FeedWriteActivity : BindingActivity<ActivityFeedWriteBinding>(R.layout.act
         binding.feedWriteViewModel = feedWriteViewModel
         feedWriteViewModel.getUserNickName()
         setFragmentContainerMargin()
-        initKeyBoardState()
         updateKeyBoardState()
         initStartFragment()
         initButtonBackClickListener()
@@ -42,18 +41,14 @@ class FeedWriteActivity : BindingActivity<ActivityFeedWriteBinding>(R.layout.act
         binding.fragmentContainerMargin = resolutionMetrics.toPixel(112)
     }
 
-    private fun initKeyBoardState() {
-        binding.keyboardState = true
-    }
-
     private fun updateKeyBoardState() {
         KeyboardVisibilityUtils(
             this.window,
             onShowKeyboard = {
-                binding.keyboardState = false
+                feedWriteViewModel.setKeyBoardState(false)
             },
             onHideKeyboard = {
-                binding.keyboardState = true
+                feedWriteViewModel.setKeyBoardState(true)
             }
         )
     }

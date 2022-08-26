@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="feedWriteViewModel"
             type="com.readme.android.write_feed.FeedWriteViewModel" />
@@ -60,7 +62,7 @@
             android:layout_marginStart="26dp"
             android:layout_marginTop="28dp"
             android:ellipsize="end"
-            android:ems="11"
+            android:maxEms="11"
             android:maxLines="1"
             android:text="@{feedWriteViewModel.title}"
             android:textAppearance="@style/semi_bold_04"
@@ -72,7 +74,7 @@
             android:id="@+id/tv_impressive_title_at_feeling"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="2dp"
             android:text="@string/impressive_sentence_at_feeling"
             android:textAppearance="@style/semi_bold_04"
             android:textColor="@color/gray_4"
@@ -103,11 +105,11 @@
             android:layout_marginBottom="24dp"
             android:background="@{feedWriteViewModel.feeling.length() == 0 ? @drawable/shape_rect_gray_1_fill_10 : @drawable/shape_rect_main_blue_fill_10}"
             android:clickable="@{feedWriteViewModel.feeling.length() == 0 ? false : true }"
-            android:gravity="center"
             android:paddingVertical="15dp"
             android:text="@string/next_btn_text"
             android:textAppearance="@style/medium_02"
             android:textColor="@color/white"
+            android:visibility="@{feedWriteViewModel.keyBoardState ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
