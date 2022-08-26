@@ -5,7 +5,7 @@ import com.readme.android.MainActivity
 import com.readme.android.auth.ui.LoginActivity
 import com.readme.android.core_ui.ext.navigateActivity
 import com.readme.android.set_nick_name.SetNickNameActivity
-import com.readme.android.write_feed.FeedWriteActivity
+import com.readme.android.write_feed.writefeed.FeedWriteActivity
 import javax.inject.Inject
 
 internal class MainNavigatorImpl @Inject constructor() : MainNavigator {

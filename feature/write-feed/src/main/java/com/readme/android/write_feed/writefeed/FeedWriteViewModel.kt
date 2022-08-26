@@ -1,4 +1,4 @@
-package com.readme.android.write_feed
+package com.readme.android.write_feed.writefeed
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

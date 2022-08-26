@@ -1,4 +1,4 @@
-package com.readme.android.write_feed
+package com.readme.android.write_feed.writefeed
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -7,6 +7,7 @@ import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.core_ui.constant.FeedWriteFragmentList.*
 import com.readme.android.core_ui.util.KeyboardVisibilityUtils
 import com.readme.android.core_ui.util.ResolutionMetrics
+import com.readme.android.write_feed.R
 import com.readme.android.write_feed.databinding.ActivityFeedWriteBinding
 import com.readme.android.write_feed.fragments.ChooseCategoryFragment
 import com.readme.android.write_feed.fragments.ImpressiveSentenceFragment

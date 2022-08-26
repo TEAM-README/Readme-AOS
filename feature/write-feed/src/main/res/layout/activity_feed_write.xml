@@ -13,13 +13,13 @@
 
         <variable
             name="feedWriteViewModel"
-            type="com.readme.android.write_feed.FeedWriteViewModel" />
+            type="com.readme.android.write_feed.writefeed.FeedWriteViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".FeedWriteActivity">
+        tools:context=".writefeed.FeedWriteActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_tool_bar"

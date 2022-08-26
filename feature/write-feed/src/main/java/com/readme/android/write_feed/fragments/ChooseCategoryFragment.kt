@@ -13,7 +13,7 @@ import com.readme.android.core_ui.constant.Category
 import com.readme.android.core_ui.constant.FeedWriteFragmentList.IMPRESSIVE_SENTENCE
 import com.readme.android.core_ui.ext.getColor
 import com.readme.android.shared.R.color
-import com.readme.android.write_feed.FeedWriteViewModel
+import com.readme.android.write_feed.writefeed.FeedWriteViewModel
 import com.readme.android.write_feed.R
 import com.readme.android.write_feed.databinding.FragmentChooseCategoryBinding
 import dagger.hilt.android.AndroidEntryPoint
