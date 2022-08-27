@@ -1,4 +1,4 @@
-package com.readme.android.write_feed
+package com.readme.android.write_feed.writefeed
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -7,6 +7,7 @@ import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.core_ui.constant.FeedWriteFragmentList.*
 import com.readme.android.core_ui.util.KeyboardVisibilityUtils
 import com.readme.android.core_ui.util.ResolutionMetrics
+import com.readme.android.write_feed.R
 import com.readme.android.write_feed.databinding.ActivityFeedWriteBinding
 import com.readme.android.write_feed.fragments.ChooseCategoryFragment
 import com.readme.android.write_feed.fragments.ImpressiveSentenceFragment
@@ -27,7 +28,6 @@ class FeedWriteActivity : BindingActivity<ActivityFeedWriteBinding>(R.layout.act
         binding.feedWriteViewModel = feedWriteViewModel
         feedWriteViewModel.getUserNickName()
         setFragmentContainerMargin()
-        initKeyBoardState()
         updateKeyBoardState()
         initStartFragment()
         initButtonBackClickListener()
@@ -42,18 +42,14 @@ class FeedWriteActivity : BindingActivity<ActivityFeedWriteBinding>(R.layout.act
         binding.fragmentContainerMargin = resolutionMetrics.toPixel(112)
     }
 
-    private fun initKeyBoardState() {
-        binding.keyboardState = true
-    }
-
     private fun updateKeyBoardState() {
         KeyboardVisibilityUtils(
             this.window,
             onShowKeyboard = {
-                binding.keyboardState = false
+                feedWriteViewModel.setKeyBoardState(false)
             },
             onHideKeyboard = {
-                binding.keyboardState = true
+                feedWriteViewModel.setKeyBoardState(true)
             }
         )
     }

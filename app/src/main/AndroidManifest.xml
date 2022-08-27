@@ -15,11 +15,11 @@
         android:name=".READMEApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_readme_launcher"
-        android:usesCleartextTraffic="true"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_readme_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Readme">
+        android:theme="@style/Theme.Readme"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".auth.ui.LoginActivity"
             android:exported="true"
@@ -54,8 +54,11 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".write_feed.FeedWriteActivity"
+            android:name=".write_feed.writefeed.FeedWriteActivity"
             android:exported="false" />
+        <activity android:name=".write_feed.postfeed.PostFeedActivity"
+            android:exported="false"/>
+
     </application>
 
 </manifest>

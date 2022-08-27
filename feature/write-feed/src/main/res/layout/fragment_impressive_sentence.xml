@@ -4,9 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.view.View" />
+
         <variable
             name="feedWriteViewModel"
-            type="com.readme.android.write_feed.FeedWriteViewModel" />
+            type="com.readme.android.write_feed.writefeed.FeedWriteViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,9 +57,9 @@
             android:layout_marginTop="22dp"
             android:background="@drawable/shape_rect_write_feed_gray_1_border_16"
             android:gravity="start"
-            android:text="@={feedWriteViewModel.impressiveSentence}"
             android:hint="@string/impressive_sentence_hint"
             android:padding="22dp"
+            android:text="@={feedWriteViewModel.impressiveSentence}"
             android:textAppearance="@style/regular_02"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
@@ -93,16 +96,16 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="26dp"
             android:layout_marginBottom="24dp"
-            android:clickable="@{feedWriteViewModel.impressiveSentence.length() == 0 ? false : true }"
             android:background="@{feedWriteViewModel.impressiveSentence.length() == 0 ? @drawable/shape_rect_gray_1_fill_10 : @drawable/shape_rect_main_blue_fill_10}"
+            android:clickable="@{feedWriteViewModel.impressiveSentence.length() == 0 ? false : true }"
             android:paddingVertical="15dp"
             android:text="@string/next_btn_text"
             android:textAppearance="@style/medium_02"
             android:textColor="@color/white"
+            android:visibility="@{feedWriteViewModel.keyBoardState ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -5,14 +5,17 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="feedWriteViewModel"
+            type="com.readme.android.write_feed.writefeed.FeedWriteViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".fragments.FeelingFragment">
-
-        tools:context=".fragments.FeelingFragment" >
 
         <View
             android:id="@+id/view_blue_bar"
@@ -23,6 +26,76 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/tv_feeling_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="37dp"
+            android:text="@string/feeling_title"
+            android:textAppearance="@style/semi_bold_03"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_feeling"
+            android:layout_width="0dp"
+            android:layout_height="198dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/shape_rect_write_feed_gray_1_border_16"
+            android:gravity="start"
+            android:hint="@string/feeling_hint"
+            android:padding="22dp"
+            android:text="@={feedWriteViewModel.feeling}"
+            android:textAppearance="@style/regular_02"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_feeling_title" />
+
+        <TextView
+            android:id="@+id/tv_book_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="28dp"
+            android:ellipsize="end"
+            android:maxEms="11"
+            android:maxLines="1"
+            android:text="@{feedWriteViewModel.title}"
+            android:textAppearance="@style/semi_bold_04"
+            android:textColor="@color/main_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_feeling" />
+
+        <TextView
+            android:id="@+id/tv_impressive_title_at_feeling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="@string/impressive_sentence_at_feeling"
+            android:textAppearance="@style/semi_bold_04"
+            android:textColor="@color/gray_4"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_book_title"
+            app:layout_constraintStart_toEndOf="@+id/tv_book_title"
+            app:layout_constraintTop_toTopOf="@+id/tv_book_title" />
+
+        <TextView
+            android:id="@+id/tv_feeling_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="26dp"
+            android:layout_marginVertical="14dp"
+            android:scrollbars="vertical"
+            android:text="@{feedWriteViewModel.impressiveSentence}"
+            android:textAppearance="@style/regular_04"
+            android:textColor="@color/gray_4"
+            app:layout_constraintBottom_toTopOf="@+id/btn_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_book_title" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
@@ -30,11 +103,13 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="26dp"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/shape_rect_main_blue_fill_10"
+            android:background="@{feedWriteViewModel.feeling.length() == 0 ? @drawable/shape_rect_gray_1_fill_10 : @drawable/shape_rect_main_blue_fill_10}"
+            android:clickable="@{feedWriteViewModel.feeling.length() == 0 ? false : true }"
             android:paddingVertical="15dp"
             android:text="@string/next_btn_text"
             android:textAppearance="@style/medium_02"
             android:textColor="@color/white"
+            android:visibility="@{feedWriteViewModel.keyBoardState ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

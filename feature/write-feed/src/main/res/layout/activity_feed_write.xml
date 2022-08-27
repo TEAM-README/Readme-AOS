@@ -8,22 +8,18 @@
         <import type="android.view.View" />
 
         <variable
-            name="keyboardState"
-            type="Boolean" />
-
-        <variable
             name="fragmentContainerMargin"
             type="Integer" />
 
         <variable
             name="feedWriteViewModel"
-            type="com.readme.android.write_feed.FeedWriteViewModel" />
+            type="com.readme.android.write_feed.writefeed.FeedWriteViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".FeedWriteActivity">
+        tools:context=".writefeed.FeedWriteActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_tool_bar"
@@ -49,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="112dp"
             android:background="@color/gray_0"
-            android:visibility="@{keyboardState ? View.VISIBLE : View.GONE}"
+            android:visibility="@{feedWriteViewModel.keyBoardState ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_tool_bar">
@@ -97,7 +93,7 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/container_feed_write"
             contentMargin="@{fragmentContainerMargin}"
-            keyBoardState="@{keyboardState}"
+            keyBoardState="@{feedWriteViewModel.keyBoardState}"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"

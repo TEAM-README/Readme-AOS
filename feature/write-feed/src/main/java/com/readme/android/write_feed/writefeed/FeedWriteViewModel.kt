@@ -1,4 +1,4 @@
-package com.readme.android.write_feed
+package com.readme.android.write_feed.writefeed
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -46,6 +46,11 @@ class FeedWriteViewModel @Inject constructor(
 
     val impressiveSentence = MutableLiveData("")
 
+    val feeling = MutableLiveData("")
+
+    private val _keyBoardState = MutableLiveData<Boolean>(true)
+    val keyBoardState: LiveData<Boolean> = _keyBoardState
+
     fun getUserNickName() {
         _nickName.postValue(feedWriteRepository.getUserNickName())
     }
@@ -76,7 +81,11 @@ class FeedWriteViewModel @Inject constructor(
         _representCategoryString.value = message
     }
 
-    fun setCategoryList(categoryList: MutableList<String>){
+    fun setCategoryList(categoryList: MutableList<String>) {
         _categoryList.value = categoryList
+    }
+
+    fun setKeyBoardState(state: Boolean) {
+        _keyBoardState.value = state
     }
 }
