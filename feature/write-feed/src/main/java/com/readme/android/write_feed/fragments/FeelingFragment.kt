@@ -28,15 +28,15 @@ class FeelingFragment : BindingFragment<FragmentFeelingBinding>(R.layout.fragmen
     private fun initNextButtonClickListener() {
         binding.btnNext.setOnClickListener {
             val intent = Intent(requireActivity(), PostFeedActivity::class.java).apply {
-                putExtra("wholeCategoryString", feedWriteViewModel.wholeCategoryString.value)
+                putExtra(WHOLE_CATEGORY_STRING, feedWriteViewModel.wholeCategoryString.value)
                 putExtra(
-                    "representCategoryString",
+                    REPRESENT_CATEGORY_STRING,
                     feedWriteViewModel.representCategoryString.value
                 )
-                putExtra("impressiveSentence", feedWriteViewModel.impressiveSentence.value)
-                putExtra("feeling", feedWriteViewModel.feeling.value)
+                putExtra(IMPRESSIVE_SENTENCE, feedWriteViewModel.impressiveSentence.value)
+                putExtra(FEELING, feedWriteViewModel.feeling.value)
                 putExtra(
-                    "bookInfo",
+                    BOOK_INFO,
                     BookInfo(
                         feedWriteViewModel.title.value ?: "",
                         feedWriteViewModel.author.value ?: "",
@@ -53,5 +53,13 @@ class FeelingFragment : BindingFragment<FragmentFeelingBinding>(R.layout.fragmen
 
     private fun initScrollTextView() {
         binding.tvFeelingContent.movementMethod = ScrollingMovementMethod()
+    }
+
+    companion object {
+        const val WHOLE_CATEGORY_STRING = "wholeCategoryString"
+        const val REPRESENT_CATEGORY_STRING = "representCategoryString"
+        const val IMPRESSIVE_SENTENCE = "impressiveSentence"
+        const val FEELING = "feeling"
+        const val BOOK_INFO = "bookInfo"
     }
 }
