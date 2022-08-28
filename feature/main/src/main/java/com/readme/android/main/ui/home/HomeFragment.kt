@@ -30,6 +30,7 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
 
+        terminationTokenHandling(viewModel)
         initAdapter()
         observeFeedList()
         observeSelectedCategory()
