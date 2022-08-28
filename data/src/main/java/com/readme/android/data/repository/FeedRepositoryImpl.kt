@@ -3,6 +3,7 @@ package com.readme.android.data.repository
 import com.readme.android.core_data.exception.RetrofitFailureStateException
 import com.readme.android.data.remote.calladapter.NetworkState
 import com.readme.android.data.remote.datasource.RemoteFeedDataSource
+import com.readme.android.data.remote.mapper.HomeFeedMapper
 import com.readme.android.domain.entity.response.DomainDetailFeedResponse
 import com.readme.android.domain.entity.response.DomainHomeFeedResponse
 import com.readme.android.domain.entity.response.DomainNoDataResponse
@@ -13,6 +14,7 @@ import javax.inject.Inject
 
 class FeedRepositoryImpl @Inject constructor(
     private val remoteFeedDataSource: RemoteFeedDataSource,
+    private val homeFeedMapper: HomeFeedMapper
 ) : FeedRepository {
     override suspend fun getHomeFeed(filters: String): Result<DomainHomeFeedResponse> {
         when (val response = remoteFeedDataSource.getHomeFeedList(filters)) {
@@ -20,12 +22,12 @@ class FeedRepositoryImpl @Inject constructor(
                 DomainHomeFeedResponse(
                     filters = response.body.data.filters,
                     feedListInfo = response.body.data.feeds.map {
-                        it.toFeedInfo()
+                        homeFeedMapper.toHomeFeedInfo(it)
                     }
                 )
             )
             is NetworkState.Failure ->
-                if (response.code == 401) throw CertificateException("토큰 만료 오류")
+                if (response.code == 401) throw CertificateException(TOKEN_EXPIRED)
                 else return Result.failure(
                     RetrofitFailureStateException(response.error, response.code)
                 )
@@ -42,13 +44,13 @@ class FeedRepositoryImpl @Inject constructor(
         when (val response = remoteFeedDataSource.getDetailFeed(feedId)) {
             is NetworkState.Success -> return Result.success(
                 DomainDetailFeedResponse(
-                    response.body.data.feed.toFeedInfo(),
-                    response.body.data.feed.book?.toBookInfo()
+                    feed = homeFeedMapper.toHomeFeedInfo(response.body.data.feed),
+                    bookInfo = response.body.data.feed.book?.toBookInfo()
                         ?: throw IllegalStateException("book data cannot be null")
                 )
             )
             is NetworkState.Failure ->
-                if (response.code == 401) throw CertificateException("토큰 만료 오류")
+                if (response.code == 401) throw CertificateException(TOKEN_EXPIRED)
                 else return Result.failure(
                     RetrofitFailureStateException(response.error, response.code)
                 )
@@ -64,7 +66,7 @@ class FeedRepositoryImpl @Inject constructor(
         when (val response = remoteFeedDataSource.deleteFeed(feedId)) {
             is NetworkState.Success -> Result.success(response)
             is NetworkState.Failure ->
-                if (response.code == 401) throw CertificateException("토큰 만료 오류")
+                if (response.code == 401) throw CertificateException(TOKEN_EXPIRED)
                 else return Result.failure(
                     RetrofitFailureStateException(response.error, response.code)
                 )
@@ -75,6 +77,7 @@ class FeedRepositoryImpl @Inject constructor(
     }
 
     companion object {
+        const val TOKEN_EXPIRED = "토큰 만료 오류"
         const val UNKNOWN_ERROR = "NetworkError or UnKnownError please check timber"
     }
 }
