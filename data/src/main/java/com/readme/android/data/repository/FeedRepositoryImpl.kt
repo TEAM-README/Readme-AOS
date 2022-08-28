@@ -6,7 +6,6 @@ import com.readme.android.data.remote.datasource.RemoteFeedDataSource
 import com.readme.android.data.remote.mapper.HomeFeedMapper
 import com.readme.android.domain.entity.response.DomainDetailFeedResponse
 import com.readme.android.domain.entity.response.DomainHomeFeedResponse
-import com.readme.android.domain.entity.response.DomainNoDataResponse
 import com.readme.android.domain.repository.FeedRepository
 import timber.log.Timber.tag
 import java.security.cert.CertificateException
@@ -62,9 +61,9 @@ class FeedRepositoryImpl @Inject constructor(
         return Result.failure(IllegalStateException(UNKNOWN_ERROR))
     }
 
-    override suspend fun deleteFeed(feedId: Int): Result<DomainNoDataResponse> {
+    override suspend fun deleteFeed(feedId: Int): Result<String> {
         when (val response = remoteFeedDataSource.deleteFeed(feedId)) {
-            is NetworkState.Success -> Result.success(response)
+            is NetworkState.Success -> return Result.success(response.body.message)
             is NetworkState.Failure ->
                 if (response.code == 401) throw CertificateException(TOKEN_EXPIRED)
                 else return Result.failure(
