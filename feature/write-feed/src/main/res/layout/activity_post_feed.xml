@@ -61,7 +61,7 @@
             app:layout_constraintStart_toEndOf="@+id/tv_title_first"
             app:layout_constraintTop_toTopOf="@+id/tv_title_first"
             app:layout_constraintVertical_bias="0.0"
-            tools:text="독서왕 지현"/>
+            tools:text="독서왕 지현" />
 
         <TextView
             android:id="@+id/tv_title_second"
@@ -100,17 +100,19 @@
             <TextView
                 android:id="@+id/tv_impressive_sentence"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:maxHeight="88dp"
-                android:textAppearance="@style/regular_03"
-                android:textColor="@color/black"
+                android:layout_height="0dp"
                 android:layout_marginHorizontal="26dp"
                 android:layout_marginTop="34dp"
                 android:scrollbars="vertical"
                 android:text="@{postFeedViewModel.impressiveSentence}"
+                android:textAppearance="@style/regular_03"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/view_line"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintVertical_weight="88" />
 
             <View
                 android:id="@+id/view_line"
@@ -118,51 +120,56 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="22dp"
                 android:background="@color/main_blue_0.4"
+                app:layout_constraintBottom_toTopOf="@+id/tv_feeling"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_impressive_sentence"
-                app:layout_constraintTop_toBottomOf="@id/tv_impressive_sentence" />
+                app:layout_constraintTop_toBottomOf="@id/tv_impressive_sentence"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
                 android:id="@+id/tv_feeling"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:maxHeight="130dp"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="26dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="26dp"
                 android:scrollbars="vertical"
+                android:text="@{postFeedViewModel.feeling}"
                 android:textAppearance="@style/extra_light_01"
                 android:textColor="@color/black"
-                android:layout_marginTop="22dp"
-                android:layout_marginHorizontal="26dp"
-                android:text="@{postFeedViewModel.feeling}"
+                app:layout_constraintBottom_toTopOf="@+id/tv_date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view_line" />
+                app:layout_constraintTop_toBottomOf="@+id/view_line"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintVertical_weight="130" />
 
 
             <TextView
                 android:id="@+id/tv_nick_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
                 android:layout_marginStart="26dp"
+                android:layout_marginBottom="32dp"
+                android:text="@{postFeedViewModel.nickName}"
                 android:textAppearance="@style/regular_05"
                 android:textColor="@color/gray_3"
-                android:text="@{postFeedViewModel.nickName}"
                 app:layout_constraintBottom_toTopOf="@+id/layout_book_information"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:text="독서왕 지현"/>
+                tools:text="독서왕 지현" />
 
             <TextView
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
+                android:text="@{postFeedViewModel.writeFeedDate}"
                 android:textAppearance="@style/regular_05"
                 android:textColor="@color/gray_2"
-                android:text="@{postFeedViewModel.writeFeedDate}"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_nick_name"
                 app:layout_constraintStart_toEndOf="@+id/tv_nick_name"
                 app:layout_constraintTop_toTopOf="@+id/tv_nick_name"
-                tools:text="2021/10/31"/>
+                tools:text="2021/10/31" />
 
             <include
                 android:id="@+id/layout_book_information"
@@ -183,8 +190,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="26dp"
                 android:layout_marginBottom="24dp"
-                android:paddingVertical="15dp"
                 android:background="@drawable/shape_rect_main_blue_fill_10"
+                android:paddingVertical="15dp"
                 android:text="@string/post_feed_btn_next_text"
                 android:textAppearance="@style/medium_02"
                 android:textColor="@color/white"
