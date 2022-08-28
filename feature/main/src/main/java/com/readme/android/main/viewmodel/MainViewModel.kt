@@ -57,27 +57,32 @@ class MainViewModel @Inject constructor(
     }
 
     fun getHomeFeed() {
-        Log.d(TAG, "getHomeFeed: ${categoryListToString()}")
         viewModelScope.launch(exceptionHandler) {
             feedRepository.getHomeFeed(categoryListToString())
                 .onSuccess {
                     _homeFeedInfoList.value = it.feedListInfo
-                    Log.d(TAG, "getHomeFeed success: $it")
                 }.onFailure {
                     Log.d(TAG, "getHomeFeed failure: $it")
                 }
         }
     }
 
+    fun deleteFeed(feedId: Int) {
+        viewModelScope.launch(exceptionHandler) {
+            feedRepository.deleteFeed(feedId)
+                .onSuccess {
+                    Log.d(TAG, "deleteFeed: $it")
+                    // todo detailActivity, HomeFragment, MyPage각각 이벤트 처리 해야함
+                }.onFailure {
+                    Log.d(TAG, "deleteFeed: $it")
+                }
+
+        }
+    }
+
     private fun categoryListToString(): String =
         selectedCategoryChip.value?.joinToString(SEPARATOR) ?: ""
 
-    // 피드가 내 피드인지 남피드인지 설정해주는 메소드
-    private fun setIsMyFeed(isMyFeed: Boolean) {
-        viewModelScope.launch {
-            _isMyFeed.emit(isMyFeed)
-        }
-    }
 
     companion object {
         const val SEPARATOR = ","
