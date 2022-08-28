@@ -47,7 +47,6 @@ class FeelingFragment : BindingFragment<FragmentFeelingBinding>(R.layout.fragmen
                 )
             }
             startActivity(intent)
-            requireActivity().finish()
         }
     }
 
