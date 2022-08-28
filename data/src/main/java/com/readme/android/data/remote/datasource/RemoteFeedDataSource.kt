@@ -4,6 +4,7 @@ import com.readme.android.data.remote.calladapter.NetworkState
 import com.readme.android.data.remote.model.response.BaseResponse
 import com.readme.android.data.remote.model.response.DetailFeedResponse
 import com.readme.android.data.remote.model.response.HomeFeedResponse
+import com.readme.android.data.remote.model.response.NoDataResponse
 
 interface RemoteFeedDataSource {
 
@@ -14,4 +15,8 @@ interface RemoteFeedDataSource {
     suspend fun getDetailFeed(
         feedId: Int
     ): NetworkState<BaseResponse<DetailFeedResponse>>
+
+    suspend fun deleteFeed(
+        feedId: Int
+    ): NetworkState<NoDataResponse>
 }
