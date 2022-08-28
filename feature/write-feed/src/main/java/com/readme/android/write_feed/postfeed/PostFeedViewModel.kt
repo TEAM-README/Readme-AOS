@@ -39,13 +39,13 @@ class PostFeedViewModel @Inject constructor(
     val writeFeedDate: LiveData<String> = _writeFeedDate
 
     fun getUserNickName() {
-        _nickName.postValue(feedWriteRepository.getUserNickName())
+        _nickName.value = feedWriteRepository.getUserNickName()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun getWriteFeedDate() {
+    fun initWriteFeedDate() {
         val dateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
-        _writeFeedDate.value = LocalDate.parse(LocalDate.now().toString(), dateFormatter).toString()
+        _writeFeedDate.value = LocalDate.now().format(dateFormatter)
     }
 
     fun initPostFeedData(

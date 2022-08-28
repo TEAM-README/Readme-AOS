@@ -2,10 +2,14 @@ package com.readme.android.write_feed.postfeed
 
 import android.os.Build
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import coil.load
 import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.domain.entity.BookInfo
+import com.readme.android.shared.R.*
+import com.readme.android.shared.R.drawable.img_book_none
 import com.readme.android.write_feed.R
 import com.readme.android.write_feed.databinding.ActivityPostFeedBinding
 import com.readme.android.write_feed.fragments.FeelingFragment.Companion.BOOK_INFO
@@ -23,9 +27,12 @@ class PostFeedActivity : BindingActivity<ActivityPostFeedBinding>(R.layout.activ
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding.postFeedViewModel = postFeedViewModel
         initExtraData()
-        getWriteFeedDate()
+        initWriteFeedDate()
         getUserNickName()
+        initScrollTextView()
+        initBookInfoView()
     }
 
     private fun initExtraData() {
@@ -43,7 +50,21 @@ class PostFeedActivity : BindingActivity<ActivityPostFeedBinding>(R.layout.activ
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun getWriteFeedDate() {
-        postFeedViewModel.getWriteFeedDate()
+    private fun initWriteFeedDate() {
+        postFeedViewModel.initWriteFeedDate()
+    }
+
+    private fun initScrollTextView() {
+        binding.tvImpressiveSentence.movementMethod = ScrollingMovementMethod()
+        binding.tvFeeling.movementMethod = ScrollingMovementMethod()
+    }
+
+    private fun initBookInfoView() {
+        binding.layoutBookInformation.book = postFeedViewModel.bookInfo.value
+        binding.layoutBookInformation.ivBook.load(postFeedViewModel.bookInfo.value?.image){
+            placeholder(img_book_none)
+            error(img_book_none)
+        }
+        binding.layoutBookInformation.tvCategory.text = postFeedViewModel.representCategoryString.value
     }
 }
