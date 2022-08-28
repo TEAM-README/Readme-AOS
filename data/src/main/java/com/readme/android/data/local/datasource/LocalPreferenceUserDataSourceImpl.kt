@@ -11,11 +11,16 @@ class LocalPreferenceUserDataSourceImpl @Inject constructor(
         localPreferences.getString(READ_ME_ACCESS_TOKEN, "") ?: ""
 
     override fun saveAccessToken(accessToken: String) {
-        localPreferences.edit{ putString(READ_ME_ACCESS_TOKEN, accessToken) }
+        localPreferences.edit { putString(READ_ME_ACCESS_TOKEN, accessToken) }
     }
 
     override fun getUserNickname(): String =
         localPreferences.getString(USER_NICKNAME, "") ?: ""
+
+    override fun getUserId(): Int {
+        // TODO localPreference 에서 userId 가져오는 로직 작성해주세요 :-)
+        return 14
+    }
 
     override fun saveUserNickname(userNickname: String) {
         localPreferences.edit { putString(USER_NICKNAME, userNickname) }
