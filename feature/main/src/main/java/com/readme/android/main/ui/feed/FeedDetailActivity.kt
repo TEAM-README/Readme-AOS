@@ -64,7 +64,7 @@ class FeedDetailActivity :
             val isMyFeed = viewModel.getIsMyFeed()
             val feedWriterNickname = viewModel.getWriterNickname()
             val feedId = viewModel.getFeedId()
-            MoreBottomSheetDialog(isMyFeed, feedWriterNickname, feedId).show(
+            MoreBottomSheetDialog(isMyFeed, feedId, feedWriterNickname).show(
                 supportFragmentManager,
                 this.javaClass.name
             )

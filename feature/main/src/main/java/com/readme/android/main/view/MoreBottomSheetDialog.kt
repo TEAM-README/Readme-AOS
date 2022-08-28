@@ -7,19 +7,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.readme.android.core_ui.ext.shortToast
 import com.readme.android.main.R
 import com.readme.android.main.databinding.LayoutMoreBottomSheetBinding
+import com.readme.android.main.viewmodel.MainViewModel
 import com.readme.android.shared.R.string
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MoreBottomSheetDialog(
     private val isMyFeed: Boolean,
-    private val feedWriterNickname: String? = null,
-    private val feedId: Int? = null
+    private val feedId: Int,
+    private val feedWriterNickname: String? = null
 ) : BottomSheetDialogFragment() {
+
+    private val viewModel: MainViewModel by activityViewModels()
 
     private var _binding: LayoutMoreBottomSheetBinding? = null
     protected val binding: LayoutMoreBottomSheetBinding
@@ -45,11 +49,15 @@ class MoreBottomSheetDialog(
     private fun onTvActionClickListener() {
         binding.tvAction.setOnClickListener {
             when (isMyFeed) {
-                true -> {}// TODO 삭제하기 로직 넣기
+                true -> deleteFeed(feedId)
                 false -> sendMail()
             }
             dismiss()
         }
+    }
+
+    private fun deleteFeed(feedId: Int) {
+        viewModel.deleteFeed(feedId)
     }
 
     private fun sendMail() {
