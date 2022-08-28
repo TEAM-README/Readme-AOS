@@ -32,6 +32,7 @@ class FeedWriteActivity : BindingActivity<ActivityFeedWriteBinding>(R.layout.act
         initStartFragment()
         initButtonBackClickListener()
         initExtraData()
+        feedWriteActivity = this
     }
 
     override fun onBackPressed() {
@@ -91,5 +92,9 @@ class FeedWriteActivity : BindingActivity<ActivityFeedWriteBinding>(R.layout.act
                     .replace<ImpressiveSentenceFragment>(R.id.container_feed_write).commit()
             }
         }
+    }
+
+    companion object {
+        lateinit var feedWriteActivity: FeedWriteActivity
     }
 }

@@ -1,13 +1,20 @@
 package com.readme.android.write_feed.postfeed
 
+import android.content.ContentValues
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.readme.android.core_ui.base.BaseViewModel
+import com.readme.android.core_ui.util.Event
 import com.readme.android.domain.entity.BookInfo
+import com.readme.android.domain.entity.request.DomainPostFeedRequest
 import com.readme.android.domain.repository.FeedWriteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
@@ -38,6 +45,9 @@ class PostFeedViewModel @Inject constructor(
     private val _writeFeedDate = MutableLiveData<String>()
     val writeFeedDate: LiveData<String> = _writeFeedDate
 
+    private val _postFeedState = MutableLiveData<Event<Boolean>>()
+    val postFeedState: LiveData<Event<Boolean>> = _postFeedState
+
     fun getUserNickName() {
         _nickName.value = feedWriteRepository.getUserNickName()
     }
@@ -60,5 +70,24 @@ class PostFeedViewModel @Inject constructor(
         _impressiveSentence.value = impressiveSentence
         _feeling.value = feeling
         _bookInfo.value = bookInfo
+    }
+
+    fun postFeed() {
+        viewModelScope.launch {
+            feedWriteRepository.postFeed(
+                DomainPostFeedRequest(
+                    categoryName = wholeCategoryString.value ?: "",
+                    impressiveSentence = impressiveSentence.value ?: "",
+                    feeling = feeling.value ?: "",
+                    bookInfo = bookInfo.value ?: throw IllegalStateException()
+                )
+            ).onSuccess {
+                if (it){
+                    _postFeedState.postValue(Event(true))
+                }
+            }.onFailure {
+                Timber.d(it)
+            }
+        }
     }
 }
