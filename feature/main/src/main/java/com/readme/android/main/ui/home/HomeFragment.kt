@@ -6,6 +6,8 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.ConcatAdapter
 import com.readme.android.core_ui.base.BindingFragment
+import com.readme.android.core_ui.ext.shortToast
+import com.readme.android.core_ui.util.EventObserver
 import com.readme.android.core_ui.util.ItemDecorationUtil
 import com.readme.android.core_ui.util.ResolutionMetrics
 import com.readme.android.main.R
@@ -15,6 +17,8 @@ import com.readme.android.main.ui.feed.FeedDetailActivity
 import com.readme.android.main.ui.feed.FeedDetailActivity.Companion.FEED_ID
 import com.readme.android.main.view.MoreBottomSheetDialog
 import com.readme.android.main.viewmodel.MainViewModel
+import com.readme.android.main.viewmodel.MainViewModel.Companion.FAIL
+import com.readme.android.main.viewmodel.MainViewModel.Companion.SUCCESS
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,6 +38,7 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
         initAdapter()
         observeFeedList()
         observeSelectedCategory()
+        observeServerStatus()
     }
 
     override fun onResume() {
@@ -77,6 +82,15 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
         viewModel.homeFeedInfoList.observe(viewLifecycleOwner) {
             feedAdapter.submitList(it)
         }
+    }
+
+    private fun observeServerStatus() {
+        viewModel.isNetworkCorrespondenceEnd.observe(viewLifecycleOwner, EventObserver { message ->
+            if (message == SUCCESS) {
+                viewModel.getHomeFeed()
+                requireContext().shortToast("피드 삭제 성공")
+            } else if (message == FAIL) requireContext().shortToast("피드 삭제 실패")
+        })
     }
 
     private fun observeSelectedCategory() {

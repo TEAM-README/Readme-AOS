@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.readme.android.core_ui.base.BaseViewModel
+import com.readme.android.core_ui.util.Event
 import com.readme.android.core_ui.util.MutableEventFlow
 import com.readme.android.core_ui.util.asEventFlow
 import com.readme.android.domain.entity.FeedInfo
@@ -71,20 +72,28 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch(exceptionHandler) {
             feedRepository.deleteFeed(feedId)
                 .onSuccess {
-                    Log.d(TAG, "deleteFeed: $it")
-                    // todo detailActivity, HomeFragment, MyPage각각 이벤트 처리 해야함
+                    serverResponseStatus(SUCCESS)
                 }.onFailure {
-                    Log.d(TAG, "deleteFeed: $it")
+                    serverResponseStatus(FAIL)
                 }
-
         }
     }
 
     private fun categoryListToString(): String =
         selectedCategoryChip.value?.joinToString(SEPARATOR) ?: ""
 
+    /** server event */
+    private val _isNetworkCorrespondenceEnd = MutableLiveData<Event<String>>()
+    val isNetworkCorrespondenceEnd: MutableLiveData<Event<String>>
+        get() = _isNetworkCorrespondenceEnd
+
+    private fun serverResponseStatus(string: String) {
+        _isNetworkCorrespondenceEnd.value = Event(string)
+    }
 
     companion object {
         const val SEPARATOR = ","
+        const val SUCCESS = "SUCCESS"
+        const val FAIL = "FAIL"
     }
 }
