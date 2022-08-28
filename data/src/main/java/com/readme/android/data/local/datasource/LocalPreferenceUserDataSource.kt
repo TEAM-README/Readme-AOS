@@ -11,6 +11,8 @@ interface LocalPreferenceUserDataSource {
 
     fun getUserId(): Int
 
+    fun saveUserId(userId: Int)
+
     fun removeAccessToken()
 
     fun removeUserNickname()
