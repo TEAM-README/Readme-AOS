@@ -45,8 +45,8 @@ class LoginRepositoryImpl @Inject constructor(
                     accessToken = response.body.data.accessToken,
                     isNewUser = response.body.data.isNewUser,
                     userInfo = UserInfo(
-                        requireNotNull(response.body.data.user).id,
-                        requireNotNull(response.body.data.user).nickname
+                        response.body.data.user?.id,
+                        response.body.data.user?.nickname
                     )
                 )
             )
