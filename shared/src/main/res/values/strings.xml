@@ -78,4 +78,11 @@
     <string name="post_feed_title_second">&#160;님의 하루가</string>
     <string name="post_feed_title_third">더 풍요로워졌길 바라요!</string>
     <string name="post_feed_btn_next_text">등록하기</string>
+    <string name="register_done_title">등록을 완료했어요</string>
+    <string name="register_done_content_first">피드&#160;</string>
+    <string name="register_done_content_second">와&#160;</string>
+    <string name="register_done_content_third">마이페이지&#160;</string>
+    <string name="register_done_content_fourth">에서</string>
+    <string name="register_done_content_fifth">작성한 감상글을 확인할 수 있어요</string>
+    <string name="register_done_button">피드 구경하러 가기</string>
 </resources>
