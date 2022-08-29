@@ -1,6 +1,7 @@
 package com.readme.android.auth.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.Toast
