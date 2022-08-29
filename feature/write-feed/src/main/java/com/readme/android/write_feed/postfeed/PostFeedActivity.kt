@@ -38,6 +38,7 @@ class PostFeedActivity : BindingActivity<ActivityPostFeedBinding>(R.layout.activ
         initBookInfoView()
         initNextButtonClickListener()
         initPostFeedStateObserver()
+        initBackButtonClickListener()
     }
 
     private fun initExtraData() {
@@ -90,5 +91,11 @@ class PostFeedActivity : BindingActivity<ActivityPostFeedBinding>(R.layout.activ
                 finish()
             }
         )
+    }
+
+    private fun initBackButtonClickListener() {
+        binding.btnBack.setOnSingleClickListener {
+            finish()
+        }
     }
 }
