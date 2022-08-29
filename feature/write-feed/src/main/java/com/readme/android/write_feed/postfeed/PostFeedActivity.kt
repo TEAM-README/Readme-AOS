@@ -30,6 +30,7 @@ class PostFeedActivity : BindingActivity<ActivityPostFeedBinding>(R.layout.activ
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        terminationTokenHandling(postFeedViewModel)
         binding.postFeedViewModel = postFeedViewModel
         initExtraData()
         initWriteFeedDate()

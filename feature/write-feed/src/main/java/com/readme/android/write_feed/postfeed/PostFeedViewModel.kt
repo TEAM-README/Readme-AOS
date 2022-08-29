@@ -1,8 +1,6 @@
 package com.readme.android.write_feed.postfeed
 
-import android.content.ContentValues
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -73,7 +71,7 @@ class PostFeedViewModel @Inject constructor(
     }
 
     fun postFeed() {
-        viewModelScope.launch {
+        viewModelScope.launch(exceptionHandler) {
             feedWriteRepository.postFeed(
                 DomainPostFeedRequest(
                     categoryName = wholeCategoryString.value ?: "",
@@ -82,7 +80,7 @@ class PostFeedViewModel @Inject constructor(
                     bookInfo = bookInfo.value ?: throw IllegalStateException()
                 )
             ).onSuccess {
-                if (it){
+                if (it) {
                     _postFeedState.postValue(Event(true))
                 }
             }.onFailure {
