@@ -6,6 +6,7 @@ import android.text.method.ScrollingMovementMethod
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.readme.android.core_ui.base.BindingFragment
+import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.domain.entity.BookInfo
 import com.readme.android.write_feed.R
 import com.readme.android.write_feed.databinding.FragmentFeelingBinding
@@ -26,7 +27,7 @@ class FeelingFragment : BindingFragment<FragmentFeelingBinding>(R.layout.fragmen
     }
 
     private fun initNextButtonClickListener() {
-        binding.btnNext.setOnClickListener {
+        binding.btnNext.setOnSingleClickListener {
             val intent = Intent(requireActivity(), PostFeedActivity::class.java).apply {
                 putExtra(WHOLE_CATEGORY_STRING, feedWriteViewModel.wholeCategoryString.value)
                 putExtra(

@@ -12,6 +12,7 @@ import com.readme.android.core_ui.base.BindingFragment
 import com.readme.android.core_ui.constant.Category
 import com.readme.android.core_ui.constant.FeedWriteFragmentList.IMPRESSIVE_SENTENCE
 import com.readme.android.core_ui.ext.getColor
+import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.shared.R.color
 import com.readme.android.write_feed.writefeed.FeedWriteViewModel
 import com.readme.android.write_feed.R
@@ -34,7 +35,7 @@ class ChooseCategoryFragment :
     }
 
     private fun initNextButtonClickListener() {
-        binding.btnNext.setOnClickListener {
+        binding.btnNext.setOnSingleClickListener {
             feedWriteViewModel.setCategoryList(getSelectedChipList())
             feedWriteViewModel.setWholeCategoryString(categoryListToString())
             feedWriteViewModel.setRepresentCategoryString()

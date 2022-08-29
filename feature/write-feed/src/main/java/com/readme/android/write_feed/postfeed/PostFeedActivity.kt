@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import coil.load
 import com.readme.android.core_ui.base.BindingActivity
+import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.core_ui.util.EventObserver
 import com.readme.android.domain.entity.BookInfo
 import com.readme.android.shared.R.drawable.img_book_none
@@ -74,7 +75,7 @@ class PostFeedActivity : BindingActivity<ActivityPostFeedBinding>(R.layout.activ
     }
 
     private fun initNextButtonClickListener() {
-        binding.btnNext.setOnClickListener {
+        binding.btnNext.setOnSingleClickListener {
             postFeedViewModel.postFeed()
         }
     }

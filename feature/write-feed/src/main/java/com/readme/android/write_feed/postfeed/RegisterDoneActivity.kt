@@ -2,6 +2,7 @@ package com.readme.android.write_feed.postfeed
 
 import android.os.Bundle
 import com.readme.android.core_ui.base.BindingActivity
+import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.navigator.MainNavigator
 import com.readme.android.write_feed.R
 import com.readme.android.write_feed.databinding.ActivityRegisterDoneBinding
@@ -17,7 +18,7 @@ class RegisterDoneActivity :
     }
 
     private fun initNextButtonClickListener() {
-        binding.btnNext.setOnClickListener {
+        binding.btnNext.setOnSingleClickListener {
             finish()
         }
     }

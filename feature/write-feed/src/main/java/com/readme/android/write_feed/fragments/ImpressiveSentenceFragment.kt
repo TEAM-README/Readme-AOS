@@ -7,6 +7,7 @@ import androidx.fragment.app.replace
 import coil.load
 import com.readme.android.core_ui.base.BindingFragment
 import com.readme.android.core_ui.constant.FeedWriteFragmentList.FEELING
+import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.domain.entity.BookInfo
 import com.readme.android.shared.R.drawable.img_book_none
 import com.readme.android.write_feed.writefeed.FeedWriteViewModel
@@ -28,7 +29,7 @@ class ImpressiveSentenceFragment :
     }
 
     private fun initNextButtonClickListener() {
-        binding.btnNext.setOnClickListener {
+        binding.btnNext.setOnSingleClickListener {
             feedWriteViewModel.updateCurrentFragment(FEELING)
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace<FeelingFragment>(R.id.container_feed_write).commit()
