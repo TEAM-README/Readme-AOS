@@ -16,15 +16,15 @@ import com.readme.android.main.ui.adapter.FeedAdapter
 import com.readme.android.main.ui.feed.FeedDetailActivity
 import com.readme.android.main.ui.feed.FeedDetailActivity.Companion.FEED_ID
 import com.readme.android.main.view.MoreBottomSheetDialog
-import com.readme.android.main.viewmodel.MainViewModel
-import com.readme.android.main.viewmodel.MainViewModel.Companion.FAIL
-import com.readme.android.main.viewmodel.MainViewModel.Companion.SUCCESS
+import com.readme.android.main.viewmodel.FeedViewModel
+import com.readme.android.main.viewmodel.FeedViewModel.Companion.FAIL
+import com.readme.android.main.viewmodel.FeedViewModel.Companion.SUCCESS
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
     BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
-    private val viewModel: MainViewModel by activityViewModels()
+    private val viewModel: FeedViewModel by activityViewModels()
     private lateinit var homeHeaderAdapter: HomeHeaderAdapter
     private lateinit var feedAdapter: FeedAdapter
 

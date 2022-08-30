@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class FeedViewModel @Inject constructor(
     private val feedRepository: FeedRepository
 ) : BaseViewModel() {
     private val _isMyFeed = MutableEventFlow<Boolean>()

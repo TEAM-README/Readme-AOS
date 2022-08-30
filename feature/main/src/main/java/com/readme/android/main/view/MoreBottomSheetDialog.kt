@@ -12,7 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.readme.android.core_ui.ext.shortToast
 import com.readme.android.main.R
 import com.readme.android.main.databinding.LayoutMoreBottomSheetBinding
-import com.readme.android.main.viewmodel.MainViewModel
+import com.readme.android.main.viewmodel.FeedViewModel
 import com.readme.android.shared.R.string
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,7 +23,7 @@ class MoreBottomSheetDialog(
     private val feedWriterNickname: String? = null
 ) : BottomSheetDialogFragment() {
 
-    private val viewModel: MainViewModel by activityViewModels()
+    private val viewModel: FeedViewModel by activityViewModels()
 
     private var _binding: LayoutMoreBottomSheetBinding? = null
     protected val binding: LayoutMoreBottomSheetBinding

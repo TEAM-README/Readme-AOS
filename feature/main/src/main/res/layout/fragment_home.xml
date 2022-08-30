@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.readme.android.main.viewmodel.MainViewModel" />
+            type="com.readme.android.main.viewmodel.FeedViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
