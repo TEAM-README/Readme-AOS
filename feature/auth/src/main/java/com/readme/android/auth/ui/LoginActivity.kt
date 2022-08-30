@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.readme.android.auth.R
 import com.readme.android.auth.databinding.ActivityLoginBinding
+import com.readme.android.auth.social_login_manager.KakaoLoginManager
 import com.readme.android.auth.social_login_manager.NaverLoginManager
 import com.readme.android.auth.ui.AutoLoginConstant.AUTO_LOGIN_FAILURE
 import com.readme.android.auth.ui.AutoLoginConstant.AUTO_LOGIN_SUCCESS
@@ -25,6 +26,9 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
 
     @Inject
     lateinit var naverLoginManager: NaverLoginManager
+
+    @Inject
+    lateinit var kakaoLoginManager: KakaoLoginManager
     private val loginViewModel by viewModels<LoginViewModel>()
     lateinit var autoLoginState: AutoLoginConstant
 
@@ -43,8 +47,10 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     private fun initClickEvent() {
         with(binding) {
             layoutKakao.setOnSingleClickListener {
-                // TODO : 소셜로그인 카카오
                 loginViewModel.updatePlatform(KAKAO)
+                kakaoLoginManager.startKakaoLogin {
+                    loginViewModel.updateSocialToken(it)
+                }
             }
 
             layoutNaver.setOnSingleClickListener {
