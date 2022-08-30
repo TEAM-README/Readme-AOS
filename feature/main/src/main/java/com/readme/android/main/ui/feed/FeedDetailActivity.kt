@@ -7,14 +7,14 @@ import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.main.R
 import com.readme.android.main.databinding.ActivityFeedDetailBinding
 import com.readme.android.main.view.MoreBottomSheetDialog
-import com.readme.android.main.viewmodel.DetailFeedViewModel
+import com.readme.android.main.viewmodel.MainViewModel
 import com.readme.android.shared.R.drawable
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FeedDetailActivity :
     BindingActivity<ActivityFeedDetailBinding>(R.layout.activity_feed_detail) {
-    private val viewModel: DetailFeedViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
