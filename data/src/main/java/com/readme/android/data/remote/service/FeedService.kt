@@ -1,14 +1,19 @@
 package com.readme.android.data.remote.service
 
 import com.readme.android.data.remote.calladapter.NetworkState
+import com.readme.android.data.remote.model.request.PostFeedRequest
 import com.readme.android.data.remote.model.response.BaseResponse
 import com.readme.android.data.remote.model.response.DetailFeedResponse
 import com.readme.android.data.remote.model.response.HomeFeedResponse
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import com.readme.android.data.remote.model.response.PostFeedResponse
+import retrofit2.http.*
 
 interface FeedService {
+
+    @POST("feed")
+    suspend fun postFeed(
+        @Body body: PostFeedRequest
+    ): NetworkState<BaseResponse<PostFeedResponse>>
 
     @GET("feed")
     suspend fun getHomeFeedList(

@@ -3,10 +3,9 @@ package com.readme.android.data.repository
 import com.readme.android.core_data.exception.RetrofitFailureStateException
 import com.readme.android.data.local.datasource.LocalPreferenceUserDataSource
 import com.readme.android.data.remote.calladapter.NetworkState
-import com.readme.android.data.remote.datasource.RemotePostFeedDataSource
+import com.readme.android.data.remote.datasource.RemoteFeedDataSource
 import com.readme.android.data.remote.model.request.PostFeedRequest
 import com.readme.android.domain.entity.request.DomainPostFeedRequest
-import com.readme.android.domain.entity.response.DomainHomeFeedResponse
 import com.readme.android.domain.repository.FeedWriteRepository
 import timber.log.Timber
 import java.security.cert.CertificateException
@@ -14,14 +13,14 @@ import javax.inject.Inject
 
 class FeedWriteRepositoryImpl @Inject constructor(
     private val localPreferenceUserDataSource: LocalPreferenceUserDataSource,
-    private val remotePostFeedDataSource: RemotePostFeedDataSource
+    private val remoteFeedDataSource: RemoteFeedDataSource
 ) : FeedWriteRepository {
     override fun getUserNickName(): String =
         localPreferenceUserDataSource.getUserNickname()
 
     override suspend fun postFeed(postFeedRequest: DomainPostFeedRequest): Result<Boolean> {
         when (
-            val response = remotePostFeedDataSource.postFeed(
+            val response = remoteFeedDataSource.postFeed(
                 PostFeedRequest(
                     categoryName = postFeedRequest.categoryName,
                     impressiveSentence = postFeedRequest.impressiveSentence,

@@ -44,8 +44,4 @@ object RetrofitServiceModule {
     fun provideFeedService(@ReadMeServer retrofit: Retrofit): FeedService =
         retrofit.create(FeedService::class.java)
 
-    @Provides
-    @Singleton
-    fun providePostFeedService(@ReadMeServer retrofit: Retrofit): PostFeedService =
-        retrofit.create(PostFeedService::class.java)
 }
