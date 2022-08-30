@@ -11,6 +11,7 @@ import com.readme.android.write_feed.R
 import com.readme.android.write_feed.databinding.ActivityFeedWriteBinding
 import com.readme.android.write_feed.fragments.ChooseCategoryFragment
 import com.readme.android.write_feed.fragments.ImpressiveSentenceFragment
+import com.readme.android.write_feed.fragments.WriteFeedDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -79,7 +80,10 @@ class FeedWriteActivity : BindingActivity<ActivityFeedWriteBinding>(R.layout.act
     private fun backButtonProcess() {
         when (requireNotNull(feedWriteViewModel.currentFragment.value)) {
             CHOOSE_CATEGORY -> {
-                finish()
+                WriteFeedDialogFragment().show(
+                    this.supportFragmentManager,
+                    "WriteFeedDialog"
+                )
             }
             IMPRESSIVE_SENTENCE -> {
                 feedWriteViewModel.updateCurrentFragment(CHOOSE_CATEGORY)
