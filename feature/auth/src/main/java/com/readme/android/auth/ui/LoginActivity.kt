@@ -1,7 +1,6 @@
 package com.readme.android.auth.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.Toast
@@ -9,9 +8,9 @@ import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.readme.android.auth.R
 import com.readme.android.auth.databinding.ActivityLoginBinding
+import com.readme.android.auth.social_login_manager.NaverLoginManager
 import com.readme.android.auth.ui.AutoLoginConstant.AUTO_LOGIN_FAILURE
 import com.readme.android.auth.ui.AutoLoginConstant.AUTO_LOGIN_SUCCESS
-import com.readme.android.auth.ui.socialloginmanager.NaverLoginManager
 import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.core_ui.util.EventObserver
