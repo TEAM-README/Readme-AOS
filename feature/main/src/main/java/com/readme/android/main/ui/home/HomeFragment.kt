@@ -19,6 +19,7 @@ import com.readme.android.main.view.MoreBottomSheetDialog
 import com.readme.android.main.viewmodel.FeedViewModel
 import com.readme.android.main.viewmodel.FeedViewModel.Companion.FAIL
 import com.readme.android.main.viewmodel.FeedViewModel.Companion.SUCCESS
+import com.readme.android.shared.R.string
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -88,8 +89,8 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
         viewModel.isNetworkCorrespondenceEnd.observe(viewLifecycleOwner, EventObserver { message ->
             if (message == SUCCESS) {
                 viewModel.getHomeFeed()
-                requireContext().shortToast("피드 삭제 성공")
-            } else if (message == FAIL) requireContext().shortToast("피드 삭제 실패")
+                requireContext().shortToast(getString(string.delete_feed_success))
+            } else if (message == FAIL) requireContext().shortToast(getString(string.delete_feed_fail))
         })
     }
 
