@@ -8,6 +8,7 @@ data class LoginResponse(
     val accessToken: String?,
     @SerializedName("isNewUser")
     val isNewUser: Boolean,
-    @SerializedName("nickname")
-    val nickname: String?
+    @SerializedName("user")
+    val user: User?
 )
+

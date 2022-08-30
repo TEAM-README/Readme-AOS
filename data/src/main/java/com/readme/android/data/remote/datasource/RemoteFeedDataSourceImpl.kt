@@ -6,6 +6,7 @@ import com.readme.android.data.remote.model.response.BaseResponse
 import com.readme.android.data.remote.model.response.DetailFeedResponse
 import com.readme.android.data.remote.model.response.HomeFeedResponse
 import com.readme.android.data.remote.model.response.PostFeedResponse
+import com.readme.android.data.remote.model.response.NoDataResponse
 import com.readme.android.data.remote.service.FeedService
 import javax.inject.Inject
 
@@ -21,4 +22,8 @@ class RemoteFeedDataSourceImpl @Inject constructor(
 
     override suspend fun getDetailFeed(feedId: Int): NetworkState<BaseResponse<DetailFeedResponse>> =
         feedService.getDetailFeed(feedId)
+
+    override suspend fun deleteFeed(feedId: Int): NetworkState<NoDataResponse> =
+        feedService.deleteFeed(feedId)
+
 }

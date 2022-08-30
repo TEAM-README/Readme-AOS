@@ -6,8 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.readme.android.core_ui.base.BaseViewModel
+import com.readme.android.core_ui.util.Event
 import com.readme.android.core_ui.util.MutableEventFlow
 import com.readme.android.core_ui.util.asEventFlow
+import com.readme.android.domain.entity.BookInfo
 import com.readme.android.domain.entity.FeedInfo
 import com.readme.android.domain.repository.FeedRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +17,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class FeedViewModel @Inject constructor(
     private val feedRepository: FeedRepository
 ) : BaseViewModel() {
     private val _isMyFeed = MutableEventFlow<Boolean>()
@@ -57,14 +59,23 @@ class MainViewModel @Inject constructor(
     }
 
     fun getHomeFeed() {
-        Log.d(TAG, "getHomeFeed: ${categoryListToString()}")
         viewModelScope.launch(exceptionHandler) {
             feedRepository.getHomeFeed(categoryListToString())
                 .onSuccess {
                     _homeFeedInfoList.value = it.feedListInfo
-                    Log.d(TAG, "getHomeFeed success: $it")
                 }.onFailure {
                     Log.d(TAG, "getHomeFeed failure: $it")
+                }
+        }
+    }
+
+    fun deleteFeed(feedId: Int) {
+        viewModelScope.launch(exceptionHandler) {
+            feedRepository.deleteFeed(feedId)
+                .onSuccess {
+                    serverResponseStatus(SUCCESS)
+                }.onFailure {
+                    serverResponseStatus(FAIL)
                 }
         }
     }
@@ -72,14 +83,50 @@ class MainViewModel @Inject constructor(
     private fun categoryListToString(): String =
         selectedCategoryChip.value?.joinToString(SEPARATOR) ?: ""
 
-    // 피드가 내 피드인지 남피드인지 설정해주는 메소드
-    private fun setIsMyFeed(isMyFeed: Boolean) {
-        viewModelScope.launch {
-            _isMyFeed.emit(isMyFeed)
+    /** FeedDetailActivity */
+    private val feedId = MutableLiveData<Int>()
+
+    private val _feed = MutableLiveData<FeedInfo>()
+    val feed: LiveData<FeedInfo> = _feed
+
+    private val _bookInfo = MutableLiveData<BookInfo>()
+    val bookInfo: LiveData<BookInfo> = _bookInfo
+
+    fun setFeedId(feedId: Int) {
+        this.feedId.value = feedId
+    }
+
+    fun getIsMyFeed(): Boolean = feed.value?.isMyFeed ?: throw IllegalStateException()
+
+    fun getWriterNickname(): String =
+        feed.value?.nickname ?: throw IllegalStateException("writer nickname cannot be null")
+
+    fun getFeedId(): Int =
+        feed.value?.id ?: throw IllegalStateException("feed id cannot be null")
+
+    fun getDetailFeedInfo() {
+        viewModelScope.launch(exceptionHandler) {
+            feedRepository.getDetailFeed(feedId.value ?: throw IllegalStateException())
+                .onSuccess {
+                    _feed.value = it.feed
+                    _bookInfo.value = it.bookInfo
+                }
+                .onFailure { Log.d(TAG, "getDetailFeedInfo: $it") }
         }
+    }
+
+    /** server event */
+    private val _isNetworkCorrespondenceEnd = MutableLiveData<Event<String>>()
+    val isNetworkCorrespondenceEnd: MutableLiveData<Event<String>>
+        get() = _isNetworkCorrespondenceEnd
+
+    private fun serverResponseStatus(string: String) {
+        _isNetworkCorrespondenceEnd.value = Event(string)
     }
 
     companion object {
         const val SEPARATOR = ","
+        const val SUCCESS = "SUCCESS"
+        const val FAIL = "FAIL"
     }
 }

@@ -7,6 +7,7 @@ import com.readme.android.data.remote.model.response.DetailFeedResponse
 import com.readme.android.data.remote.model.response.HomeFeedResponse
 import com.readme.android.data.remote.model.response.PostFeedResponse
 import retrofit2.http.*
+import com.readme.android.data.remote.model.response.NoDataResponse
 
 interface FeedService {
 
@@ -24,4 +25,9 @@ interface FeedService {
     suspend fun getDetailFeed(
         @Path("feedId") feedId: Int
     ): NetworkState<BaseResponse<DetailFeedResponse>>
+
+    @DELETE("/feed/{feedId}")
+    suspend fun deleteFeed(
+        @Path("feedId") feedId: Int
+    ): NetworkState<NoDataResponse>
 }

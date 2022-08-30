@@ -6,6 +6,8 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.ConcatAdapter
 import com.readme.android.core_ui.base.BindingFragment
+import com.readme.android.core_ui.ext.shortToast
+import com.readme.android.core_ui.util.EventObserver
 import com.readme.android.core_ui.util.ItemDecorationUtil
 import com.readme.android.core_ui.util.ResolutionMetrics
 import com.readme.android.main.R
@@ -14,13 +16,16 @@ import com.readme.android.main.ui.adapter.FeedAdapter
 import com.readme.android.main.ui.feed.FeedDetailActivity
 import com.readme.android.main.ui.feed.FeedDetailActivity.Companion.FEED_ID
 import com.readme.android.main.view.MoreBottomSheetDialog
-import com.readme.android.main.viewmodel.MainViewModel
+import com.readme.android.main.viewmodel.FeedViewModel
+import com.readme.android.main.viewmodel.FeedViewModel.Companion.FAIL
+import com.readme.android.main.viewmodel.FeedViewModel.Companion.SUCCESS
+import com.readme.android.shared.R.string
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
     BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
-    private val viewModel: MainViewModel by activityViewModels()
+    private val viewModel: FeedViewModel by activityViewModels()
     private lateinit var homeHeaderAdapter: HomeHeaderAdapter
     private lateinit var feedAdapter: FeedAdapter
 
@@ -30,9 +35,11 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
 
+        terminationTokenHandling(viewModel)
         initAdapter()
         observeFeedList()
         observeSelectedCategory()
+        observeServerStatus()
     }
 
     override fun onResume() {
@@ -58,8 +65,8 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
         }
     }
 
-    private fun onMoreClick(isMyFeed: Boolean, feedWriterNickname: String?, feedId: Int?) {
-        MoreBottomSheetDialog(isMyFeed, feedWriterNickname, feedId).show(
+    private fun onMoreClick(isMyFeed: Boolean, feedId: Int, feedWriterNickname: String?) {
+        MoreBottomSheetDialog(isMyFeed, feedId, feedWriterNickname).show(
             childFragmentManager,
             this.tag
         )
@@ -76,6 +83,15 @@ class HomeFragment(private val resolutionMetrics: ResolutionMetrics) :
         viewModel.homeFeedInfoList.observe(viewLifecycleOwner) {
             feedAdapter.submitList(it)
         }
+    }
+
+    private fun observeServerStatus() {
+        viewModel.isNetworkCorrespondenceEnd.observe(viewLifecycleOwner, EventObserver { message ->
+            if (message == SUCCESS) {
+                viewModel.getHomeFeed()
+                requireContext().shortToast(getString(string.delete_feed_success))
+            } else if (message == FAIL) requireContext().shortToast(getString(string.delete_feed_fail))
+        })
     }
 
     private fun observeSelectedCategory() {
