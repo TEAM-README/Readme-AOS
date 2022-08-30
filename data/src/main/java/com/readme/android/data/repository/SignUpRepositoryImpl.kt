@@ -5,7 +5,9 @@ import com.readme.android.data.local.datasource.LocalPreferenceUserDataSource
 import com.readme.android.data.remote.calladapter.NetworkState
 import com.readme.android.data.remote.datasource.RemoteSignUpDataSource
 import com.readme.android.data.remote.model.request.SignUpRequest
+import com.readme.android.domain.entity.UserInfo
 import com.readme.android.domain.entity.request.DomainSignUpRequest
+import com.readme.android.domain.entity.response.DomainSignUpResponse
 import com.readme.android.domain.repository.SignUpRepository
 import timber.log.Timber
 import javax.inject.Inject
@@ -35,7 +37,7 @@ class SignUpRepositoryImpl @Inject constructor(
         return Result.failure(IllegalStateException("NetworkError or UnKnownError please check timber"))
     }
 
-    override suspend fun postSignUp(signUpRequest: DomainSignUpRequest): Result<String> {
+    override suspend fun postSignUp(signUpRequest: DomainSignUpRequest): Result<DomainSignUpResponse> {
         val response = signUpDataSource.postSignUp(
             SignUpRequest(
                 platform = signUpRequest.platform,
@@ -45,7 +47,15 @@ class SignUpRepositoryImpl @Inject constructor(
         )
 
         when (response) {
-            is NetworkState.Success -> return Result.success(response.body.data.accessToken)
+            is NetworkState.Success -> return Result.success(
+                DomainSignUpResponse(
+                    accessToken = response.body.data.accessToken,
+                    userInfo = UserInfo(
+                        response.body.data.user.id,
+                        response.body.data.user.nickname
+                    )
+                )
+            )
             is NetworkState.Failure -> return Result.failure(
                 RetrofitFailureStateException(
                     response.error,
@@ -68,7 +78,7 @@ class SignUpRepositoryImpl @Inject constructor(
         localPreferenceUserDataSource.saveUserNickname(userNickname)
     }
 
-
+    override fun saveUserId(userId: Int) {
+        localPreferenceUserDataSource.saveUserId(userId)
+    }
 }
-
-

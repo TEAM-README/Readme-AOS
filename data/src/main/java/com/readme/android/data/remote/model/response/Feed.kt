@@ -1,7 +1,6 @@
 package com.readme.android.data.remote.model.response
 
 import com.google.gson.annotations.SerializedName
-import com.readme.android.domain.entity.FeedInfo
 
 data class Feed(
     @SerializedName("id")
@@ -22,18 +21,4 @@ data class Feed(
     val book: Book?,
     @SerializedName("user")
     val user: User?
-) {
-    fun toFeedInfo(): FeedInfo {
-        return FeedInfo(
-            id = this.id,
-            category = this.categoryName,
-            title = this.book?.title ?: "null",
-            impressiveSentence = this.sentence,
-            takeaway = this.feeling,
-            nickname = this.user?.nickname ?: "null",
-            date = this.createdAt,
-            isMyFeed = false    // Todo : mapper 공용으로 쓰려면 이거 수정해야함
-        )
-    }
-}
-
+)

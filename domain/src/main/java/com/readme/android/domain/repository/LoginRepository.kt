@@ -11,5 +11,7 @@ interface LoginRepository {
 
     fun saveUserNickname(userNickname: String)
 
+    fun saveUserId(userId: Int)
+
     suspend fun postLogin(loginRequest: DomainLoginRequest): Result<DomainLoginResponse>
 }

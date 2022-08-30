@@ -57,8 +57,11 @@ class SetNickNameViewModel @Inject constructor(
                     nickname = nickName.value ?: ""
                 )
             ).onSuccess {
-                signUpRepository.saveAccessToken(it)
-                signUpRepository.saveUserNickname(nickName.value ?: "")
+                signUpRepository.saveAccessToken(it.accessToken)
+                signUpRepository.saveUserNickname(
+                    it.userInfo.nickname ?: throw IllegalStateException()
+                )
+                signUpRepository.saveUserId(it.userInfo.id ?: throw IllegalStateException())
                 _moveToHome.postValue(Event(true))
             }.onFailure {
                 Timber.d(it)

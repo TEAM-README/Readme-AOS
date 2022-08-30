@@ -41,7 +41,8 @@ class LoginViewModel @Inject constructor(
                     _moveToSetNickname.postValue(Event(platform))
                 } else {
                     saveAccessToken(it.accessToken ?: "")
-                    saveUserNickName(it.nickName ?: "")
+                    saveUserNickName(it.userInfo?.nickname ?: "")
+                    saveUserId(it.userInfo?.id ?: throw IllegalStateException("userId 관련오류"))
                     _moveToHome.postValue(Event(true))
                 }
             }.onFailure {
@@ -60,6 +61,10 @@ class LoginViewModel @Inject constructor(
 
     fun saveUserNickName(userNickName: String) {
         loginRepository.saveUserNickname(userNickName)
+    }
+
+    fun saveUserId(userId: Int) {
+        loginRepository.saveUserId(userId)
     }
 
     fun getAccessToken(): String =

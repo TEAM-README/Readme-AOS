@@ -18,12 +18,12 @@ import com.readme.android.core_ui.constant.Category
 import com.readme.android.core_ui.ext.getColor
 import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.main.databinding.FragmentFilterBottomSheetBinding
-import com.readme.android.main.viewmodel.MainViewModel
+import com.readme.android.main.viewmodel.FeedViewModel
 import com.readme.android.shared.R.color
 import com.readme.android.shared.R.style.regular_01
 
 class FilterBottomSheetFragment : BottomSheetDialogFragment() {
-    private val viewModel: MainViewModel by activityViewModels()
+    private val viewModel: FeedViewModel by activityViewModels()
     private var _binding: FragmentFilterBottomSheetBinding? = null
     private val binding get() = _binding!!
 

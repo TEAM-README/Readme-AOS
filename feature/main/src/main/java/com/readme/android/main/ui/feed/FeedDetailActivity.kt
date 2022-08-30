@@ -4,17 +4,22 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import coil.load
 import com.readme.android.core_ui.base.BindingActivity
+import com.readme.android.core_ui.ext.shortToast
+import com.readme.android.core_ui.util.EventObserver
 import com.readme.android.main.R
 import com.readme.android.main.databinding.ActivityFeedDetailBinding
 import com.readme.android.main.view.MoreBottomSheetDialog
-import com.readme.android.main.viewmodel.DetailFeedViewModel
+import com.readme.android.main.viewmodel.FeedViewModel
+import com.readme.android.main.viewmodel.FeedViewModel.Companion.FAIL
+import com.readme.android.main.viewmodel.FeedViewModel.Companion.SUCCESS
 import com.readme.android.shared.R.drawable
+import com.readme.android.shared.R.string
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FeedDetailActivity :
     BindingActivity<ActivityFeedDetailBinding>(R.layout.activity_feed_detail) {
-    private val viewModel: DetailFeedViewModel by viewModels()
+    private val viewModel: FeedViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +29,7 @@ class FeedDetailActivity :
         getDetailFeedInfo()
         observeBookInfo()
         observeFeedInfo()
+        observeDeleteServerResponse()
         onBackBtnClick()
         onMoreClick()
     }
@@ -53,6 +59,15 @@ class FeedDetailActivity :
         }
     }
 
+    private fun observeDeleteServerResponse() {
+        viewModel.isNetworkCorrespondenceEnd.observe(this, EventObserver { message ->
+            if (message == SUCCESS) {
+                shortToast(getString(string.delete_feed_success))
+                finish()
+            } else if (message == FAIL) shortToast(getString(string.delete_feed_fail))
+        })
+    }
+
     private fun onBackBtnClick() {
         binding.ibBack.setOnClickListener {
             onBackPressed()
@@ -64,7 +79,7 @@ class FeedDetailActivity :
             val isMyFeed = viewModel.getIsMyFeed()
             val feedWriterNickname = viewModel.getWriterNickname()
             val feedId = viewModel.getFeedId()
-            MoreBottomSheetDialog(isMyFeed, feedWriterNickname, feedId).show(
+            MoreBottomSheetDialog(isMyFeed, feedId, feedWriterNickname).show(
                 supportFragmentManager,
                 this.javaClass.name
             )

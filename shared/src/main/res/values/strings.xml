@@ -74,4 +74,8 @@
     <string name="feeling_title">느낀점을 적어주세요</string>
     <string name="feeling_hint">책을 읽었을 때 무엇을 느끼고 배우셨나요?</string>
     <string name="impressive_sentence_at_feeling">에서 인상 깊었던 문장</string>
+
+    <!-- toast -->
+    <string name="delete_feed_success">피드 삭제 성공</string>
+    <string name="delete_feed_fail">피드 삭제 실패</string>
 </resources>

@@ -9,6 +9,10 @@ interface LocalPreferenceUserDataSource {
 
     fun getUserNickname(): String
 
+    fun getUserId(): Int
+
+    fun saveUserId(userId: Int)
+
     fun removeAccessToken()
 
     fun removeUserNickname()

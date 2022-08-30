@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.text.InputFilter
 import androidx.activity.viewModels
 import com.readme.android.core_ui.base.BindingActivity
-import com.readme.android.core_ui.constant.SetNickNameConstant.HAS_NO_STATE
-import com.readme.android.core_ui.constant.SetNickNameConstant.NO_SPECIAL_CHARACTER
-import com.readme.android.core_ui.constant.SetNickNameConstant.OVER_TEXT_LIMIT
+import com.readme.android.core_ui.constant.SetNickNameConstant.*
 import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.core_ui.util.EventObserver
 import com.readme.android.navigator.MainNavigator
@@ -51,7 +49,8 @@ class SetNickNameActivity :
                 }
                 setNickNameViewModel.updateNickNameState(NO_SPECIAL_CHARACTER)
                 return@InputFilter ""
-            }, InputFilter.LengthFilter(7)
+            },
+            InputFilter.LengthFilter(7)
         )
     }
 
@@ -78,8 +77,11 @@ class SetNickNameActivity :
     }
 
     private fun initMoveToHomeObserver() {
-        setNickNameViewModel.moveToHome.observe(this, EventObserver {
-            moveMainActicity()
-        })
+        setNickNameViewModel.moveToHome.observe(
+            this,
+            EventObserver {
+                moveMainActicity()
+            }
+        )
     }
 }

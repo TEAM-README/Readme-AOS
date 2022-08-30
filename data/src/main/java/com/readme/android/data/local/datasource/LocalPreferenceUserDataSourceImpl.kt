@@ -11,11 +11,18 @@ class LocalPreferenceUserDataSourceImpl @Inject constructor(
         localPreferences.getString(READ_ME_ACCESS_TOKEN, "") ?: ""
 
     override fun saveAccessToken(accessToken: String) {
-        localPreferences.edit{ putString(READ_ME_ACCESS_TOKEN, accessToken) }
+        localPreferences.edit { putString(READ_ME_ACCESS_TOKEN, accessToken) }
     }
 
     override fun getUserNickname(): String =
         localPreferences.getString(USER_NICKNAME, "") ?: ""
+
+    override fun getUserId(): Int =
+        localPreferences.getInt(USER_ID, -1)
+
+    override fun saveUserId(userId: Int) {
+        localPreferences.edit { putInt(USER_ID, userId) }
+    }
 
     override fun saveUserNickname(userNickname: String) {
         localPreferences.edit { putString(USER_NICKNAME, userNickname) }
@@ -26,13 +33,12 @@ class LocalPreferenceUserDataSourceImpl @Inject constructor(
     }
 
     override fun removeUserNickname() {
-        localPreferences.edit(){ remove(USER_NICKNAME) }
+        localPreferences.edit() { remove(USER_NICKNAME) }
     }
-
 
     companion object {
         const val READ_ME_ACCESS_TOKEN = "READ_ME_ACCESS_TOKEN"
         const val USER_NICKNAME = "USER_NICKNAME"
+        const val USER_ID = "USER_ID"
     }
 }
-

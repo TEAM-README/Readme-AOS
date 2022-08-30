@@ -81,10 +81,10 @@ class MyPageFragment(private val resolutionMetrics: ResolutionMetrics) :
 
     private fun onMoreClick(
         isMyFeed: Boolean,
-        feedWriterName: String? = null,
-        feedId: Int? = null
+        feedId: Int,
+        feedWriterName: String? = null
     ) {
-        MoreBottomSheetDialog(isMyFeed, feedWriterName, feedId).show(childFragmentManager, this.tag)
+        MoreBottomSheetDialog(isMyFeed, feedId, feedWriterName).show(childFragmentManager, this.tag)
     }
 
     private fun onClickFeed(id: Int) {
