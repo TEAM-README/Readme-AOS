@@ -29,11 +29,7 @@ class FeelingFragment : BindingFragment<FragmentFeelingBinding>(R.layout.fragmen
     private fun initNextButtonClickListener() {
         binding.btnNext.setOnSingleClickListener {
             val intent = Intent(requireActivity(), PostFeedActivity::class.java).apply {
-                putExtra(WHOLE_CATEGORY_STRING, feedWriteViewModel.wholeCategoryString.value)
-                putExtra(
-                    REPRESENT_CATEGORY_STRING,
-                    feedWriteViewModel.representCategoryString.value
-                )
+                putExtra(CATEGORY, feedWriteViewModel.category.value)
                 putExtra(IMPRESSIVE_SENTENCE, feedWriteViewModel.impressiveSentence.value)
                 putExtra(FEELING, feedWriteViewModel.feeling.value)
                 putExtra(
@@ -56,8 +52,7 @@ class FeelingFragment : BindingFragment<FragmentFeelingBinding>(R.layout.fragmen
     }
 
     companion object {
-        const val WHOLE_CATEGORY_STRING = "wholeCategoryString"
-        const val REPRESENT_CATEGORY_STRING = "representCategoryString"
+        const val CATEGORY = "category"
         const val IMPRESSIVE_SENTENCE = "impressiveSentence"
         const val FEELING = "feeling"
         const val BOOK_INFO = "bookInfo"

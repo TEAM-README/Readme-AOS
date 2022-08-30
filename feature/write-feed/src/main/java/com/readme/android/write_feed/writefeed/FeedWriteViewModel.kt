@@ -35,14 +35,8 @@ class FeedWriteViewModel @Inject constructor(
     lateinit var subIsbn: String
         private set
 
-    private val _categoryList = MutableLiveData(mutableListOf<String>())
-    val categoryList: LiveData<MutableList<String>> = _categoryList
-
-    private val _wholeCategoryString = MutableLiveData<String>()
-    val wholeCategoryString: LiveData<String> = _wholeCategoryString
-
-    private val _representCategoryString = MutableLiveData<String>()
-    val representCategoryString: LiveData<String> = _representCategoryString
+    private val _category = MutableLiveData("")
+    val category: LiveData<String> = _category
 
     val impressiveSentence = MutableLiveData("")
 
@@ -67,25 +61,11 @@ class FeedWriteViewModel @Inject constructor(
         this.subIsbn = subIsbn
     }
 
-    fun setWholeCategoryString(wholeCategoryString: String) {
-        _wholeCategoryString.value = wholeCategoryString
-    }
-
-    fun setRepresentCategoryString() {
-        val tempCategoryList: List<String> = _categoryList.value?.toList() ?: return
-        val message = when (_categoryList.value?.size) {
-            1 -> tempCategoryList[0]
-            2 -> "${tempCategoryList[0]}, ${tempCategoryList[1]}"
-            else -> "${tempCategoryList[0]}, ${tempCategoryList[1]} 외 ${tempCategoryList.size - 2}개"
-        }
-        _representCategoryString.value = message
-    }
-
-    fun setCategoryList(categoryList: MutableList<String>) {
-        _categoryList.value = categoryList
-    }
-
     fun setKeyBoardState(state: Boolean) {
         _keyBoardState.value = state
+    }
+
+    fun updateCategory(category: String) {
+        _category.value = category
     }
 }

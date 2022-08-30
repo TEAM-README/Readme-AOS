@@ -22,11 +22,8 @@ class PostFeedViewModel @Inject constructor(
     private val feedWriteRepository: FeedWriteRepository
 ) : BaseViewModel() {
 
-    private val _wholeCategoryString = MutableLiveData<String>()
-    val wholeCategoryString: LiveData<String> = _wholeCategoryString
-
-    private val _representCategoryString = MutableLiveData<String>()
-    val representCategoryString: LiveData<String> = _representCategoryString
+    private val _category = MutableLiveData<String>()
+    val category: LiveData<String> = _category
 
     private val _impressiveSentence = MutableLiveData<String>()
     val impressiveSentence: LiveData<String> = _impressiveSentence
@@ -57,14 +54,12 @@ class PostFeedViewModel @Inject constructor(
     }
 
     fun initPostFeedData(
-        wholeCategoryString: String,
-        representCategoryString: String,
+        category: String,
         impressiveSentence: String,
         feeling: String,
         bookInfo: BookInfo
     ) {
-        _wholeCategoryString.value = wholeCategoryString
-        _representCategoryString.value = representCategoryString
+        _category.value = category
         _impressiveSentence.value = impressiveSentence
         _feeling.value = feeling
         _bookInfo.value = bookInfo
@@ -74,7 +69,7 @@ class PostFeedViewModel @Inject constructor(
         viewModelScope.launch(exceptionHandler) {
             feedWriteRepository.postFeed(
                 DomainPostFeedRequest(
-                    categoryName = wholeCategoryString.value ?: "",
+                    categoryName = category.value ?: "",
                     impressiveSentence = impressiveSentence.value ?: "",
                     feeling = feeling.value ?: "",
                     bookInfo = bookInfo.value ?: throw IllegalStateException()

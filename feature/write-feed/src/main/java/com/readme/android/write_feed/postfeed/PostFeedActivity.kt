@@ -15,10 +15,9 @@ import com.readme.android.shared.R.drawable.img_book_none
 import com.readme.android.write_feed.R
 import com.readme.android.write_feed.databinding.ActivityPostFeedBinding
 import com.readme.android.write_feed.fragments.FeelingFragment.Companion.BOOK_INFO
+import com.readme.android.write_feed.fragments.FeelingFragment.Companion.CATEGORY
 import com.readme.android.write_feed.fragments.FeelingFragment.Companion.FEELING
 import com.readme.android.write_feed.fragments.FeelingFragment.Companion.IMPRESSIVE_SENTENCE
-import com.readme.android.write_feed.fragments.FeelingFragment.Companion.REPRESENT_CATEGORY_STRING
-import com.readme.android.write_feed.fragments.FeelingFragment.Companion.WHOLE_CATEGORY_STRING
 import com.readme.android.write_feed.writefeed.FeedWriteActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -44,8 +43,7 @@ class PostFeedActivity : BindingActivity<ActivityPostFeedBinding>(R.layout.activ
 
     private fun initExtraData() {
         postFeedViewModel.initPostFeedData(
-            wholeCategoryString = intent.getStringExtra(WHOLE_CATEGORY_STRING) ?: "",
-            representCategoryString = intent.getStringExtra(REPRESENT_CATEGORY_STRING) ?: "",
+            category = intent.getStringExtra(CATEGORY) ?: "",
             impressiveSentence = intent.getStringExtra(IMPRESSIVE_SENTENCE) ?: "",
             feeling = intent.getStringExtra(FEELING) ?: "",
             bookInfo = intent.getSerializableExtra(BOOK_INFO) as BookInfo
@@ -73,7 +71,7 @@ class PostFeedActivity : BindingActivity<ActivityPostFeedBinding>(R.layout.activ
             error(img_book_none)
         }
         binding.layoutBookInformation.tvCategory.text =
-            postFeedViewModel.representCategoryString.value
+            postFeedViewModel.category.value
     }
 
     private fun initNextButtonClickListener() {

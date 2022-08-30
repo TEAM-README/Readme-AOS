@@ -14,9 +14,9 @@ import com.readme.android.core_ui.constant.FeedWriteFragmentList.IMPRESSIVE_SENT
 import com.readme.android.core_ui.ext.getColor
 import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.shared.R.color
-import com.readme.android.write_feed.writefeed.FeedWriteViewModel
 import com.readme.android.write_feed.R
 import com.readme.android.write_feed.databinding.FragmentChooseCategoryBinding
+import com.readme.android.write_feed.writefeed.FeedWriteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,9 +36,6 @@ class ChooseCategoryFragment :
 
     private fun initNextButtonClickListener() {
         binding.btnNext.setOnSingleClickListener {
-            feedWriteViewModel.setCategoryList(getSelectedChipList())
-            feedWriteViewModel.setWholeCategoryString(categoryListToString())
-            feedWriteViewModel.setRepresentCategoryString()
             feedWriteViewModel.updateCurrentFragment(IMPRESSIVE_SENTENCE)
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace<ImpressiveSentenceFragment>(R.id.container_feed_write).commit()
@@ -68,41 +65,32 @@ class ChooseCategoryFragment :
                 }
             )
         }
+
+        binding.chipGroup.isSingleSelection = true
+        binding.chipGroup.isSelectionRequired = true
     }
 
     private fun onClickChip() {
         for (i in 0 until binding.chipGroup.size) {
             binding.chipGroup[i].setOnClickListener {
                 it.isSelected = !it.isSelected
-                val tempList = feedWriteViewModel.categoryList.value ?: mutableListOf()
-                val category = (it as Chip).text.toString()
-                if (it.isSelected) tempList.add(category)
-                else tempList.remove(category)
-                feedWriteViewModel.setCategoryList(tempList)
+                for (j in 0 until binding.chipGroup.size) {
+                    if (i == j) continue
+                    binding.chipGroup[j].isSelected = false
+                }
+                val chip = it as Chip
+                if (chip.isSelected) feedWriteViewModel.updateCategory(chip.text.toString())
+                else feedWriteViewModel.updateCategory("")
             }
         }
-    }
-
-    private fun getSelectedChipList(): MutableList<String> {
-        val selectedChipList: MutableList<String> = mutableListOf()
-        for (i in 0 until Category.values().size)
-            if (binding.chipGroup[i].isSelected) selectedChipList.add(Category.values()[i].categoryName)
-        return selectedChipList
     }
 
     private fun restoreSelectedChipGroup() {
         for (i in 0 until Category.values().size) {
             val chip = binding.chipGroup[i] as Chip
-            if (requireNotNull(feedWriteViewModel.categoryList.value).contains(chip.text)){
+            if (feedWriteViewModel.category.value == chip.text) {
                 binding.chipGroup[i].isSelected = true
             }
         }
-    }
-
-    private fun categoryListToString(): String =
-        requireNotNull(feedWriteViewModel.categoryList.value).joinToString(SEPARATOR)
-
-    companion object {
-        const val SEPARATOR = ","
     }
 }
