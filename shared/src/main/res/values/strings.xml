@@ -74,6 +74,17 @@
     <string name="feeling_title">느낀점을 적어주세요</string>
     <string name="feeling_hint">책을 읽었을 때 무엇을 느끼고 배우셨나요?</string>
     <string name="impressive_sentence_at_feeling">에서 인상 깊었던 문장</string>
+    <string name="post_feed_title_first">기록을 통해&#160;</string>
+    <string name="post_feed_title_second">&#160;님의 하루가</string>
+    <string name="post_feed_title_third">더 풍요로워졌길 바라요!</string>
+    <string name="post_feed_btn_next_text">등록하기</string>
+    <string name="register_done_title">등록을 완료했어요</string>
+    <string name="register_done_content_first">피드&#160;</string>
+    <string name="register_done_content_second">와&#160;</string>
+    <string name="register_done_content_third">마이페이지&#160;</string>
+    <string name="register_done_content_fourth">에서</string>
+    <string name="register_done_content_fifth">작성한 감상글을 확인할 수 있어요</string>
+    <string name="register_done_button">피드 구경하러 가기</string>
 
     <!-- toast -->
     <string name="delete_feed_success">피드 삭제 성공</string>

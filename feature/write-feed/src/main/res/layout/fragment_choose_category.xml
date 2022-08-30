@@ -55,7 +55,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_category_title"
-            app:singleSelection="false" />
+            app:singleSelection="true"
+            app:selectionRequired="true"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
@@ -63,8 +64,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="26dp"
             android:layout_marginBottom="24dp"
-            android:background="@{feedWriteViewModel.categoryList.size() == 0 ? @drawable/shape_rect_gray_1_fill_10 : @drawable/shape_rect_main_blue_fill_10}"
-            android:clickable="@{feedWriteViewModel.categoryList.size() == 0 ? false : true}"
+            android:background="@{feedWriteViewModel.category == `` ? @drawable/shape_rect_gray_1_fill_10 : @drawable/shape_rect_main_blue_fill_10}"
+            android:clickable="@{feedWriteViewModel.category == `` ? false : true}"
             android:paddingVertical="15dp"
             android:text="@string/next_btn_text"
             android:gravity="center"

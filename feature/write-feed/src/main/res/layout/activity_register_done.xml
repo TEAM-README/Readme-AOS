@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".postfeed.RegisterDoneActivity">
+
+        <ImageView
+            android:id="@+id/iv_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/tv_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:srcCompat="@drawable/ic_check" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_marginTop="23dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register_done_title"
+            android:textAppearance="@style/semi_bold_01"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/tv_content_first"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_check"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tv_content_first"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_height="wrap_content"
+            android:text="@string/register_done_content_first"
+            android:textAppearance="@style/semi_bold_04"
+            android:textColor="@color/gray_4"
+            app:layout_constraintEnd_toStartOf="@+id/tv_contnent_second"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintBottom_toTopOf="@+id/tv_content_fifth"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <TextView
+            android:id="@+id/tv_contnent_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register_done_content_second"
+            android:textAppearance="@style/regular_03"
+            android:textColor="@color/gray_4"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_content_first"
+            app:layout_constraintEnd_toStartOf="@+id/tv_content_third"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/tv_content_first"
+            app:layout_constraintTop_toTopOf="@+id/tv_content_first" />
+
+        <TextView
+            android:id="@+id/tv_content_third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register_done_content_third"
+            android:textAppearance="@style/semi_bold_04"
+            android:textColor="@color/gray_4"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_contnent_second"
+            app:layout_constraintEnd_toStartOf="@+id/tv_contnet_fourth"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/tv_contnent_second"
+            app:layout_constraintTop_toTopOf="@+id/tv_contnent_second" />
+
+        <TextView
+            android:id="@+id/tv_contnet_fourth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register_done_content_fourth"
+            android:textAppearance="@style/regular_03"
+            android:textColor="@color/gray_4"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_content_third"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/tv_content_third"
+            app:layout_constraintTop_toTopOf="@+id/tv_content_third" />
+
+        <TextView
+            android:id="@+id/tv_content_fifth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register_done_content_fifth"
+            android:textAppearance="@style/regular_03"
+            android:textColor="@color/gray_4"
+            app:layout_constraintBottom_toTopOf="@+id/btn_next"
+            app:layout_constraintEnd_toEndOf="@+id/tv_contnet_fourth"
+            app:layout_constraintStart_toStartOf="@+id/tv_content_first"
+            app:layout_constraintTop_toBottomOf="@+id/tv_content_first" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="26dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/shape_rect_main_blue_fill_10"
+            android:paddingVertical="15dp"
+            android:text="@string/register_done_button"
+            android:textAppearance="@style/medium_02"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -6,6 +6,7 @@ import android.text.method.ScrollingMovementMethod
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.readme.android.core_ui.base.BindingFragment
+import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.domain.entity.BookInfo
 import com.readme.android.write_feed.R
 import com.readme.android.write_feed.databinding.FragmentFeelingBinding
@@ -26,17 +27,13 @@ class FeelingFragment : BindingFragment<FragmentFeelingBinding>(R.layout.fragmen
     }
 
     private fun initNextButtonClickListener() {
-        binding.btnNext.setOnClickListener {
+        binding.btnNext.setOnSingleClickListener {
             val intent = Intent(requireActivity(), PostFeedActivity::class.java).apply {
-                putExtra("wholeCategoryString", feedWriteViewModel.wholeCategoryString.value)
+                putExtra(CATEGORY, feedWriteViewModel.category.value)
+                putExtra(IMPRESSIVE_SENTENCE, feedWriteViewModel.impressiveSentence.value)
+                putExtra(FEELING, feedWriteViewModel.feeling.value)
                 putExtra(
-                    "representCategoryString",
-                    feedWriteViewModel.representCategoryString.value
-                )
-                putExtra("impressiveSentence", feedWriteViewModel.impressiveSentence.value)
-                putExtra("feeling", feedWriteViewModel.feeling.value)
-                putExtra(
-                    "bookInfo",
+                    BOOK_INFO,
                     BookInfo(
                         feedWriteViewModel.title.value ?: "",
                         feedWriteViewModel.author.value ?: "",
@@ -47,11 +44,17 @@ class FeelingFragment : BindingFragment<FragmentFeelingBinding>(R.layout.fragmen
                 )
             }
             startActivity(intent)
-            requireActivity().finish()
         }
     }
 
     private fun initScrollTextView() {
         binding.tvFeelingContent.movementMethod = ScrollingMovementMethod()
+    }
+
+    companion object {
+        const val CATEGORY = "category"
+        const val IMPRESSIVE_SENTENCE = "impressiveSentence"
+        const val FEELING = "feeling"
+        const val BOOK_INFO = "bookInfo"
     }
 }

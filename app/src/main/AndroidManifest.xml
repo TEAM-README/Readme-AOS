@@ -56,9 +56,12 @@
         <activity
             android:name=".write_feed.writefeed.FeedWriteActivity"
             android:exported="false" />
-        <activity android:name=".write_feed.postfeed.PostFeedActivity"
+        <activity
+            android:name=".write_feed.postfeed.PostFeedActivity"
             android:exported="false"/>
-
+        <activity
+            android:name=".write_feed.postfeed.RegisterDoneActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
