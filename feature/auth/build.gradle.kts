@@ -21,6 +21,11 @@ android {
             "X_NAVER_CLIENT_SECRET",
             properties.getProperty("X_NAVER_CLIENT_SECRET")
         )
+        buildConfigField(
+            "String",
+            "KAKAO_NATIVE_APP_KEY",
+            properties.getProperty("KAKAO_NATIVE_APP_KEY")
+        )
     }
     namespace = "com.readme.android.auth"
 }
@@ -55,4 +60,7 @@ dependencies {
 
     // Naver - social Login
     implementation(ThirdPartyDependencies.naverAuth)
+
+    // Kakao Login
+    implementation(ThirdPartyDependencies.kakaoAuth)
 }

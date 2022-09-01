@@ -81,6 +81,7 @@ object ThirdPartyDependencies {
     const val gsonConverter =
         "com.squareup.retrofit2:converter-gson:${Versions.gsonConverterVersion}"
     const val naverAuth = "com.navercorp.nid:oauth:${Versions.naverAuth}"
+    const val kakaoAuth = "com.kakao.sdk:v2-user:${Versions.kakaoAuth}"
 }
 
 object FirebaseDependency {

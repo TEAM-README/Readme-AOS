@@ -47,6 +47,7 @@ object Versions {
     const val gsonVersion = "2.8.9"
     const val gsonConverterVersion = "2.9.0"
     const val naverAuth = "5.1.0"
+    const val kakaoAuth = "2.11.0"
 
     val javaVersion = JavaVersion.VERSION_11
     const val jvmVersion = "11"
