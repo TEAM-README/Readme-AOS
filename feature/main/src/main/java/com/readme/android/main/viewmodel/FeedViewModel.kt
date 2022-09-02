@@ -108,7 +108,7 @@ class FeedViewModel @Inject constructor(
         viewModelScope.launch(exceptionHandler) {
             feedRepository.getDetailFeed(feedId.value ?: throw IllegalStateException())
                 .onSuccess {
-                    _feed.value = it.feed
+                    _feed.value = it.feedInfo
                     _bookInfo.value = it.bookInfo
                 }
                 .onFailure { Log.d(TAG, "getDetailFeedInfo: $it") }
