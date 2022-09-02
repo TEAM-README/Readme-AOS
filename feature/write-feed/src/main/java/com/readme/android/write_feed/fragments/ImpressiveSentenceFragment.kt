@@ -10,9 +10,9 @@ import com.readme.android.core_ui.constant.FeedWriteFragmentList.FEELING
 import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.domain.entity.BookInfo
 import com.readme.android.shared.R.drawable.img_book_none
-import com.readme.android.write_feed.writefeed.FeedWriteViewModel
 import com.readme.android.write_feed.R
 import com.readme.android.write_feed.databinding.FragmentImpressiveSentenceBinding
+import com.readme.android.write_feed.writefeed.FeedWriteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,7 +42,8 @@ class ImpressiveSentenceFragment :
             feedWriteViewModel.author.value ?: "",
             feedWriteViewModel.image.value ?: "",
             feedWriteViewModel.isbn,
-            feedWriteViewModel.subIsbn
+            feedWriteViewModel.subIsbn,
+            feedWriteViewModel.category.value
         )
         binding.layoutBookInformation.ivBook.load(feedWriteViewModel.image.value ?: "") {
             placeholder(img_book_none)
