@@ -79,6 +79,7 @@
             android:background="@drawable/shape_rect_main_blue_fill_10"
             android:gravity="center"
             android:paddingVertical="15dp"
+            android:stateListAnimator="@null"
             android:text="적용"
             android:textAppearance="@style/medium_02"
             android:textColor="@color/white"

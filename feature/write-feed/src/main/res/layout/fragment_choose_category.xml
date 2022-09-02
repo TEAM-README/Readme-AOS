@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="feedWriteViewModel"
             type="com.readme.android.write_feed.writefeed.FeedWriteViewModel" />
@@ -55,8 +56,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_category_title"
-            app:singleSelection="true"
-            app:selectionRequired="true"/>
+            app:selectionRequired="true"
+            app:singleSelection="true" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
@@ -66,9 +67,10 @@
             android:layout_marginBottom="24dp"
             android:background="@{feedWriteViewModel.category == `` ? @drawable/shape_rect_gray_1_fill_10 : @drawable/shape_rect_main_blue_fill_10}"
             android:clickable="@{feedWriteViewModel.category == `` ? false : true}"
-            android:paddingVertical="15dp"
-            android:text="@string/next_btn_text"
             android:gravity="center"
+            android:paddingVertical="15dp"
+            android:stateListAnimator="@null"
+            android:text="@string/next_btn_text"
             android:textAppearance="@style/medium_02"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"

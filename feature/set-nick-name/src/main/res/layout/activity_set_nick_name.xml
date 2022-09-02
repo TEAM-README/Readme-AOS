@@ -120,6 +120,7 @@
             android:background="@{setNickNameViewModel.nickNameState == setNickNameConstant.ALLOWED_NICKNAME ? @drawable/shape_rect_main_blue_fill_10 : @drawable/shape_rect_gray_1_fill_10}"
             android:clickable="@{setNickNameViewModel.nickNameState == setNickNameConstant.ALLOWED_NICKNAME ? true : false}"
             android:paddingVertical="15dp"
+            android:stateListAnimator="@null"
             android:text="@string/set_nickname_start_button"
             android:textAppearance="@style/medium_02"
             android:textColor="@color/white"

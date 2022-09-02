@@ -192,6 +192,7 @@
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/shape_rect_main_blue_fill_10"
                 android:paddingVertical="15dp"
+                android:stateListAnimator="@null"
                 android:text="@string/post_feed_btn_next_text"
                 android:textAppearance="@style/medium_02"
                 android:textColor="@color/white"

@@ -100,6 +100,7 @@
             android:background="@{feedWriteViewModel.impressiveSentence.length() == 0 ? @drawable/shape_rect_gray_1_fill_10 : @drawable/shape_rect_main_blue_fill_10}"
             android:clickable="@{feedWriteViewModel.impressiveSentence.length() == 0 ? false : true }"
             android:paddingVertical="15dp"
+            android:stateListAnimator="@null"
             android:text="@string/next_btn_text"
             android:textAppearance="@style/medium_02"
             android:textColor="@color/white"
