@@ -25,9 +25,9 @@
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_marginTop="23dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
             android:text="@string/register_done_title"
             android:textAppearance="@style/semi_bold_01"
             android:textColor="@color/black"
@@ -40,17 +40,17 @@
         <TextView
             android:id="@+id/tv_content_first"
             android:layout_width="wrap_content"
-            android:layout_marginTop="22dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
             android:text="@string/register_done_content_first"
             android:textAppearance="@style/semi_bold_04"
             android:textColor="@color/gray_4"
+            app:layout_constraintBottom_toTopOf="@+id/tv_content_fifth"
             app:layout_constraintEnd_toStartOf="@+id/tv_contnent_second"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintBottom_toTopOf="@+id/tv_content_fifth"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
             android:id="@+id/tv_contnent_second"
@@ -111,6 +111,7 @@
             android:layout_marginBottom="24dp"
             android:background="@drawable/shape_rect_main_blue_fill_10"
             android:paddingVertical="15dp"
+            android:stateListAnimator="@null"
             android:text="@string/register_done_button"
             android:textAppearance="@style/medium_02"
             android:textColor="@color/white"

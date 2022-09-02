@@ -1,4 +1,4 @@
-package com.readme.android.auth.ui.socialloginmanager
+package com.readme.android.auth.social_login_manager
 
 import android.content.Context
 import com.navercorp.nid.NaverIdLoginSDK

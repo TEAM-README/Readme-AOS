@@ -3,7 +3,6 @@ import org.jetbrains.kotlin.konan.properties.Properties
 val properties = Properties()
 properties.load(project.rootProject.file("local.properties").inputStream())
 
-
 plugins {
     id("com.android.application")
     id("kotlin-parcelize")
@@ -20,9 +19,24 @@ android {
         dataBinding = true
     }
     defaultConfig {
-        buildConfigField("String","X_NAVER_CLIENT_ID",properties.getProperty("X_NAVER_CLIENT_ID"))
-        buildConfigField("String","X_NAVER_CLIENT_SECRET",properties.getProperty("X_NAVER_CLIENT_SECRET"))
-        buildConfigField("String","READ_ME_SERVER_BASE_URL",properties.getProperty("READ_ME_SERVER_BASE_URL"))
+        buildConfigField("String", "X_NAVER_CLIENT_ID", properties.getProperty("X_NAVER_CLIENT_ID"))
+        buildConfigField(
+            "String",
+            "X_NAVER_CLIENT_SECRET",
+            properties.getProperty("X_NAVER_CLIENT_SECRET")
+        )
+        buildConfigField(
+            "String",
+            "READ_ME_SERVER_BASE_URL",
+            properties.getProperty("READ_ME_SERVER_BASE_URL")
+        )
+        buildConfigField(
+            "String",
+            "KAKAO_NATIVE_APP_KEY",
+            properties.getProperty("KAKAO_NATIVE_APP_KEY")
+        )
+        manifestPlaceholders["NATIVE_APP_KEY"] =
+            properties.getProperty("KAKAO_NATIVE_APP_KEY_NO_QUOTES")
     }
     namespace = "com.readme.android"
 }
@@ -103,6 +117,9 @@ dependencies {
     implementation(ThirdPartyDependencies.ossLicense)
 
     debugImplementation(ThirdPartyDependencies.leakCanary)
+
+    // Kakao Login
+    implementation(ThirdPartyDependencies.kakaoAuth)
 }
 
 
