@@ -11,6 +11,7 @@ import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.core_ui.util.EventObserver
 import com.readme.android.domain.entity.BookInfo
+import com.readme.android.navigator.MainNavigator
 import com.readme.android.shared.R.drawable.img_book_none
 import com.readme.android.write_feed.R
 import com.readme.android.write_feed.databinding.ActivityPostFeedBinding
@@ -20,9 +21,13 @@ import com.readme.android.write_feed.fragments.FeelingFragment.Companion.FEELING
 import com.readme.android.write_feed.fragments.FeelingFragment.Companion.IMPRESSIVE_SENTENCE
 import com.readme.android.write_feed.writefeed.FeedWriteActivity
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class PostFeedActivity : BindingActivity<ActivityPostFeedBinding>(R.layout.activity_post_feed) {
+
+    @Inject
+    lateinit var mainNavigator: MainNavigator
 
     private val postFeedViewModel by viewModels<PostFeedViewModel>()
 
@@ -84,6 +89,7 @@ class PostFeedActivity : BindingActivity<ActivityPostFeedBinding>(R.layout.activ
         postFeedViewModel.postFeedState.observe(
             this,
             EventObserver {
+                mainNavigator.transactionToHome()
                 FeedWriteActivity.feedWriteActivity.finish()
                 val intent = Intent(this, RegisterDoneActivity::class.java)
                 startActivity(intent)

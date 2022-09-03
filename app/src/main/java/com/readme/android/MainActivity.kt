@@ -21,6 +21,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         initAdapter()
         syncBottomNavWithVp()
         initFabPostClickListener()
+        initTransactionToHome()
     }
 
     private fun initAdapter() {
@@ -54,5 +55,16 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
             val intent = Intent(this, BookSearchActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun initTransactionToHome() {
+        transactionToHome = {
+            binding.vpMain.setCurrentItem(0, false)
+            binding.bottomNav.selectedItemId = R.id.menu_home
+        }
+    }
+
+    companion object {
+        lateinit var transactionToHome: () -> Unit
     }
 }
