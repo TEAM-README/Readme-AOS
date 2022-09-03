@@ -25,4 +25,7 @@ interface MainNavigator {
         isbn: Pair<String, String>,
         subIsbn: Pair<String, String>
     )
+
+    /** MainActivity로 이동시 home화면이 나오도록 transaction 하는 로직 */
+    fun transactionToHome()
 }

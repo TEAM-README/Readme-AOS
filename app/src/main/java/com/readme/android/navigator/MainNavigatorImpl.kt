@@ -35,4 +35,8 @@ internal class MainNavigatorImpl @Inject constructor() : MainNavigator {
     ) {
         context.navigateActivity<FeedWriteActivity>(title, author, image, isbn, subIsbn)
     }
+
+    override fun transactionToHome() {
+        MainActivity.transactionToHome()
+    }
 }
