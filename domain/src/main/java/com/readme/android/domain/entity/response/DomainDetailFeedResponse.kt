@@ -4,6 +4,6 @@ import com.readme.android.domain.entity.BookInfo
 import com.readme.android.domain.entity.FeedInfo
 
 data class DomainDetailFeedResponse(
-    val feed: FeedInfo,
+    val feedInfo: FeedInfo,
     val bookInfo: BookInfo
 )

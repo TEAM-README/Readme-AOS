@@ -7,5 +7,6 @@ data class BookInfo(
     val author: String?,
     val image: String,
     val isbn: String,
-    val subIsbn: String
+    val subIsbn: String,
+    val category: String? = null
 ) : Serializable

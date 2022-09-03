@@ -3,7 +3,7 @@ package com.readme.android.data.repository
 import com.readme.android.core_data.exception.RetrofitFailureStateException
 import com.readme.android.data.remote.calladapter.NetworkState
 import com.readme.android.data.remote.datasource.RemoteFeedDataSource
-import com.readme.android.data.remote.mapper.HomeFeedMapper
+import com.readme.android.data.remote.mapper.FeedMapper
 import com.readme.android.domain.entity.response.DomainDetailFeedResponse
 import com.readme.android.domain.entity.response.DomainHomeFeedResponse
 import com.readme.android.domain.repository.FeedRepository
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 class FeedRepositoryImpl @Inject constructor(
     private val remoteFeedDataSource: RemoteFeedDataSource,
-    private val homeFeedMapper: HomeFeedMapper
+    private val feedMapper: FeedMapper
 ) : FeedRepository {
     override suspend fun getHomeFeed(filters: String): Result<DomainHomeFeedResponse> {
         when (val response = remoteFeedDataSource.getHomeFeedList(filters)) {
@@ -21,7 +21,7 @@ class FeedRepositoryImpl @Inject constructor(
                 DomainHomeFeedResponse(
                     filters = response.body.data.filters,
                     feedListInfo = response.body.data.feeds.map {
-                        homeFeedMapper.toHomeFeedInfo(it)
+                        feedMapper.toFeedInfo(it)
                     }
                 )
             )
@@ -43,9 +43,8 @@ class FeedRepositoryImpl @Inject constructor(
         when (val response = remoteFeedDataSource.getDetailFeed(feedId)) {
             is NetworkState.Success -> return Result.success(
                 DomainDetailFeedResponse(
-                    feed = homeFeedMapper.toHomeFeedInfo(response.body.data.feed),
-                    bookInfo = response.body.data.feed.book?.toBookInfo()
-                        ?: throw IllegalStateException("book data cannot be null")
+                    feedInfo = feedMapper.toFeedInfo(response.body.data.feed),
+                    bookInfo = response.body.data.feed.toBookInfo()
                 )
             )
             is NetworkState.Failure ->
