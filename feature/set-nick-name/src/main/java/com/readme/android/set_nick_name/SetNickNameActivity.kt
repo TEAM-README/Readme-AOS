@@ -37,7 +37,7 @@ class SetNickNameActivity :
     private fun initEditTextFilter() {
         binding.etSetNickname.filters = arrayOf(
             InputFilter { source, _, _, _, _, _ ->
-                val noSpecialCharacterRegex = "^[0-9a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]$"
+                val noSpecialCharacterRegex = "^[0-9a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]*$"
                 val noSpecialCharacterPattern = Pattern.compile(noSpecialCharacterRegex)
                 if (source.isNullOrEmpty() || noSpecialCharacterPattern.matcher(source).matches()) {
                     if (binding.etSetNickname.text.length < 7) {
