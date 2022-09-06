@@ -50,6 +50,21 @@ jobs:
               env:
                   X_NAVER_CLIENT_SECRET: ${{ secrets.X_NAVER_CLIENT_SECRET }}
               run: echo "X_NAVER_CLIENT_SECRET=\"$X_NAVER_CLIENT_SECRET\"" >> local.properties
+              
+            - name: Access KAKAO_NATIVE_APP_KEY
+              env:
+                  KAKAO_NATIVE_APP_KEY: ${{ secrets.KAKAO_NATIVE_APP_KEY }}
+              run: echo "KAKAO_NATIVE_APP_KEY=\"$KAKAO_NATIVE_APP_KEY\"" >> local.properties
+              
+            - name: Access KAKAO_NATIVE_APP_KEY_NO_QUOTES
+              env:
+                  KAKAO_NATIVE_APP_KEY_NO_QUOTES: ${{ secrets.KAKAO_NATIVE_APP_KEY_NO_QUOTES }}
+              run: echo "KAKAO_NATIVE_APP_KEY_NO_QUOTES=\"$KAKAO_NATIVE_APP_KEY_NO_QUOTES\"" >> local.properties
+              
+            - name: Access READ_ME_SERVER_BASE_URL
+              env:
+                  READ_ME_SERVER_BASE_URL: ${{ secrets.READ_ME_SERVER_BASE_URL }}
+              run: echo "READ_ME_SERVER_BASE_URL=\"$READ_ME_SERVER_BASE_URL\"" >> local.properties
 
             - name: Build debug APK
               run: ./gradlew assembleDebug --stacktrace
@@ -61,10 +76,10 @@ jobs:
                   SLACK_COLOR: '#53A551'
                   SLACK_ICON: https://avatars.githubusercontent.com/u/85377241?s=200&v=4?size=48
                   SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-                    SLACK_TITLE: 'Readme/PR Check S.U.C.C.E.S.S 🎉🎉🎉'
-                    MSG_MINIMAL: true
-                    SLACK_USERNAME: DELIVEREADME
-                    SLACK_MESSAGE: 'PR이 완료되었습니다!!! 🎉🎉🎉'
+                  SLACK_TITLE: 'Readme/PR Check S.U.C.C.E.S.S 🎉🎉🎉'
+                  MSG_MINIMAL: true
+                  SLACK_USERNAME: DELIVEREADME
+                  SLACK_MESSAGE: 'PR이 완료되었습니다!!! 🎉🎉🎉'
 
             -   name: On Failed, Notify in Slack
                 if: ${{ failure() }}
