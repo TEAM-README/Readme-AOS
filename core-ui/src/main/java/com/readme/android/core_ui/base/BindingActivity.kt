@@ -27,7 +27,7 @@ abstract class BindingActivity<T : ViewDataBinding>(
         binding.lifecycleOwner = this
     }
 
-    private val mainNavigator: MainNavigator by lazy {
+    val mainNavigator: MainNavigator by lazy {
         EntryPointAccessors.fromActivity(
             this,
             Injector.MainNavigaterInjector::class.java

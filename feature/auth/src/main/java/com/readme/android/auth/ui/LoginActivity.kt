@@ -22,9 +22,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
     @Inject
-    lateinit var mainNavigator: MainNavigator
-
-    @Inject
     lateinit var naverLoginManager: NaverLoginManager
 
     @Inject

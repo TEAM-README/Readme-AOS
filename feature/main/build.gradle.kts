@@ -16,6 +16,7 @@ android {
 dependencies {
     implementation(project(":core-ui"))
     implementation(project(":domain"))
+    implementation(project(":navigator"))
     implementation(project(":shared"))
 
     // Android Core

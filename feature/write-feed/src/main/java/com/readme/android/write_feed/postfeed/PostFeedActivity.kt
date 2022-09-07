@@ -25,10 +25,6 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class PostFeedActivity : BindingActivity<ActivityPostFeedBinding>(R.layout.activity_post_feed) {
-
-    @Inject
-    lateinit var mainNavigator: MainNavigator
-
     private val postFeedViewModel by viewModels<PostFeedViewModel>()
 
     @RequiresApi(Build.VERSION_CODES.O)

@@ -24,9 +24,6 @@ class BookSearchActivity :
     @Inject
     lateinit var resolutionMetrics: ResolutionMetrics
 
-    @Inject
-    lateinit var mainNavigator: MainNavigator
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         terminationTokenHandling(bookSearchViewModel)
