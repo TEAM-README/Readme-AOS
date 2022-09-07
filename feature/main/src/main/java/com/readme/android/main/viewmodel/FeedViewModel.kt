@@ -20,10 +20,6 @@ import javax.inject.Inject
 class FeedViewModel @Inject constructor(
     private val feedRepository: FeedRepository
 ) : BaseViewModel() {
-    private val _isMyFeed = MutableEventFlow<Boolean>()
-    val isMyFeed
-        get() = _isMyFeed.asEventFlow()
-
     val isCategorySelected = MutableLiveData<Boolean>()
 
     private var _homeFeedInfoList = MutableLiveData<List<FeedInfo>>()
