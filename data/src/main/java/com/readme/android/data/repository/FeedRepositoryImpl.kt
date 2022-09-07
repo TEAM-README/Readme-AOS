@@ -8,6 +8,7 @@ import com.readme.android.domain.entity.response.DomainDetailFeedResponse
 import com.readme.android.domain.entity.response.DomainHomeFeedResponse
 import com.readme.android.domain.repository.FeedRepository
 import timber.log.Timber.tag
+import java.net.HttpURLConnection.HTTP_UNAUTHORIZED
 import java.security.cert.CertificateException
 import javax.inject.Inject
 
@@ -26,7 +27,7 @@ class FeedRepositoryImpl @Inject constructor(
                 )
             )
             is NetworkState.Failure ->
-                if (response.code == 401) throw CertificateException(TOKEN_EXPIRED)
+                if (response.code == HTTP_UNAUTHORIZED) throw CertificateException(TOKEN_EXPIRED)
                 else return Result.failure(
                     RetrofitFailureStateException(response.error, response.code)
                 )
@@ -48,7 +49,7 @@ class FeedRepositoryImpl @Inject constructor(
                 )
             )
             is NetworkState.Failure ->
-                if (response.code == 401) throw CertificateException(TOKEN_EXPIRED)
+                if (response.code == HTTP_UNAUTHORIZED) throw CertificateException(TOKEN_EXPIRED)
                 else return Result.failure(
                     RetrofitFailureStateException(response.error, response.code)
                 )
@@ -64,7 +65,7 @@ class FeedRepositoryImpl @Inject constructor(
         when (val response = remoteFeedDataSource.deleteFeed(feedId)) {
             is NetworkState.Success -> return Result.success(response.body.message)
             is NetworkState.Failure ->
-                if (response.code == 401) throw CertificateException(TOKEN_EXPIRED)
+                if (response.code == HTTP_UNAUTHORIZED) throw CertificateException(TOKEN_EXPIRED)
                 else return Result.failure(
                     RetrofitFailureStateException(response.error, response.code)
                 )
