@@ -156,11 +156,3 @@ fun FragmentContainerView.setFragmentMargin(
         this.layoutParams = layoutParams
     }
 }
-
-@BindingAdapter("setFormattedDate")
-fun TextView.setFormattedDate(rawDate: String?) {
-    this.text = rawDate?.substring(0, 10)?.replace("-", "/")
-}
-
-
-
