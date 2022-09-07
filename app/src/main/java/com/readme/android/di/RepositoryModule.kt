@@ -31,4 +31,8 @@ interface RepositoryModule {
     @Binds
     @Singleton
     fun bindsFeedRepository(repository: FeedRepositoryImpl): FeedRepository
+
+    @Binds
+    @Singleton
+    fun bindsUserRepository(repository: UserRepositoryImpl): UserRepository
 }
