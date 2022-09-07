@@ -38,6 +38,17 @@ android {
         manifestPlaceholders["NATIVE_APP_KEY"] =
             properties.getProperty("KAKAO_NATIVE_APP_KEY_NO_QUOTES")
     }
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = true
+            isShrinkResources = true
+
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
     namespace = "com.readme.android"
 }
 
