@@ -9,6 +9,7 @@ import com.readme.android.core_ui.util.asEventFlow
 import com.readme.android.domain.entity.MyPageInfo
 import com.readme.android.domain.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -50,12 +51,17 @@ class MyPageViewModel @Inject constructor(
         viewModelScope.launch(exceptionHandler) {
             userRepository.deleteUser()
                 .onSuccess {
-                    _isLogOutEvent.emit(LogOutState.Success)
+                    clearUserInfo()
                 }
                 .onFailure {
                     _isLogOutEvent.emit(LogOutState.Failure(it.message))
                 }
         }
+    }
+
+    suspend fun clearUserInfo() {
+        userRepository.clearUserInfo()
+        _isLogOutEvent.emit(LogOutState.Success)
     }
 }
 
