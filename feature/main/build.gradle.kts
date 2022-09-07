@@ -40,6 +40,9 @@ dependencies {
     // Jetpack Fragment
     implementation(AndroidXDependencies.fragment)
 
+    // Logger - Timber
+    implementation(ThirdPartyDependencies.timber)
+
     // test
     implementation(AndroidXDependencies.junit)
     androidTestImplementation(TestDependencies.androidTest)
