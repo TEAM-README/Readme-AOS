@@ -35,7 +35,7 @@ class MyPageFragment(private val resolutionMetrics: ResolutionMetrics) :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        terminationTokenHandling(viewModel)
         initView()
         observeData()
     }
@@ -80,7 +80,10 @@ class MyPageFragment(private val resolutionMetrics: ResolutionMetrics) :
         feedId: Int,
         feedWriterName: String? = null
     ) {
-        MoreBottomSheetDialog(isMyFeed, feedId, feedWriterName).show(childFragmentManager, this.tag)
+        MoreBottomSheetDialog(isMyFeed, feedId, feedWriterName) { viewModel.getMyPageInfo() }.show(
+            childFragmentManager,
+            this.tag
+        )
     }
 
     private fun onClickFeed(id: Int) {

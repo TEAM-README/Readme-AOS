@@ -87,5 +87,19 @@
             android:textAppearance="@style/medium_02"
             android:textColor="@color/crimson"
             app:layout_constraintTop_toBottomOf="@+id/tv_see_terms" />
+
+        <TextView
+            android:id="@+id/tv_delete_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@color/white"
+            android:paddingStart="32dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="22dp"
+            android:text="@string/delete_user"
+            android:textAppearance="@style/medium_02"
+            android:textColor="@color/crimson"
+            app:layout_constraintTop_toBottomOf="@+id/tv_logout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
