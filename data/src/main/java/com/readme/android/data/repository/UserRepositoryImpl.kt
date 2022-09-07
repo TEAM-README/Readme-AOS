@@ -1,6 +1,7 @@
 package com.readme.android.data.repository
 
 import com.readme.android.core_data.exception.RetrofitFailureStateException
+import com.readme.android.data.local.datasource.LocalPreferenceUserDataSource
 import com.readme.android.data.remote.calladapter.NetworkState
 import com.readme.android.data.remote.datasource.RemoteUserDataSource
 import com.readme.android.data.remote.mapper.FeedMapper
@@ -14,6 +15,7 @@ import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
     private val remoteUserDataSource: RemoteUserDataSource,
+    private val localPreferenceUserDataSource: LocalPreferenceUserDataSource,
     private val feedMapper: FeedMapper
 ) : UserRepository {
     override suspend fun getMyPageInfo(): Result<MyPageInfo> {
@@ -54,5 +56,9 @@ class UserRepositoryImpl @Inject constructor(
             is NetworkState.UnknownError -> Timber.d(response.t)
         }
         return Result.failure(IllegalStateException(FeedRepositoryImpl.UNKNOWN_ERROR))
+    }
+
+    override fun clearUserInfo() {
+        localPreferenceUserDataSource.clearUserInfo()
     }
 }
