@@ -9,15 +9,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:context=".fragments.WriteFeedDialogFragment" >
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/iv_alert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_alert"
             android:layout_marginTop="32dp"
+            android:src="@drawable/ic_alert"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -26,33 +25,33 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/write_feed_dialog_title"
-            android:textAppearance="@style/semi_bold_02"
-            android:gravity="center"
-            android:textColor="@color/black"
             android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:textAppearance="@style/semi_bold_02"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_alert" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_alert"
+            tools:text="@string/write_feed_dialog_title" />
 
         <TextView
             android:id="@+id/tv_content"
-            android:layout_marginTop="9dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/write_feed_dialog_content"
+            android:layout_marginTop="9dp"
             android:textAppearance="@style/regular_03"
             android:textColor="@color/gray_3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            tools:text="@string/write_feed_dialog_content" />
 
         <View
             android:id="@+id/view_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/gray_1"
             android:layout_marginTop="30dp"
+            android:background="@color/gray_1"
             app:layout_constraintTop_toBottomOf="@+id/tv_content"
             tools:layout_editor_absoluteX="35dp" />
 
@@ -60,11 +59,11 @@
             android:id="@+id/tv_cancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:paddingVertical="19dp"
             android:text="@string/write_feed_dialog_cancel"
             android:textAppearance="@style/medium_02"
             android:textColor="@color/gray_3"
-            android:gravity="center"
             app:layout_constraintEnd_toStartOf="@+id/tv_check"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
