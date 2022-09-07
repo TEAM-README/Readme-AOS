@@ -27,25 +27,6 @@ abstract class BindingActivity<T : ViewDataBinding>(
         binding.lifecycleOwner = this
     }
 
-    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
-        val view = currentFocus
-
-        if (view != null && ev.action == MotionEvent.ACTION_UP || ev.action == MotionEvent.ACTION_MOVE && view is EditText && !view.javaClass
-                .name.startsWith("android.webkit.")
-        ) {
-            val locationList = IntArray(2)
-            view.getLocationOnScreen(locationList)
-            val x = ev.rawX + view.left - locationList[0]
-            val y = ev.rawY + view.top - locationList[1]
-            if (x < view.left || x > view.right || y < view.top || y > view.bottom) {
-                closeKeyboard(view)
-                view.clearFocus()
-            }
-        }
-
-        return super.dispatchTouchEvent(ev)
-    }
-
     private val mainNavigator: MainNavigator by lazy {
         EntryPointAccessors.fromActivity(
             this,
@@ -59,7 +40,6 @@ abstract class BindingActivity<T : ViewDataBinding>(
             Injector.SharedPreferencesInjector::class.java
         ).sharedPreferences()
     }
-
 
     protected fun terminationTokenHandling(viewModel: BaseViewModel) {
         viewModel.moveToLogin.observe(this, EventObserver {
