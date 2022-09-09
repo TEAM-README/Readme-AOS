@@ -27,4 +27,7 @@ interface RemoteDataSourceModule {
     @Singleton
     fun bindsRemoteHomeFeedDataSource(source: RemoteFeedDataSourceImpl): RemoteFeedDataSource
 
+    @Binds
+    @Singleton
+    fun bindsRemoteUserDataSource(source: RemoteUserDataSourceImpl): RemoteUserDataSource
 }

@@ -13,8 +13,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/gray_0"
         android:layout_height="match_parent"
+        android:background="@color/gray_0"
         tools:context=".ui.feed.FeedDetailActivity">
 
         <ScrollView
@@ -54,8 +54,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     android:background="@drawable/shape_rect_white_fill_top_right_30"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/layout_book_information">
 
                     <TextView
@@ -64,9 +64,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="26dp"
                         android:layout_marginTop="34dp"
-                        android:text="@{feed.impressiveSentence}"
                         android:layout_marginEnd="26dp"
                         android:lineSpacingExtra="6sp"
+                        android:text="@{feed.impressiveSentence}"
                         android:textAppearance="@style/regular_03"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -102,8 +102,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="26dp"
-                        android:text="@{feed.nickname}"
                         android:layout_marginBottom="20dp"
+                        android:text="@{feed.nickname}"
                         android:textAppearance="@style/regular_05"
                         android:textColor="@color/gray_5"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -116,7 +116,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="6dp"
-                        setFormattedDate="@{feed.date}"
+                        android:text="@{feed.date}"
                         android:textAppearance="@style/regular_05"
                         android:textColor="@color/gray_3"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_nickname"

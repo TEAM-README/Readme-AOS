@@ -1,14 +1,19 @@
 package com.readme.android.main.ui.mypage
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.readme.android.core_ui.ext.navigateActivity
 import com.readme.android.domain.entity.MyPageUser
 import com.readme.android.main.databinding.LayoutMyPageTopBinding
 
-class MyPageTopAdapter(private val myPageUser: MyPageUser) :
-    RecyclerView.Adapter<MyPageTopAdapter.MyPageTopViewHolder>() {
+class MyPageTopAdapter : RecyclerView.Adapter<MyPageTopAdapter.MyPageTopViewHolder>() {
+    var myPageUser: MyPageUser? = null
+        set(value) {
+            field = value
+            notifyItemChanged(0)
+        }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyPageTopViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = LayoutMyPageTopBinding.inflate(inflater, parent, false)
@@ -24,12 +29,14 @@ class MyPageTopAdapter(private val myPageUser: MyPageUser) :
     class MyPageTopViewHolder(
         private val binding: LayoutMyPageTopBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(myPageUser: MyPageUser) {
-            binding.userData = myPageUser
+        fun onBind(myPageUser: MyPageUser?) {
+            myPageUser?.let {
+                binding.userData = it
 
-            binding.btnSetting.setOnClickListener {
-                with(itemView.context) {
-                    startActivity(Intent(this, MyPageSettingActivity::class.java))
+                binding.btnSetting.setOnClickListener {
+                    with(itemView.context) {
+                        navigateActivity<MyPageSettingActivity>()
+                    }
                 }
             }
         }
