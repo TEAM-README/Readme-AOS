@@ -20,7 +20,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class MoreBottomSheetDialog(
     private val isMyFeed: Boolean,
     private val feedId: Int,
-    private val feedWriterNickname: String? = null
+    private val feedWriterNickname: String? = null,
+    private val deleteClickListener: (() -> Unit)? = null
 ) : BottomSheetDialogFragment() {
 
     private val viewModel: FeedViewModel by activityViewModels()
@@ -49,7 +50,10 @@ class MoreBottomSheetDialog(
     private fun onTvActionClickListener() {
         binding.tvAction.setOnClickListener {
             when (isMyFeed) {
-                true -> deleteFeed(feedId)
+                true -> {
+                    deleteFeed(feedId)
+                    deleteClickListener?.invoke()
+                }
                 false -> sendMail()
             }
             dismiss()

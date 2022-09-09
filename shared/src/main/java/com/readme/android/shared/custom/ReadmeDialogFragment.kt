@@ -1,4 +1,4 @@
-package com.readme.android.write_feed.fragments
+package com.readme.android.shared.custom
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,13 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
-import com.readme.android.shared.R.drawable.shape_rect_white_fill_14
-import com.readme.android.write_feed.R
-import com.readme.android.write_feed.databinding.FragmentWriteFeedDialogBinding
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener
+import com.readme.android.shared.R
+import com.readme.android.shared.databinding.FragmentReadmeDialogBinding
 
-class WriteFeedDialogFragment : DialogFragment() {
-
-    private var _binding: FragmentWriteFeedDialogBinding? = null
+class ReadmeDialogFragment : DialogFragment() {
+    private var _binding: FragmentReadmeDialogBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,21 +23,23 @@ class WriteFeedDialogFragment : DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_write_feed_dialog, container, false)
+            DataBindingUtil.inflate(inflater, R.layout.fragment_readme_dialog, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
         initCancelButtonListener()
         initCheckButtonListener()
     }
 
-    override fun onStart() {
-        super.onStart()
+    private fun initView() {
+        binding.tvTitle.text = title
+        binding.tvContent.text = body
         setLayout()
     }
 
@@ -49,7 +50,7 @@ class WriteFeedDialogFragment : DialogFragment() {
                     (resources.displayMetrics.widthPixels * 0.91).toInt(),
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
-                setBackgroundDrawableResource(shape_rect_white_fill_14)
+                setBackgroundDrawableResource(R.drawable.shape_rect_white_fill_14)
             }
         }
     }
@@ -63,12 +64,30 @@ class WriteFeedDialogFragment : DialogFragment() {
     private fun initCheckButtonListener() {
         binding.tvCheck.setOnClickListener {
             dismiss()
-            requireActivity().finish()
+            positiveButtonClickListener()
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val TAG = "ReadmeDialog"
+        private var title = ""
+        private var body = ""
+        private lateinit var positiveButtonClickListener: () -> Unit
+
+        fun newInstance(
+            title: String,
+            body: String,
+            positiveButtonClickListener: () -> Unit
+        ): ReadmeDialogFragment {
+            this.title = title
+            this.body = body
+            this.positiveButtonClickListener = positiveButtonClickListener
+            return ReadmeDialogFragment()
+        }
     }
 }

@@ -7,11 +7,11 @@ import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.core_ui.constant.FeedWriteFragmentList.*
 import com.readme.android.core_ui.util.KeyboardVisibilityUtils
 import com.readme.android.core_ui.util.ResolutionMetrics
+import com.readme.android.shared.custom.ReadmeDialogFragment
 import com.readme.android.write_feed.R
 import com.readme.android.write_feed.databinding.ActivityFeedWriteBinding
 import com.readme.android.write_feed.fragments.ChooseCategoryFragment
 import com.readme.android.write_feed.fragments.ImpressiveSentenceFragment
-import com.readme.android.write_feed.fragments.WriteFeedDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -80,9 +80,13 @@ class FeedWriteActivity : BindingActivity<ActivityFeedWriteBinding>(R.layout.act
     private fun backButtonProcess() {
         when (requireNotNull(feedWriteViewModel.currentFragment.value)) {
             CHOOSE_CATEGORY -> {
-                WriteFeedDialogFragment().show(
-                    this.supportFragmentManager,
-                    "WriteFeedDialog"
+                ReadmeDialogFragment.newInstance(
+                    title = getString(com.readme.android.shared.R.string.write_feed_dialog_title),
+                    body = getString(com.readme.android.shared.R.string.write_feed_dialog_content),
+                    positiveButtonClickListener = { finish() }
+                ).show(
+                    supportFragmentManager,
+                    ReadmeDialogFragment.TAG
                 )
             }
             IMPRESSIVE_SENTENCE -> {

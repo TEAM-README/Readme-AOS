@@ -16,9 +16,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class SetNickNameActivity :
     BindingActivity<ActivitySetNickNameBinding>(R.layout.activity_set_nick_name) {
-
-    @Inject
-    lateinit var mainNavigator: MainNavigator
     private val setNickNameViewModel by viewModels<SetNickNameViewModel>()
     private lateinit var socialToken: String
     private lateinit var platform: String

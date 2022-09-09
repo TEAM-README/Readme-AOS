@@ -11,6 +11,6 @@ interface UserService {
     @GET("user/myFeeds")
     suspend fun getMyFeeds(): NetworkState<BaseResponse<MyFeedResponse>>
 
-    @DELETE
+    @DELETE("user")
     suspend fun deleteUser(): NetworkState<NoDataResponse>
 }

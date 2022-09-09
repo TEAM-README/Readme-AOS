@@ -6,4 +6,6 @@ interface UserRepository {
     suspend fun getMyPageInfo(): Result<MyPageInfo>
 
     suspend fun deleteUser(): Result<String>
+
+    fun clearUserInfo()
 }
