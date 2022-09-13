@@ -1,36 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/tv_feed_empty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/feed_empty"
-        android:textAppearance="@style/regular_02"
-        android:textColor="@color/gray_2"
-        app:layout_constraintBottom_toTopOf="@id/tv_plz_plus_add"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+    <data>
 
-    <TextView
-        android:id="@+id/tv_plz_plus_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:text="@string/plz_plus_add"
-        android:textAppearance="@style/regular_03"
-        android:textColor="@color/gray_2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tv_feed_empty"
-        app:layout_constraintStart_toStartOf="@+id/tv_feed_empty"
-        app:layout_constraintTop_toBottomOf="@+id/tv_feed_empty" />
-</merge>
+        <import type="android.view.View" />
+
+        <variable
+            name="isFeedEmpty"
+            type="Boolean" />
+    </data>
+
+    <merge
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+        <TextView
+            android:id="@+id/tv_feed_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/feed_empty"
+            android:textAppearance="@style/regular_02"
+            android:textColor="@color/gray_2"
+            android:visibility="@{isFeedEmpty? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/tv_plz_plus_add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tv_plz_plus_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/plz_plus_add"
+            android:textAppearance="@style/regular_03"
+            android:textColor="@color/gray_2"
+            android:visibility="@{isFeedEmpty? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_feed_empty"
+            app:layout_constraintStart_toStartOf="@+id/tv_feed_empty"
+            app:layout_constraintTop_toBottomOf="@+id/tv_feed_empty" />
+    </merge>
+</layout>
