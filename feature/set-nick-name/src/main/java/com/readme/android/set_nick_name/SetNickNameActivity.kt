@@ -2,16 +2,17 @@ package com.readme.android.set_nick_name
 
 import android.os.Bundle
 import android.text.InputFilter
+import android.view.MotionEvent
+import android.widget.EditText
 import androidx.activity.viewModels
 import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.core_ui.constant.SetNickNameConstant.*
+import com.readme.android.core_ui.ext.closeKeyboard
 import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.core_ui.util.EventObserver
-import com.readme.android.navigator.MainNavigator
 import com.readme.android.set_nick_name.databinding.ActivitySetNickNameBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.regex.Pattern
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class SetNickNameActivity :
@@ -80,5 +81,25 @@ class SetNickNameActivity :
                 moveMainActicity()
             }
         )
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        val view = currentFocus
+
+        if (view != null && ev.action == MotionEvent.ACTION_UP || ev.action == MotionEvent.ACTION_MOVE && view is EditText && !view.javaClass.name.startsWith(
+                "android.webkit."
+            )
+        ) {
+            val locationList = IntArray(2)
+            view.getLocationOnScreen(locationList)
+            val x = ev.rawX + view.left - locationList[0]
+            val y = ev.rawY + view.top - locationList[1]
+            if (x < view.left || x > view.right || y < view.top || y > view.bottom) {
+                closeKeyboard(view)
+                view.clearFocus()
+            }
+        }
+
+        return super.dispatchTouchEvent(ev)
     }
 }

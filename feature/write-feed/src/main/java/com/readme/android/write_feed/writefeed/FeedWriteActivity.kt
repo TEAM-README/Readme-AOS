@@ -1,10 +1,13 @@
 package com.readme.android.write_feed.writefeed
 
 import android.os.Bundle
+import android.view.MotionEvent
+import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.fragment.app.replace
 import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.core_ui.constant.FeedWriteFragmentList.*
+import com.readme.android.core_ui.ext.closeKeyboard
 import com.readme.android.core_ui.util.KeyboardVisibilityUtils
 import com.readme.android.core_ui.util.ResolutionMetrics
 import com.readme.android.shared.custom.ReadmeDialogFragment
@@ -100,6 +103,26 @@ class FeedWriteActivity : BindingActivity<ActivityFeedWriteBinding>(R.layout.act
                     .replace<ImpressiveSentenceFragment>(R.id.container_feed_write).commit()
             }
         }
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        val view = currentFocus
+
+        if (view != null && ev.action == MotionEvent.ACTION_UP || ev.action == MotionEvent.ACTION_MOVE && view is EditText && !view.javaClass.name.startsWith(
+                "android.webkit."
+            )
+        ) {
+            val locationList = IntArray(2)
+            view.getLocationOnScreen(locationList)
+            val x = ev.rawX + view.left - locationList[0]
+            val y = ev.rawY + view.top - locationList[1]
+            if (x < view.left || x > view.right || y < view.top || y > view.bottom) {
+                closeKeyboard(view)
+                view.clearFocus()
+            }
+        }
+
+        return super.dispatchTouchEvent(ev)
     }
 
     companion object {

@@ -15,12 +15,12 @@ import com.readme.android.shared.R
 
 fun Context.showKeyboard(view: View) {
     val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-    inputMethodManager.showSoftInput(view.findFocus(), 0)
+    inputMethodManager.showSoftInput(view, 0)
 }
 
 fun Context.closeKeyboard(view: View) {
     val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-    inputMethodManager.showSoftInput(view.findFocus(), 0)
+    inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
 }
 
 fun Context.shortToast(message: String) {

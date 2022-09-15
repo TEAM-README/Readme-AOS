@@ -3,15 +3,18 @@ package com.readme.android.book_search
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.KeyEvent.KEYCODE_ENTER
+import android.view.MotionEvent
 import android.view.ViewTreeObserver
+import android.widget.EditText
 import androidx.activity.viewModels
 import com.readme.android.book_search.databinding.ActivityBookSearchBinding
 import com.readme.android.core_ui.base.BindingActivity
+import com.readme.android.core_ui.ext.closeKeyboard
 import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.core_ui.util.KeyBoardUtil
 import com.readme.android.core_ui.util.ResolutionMetrics
-import com.readme.android.navigator.MainNavigator
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -31,6 +34,7 @@ class BookSearchActivity :
         initBookListRecyclerViewAdapter()
         setRecyclerViewRecentReadMargin()
         updateRecyclerViewList()
+        initQuitButtonClickListener()
         initBookSearchButtonListener()
         initEditTextBookSearchFocusListener()
         getRecentReadList()
@@ -44,14 +48,18 @@ class BookSearchActivity :
 
     private fun setRecyclerViewRecentReadMargin() {
         binding.tvRecentRead.viewTreeObserver.addOnGlobalLayoutListener(object :
-                ViewTreeObserver.OnGlobalLayoutListener {
-                override fun onGlobalLayout() {
-                    binding.recentReadVisibleMargin =
-                        resolutionMetrics.toPixel(36 + 6) + binding.tvRecentRead.height
-                    binding.recentReadGoneMargin = resolutionMetrics.toPixel(36)
-                    binding.tvRecentRead.viewTreeObserver.removeOnGlobalLayoutListener(this)
-                }
-            })
+            ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                binding.recentReadVisibleMargin =
+                    resolutionMetrics.toPixel(36 + 6) + binding.tvRecentRead.height
+                binding.recentReadGoneMargin = resolutionMetrics.toPixel(36)
+                binding.tvRecentRead.viewTreeObserver.removeOnGlobalLayoutListener(this)
+            }
+        })
+    }
+
+    private fun initQuitButtonClickListener() {
+        binding.btnClose.setOnClickListener { finish() }
     }
 
     private fun initBookSearchButtonListener() {
@@ -95,5 +103,25 @@ class BookSearchActivity :
 
     private fun getRecentReadList() {
         bookSearchViewModel.getRecentReadList()
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        val view = currentFocus
+
+        if (view != null && ev.action == MotionEvent.ACTION_UP || ev.action == MotionEvent.ACTION_MOVE && view is EditText && !view.javaClass.name.startsWith(
+                "android.webkit."
+            )
+        ) {
+            val locationList = IntArray(2)
+            view.getLocationOnScreen(locationList)
+            val x = ev.rawX + view.left - locationList[0]
+            val y = ev.rawY + view.top - locationList[1]
+            if (x < view.left || x > view.right || y < view.top || y > view.bottom) {
+                closeKeyboard(view)
+                view.clearFocus()
+            }
+        }
+
+        return super.dispatchTouchEvent(ev)
     }
 }
