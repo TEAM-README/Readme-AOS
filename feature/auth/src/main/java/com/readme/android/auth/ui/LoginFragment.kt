@@ -2,43 +2,35 @@ package com.readme.android.auth.ui
 
 import android.os.Bundle
 import android.view.View
-import android.view.ViewTreeObserver
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.fragment.app.activityViewModels
 import com.readme.android.auth.R
-import com.readme.android.auth.databinding.ActivityLoginBinding
+import com.readme.android.auth.databinding.FragmentLoginBinding
 import com.readme.android.auth.social_login_manager.KakaoLoginManager
 import com.readme.android.auth.social_login_manager.NaverLoginManager
-import com.readme.android.auth.ui.AutoLoginConstant.AUTO_LOGIN_FAILURE
-import com.readme.android.auth.ui.AutoLoginConstant.AUTO_LOGIN_SUCCESS
-import com.readme.android.core_ui.base.BindingActivity
+import com.readme.android.core_ui.base.BindingFragment
 import com.readme.android.core_ui.ext.setOnSingleClickListener
 import com.readme.android.core_ui.util.EventObserver
-import com.readme.android.navigator.MainNavigator
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
+class LoginFragment : BindingFragment<FragmentLoginBinding>(R.layout.fragment_login) {
     @Inject
     lateinit var naverLoginManager: NaverLoginManager
 
     @Inject
     lateinit var kakaoLoginManager: KakaoLoginManager
-    private val loginViewModel by viewModels<LoginViewModel>()
-    lateinit var autoLoginState: AutoLoginConstant
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
-        super.onCreate(savedInstanceState)
-        checkAutoLoginState()
+    private val loginViewModel by activityViewModels<LoginViewModel>()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initClickEvent()
         initLoginObserver()
         initLoginFailureMessageObserver()
         initMoveToHomeObserver()
         initMoveToSetNickNameObserver()
-        autoLogin()
     }
 
     private fun initClickEvent() {
@@ -60,20 +52,20 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     }
 
     private fun initLoginObserver() {
-        loginViewModel.socialToken.observe(this) {
+        loginViewModel.socialToken.observe(viewLifecycleOwner) {
             loginViewModel.postLogin()
         }
     }
 
     private fun initLoginFailureMessageObserver() {
-        loginViewModel.loginFailureMessage.observe(this) {
-            Toast.makeText(this, "로그인에 실패 하였습니다", Toast.LENGTH_SHORT).show()
+        loginViewModel.loginFailureMessage.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), "로그인에 실패 하였습니다", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun initMoveToSetNickNameObserver() {
         loginViewModel.moveToSetNickname.observe(
-            this,
+            viewLifecycleOwner,
             EventObserver {
                 moveSetNickNameActivity(it, loginViewModel.socialToken.value ?: "")
             }
@@ -82,7 +74,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
 
     private fun initMoveToHomeObserver() {
         loginViewModel.moveToHome.observe(
-            this,
+            viewLifecycleOwner,
             EventObserver {
                 moveMainActivity()
             }
@@ -90,44 +82,17 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     }
 
     private fun moveMainActivity() {
-        mainNavigator.openMain(this)
-        finish()
+         mainNavigator.openMain(requireActivity())
+        requireActivity().finish()
     }
 
     private fun moveSetNickNameActivity(platform: String, socialToken: String) {
         mainNavigator.openSetNickName(
-            context = this,
+            context = requireContext(),
             platform = Pair("platform", platform),
             socialToken = Pair("socialToken", socialToken)
         )
-        finish()
-    }
-
-    private fun autoLogin() {
-        val content: View = findViewById(android.R.id.content)
-        content.viewTreeObserver.addOnPreDrawListener(
-            object : ViewTreeObserver.OnPreDrawListener {
-                override fun onPreDraw(): Boolean {
-                    return if (::autoLoginState.isInitialized) {
-                        if (autoLoginState == AUTO_LOGIN_SUCCESS) {
-                            moveMainActivity()
-                        }
-                        content.viewTreeObserver.removeOnPreDrawListener(this)
-                        true
-                    } else {
-                        false
-                    }
-                }
-            }
-        )
-    }
-
-    private fun checkAutoLoginState() {
-        if (loginViewModel.getAccessToken() != "") {
-            autoLoginState = AUTO_LOGIN_SUCCESS
-        } else {
-            autoLoginState = AUTO_LOGIN_FAILURE
-        }
+        requireActivity().finish()
     }
 
     companion object {
