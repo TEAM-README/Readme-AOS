@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">Readme</string>
+    <!-- 온보딩 -->
+    <string name="skip">건너뛰기</string>
+    <string name="onboard_title_1">타인의 독서 기록을\n통한 짧은 독서</string>
+    <string name="onboard_title_2">간편한 독서 기록</string>
+    <string name="onboard_title_3">나만의 공간에 보관하기</string>
+    <string name="onboard_content_1">다른 사람들이 어떤 책을 읽고,\n무엇을 느꼈는지 한 눈에 보아요</string>
+    <string name="onboard_content_2">책에서 인상 깊은 문장과\n느낀 점만 작성하면 돼요</string>
+    <string name="onboard_content_3">독서 당시의 울림을 오래 소장해 보아요</string>
 
     <!--로그인-->
     <string name="login_explain"><b>간단한 회원가입</b>으로 리드미를 시작해볼까요?</string>
