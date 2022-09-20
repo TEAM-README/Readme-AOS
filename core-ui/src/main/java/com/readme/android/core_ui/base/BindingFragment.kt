@@ -31,7 +31,7 @@ abstract class BindingFragment<T : ViewDataBinding>(
         return binding.root
     }
 
-    private val mainNavigator: MainNavigator by lazy {
+    val mainNavigator: MainNavigator by lazy {
         EntryPointAccessors.fromActivity(
             requireActivity(),
             Injector.MainNavigaterInjector::class.java
