@@ -24,6 +24,7 @@ dependencies {
     implementation(AndroidXDependencies.constraintLayout)
     implementation(AndroidXDependencies.legacy)
     implementation(AndroidXDependencies.coroutines)
+    implementation(AndroidXDependencies.fragment)
     coreLibraryDesugaring(AndroidXDependencies.desugarLibrary)
 
     // Dagger-Hilt

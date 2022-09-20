@@ -63,4 +63,7 @@ dependencies {
 
     // Kakao Login
     implementation(ThirdPartyDependencies.kakaoAuth)
+
+    // dots indicator
+    implementation(ThirdPartyDependencies.dotsIndicator)
 }
