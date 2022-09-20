@@ -14,6 +14,13 @@ class LocalPreferenceUserDataSourceImpl @Inject constructor(
         localPreferences.edit { putString(READ_ME_ACCESS_TOKEN, accessToken) }
     }
 
+    override fun getIsFirstVisit(): Boolean =
+        localPreferences.getBoolean(IS_FIRST_VISIT, true)
+
+    override fun setIsFirstVisit(isFirstVisit: Boolean) {
+        localPreferences.edit { putBoolean(IS_FIRST_VISIT, isFirstVisit) }
+    }
+
     override fun getUserNickname(): String =
         localPreferences.getString(USER_NICKNAME, "") ?: ""
 
@@ -44,5 +51,6 @@ class LocalPreferenceUserDataSourceImpl @Inject constructor(
         const val READ_ME_ACCESS_TOKEN = "READ_ME_ACCESS_TOKEN"
         const val USER_NICKNAME = "USER_NICKNAME"
         const val USER_ID = "USER_ID"
+        const val IS_FIRST_VISIT = "IS_FIRST_VISIT"
     }
 }

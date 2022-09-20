@@ -23,6 +23,12 @@ class LoginRepositoryImpl @Inject constructor(
         localPreferenceUserDataSource.saveAccessToken(accessToken)
     }
 
+    override fun getIsFirstVisit(): Boolean = localPreferenceUserDataSource.getIsFirstVisit()
+
+    override fun setIsFirstVisit(isFirstVisit: Boolean) {
+        localPreferenceUserDataSource.setIsFirstVisit(isFirstVisit)
+    }
+
     override fun saveUserNickname(userNickname: String) {
         localPreferenceUserDataSource.saveUserNickname(userNickname)
     }
