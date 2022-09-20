@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="onboardNum"
+            type="Integer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/layout_onboard_1"
+            layout="@layout/layout_onboard_1"
+            android:visibility="@{onboardNum == 0? View.VISIBLE : View.GONE}" />
+
+        <include
+            android:id="@+id/layout_onboard_2"
+            layout="@layout/layout_onboard_2"
+            android:visibility="@{onboardNum == 1? View.VISIBLE : View.GONE}" />
+
+        <include
+            android:id="@+id/layout_onboard_3"
+            layout="@layout/layout_onboard_3"
+            android:visibility="@{onboardNum == 2? View.VISIBLE : View.GONE}" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
