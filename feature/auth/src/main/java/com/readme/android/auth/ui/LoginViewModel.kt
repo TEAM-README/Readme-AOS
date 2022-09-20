@@ -5,6 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.readme.android.core_ui.util.Event
+import com.readme.android.core_ui.util.EventFlow
+import com.readme.android.core_ui.util.MutableEventFlow
+import com.readme.android.core_ui.util.asEventFlow
 import com.readme.android.domain.entity.request.DomainLoginRequest
 import com.readme.android.domain.repository.LoginRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -28,6 +31,17 @@ class LoginViewModel @Inject constructor(
 
     private val _loginFailureMessage = MutableLiveData<String>()
     val loginFailureMessage: LiveData<String> = _loginFailureMessage
+
+    private val _isOnboardEnd = MutableEventFlow<Boolean>()
+    val isOnboardEnd : EventFlow<Boolean>
+        get() = _isOnboardEnd.asEventFlow()
+
+    fun setIsOnboardEnd(isEnd : Boolean) {
+        viewModelScope.launch {
+            setIsFirstVisit()
+            _isOnboardEnd.emit(isEnd)
+        }
+    }
 
     fun postLogin() {
         viewModelScope.launch {
@@ -69,6 +83,13 @@ class LoginViewModel @Inject constructor(
 
     fun getAccessToken(): String =
         loginRepository.getAccessToken()
+
+    fun getIsFirstVisit() : Boolean =
+        loginRepository.getIsFirstVisit()
+
+    private fun setIsFirstVisit() {
+        loginRepository.setIsFirstVisit(false)
+    }
 
     fun updatePlatform(platform: String) {
         this.platform = platform

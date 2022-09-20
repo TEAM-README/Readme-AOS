@@ -5,6 +5,10 @@ interface LocalPreferenceUserDataSource {
 
     fun saveAccessToken(accessToken: String)
 
+    fun getIsFirstVisit(): Boolean
+
+    fun setIsFirstVisit(isFirstVisit: Boolean)
+
     fun saveUserNickname(userNickname: String)
 
     fun getUserNickname(): String

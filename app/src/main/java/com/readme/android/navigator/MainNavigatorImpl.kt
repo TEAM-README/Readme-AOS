@@ -2,7 +2,7 @@ package com.readme.android.navigator
 
 import android.content.Context
 import com.readme.android.MainActivity
-import com.readme.android.auth.ui.LoginActivity
+import com.readme.android.auth.ui.AuthActivity
 import com.readme.android.core_ui.ext.navigateActivity
 import com.readme.android.set_nick_name.SetNickNameActivity
 import com.readme.android.write_feed.writefeed.FeedWriteActivity
@@ -22,7 +22,7 @@ internal class MainNavigatorImpl @Inject constructor() : MainNavigator {
     }
 
     override fun openLogin(context: Context) {
-        context.navigateActivity<LoginActivity>()
+        context.navigateActivity<AuthActivity>()
     }
 
     override fun feedWriteLogin(

@@ -1,6 +1,5 @@
 package com.readme.android.di
 
-import com.readme.android.BuildConfig
 import com.readme.android.BuildConfig.*
 import com.readme.android.data.local.datasource.LocalPreferenceUserDataSource
 import com.readme.android.data.remote.calladapter.CustomCallAdapterFactory
@@ -113,7 +112,7 @@ object RetrofitModule {
     @ReadMeServer
     fun providesReadMeRetrofit(@ReadMeServer okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl(READ_ME_SERVER_BASE_URL)
+            .baseUrl(if (DEBUG) READ_ME_SERVER_BASE_URL_DEBUG else READ_ME_SERVER_BASE_URL_RELEASE)
             .client(okHttpClient)
             .addCallAdapterFactory(CustomCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())

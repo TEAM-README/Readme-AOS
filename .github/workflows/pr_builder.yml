@@ -61,10 +61,15 @@ jobs:
                   KAKAO_NATIVE_APP_KEY_NO_QUOTES: ${{ secrets.KAKAO_NATIVE_APP_KEY_NO_QUOTES }}
               run: echo "KAKAO_NATIVE_APP_KEY_NO_QUOTES=\"$KAKAO_NATIVE_APP_KEY_NO_QUOTES\"" >> local.properties
               
-            - name: Access READ_ME_SERVER_BASE_URL
+            - name: Access READ_ME_SERVER_BASE_URL_DEBUG
               env:
-                  READ_ME_SERVER_BASE_URL: ${{ secrets.READ_ME_SERVER_BASE_URL }}
-              run: echo "READ_ME_SERVER_BASE_URL=\"$READ_ME_SERVER_BASE_URL\"" >> local.properties
+                  READ_ME_SERVER_BASE_URL_DEBUG: ${{ secrets.READ_ME_SERVER_BASE_URL_DEBUG }}
+              run: echo "READ_ME_SERVER_BASE_URL_DEBUG=\"$READ_ME_SERVER_BASE_URL_DEBUG\"" >> local.properties
+              
+            - name: Access READ_ME_SERVER_BASE_URL_RELEASE
+              env:
+                  READ_ME_SERVER_BASE_URL_RELEASE: ${{ secrets.READ_ME_SERVER_BASE_URL_RELEASE }}
+              run: echo "READ_ME_SERVER_BASE_URL_RELEASE=\"$READ_ME_SERVER_BASE_URL_RELEASE\"" >> local.properties
 
             - name: Build debug APK
               run: ./gradlew assembleDebug --stacktrace
