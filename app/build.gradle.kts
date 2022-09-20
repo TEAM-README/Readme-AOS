@@ -27,8 +27,13 @@ android {
         )
         buildConfigField(
             "String",
-            "READ_ME_SERVER_BASE_URL",
-            properties.getProperty("READ_ME_SERVER_BASE_URL")
+            "READ_ME_SERVER_BASE_URL_DEBUG",
+            properties.getProperty("READ_ME_SERVER_BASE_URL_DEBUG")
+        )
+        buildConfigField(
+            "String",
+            "READ_ME_SERVER_BASE_URL_RELEASE",
+            properties.getProperty("READ_ME_SERVER_BASE_URL_RELEASE")
         )
         buildConfigField(
             "String",
