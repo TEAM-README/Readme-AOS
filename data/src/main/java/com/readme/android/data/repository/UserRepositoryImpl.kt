@@ -59,6 +59,10 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override fun clearUserInfo() {
-        localPreferenceUserDataSource.clearUserInfo()
+        with(localPreferenceUserDataSource) {
+            removeUserNickname()
+            removeUserId()
+            removeAccessToken()
+        }
     }
 }
