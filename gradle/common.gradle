@@ -13,6 +13,7 @@ if (hasLibraryPlugin || hasApplicationPlugin) {
             }
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
             versionName = Constants.versionName
+            versionCode = Constants.versionCode
         }
 
         compileOptions {
