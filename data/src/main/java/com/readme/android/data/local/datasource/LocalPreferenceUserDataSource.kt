@@ -21,5 +21,7 @@ interface LocalPreferenceUserDataSource {
 
     fun removeUserNickname()
 
+    fun removeUserId()
+
     fun clearUserInfo()
 }

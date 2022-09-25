@@ -43,6 +43,10 @@ class LocalPreferenceUserDataSourceImpl @Inject constructor(
         localPreferences.edit { remove(USER_NICKNAME) }
     }
 
+    override fun removeUserId() {
+        localPreferences.edit { remove(USER_ID) }
+    }
+
     override fun clearUserInfo() {
         localPreferences.edit { clear() }
     }
