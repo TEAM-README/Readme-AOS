@@ -44,7 +44,7 @@ class MyPageSettingActivity :
             }
 
             tvSeeTerms.setOnClickListener {
-                startUri("https://paint-red-74c.notion.site/e187f3913b914e869cf48c9bf10fc751")
+                startUri("https://www.notion.so/1c67563a635e4a129de4d32bc32a62d2")
             }
 
             tvLogout.setOnClickListener {
