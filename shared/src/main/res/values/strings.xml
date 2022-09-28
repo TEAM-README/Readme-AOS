@@ -35,7 +35,7 @@
     <string name="delete">삭제하기</string>
     <string name="setting">환경설정</string>
     <string name="inquire">문의하기</string>
-    <string name="see_terms">약관 보기</string>
+    <string name="privacy_policy">개인정보처리방침</string>
     <string name="logout">로그아웃</string>
     <string name="delete_user">회원탈퇴</string>
     <string name="inquire_subject">리드미 문의하기</string>

@@ -69,7 +69,7 @@
             android:paddingStart="32dp"
             android:paddingTop="20dp"
             android:paddingBottom="22dp"
-            android:text="@string/see_terms"
+            android:text="@string/privacy_policy"
             android:textAppearance="@style/medium_02"
             android:textColor="@color/gray_4"
             app:layout_constraintTop_toBottomOf="@+id/tv_inquire" />
