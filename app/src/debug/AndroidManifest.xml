@@ -3,7 +3,7 @@
 
     <application android:name=".READMEApplication">
         <activity-alias
-            android:name=".leakcanary.internal.activity.LeakLauncherActivity"
+            android:name="leakcanary.internal.activity.LeakLauncherActivity"
             android:exported="false"
             android:targetActivity="leakcanary.internal.activity.LeakActivity" />
     </application>
