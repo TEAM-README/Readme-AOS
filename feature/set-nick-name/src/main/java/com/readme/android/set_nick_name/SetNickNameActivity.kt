@@ -5,6 +5,7 @@ import android.text.InputFilter
 import android.view.MotionEvent
 import android.widget.EditText
 import androidx.activity.viewModels
+import androidx.core.widget.addTextChangedListener
 import com.readme.android.core_ui.base.BindingActivity
 import com.readme.android.core_ui.constant.SetNickNameConstant.*
 import com.readme.android.core_ui.ext.closeKeyboard
@@ -30,26 +31,32 @@ class SetNickNameActivity :
         initDuplicateNickNameButton()
         initStartButtonClickListener()
         initMoveToHomeObserver()
+        initNickNameLengthMessage()
     }
 
     private fun initEditTextFilter() {
         binding.etSetNickname.filters = arrayOf(
-            InputFilter { source, _, _, _, _, _ ->
+            InputFilter { source, a, b, c, d, e ->
                 val noSpecialCharacterRegex = "^[0-9a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣ㆍᆢ]*$"
                 val noSpecialCharacterPattern = Pattern.compile(noSpecialCharacterRegex)
-                if (source.isNullOrEmpty() || noSpecialCharacterPattern.matcher(source).matches()) {
-                    if (binding.etSetNickname.text.length < 7) {
-                        setNickNameViewModel.updateNickNameState(HAS_NO_STATE)
-                    } else {
-                        setNickNameViewModel.updateNickNameState(OVER_TEXT_LIMIT)
-                    }
-                    return@InputFilter source
-                }
-                setNickNameViewModel.updateNickNameState(NO_SPECIAL_CHARACTER)
-                return@InputFilter ""
+                val isPossibleChar =
+                    source.isNullOrEmpty() || noSpecialCharacterPattern.matcher(source).matches()
+                if (!isPossibleChar) setNickNameViewModel.updateNickNameState(NO_SPECIAL_CHARACTER)
+                return@InputFilter if (isPossibleChar) source else ""
             },
             InputFilter.LengthFilter(7)
         )
+    }
+
+    private fun initNickNameLengthMessage() {
+        binding.etSetNickname.addTextChangedListener {
+            val message = when (binding.etSetNickname.text.length) {
+                in 0..6 -> HAS_NO_STATE
+                7 -> OVER_TEXT_LIMIT
+                else -> throw IllegalStateException("Maximum nickname length is 7")
+            }
+            setNickNameViewModel.updateNickNameState(message)
+        }
     }
 
     private fun initDuplicateNickNameButton() {
