@@ -42,7 +42,7 @@ object Versions {
     const val timberVersion = "4.7.1"
     const val flipperVersion = "0.100.0"
     const val soloaderVersion = "0.10.1"
-    const val leakCanaryVersion = "2.6"
+    const val leakCanaryVersion = "2.9.1"
     const val kotlinxSerializationJsonVersion = "1.2.2"
     const val gsonVersion = "2.8.9"
     const val gsonConverterVersion = "2.9.0"
